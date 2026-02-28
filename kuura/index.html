@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuura Siivouspalvelu Jyväskylä | Puhdas koti, selkeä mieli.</title>
+<meta name="description" content="Kuura siivouspalvelu Jyväskylässä. Kotisiivous, toimistosiivous, loppusiivous. Kotitalousvähennys käytössä. Pyydä tarjous.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ice:#e8f4f8;--teal:#1a4a5c;--teal-m:#2d6b82;--teal-l:#4a8fa3;
+  --sage-x:#c5dfe8;--sage-xx:#e0ecf2;
+  --warm:#f8fcfd;--stone:#ddeaf0;
+  --terra:#c9663c;--terra-l:#e08060;--terra-x:#faeae4;
+  --text:#1a2e35;--text-m:#3d5a63;--text-l:#7a9ba5;
+  --dark:#0f1f25;--dark-m:#1c3040;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--warm);line-height:1.7;overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--teal);transition:background .3s}
+.nav.scrolled{background:var(--dark-m);box-shadow:0 1px 20px rgba(0,0,0,.2)}
+.nav-in{max-width:1160px;margin:0 auto;padding:0 28px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:30px;height:30px;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-main{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;letter-spacing:.08em;text-transform:uppercase}
+.logo-sub{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;padding:8px 12px;border-radius:3px;transition:all .15s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-phone{font-size:13.5px;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none}
+.nav-cta{background:var(--terra);color:#fff;text-decoration:none;padding:9px 20px;border-radius:4px;font-size:13.5px;font-weight:700;transition:background .15s}
+.nav-cta:hover{background:var(--terra-l)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.ham span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .22s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:var(--dark-m);padding:12px 24px 20px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:rgba(255,255,255,.8);text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08);font-weight:500}
+.mob-nav .mob-cta{margin-top:14px;display:block;background:var(--terra);color:#fff;text-align:center;padding:14px;border-radius:4px;font-weight:700;font-size:15px}
+
+/* HERO */
+.hero{min-height:100svh;background:var(--teal);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:66px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 75% 50%,rgba(74,143,163,.2) 0%,transparent 65%),radial-gradient(ellipse 45% 70% at 10% 80%,rgba(15,31,37,.6) 0%,transparent 55%);pointer-events:none}
+.hero-dots{position:absolute;top:0;right:0;bottom:0;width:55%;opacity:.035;background-image:radial-gradient(rgba(255,255,255,.8) 1px,transparent 1px);background-size:26px 26px;pointer-events:none}
+.hero-in{max-width:1160px;margin:0 auto;padding:56px 28px 72px;width:100%;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center}
+.hero-ey{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-l);margin-bottom:18px;opacity:0;transition:opacity .6s .1s}
+.hero-ey.v{opacity:1}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,84px);font-weight:300;color:#fff;line-height:1.07;margin-bottom:8px;opacity:0;transform:translateY(16px);transition:opacity 1s .2s,transform 1s .2s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1 em{font-style:italic;color:var(--sage-x);display:block}
+.hero-rule{width:52px;height:2px;background:var(--terra);margin:22px 0;opacity:0;transition:opacity .7s .5s}
+.hero-rule.v{opacity:1}
+.hero-p{font-size:clamp(15px,1.7vw,18px);color:rgba(255,255,255,.65);line-height:1.82;max-width:480px;margin-bottom:36px;font-weight:300;opacity:0;transition:opacity .8s .6s}
+.hero-p.v{opacity:1}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transition:opacity .7s .75s}
+.hero-btns.v{opacity:1}
+.btn-terra{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:#fff;padding:14px 26px;border-radius:4px;font-size:15px;font-weight:700;text-decoration:none;transition:background .15s,transform .15s;border:none;cursor:pointer}
+.btn-terra:hover{background:var(--terra-l);transform:translateY(-1px)}
+.btn-outline-w{display:inline-flex;align-items:center;gap:9px;background:transparent;color:rgba(255,255,255,.85);padding:13px 24px;border-radius:4px;font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.22);transition:all .15s}
+.btn-outline-w:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.5)}
+
+/* HERO CARD — kotitalousvähennys */
+.hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:30px;backdrop-filter:blur(8px);opacity:0;transform:translateY(16px);transition:opacity .9s .42s,transform .9s .42s}
+.hero-card.v{opacity:1;transform:none}
+.hc-head{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-x);margin-bottom:18px}
+.hc-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:#fff;margin-bottom:4px}
+.hc-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px}
+.hc-calc{background:rgba(255,255,255,.06);border-radius:7px;padding:20px}
+.hc-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px}
+.hc-row:last-child{border-bottom:none}
+.hc-row-label{color:rgba(255,255,255,.55)}
+.hc-row-val{color:#fff;font-weight:600}
+.hc-row-val.cut{color:var(--terra-l)}
+.hc-cta{display:block;width:100%;background:var(--terra);color:#fff;border:none;padding:13px;border-radius:5px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s;margin-top:16px}
+.hc-cta:hover{background:var(--terra-l)}
+.hc-note{font-size:11.5px;color:rgba(255,255,255,.3);text-align:center;margin-top:10px;line-height:1.6}
+
+/* TRUST */
+.trust{background:var(--dark);padding:16px 28px}
+.trust-in{max-width:1160px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 36px}
+.ti{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.5);font-weight:500}
+.ti-dot{width:4px;height:4px;border-radius:50%;background:var(--teal-l);flex-shrink:0}
+
+/* SECTIONS */
+section{padding:88px 28px}
+.wrap{max-width:1160px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-bottom:10px}
+.eyebrow-t{color:var(--terra)}
+.eyebrow-s{color:var(--teal-l)}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,52px);font-weight:400;color:var(--teal);line-height:1.12}
+
+/* PALVELUT */
+.services{background:var(--warm)}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.srv{background:var(--warm);border:1px solid var(--stone);border-radius:10px;padding:32px 26px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.srv:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,74,92,.1);border-color:var(--teal-l)}
+.srv-icon{width:48px;height:48px;background:var(--ice);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.srv h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--teal);margin-bottom:8px}
+.srv p{font-size:14px;color:var(--text-m);line-height:1.75}
+.srv-price{font-size:13px;font-weight:700;color:var(--terra);margin-top:12px}
+
+/* HINNOITTELU */
+.pricing{background:var(--ice)}
+.pricing-head{text-align:center;margin-bottom:52px}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
+.pkg{background:#fff;border-radius:10px;padding:38px 32px;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.pkg:hover{transform:translateY(-3px)}
+.pkg.pop{border-color:var(--teal)}
+.pkg-badge{background:var(--teal);color:#fff;font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:14px;letter-spacing:.05em}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--teal);margin-bottom:6px}
+.pkg-tagline{font-size:14px;color:var(--text-m);margin-bottom:18px;min-height:40px}
+.pkg-price{display:flex;align-items:baseline;gap:2px;margin-bottom:4px}
+.pkg-eur{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:400;color:var(--dark);line-height:1}
+.pkg-cur{font-size:18px;color:var(--text-m);font-family:'Cormorant Garamond',serif}
+.pkg-after{font-size:12.5px;color:var(--text-l);margin-bottom:6px}
+.pkg-verot{font-size:13px;font-weight:700;color:var(--terra);margin-bottom:20px;background:var(--terra-x);padding:6px 12px;border-radius:4px;display:inline-block}
+.pkg-rule{height:1px;background:var(--stone);margin-bottom:18px}
+.pkg-list{list-style:none;margin-bottom:24px}
+.pkg-list li{font-size:13.5px;color:var(--text-m);padding:5px 0;border-bottom:1px solid var(--ice);display:flex;gap:8px}
+.pkg-list li:last-child{border-bottom:none}
+.pkg-list li::before{content:'✓';color:var(--teal-l);font-weight:700;flex-shrink:0}
+.btn-pkg{display:block;width:100%;background:var(--teal);color:#fff;border:none;padding:13px;border-radius:4px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s}
+.btn-pkg:hover{background:var(--teal-m)}
+.pkg.pop .btn-pkg{background:var(--terra)}
+.pkg.pop .btn-pkg:hover{background:var(--terra-l)}
+.verot-note{text-align:center;font-size:13.5px;color:var(--text-m);max-width:560px;margin:28px auto 0;line-height:1.8}
+.verot-note strong{color:var(--terra)}
+
+/* HOW */
+.how{background:var(--warm)}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--stone);border-radius:10px;overflow:hidden;margin-top:48px}
+.how-step{background:var(--warm);padding:36px 26px;position:relative}
+.how-step:hover{background:var(--ice)}
+.how-n{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:var(--teal);opacity:.08;line-height:1;position:absolute;top:16px;right:16px}
+.how-icon{width:44px;height:44px;background:var(--ice);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.how-step h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--teal);margin-bottom:8px}
+.how-step p{font-size:14px;color:var(--text-m);line-height:1.75}
+
+/* KAUPUNGINOSAT */
+.areas{background:var(--ice);padding:88px 28px}
+.areas-head{text-align:center;margin-bottom:44px}
+.area-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:960px;margin:0 auto}
+.area-link{background:#fff;border:1px solid var(--stone);border-radius:7px;padding:14px 12px;text-align:center;text-decoration:none;font-size:13.5px;font-weight:600;color:var(--teal);transition:all .15s}
+.area-link:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-2px)}
+
+/* AI BLOCK */
+.ai-block{background:var(--teal);padding:88px 28px}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.ai-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,52px);font-weight:400;color:#fff;line-height:1.12;margin-bottom:14px}
+.ai-text p{font-size:16px;color:rgba(255,255,255,.65);line-height:1.85;margin-bottom:14px}
+.ai-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ai-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:22px 18px}
+.ai-card h4{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;margin-bottom:6px}
+.ai-card p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+.ai-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.05em;margin-bottom:8px}
+.ai-badge.auto{background:var(--teal-l);color:#fff}
+.ai-badge.human{background:var(--terra);color:#fff}
+
+/* REVIEWS */
+.reviews{background:var(--warm);padding:88px 28px}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.rv{background:var(--ice);border-radius:8px;padding:28px}
+.rv-q{font-family:'Cormorant Garamond',serif;font-size:56px;color:var(--sage-x);line-height:.4;display:block;margin-bottom:16px}
+.rv-txt{font-size:15px;color:var(--text-m);font-style:italic;line-height:1.82;margin-bottom:18px}
+.rv-name{font-weight:700;font-size:14px;color:var(--teal)}
+.rv-loc{font-size:12px;color:var(--text-l)}
+.rv-stars{font-size:12px;color:var(--terra);margin-top:2px}
+
+/* CONTACT */
+.contact{background:var(--ice);padding:88px 28px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:64px}
+.contact-left h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--teal);margin-bottom:14px}
+.contact-left p{font-size:15px;color:var(--text-m);line-height:1.85;margin-bottom:24px}
+.ci-list{display:flex;flex-direction:column;gap:2px}
+.ci{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--stone)}
+.ci:last-child{border-bottom:none}
+.ci-dot{width:34px;height:34px;background:var(--ice);border:1px solid var(--stone);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--teal);flex-shrink:0}
+.ci-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-l)}
+.ci-val{font-size:15px;font-weight:600;color:var(--teal)}
+.ci-val a{color:var(--teal);text-decoration:none}
+.cf{background:#fff;border-radius:10px;padding:44px;box-shadow:0 2px 24px rgba(26,74,92,.07)}
+.cf h3{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--teal);margin-bottom:22px}
+.fld{margin-bottom:15px}
+.fld label{display:block;font-size:12px;font-weight:700;color:var(--text-l);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.fld input,.fld textarea,.fld select{width:100%;padding:11px 14px;border:1.5px solid var(--stone);border-radius:5px;font-family:'Inter',sans-serif;font-size:15px;color:var(--text);background:var(--warm);outline:none;transition:border-color .15s}
+.fld input:focus,.fld textarea:focus{border-color:var(--teal);background:#fff}
+.fld textarea{resize:none;height:88px}
+.fld-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sub{width:100%;background:var(--teal);color:#fff;border:none;padding:14px;border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:4px}
+.sub:hover{background:var(--teal-m)}
+
+/* FOOTER */
+.ftr{background:var(--dark);padding:56px 28px 28px}
+.ftr-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ftr-brand-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.ftr-brand-sub{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-l);margin-bottom:13px}
+.ftr-brand-p{font-size:13px;color:rgba(255,255,255,.33);line-height:1.82;max-width:260px}
+.ftr-col h4{color:rgba(255,255,255,.65);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.ftr-col a{display:block;color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;padding:3px 0;transition:color .14s}
+.ftr-col a:hover{color:rgba(255,255,255,.85)}
+.ftr-bot{max-width:1160px;margin:20px auto 0;display:flex;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,.2)}
+
+.sph{position:fixed;bottom:22px;right:22px;z-index:400;background:var(--terra);color:#fff;padding:12px 22px;border-radius:40px;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 4px 20px rgba(201,102,60,.4);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;gap:8px}
+.sph.show{opacity:1;pointer-events:auto}
+.sph:hover{background:var(--terra-l)}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fade.d1{transition-delay:.1s}.fade.d2{transition-delay:.2s}.fade.d3{transition-delay:.3s}
+.fade.visible{opacity:1;transform:none}
+
+@media(max-width:1024px){
+  .hero-in,.ai-grid{grid-template-columns:1fr}
+  .hero-card{max-width:460px}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .pkg-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .area-grid{grid-template-columns:repeat(3,1fr)}
+  .ai-cards{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-phone{display:none}.nav-cta{display:none}
+  .ham{display:flex}
+  section{padding:60px 20px}
+  .srv-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .rv-grid{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr;gap:24px}
+  .fld-2{grid-template-columns:1fr}
+  .area-grid{grid-template-columns:repeat(2,1fr)}
+  .cf{padding:24px 18px}
+  .ai-cards{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo">
+      <svg class="logo-icon" viewBox="0 0 30 30" fill="none">
+        <path d="M15 3L17.5 9H24L18.5 13.5L20.5 20L15 16L9.5 20L11.5 13.5L6 9H12.5L15 3Z" stroke="rgba(255,255,255,.7)" stroke-width="1.2" fill="rgba(197,223,232,.15)"/>
+        <circle cx="15" cy="15" r="13.5" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-main">Kuura</span>
+        <span class="logo-sub">Siivouspalvelu Jyväskylä</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#palvelut">Palvelut</a>
+      <a href="#hinnat">Hinnat</a>
+      <a href="#prosessi">Miten toimii</a>
+      <a href="#kaupunginosat">Kaupunginosat</a>
+      <a href="#yhteystiedot">Yhteystiedot</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+358401234567" class="nav-phone">040 123 4567</a>
+      <a href="#yhteystiedot" class="nav-cta">Pyydä tarjous &rarr;</a>
+    </div>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mob-nav" id="mNav">
+    <a href="#palvelut" onclick="c()">Palvelut</a>
+    <a href="#hinnat" onclick="c()">Hinnat</a>
+    <a href="#prosessi" onclick="c()">Miten toimii</a>
+    <a href="#kaupunginosat" onclick="c()">Kaupunginosat</a>
+    <a href="#yhteystiedot" onclick="c()">Yhteystiedot</a>
+    <a href="tel:+358401234567" class="mob-cta">Soita 040 123 4567</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-in">
+    <div>
+      <p class="hero-ey" id="he">Siivouspalvelu &nbsp;&middot;&nbsp; Jyväskylä &nbsp;&middot;&nbsp; Kotitalousvähennys</p>
+      <h1 class="hero-h1" id="hh">Puhdas koti,<em>selkeä mieli.</em></h1>
+      <div class="hero-rule" id="hr"></div>
+      <p class="hero-p" id="hp">Luotettava, ammattimainen siivouspalvelu Jyväskylässä. Hoidamme kotisi kuntoon &mdash; ajanvaraus onnistuu verkossa mihin vuorokaudenaikaan tahansa.</p>
+      <div class="hero-btns" id="hb">
+        <a href="#yhteystiedot" class="btn-terra">Pyydä ilmainen tarjous &rarr;</a>
+        <a href="#hinnat" class="btn-outline-w">Katso hinnat</a>
+      </div>
+    </div>
+    <div class="hero-card" id="hc">
+      <div class="hc-head">Kotitalousvähennys</div>
+      <div class="hc-title">Maksat vain puolet</div>
+      <p class="hc-sub">Siivouspalvelut oikeuttavat kotitalousvähennykseen. Alla laskelma Perus-paketista:</p>
+      <div class="hc-calc">
+        <div class="hc-row"><span class="hc-row-label">Palvelun hinta</span><span class="hc-row-val">139 &euro;</span></div>
+        <div class="hc-row"><span class="hc-row-label">Kotitalousvähennys (50&nbsp;%)</span><span class="hc-row-val cut">&minus;70 &euro;</span></div>
+        <div class="hc-row"><span class="hc-row-label">Maksat itse</span><span class="hc-row-val" style="color:var(--sage-x);font-size:18px">69 &euro;</span></div>
+      </div>
+      <a href="#yhteystiedot" class="hc-cta">Varaa aika &rarr;</a>
+      <p class="hc-note">Hoidamme vähennyksen paperit puolestasi. Enimmäisvähennys 2&nbsp;250 &euro;/hlö/vuosi.</p>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-in">
+    <div class="ti"><div class="ti-dot"></div>Ajanvaraus 24/7</div>
+    <div class="ti"><div class="ti-dot"></div>Kotitalousvähennys</div>
+    <div class="ti"><div class="ti-dot"></div>Vakuutettu palvelu</div>
+    <div class="ti"><div class="ti-dot"></div>Jyväskylä ja lähikunnat</div>
+    <div class="ti"><div class="ti-dot"></div>Tyytyväisyystakuu</div>
+  </div>
+</div>
+
+<section class="services" id="palvelut">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-s fade">Palvelut</p>
+    <h2 class="sec-h2 fade">Kaikki siivoustarpeet &mdash; yhdeltä luukulta</h2>
+    <div class="srv-grid">
+      <div class="srv fade d1">
+        <div class="srv-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3C11 3 5 7.5 5 13a6 6 0 0012 0C17 7.5 11 3 11 3Z" stroke="#1a4a5c" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Kotisiivous</h3>
+        <p>Säännöllinen tai kertaluonteinen kotisiivous. Räätälöidään tarpeesi mukaan. Kokenut siivooja, vakaat käytännöt.</p>
+        <p class="srv-price">alkaen 139 &euro; (69 &euro; verovähennyksen jälkeen)</p>
+      </div>
+      <div class="srv fade d2">
+        <div class="srv-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#1a4a5c" stroke-width="1.5"/><path d="M7 8h8M7 11h8M7 14h5" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Toimistosiivous</h3>
+        <p>Säännöllinen toimisto- ja toimitilasiivous sopimuksella. Joustavat aikataulut, yhtenäinen laatu.</p>
+        <p class="srv-price">alkaen 350 &euro;/kk sopimuksella</p>
+      </div>
+      <div class="srv fade d3">
+        <div class="srv-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 17l4-4 3 3 7-8" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Muutto- &amp; loppusiivous</h3>
+        <p>Täydellinen perussiivous muuton yhteydessä. Vuokranantajan hyväksymä laatu &mdash; vuokravakuus takaisin.</p>
+        <p class="srv-price">alkaen 250 &euro;</p>
+      </div>
+      <div class="srv fade">
+        <div class="srv-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#1a4a5c" stroke-width="1.5"/><path d="M11 7v4l3 2" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Ikkunanpesu</h3>
+        <p>Sisä- ja ulkopinnat kimaltelevaan kuntoon. Voidaan yhdistää kotisiivoukseen tai tilata erikseen.</p>
+        <p class="srv-price">alkaen 89 &euro;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="hinnat">
+  <div class="wrap">
+    <div class="pricing-head fade">
+      <p class="eyebrow eyebrow-t">Hinnoittelu</p>
+      <h2 class="sec-h2">Selkeä hinnoittelu &mdash; ei yllätyksiä</h2>
+      <p style="font-size:16px;color:var(--text-m);max-width:520px;margin:10px auto 0;line-height:1.85">Kaikki paketit oikeuttavat kotitalousvähennykseen. Hoidamme vähennyksen paperit puolestasi.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg fade d1">
+        <div class="pkg-name">Perus</div>
+        <p class="pkg-tagline">Keittiö, kylpyhuone, olohuone, makuuhuone. ~3 h.</p>
+        <div class="pkg-price"><span class="pkg-cur">&euro;</span><span class="pkg-eur">139</span></div>
+        <p class="pkg-after">kertaluonteinen &bull; n. 70 m&sup2;</p>
+        <span class="pkg-verot">Maksat vain ~69 &euro; verovähennyksen jälkeen</span>
+        <div class="pkg-rule"></div>
+        <ul class="pkg-list">
+          <li>Pölyjen pyyhintä ja imurointi</li>
+          <li>Kylpyhuone ja WC</li>
+          <li>Keittiö ja kodinkoneet pintapuolisesti</li>
+          <li>Lattioiden pesu</li>
+          <li>Roskat</li>
+        </ul>
+        <a href="#yhteystiedot" class="btn-pkg">Varaa Perus &rarr;</a>
+      </div>
+      <div class="pkg pop fade d2">
+        <div class="pkg-badge">Suosituin</div>
+        <div class="pkg-name">Kodikas</div>
+        <p class="pkg-tagline">Perus + kodinkoneiden sisäpuolet, ikkunat, kaapit. ~4.5 h.</p>
+        <div class="pkg-price"><span class="pkg-cur">&euro;</span><span class="pkg-eur">199</span></div>
+        <p class="pkg-after">kertaluonteinen &bull; n. 70 m&sup2;</p>
+        <span class="pkg-verot">Maksat vain ~100 &euro; verovähennyksen jälkeen</span>
+        <div class="pkg-rule"></div>
+        <ul class="pkg-list">
+          <li>Kaikki Perus-paketin sisältö</li>
+          <li>Jääkaappi ja uuni sisäpuolelta</li>
+          <li>Ikkunat sisäpuolelta</li>
+          <li>Kaappien ulkopinnat</li>
+          <li>Pesuhuone/sauna</li>
+        </ul>
+        <a href="#yhteystiedot" class="btn-pkg">Varaa Kodikas &rarr;</a>
+      </div>
+      <div class="pkg fade d3">
+        <div class="pkg-name">Täydellinen</div>
+        <p class="pkg-tagline">Koko koti läpikotaisin puhtaaksi. ~7 h. Täydellinen.</p>
+        <div class="pkg-price"><span class="pkg-cur">&euro;</span><span class="pkg-eur">299</span></div>
+        <p class="pkg-after">kertaluonteinen &bull; n. 70 m&sup2;</p>
+        <span class="pkg-verot">Maksat vain ~150 &euro; verovähennyksen jälkeen</span>
+        <div class="pkg-rule"></div>
+        <ul class="pkg-list">
+          <li>Kaikki Kodikas-paketin sisältö</li>
+          <li>Ikkunat sisä- ja ulkopuolelta</li>
+          <li>Kaikki kaapit sisä- ja ulkopuolelta</li>
+          <li>Verhot ja verhotangot</li>
+          <li>Seinäpintojen pyyhintä</li>
+        </ul>
+        <a href="#yhteystiedot" class="btn-pkg">Varaa Täydellinen &rarr;</a>
+      </div>
+    </div>
+    <p class="verot-note fade">Kaikki hinnat sis. ALV 25,5&nbsp;%. <strong>Kotitalousvähennys on 50&nbsp;% työn osuudesta, enintään 2&nbsp;250&nbsp;&euro;/hlö/vuosi.</strong> Hoidamme vähennyksen paperit &mdash; sinun tarvitsee vain nauttia puhtaasta kodista.</p>
+  </div>
+</section>
+
+<section class="how" id="prosessi">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-s fade">Prosessi</p>
+    <h2 class="sec-h2 fade">Näin homma toimii</h2>
+    <div class="how-grid">
+      <div class="how-step fade">
+        <div class="how-n">1</div>
+        <div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="#1a4a5c" stroke-width="1.5"/><path d="M6 10h8M6 7h8M6 13h5" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Varaa aika</h3>
+        <p>Täytä lomake tai soita. Järjestelmämme ehdottaa sopivaa aikaa heti &mdash; 24/7.</p>
+      </div>
+      <div class="how-step fade d1">
+        <div class="how-n">2</div>
+        <div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#1a4a5c" stroke-width="1.5"/><path d="M3 18c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Siivooja saapuu</h3>
+        <p>Kokenut, taustatarkistettu siivooja saapuu sovittuun aikaan. Saat tekstiviesti-ilmoituksen.</p>
+      </div>
+      <div class="how-step fade d2">
+        <div class="how-n">3</div>
+        <div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Koti puhtaaksi</h3>
+        <p>Siivous tehdään sovitun listan mukaan. Valmistuttua saat kuittauksen ja kuvat halutessasi.</p>
+      </div>
+      <div class="how-step fade d3">
+        <div class="how-n">4</div>
+        <div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="#1a4a5c" stroke-width="1.5"/><path d="M14 2v4M6 2v4M2 8h16" stroke="#1a4a5c" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Lasku ja vähennys</h3>
+        <p>Lasku sähköisesti. Kotitalousvähennyksen paperit liitetään valmiiksi &mdash; suoraan verottajalle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="kaupunginosat">
+  <div class="wrap">
+    <div class="areas-head fade">
+      <p class="eyebrow eyebrow-s">Palvelualue</p>
+      <h2 class="sec-h2">Palvelemme koko Jyväskylässä</h2>
+      <p style="font-size:16px;color:var(--text-m);max-width:480px;margin:10px auto 0">Valitse kaupunginosasi ja katso tarkemmat tiedot palvelusta alueellasi.</p>
+    </div>
+    <div class="area-grid fade">
+      <a href="kaupunginosat/kuura-keskusta.html" class="area-link">Keskusta</a>
+      <a href="kaupunginosat/kuura-kuokkala.html" class="area-link">Kuokkala</a>
+      <a href="kaupunginosat/kuura-taulumaki.html" class="area-link">Taulumäki</a>
+      <a href="kaupunginosat/kuura-seppala.html" class="area-link">Seppälä</a>
+      <a href="kaupunginosat/kuura-palokka.html" class="area-link">Palokka</a>
+      <a href="kaupunginosat/kuura-keljo.html" class="area-link">Keljo</a>
+      <a href="kaupunginosat/kuura-halssila.html" class="area-link">Halssila</a>
+      <a href="kaupunginosat/kuura-kortepohja.html" class="area-link">Kortepohja</a>
+      <a href="kaupunginosat/kuura-myllyjärvi.html" class="area-link">Myllyjärvi</a>
+      <a href="kaupunginosat/kuura-pupuhuhta.html" class="area-link">Pupuhuhta</a>
+      <a href="kaupunginosat/kuura-keltinmaki.html" class="area-link">Keltinmäki</a>
+      <a href="kaupunginosat/kuura-vaajakoski.html" class="area-link">Vaajakoski</a>
+      <a href="kaupunginosat/kuura-jyska.html" class="area-link">Jyskä</a>
+      <a href="kaupunginosat/kuura-lohikoski.html" class="area-link">Lohikoski</a>
+      <a href="kaupunginosat/kuura-huhtasuo.html" class="area-link">Huhtasuo</a>
+      <a href="kaupunginosat/kuura-ristonmaa.html" class="area-link">Ristonmaa</a>
+      <a href="kaupunginosat/kuura-mannila.html" class="area-link">Mannila</a>
+      <a href="kaupunginosat/kuura-tikka.html" class="area-link">Tikka</a>
+      <a href="kaupunginosat/kuura-ainola.html" class="area-link">Ainola</a>
+      <a href="kaupunginosat/kuura-saynatsalo.html" class="area-link">Säynätsalo</a>
+      <a href="kaupunginosat/kuura-haukkala.html" class="area-link">Haukkala</a>
+      <a href="kaupunginosat/kuura-kangasvuori.html" class="area-link">Kangasvuori</a>
+    </div>
+  </div>
+</section>
+
+<section class="ai-block">
+  <div class="wrap">
+    <div class="ai-grid">
+      <div class="ai-text fade">
+        <p class="eyebrow eyebrow-s" style="color:rgba(255,255,255,.45)">Teknologia</p>
+        <h2>Sujuva palvelu &mdash; ihmiset tekevät ihmistyön</h2>
+        <p>Ajanvaraus, tarjouspyynnöt, tilapäivitykset ja laskutus hoituvat automaattisesti ympäri vuorokauden. Palvelemme suomeksi ja englanniksi.</p>
+        <p>Kun tarvitaan ihmistä &mdash; esimerkiksi reklamaatioissa tai erityistoiveissa &mdash; suomenkielinen palveluneuvoja on saatavilla.</p>
+      </div>
+      <div class="ai-cards fade d2">
+        <div class="ai-card">
+          <span class="ai-badge auto">AUTO</span>
+          <h4>Ajanvaraus</h4>
+          <p>24/7 verkossa. Ehdottaa sopivaa aikaa, vahvistaa automaattisesti.</p>
+        </div>
+        <div class="ai-card">
+          <span class="ai-badge auto">AUTO</span>
+          <h4>Tarjouslaskenta</h4>
+          <p>Syötä neliöt &rarr; saat hinnan heti. Ei odottelua.</p>
+        </div>
+        <div class="ai-card">
+          <span class="ai-badge auto">AUTO</span>
+          <h4>Tilapäivitykset</h4>
+          <p>SMS kun siivooja on matkalla, valmistunut ja lasku lähetetty.</p>
+        </div>
+        <div class="ai-card">
+          <span class="ai-badge human">Ihminen</span>
+          <h4>Reklamaatiot</h4>
+          <p>Jos jokin ei miellytä, puhumme aina ihminen ihmiselle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-s fade">Asiakaskokemuksia</p>
+    <h2 class="sec-h2 fade">Mitä asiakkaamme sanovat</h2>
+    <div class="rv-grid">
+      <div class="rv fade d1">
+        <span class="rv-q">&ldquo;</span>
+        <p class="rv-txt">Vihdoin löytyi luotettava siivooja. Ovat aina ajallaan, tekevät työn huolellisesti ja kotitalousvähennyksen hoito on tehty helpoksi.</p>
+        <div class="rv-name">Marika T.</div><div class="rv-loc">Kuokkala, Jyväskylä</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="rv fade d2">
+        <span class="rv-q">&ldquo;</span>
+        <p class="rv-txt">Muuttosiivous tehtiin täydellisesti. Vuokranantaja oli erittäin tyytyväinen ja vuokravakuus palautettiin kokonaan.</p>
+        <div class="rv-name">Petteri K.</div><div class="rv-loc">Keskusta, Jyväskylä</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="rv fade d3">
+        <span class="rv-q">&ldquo;</span>
+        <p class="rv-txt">Toimiston siivous on ollut Kuuralla jo vuoden. Joustava aikataulu, tasainen laatu ja helppo laskutus. Suosittelen lämpimästi.</p>
+        <div class="rv-name">Janne V.</div><div class="rv-loc">Jyväskylän keskusta</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="yhteystiedot">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="fade">
+        <p class="eyebrow eyebrow-s">Yhteystiedot</p>
+        <h2>Pyydä ilmainen tarjous</h2>
+        <p>Vastaamme tarjouspyyntöihin saman päivän aikana. Järjestelmämme käsittelee pyynnön välittömästi ja ehdottaa sopivaa aikaa.</p>
+        <div class="ci-list">
+          <div class="ci"><div class="ci-dot">P</div><div><div class="ci-label">Puhelin</div><div class="ci-val"><a href="tel:+358401234567">040 123 4567</a></div></div></div>
+          <div class="ci"><div class="ci-dot">S</div><div><div class="ci-label">Sähköposti</div><div class="ci-val"><a href="mailto:info@kuura.fi">info@kuura.fi</a></div></div></div>
+          <div class="ci"><div class="ci-dot">W</div><div><div class="ci-label">WhatsApp</div><div class="ci-val"><a href="https://wa.me/358401234567">Lähetä viesti</a></div></div></div>
+          <div class="ci"><div class="ci-dot">A</div><div><div class="ci-label">Alue</div><div class="ci-val">Jyväskylä ja lähikunnat</div></div></div>
+        </div>
+      </div>
+      <div class="cf fade d2">
+        <h3>Yhteydenottopyyntö</h3>
+        <div class="fld-2">
+          <div class="fld"><label>Nimi</label><input type="text" placeholder="Etunimi Sukunimi"></div>
+          <div class="fld"><label>Puhelin</label><input type="tel" placeholder="040 xxx xxxx"></div>
+        </div>
+        <div class="fld"><label>Sähköposti</label><input type="email" placeholder="nimi@email.fi"></div>
+        <div class="fld"><label>Kaupunginosa</label>
+          <select><option>Valitse kaupunginosa</option><option>Keskusta</option><option>Kuokkala</option><option>Taulumäki</option><option>Seppälä</option><option>Palokka</option><option>Keljo</option><option>Halssila</option><option>Kortepohja</option><option>Muu</option></select>
+        </div>
+        <div class="fld"><label>Palvelu</label>
+          <select><option>Kotisiivous — Perus 139 €</option><option>Kotisiivous — Kodikas 199 €</option><option>Kotisiivous — Täydellinen 299 €</option><option>Muutto-/loppusiivous</option><option>Toimistosiivous (sopimus)</option><option>Ikkunanpesu</option></select>
+        </div>
+        <div class="fld"><label>Lisätietoja</label><textarea placeholder="Kodin koko, erityistoiveet..."></textarea></div>
+        <button class="sub">Lähetä pyyntö &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr-grid">
+    <div>
+      <div class="ftr-brand-name">Kuura</div>
+      <div class="ftr-brand-sub">Siivouspalvelu Jyväskylä</div>
+      <p class="ftr-brand-p">Luotettava, ammattimainen siivouspalvelu Jyväskylässä. Kotitalousvähennys, 24/7 ajanvaraus.</p>
+    </div>
+    <div class="ftr-col"><h4>Palvelut</h4><a href="#palvelut">Kotisiivous</a><a href="#palvelut">Toimistosiivous</a><a href="#palvelut">Muuttositous</a><a href="#palvelut">Ikkunanpesu</a></div>
+    <div class="ftr-col"><h4>Tietoa</h4><a href="#hinnat">Hinnat</a><a href="#prosessi">Miten toimii</a><a href="#kaupunginosat">Kaupunginosat</a><a href="#">Tietosuoja</a></div>
+    <div class="ftr-col"><h4>Yhteystiedot</h4><a href="tel:+358401234567">040 123 4567</a><a href="mailto:info@kuura.fi">info@kuura.fi</a><a href="#">Jyväskylä</a></div>
+  </div>
+  <div style="max-width:1160px;margin:20px auto 0;display:flex;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,.2)"><span>&copy; 2026 Kuura Siivouspalvelu</span><span>Tietosuojaseloste</span></div>
+</footer>
+
+<a href="tel:+358401234567" class="sph" id="sph">Soita 040 123 4567</a>
+
+<script>
+window.addEventListener('load',()=>{['he','hh','hr','hp','hb','hc'].forEach(id=>{const e=document.getElementById(id);if(e){e.classList.add('v')}})});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>60)},{passive:true});
+const ham=document.getElementById('ham'),mNav=document.getElementById('mNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mNav.classList.toggle('open')});
+function c(){ham.classList.remove('open');mNav.classList.remove('open')}
+const sph=document.getElementById('sph'),hero=document.getElementById('hero');
+new IntersectionObserver(e=>{sph.classList.toggle('show',!e[0].isIntersecting)},{threshold:.1}).observe(hero);
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

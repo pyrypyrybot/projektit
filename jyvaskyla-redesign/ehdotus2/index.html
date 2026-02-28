@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoria Jyväskylä – Hautaustoimisto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#004a59;--teal-m:#00687d;--teal-l:#008fa8;
+  --forest:#395752;--sage:#d0ddd9;--sage-d:#a8bfb8;
+  --cream:#f3f1ee;--beige:#e8e4de;--warm:#c5bbaa;
+  --text:#1a1a1a;--text-m:#4a4a4a;--text-l:#888;
+  --gold:#b8955a;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
+
+/* HEADER – transparent, becomes white on scroll */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:300;transition:background .3s,box-shadow .3s,backdrop-filter .3s;padding:0 36px}
+.hdr.scrolled{background:rgba(255,255,255,.97);box-shadow:0 1px 18px rgba(0,0,0,.07);backdrop-filter:blur(10px)}
+.hdr-inner{max-width:1200px;margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-logo img{height:34px;display:block;transition:filter .3s}
+.hdr-logo-dark img{filter:brightness(0) invert(1)}
+.hdr.scrolled .hdr-logo-dark img{filter:none}
+.hdr-nav{display:flex;align-items:center;gap:2px}
+.hdr-nav a{font-size:13.5px;font-weight:600;color:rgba(255,255,255,.82);text-decoration:none;padding:8px 14px;border-radius:4px;letter-spacing:.01em;transition:color .18s,background .18s;white-space:nowrap}
+.hdr-nav a:hover{color:#fff}
+.hdr.scrolled .hdr-nav a{color:var(--text-m)}
+.hdr.scrolled .hdr-nav a:hover{color:var(--teal);background:var(--cream)}
+.hdr-phone{background:var(--teal);color:#fff;text-decoration:none;padding:9px 18px;border-radius:4px;font-size:13.5px;font-weight:700;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.hdr-phone:hover{background:var(--teal-m)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.ham span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all .25s}
+.hdr.scrolled .ham span{background:var(--teal)}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:var(--white);border-top:1px solid var(--beige);padding:12px 24px 20px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--text);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--beige);font-weight:600}
+.mob-nav a:last-of-type{border-bottom:none}
+.mob-nav .mc{margin-top:14px;display:block;background:var(--teal);color:#fff;text-align:center;padding:15px;border-radius:4px;font-weight:700;font-size:16px;text-decoration:none}
+
+/* HERO — split: left teal panel, right photo */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.hero-left{background:var(--teal);display:flex;flex-direction:column;justify-content:center;padding:120px 56px 80px;position:relative;overflow:hidden}
+.hero-left::after{content:'';position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.hero-logo-img{height:44px;display:block;margin-bottom:52px;opacity:0;transition:opacity .8s .1s}
+.hero-logo-img.v{opacity:1}
+.hero-tag{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sage-d);margin-bottom:20px;opacity:0;transform:translateY(8px);transition:opacity .6s .25s,transform .6s .25s}
+.hero-tag.v{opacity:1;transform:none}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5vw,72px);font-weight:300;color:#fff;line-height:1.08;margin-bottom:8px;opacity:0;transform:translateY(14px);transition:opacity .9s .38s,transform .9s .38s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1-it{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,52px);font-weight:300;font-style:italic;color:var(--sage);display:block;line-height:1.2;margin-bottom:32px;opacity:0;transform:translateY(12px);transition:opacity .9s .52s,transform .9s .52s}
+.hero-h1-it.v{opacity:1;transform:none}
+.hero-rule{width:48px;height:1px;background:var(--gold);margin-bottom:28px;opacity:0;transition:opacity .7s .65s}
+.hero-rule.v{opacity:1}
+.hero-desc{font-size:16px;color:rgba(255,255,255,.7);line-height:1.82;max-width:400px;margin-bottom:40px;font-weight:300;opacity:0;transform:translateY(8px);transition:opacity .7s .75s,transform .7s .75s}
+.hero-desc.v{opacity:1;transform:none}
+.hero-btns{display:flex;flex-direction:column;gap:10px;max-width:360px;opacity:0;transition:opacity .7s .88s}
+.hero-btns.v{opacity:1}
+.hbtn{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-radius:4px;text-decoration:none;font-size:15px;font-weight:600;transition:all .18s}
+.hbtn-primary{background:#fff;color:var(--teal)}
+.hbtn-primary:hover{box-shadow:0 4px 20px rgba(0,0,0,.2);transform:translateY(-1px)}
+.hbtn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.2)}
+.hbtn-ghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5)}
+.hbtn-arr{font-size:16px;opacity:.6}
+.hero-right{position:relative;overflow:hidden}
+.hero-right-img{position:absolute;inset:0;background:url('../assets/hero1.jpg') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out}
+.hero-right-img.loaded{transform:scale(1)}
+.hero-right-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--teal) 0%,transparent 30%)}
+
+/* TRUST STRIP */
+.strip{background:var(--sage);padding:22px 36px}
+.strip-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.strip-items{display:flex;gap:40px;flex-wrap:wrap}
+.strip-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--teal);font-weight:500}
+.strip-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.4;flex-shrink:0}
+.strip-cta{background:var(--teal);color:#fff;text-decoration:none;padding:10px 20px;border-radius:4px;font-size:14px;font-weight:700;transition:background .15s;white-space:nowrap}
+.strip-cta:hover{background:var(--teal-m)}
+
+/* SERVICES */
+.svc{padding:88px 36px;background:var(--white)}
+.wrap{max-width:1200px;margin:0 auto}
+.sec-hd{margin-bottom:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.sec-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.5vw,52px);font-weight:400;color:var(--teal);line-height:1.13}
+.sec-hd p{font-size:16px;color:var(--text-m);line-height:1.82}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-l);margin-bottom:10px}
+.eyebrow-sage{color:var(--sage-d)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--beige);border-radius:8px;overflow:hidden}
+.sv{background:var(--cream);padding:44px 36px;transition:background .2s;position:relative;overflow:hidden}
+.sv:hover{background:var(--white)}
+.sv::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--teal);transition:height .3s}
+.sv:hover::before{height:100%}
+.sv-n{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:var(--teal);opacity:.1;line-height:1;margin-bottom:-8px}
+.sv h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--teal);margin-bottom:12px}
+.sv p{font-size:14.5px;color:var(--text-m);line-height:1.75;margin-bottom:22px}
+.sv-list{list-style:none}
+.sv-list li{font-size:13.5px;color:var(--text-m);padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:center;gap:8px}
+.sv-list li:last-child{border-bottom:none}
+.sv-list li::before{content:'—';color:var(--gold);font-size:10px}
+
+/* ALTERNATING CONTENT */
+.alt{padding:0;background:var(--beige)}
+.alt-row{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.alt-row.rev{direction:rtl}
+.alt-row.rev > *{direction:ltr}
+.alt-photo{position:relative;overflow:hidden}
+.alt-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 6s ease}
+.alt-photo:hover img{transform:scale(1.03)}
+.alt-photo-tint{position:absolute;inset:0;background:rgba(0,50,60,.12)}
+.alt-content{padding:72px 56px;display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
+.alt-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:400;color:var(--teal);line-height:1.18;margin-bottom:14px}
+.alt-content p{font-size:16px;color:var(--text-m);line-height:1.85;margin-bottom:20px}
+.btn-teal{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:4px;text-decoration:none;font-size:14.5px;font-weight:700;transition:background .18s}
+.btn-teal:hover{background:var(--teal-m)}
+
+/* STEPS */
+.steps{background:var(--teal);padding:88px 36px}
+.steps-top{text-align:center;margin-bottom:60px}
+.steps-top h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,50px);font-weight:400;color:#fff;line-height:1.15}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;max-width:1200px;margin:0 auto;position:relative}
+.steps-grid::before{content:'';position:absolute;top:38px;left:16%;right:16%;height:1px;background:rgba(255,255,255,.1)}
+.st{text-align:center;position:relative;z-index:1}
+.st-c{width:76px;height:76px;border:1.5px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;background:rgba(255,255,255,.05)}
+.st-n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--sage)}
+.st h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:#fff;margin-bottom:10px}
+.st p{font-size:14.5px;color:rgba(255,255,255,.6);line-height:1.75}
+.steps-cta{text-align:center;margin-top:52px}
+.btn-sage-outline{display:inline-block;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;font-size:15px;font-weight:700;transition:all .2s}
+.btn-sage-outline:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.65)}
+
+/* REVIEWS */
+.reviews{padding:88px 36px;background:var(--cream)}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+.rv{padding:32px;background:var(--white);border-left:3px solid var(--sage-d)}
+.rv-q{font-family:'Cormorant Garamond',serif;font-size:66px;color:var(--sage-d);line-height:.5;margin-bottom:18px;display:block}
+.rv-txt{font-size:15.5px;color:var(--text-m);font-style:italic;line-height:1.8;margin-bottom:20px}
+.rv-meta{display:flex;align-items:center;gap:11px}
+.rv-av{width:38px;height:38px;background:var(--beige);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--teal);flex-shrink:0}
+.rv-name{font-weight:700;font-size:14px;color:var(--teal)}
+.rv-stars{font-size:11px;color:var(--gold);letter-spacing:2px}
+
+/* CONTACT */
+.contact{background:var(--teal);padding:88px 36px}
+.contact-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:start}
+.contact-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.2vw,48px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:18px}
+.contact-left p{font-size:16px;color:rgba(255,255,255,.72);line-height:1.82;margin-bottom:32px}
+.crows{}
+.crow{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff;transition:opacity .15s}
+.crow:last-child{border-bottom:none}
+.crow:hover{opacity:.8}
+.crow-icon{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:#fff;flex-shrink:0}
+.crow-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.crow-val{font-weight:600;font-size:15px}
+.cf{background:var(--white);border-radius:8px;padding:44px}
+.cf h3{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--teal);margin-bottom:24px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:12px;font-weight:700;color:var(--text-l);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+.fld input,.fld textarea,.fld select{width:100%;padding:12px 14px;border:1.5px solid var(--beige);border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.fld input:focus,.fld textarea:focus{border-color:var(--teal);background:var(--white)}
+.fld textarea{resize:none;height:95px}
+.fld-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sub{width:100%;background:var(--teal);color:#fff;border:none;padding:14px;border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .18s;margin-top:4px}
+.sub:hover{background:var(--teal-m)}
+
+/* FOOTER */
+.ftr{background:#081518;padding:56px 36px 28px}
+.ftr-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ftr-brand img{height:30px;filter:brightness(0) invert(1);opacity:.65;display:block;margin-bottom:14px}
+.ftr-brand p{font-size:13px;color:rgba(255,255,255,.38);line-height:1.85;max-width:260px}
+.ftr-col h4{color:rgba(255,255,255,.8);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.ftr-col a{display:block;color:rgba(255,255,255,.37);text-decoration:none;font-size:13.5px;padding:3px 0;transition:color .14s}
+.ftr-col a:hover{color:rgba(255,255,255,.85)}
+.ftr-bot{max-width:1200px;margin:20px auto 0;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:6px}
+
+/* STICKY */
+.sph{position:fixed;bottom:22px;right:22px;z-index:300;background:var(--teal);color:#fff;padding:12px 22px;border-radius:40px;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 4px 20px rgba(0,50,60,.45);transition:transform .2s,opacity .3s;opacity:0;pointer-events:none}
+.sph.show{opacity:1;pointer-events:auto}
+.sph:hover{transform:translateY(-2px)}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.fade.d1{transition-delay:.1s}.fade.d2{transition-delay:.2s}.fade.d3{transition-delay:.3s}
+.fade.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .sec-hd{grid-template-columns:1fr}
+  .alt-row,.alt-row.rev{grid-template-columns:1fr;direction:ltr}
+  .alt-photo{height:300px}
+  .alt-content{padding:48px 32px}
+  .contact-in{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .hdr{padding:0 20px}
+  .hdr-nav,.hdr-phone{display:none}
+  .ham{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{height:45vw;min-height:240px}
+  .hero-right-overlay{display:none}
+  .hero-left{padding:80px 24px 48px}
+  .hero-btns{max-width:100%}
+  .strip{padding:18px 20px}
+  .strip-items{gap:20px}
+  .svc{padding:56px 20px}
+  .sec-hd{display:block}
+  .svc-grid{grid-template-columns:1fr}
+  .steps{padding:56px 20px}
+  .steps-grid{grid-template-columns:1fr;gap:28px}
+  .steps-grid::before{display:none}
+  .reviews{padding:56px 20px}
+  .rv-grid{grid-template-columns:1fr}
+  .contact{padding:56px 20px}
+  .cf{padding:24px 18px}
+  .fld-2{grid-template-columns:1fr}
+  .ftr{padding:48px 20px 24px}
+  .ftr-grid{grid-template-columns:1fr;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr hdr-logo-dark" id="hdr">
+  <div class="hdr-inner">
+    <a href="#" class="hdr-logo"><img src="../assets/logo-white.png" alt="Memoria Jyväskylä" id="hdrLogo"></a>
+    <nav class="hdr-nav">
+      <a href="#info">Info ja yhteys</a>
+      <a href="#palvelut">Palvelut</a>
+      <a href="https://www.memoria.fi/" target="_blank">Memoria.fi</a>
+    </nav>
+    <a href="tel:+358145471905" class="hdr-phone">014 547 1905</a>
+    <button class="ham" id="ham" aria-label="Valikko"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mob-nav" id="mNav">
+    <a href="#info" onclick="c()">Info ja yhteys</a>
+    <a href="#palvelut" onclick="c()">Palvelut</a>
+    <a href="https://www.memoria.fi/" target="_blank" onclick="c()">Memoria.fi</a>
+    <a href="tel:+358145471905" class="mc">014 547 1905</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <img src="../assets/logo-white.png" alt="Memoria Jyväskylä" class="hero-logo-img" id="hLogo">
+    <p class="hero-tag" id="hTag">Jyväskylä &nbsp;&middot;&nbsp; Puistokatu 5 &nbsp;&middot;&nbsp; Perheiltä perheille</p>
+    <h1 class="hero-h1" id="hH1">Surun kohdatessa</h1>
+    <span class="hero-h1-it" id="hIt">olemme tukenne</span>
+    <div class="hero-rule" id="hRule"></div>
+    <p class="hero-desc" id="hDesc">Täyden palvelun hautaustoimisto ja hautakiviliike Jyväskylässä. Palvelemme ympäri vuorokauden.</p>
+    <div class="hero-btns" id="hBtns">
+      <a href="tel:+358145471905" class="hbtn hbtn-primary">
+        <span>Soita 014 547 1905</span><span class="hbtn-arr">&rarr;</span>
+      </a>
+      <a href="https://wa.me/358145471905" class="hbtn hbtn-ghost">
+        <span>WhatsApp</span><span class="hbtn-arr">&rarr;</span>
+      </a>
+      <a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" class="hbtn hbtn-ghost" target="_blank">
+        <span>Aloita suunnittelu verkossa</span><span class="hbtn-arr">&rarr;</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-img" id="hrImg"></div>
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-in">
+    <div class="strip-items">
+      <div class="strip-item"><div class="strip-dot"></div>Päivystys ympäri vuorokauden</div>
+      <div class="strip-item"><div class="strip-dot"></div>Toimisto Ma&ndash;Pe 9&ndash;16</div>
+      <div class="strip-item"><div class="strip-dot"></div>Puistokatu 5, Jyväskylä</div>
+    </div>
+    <a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" target="_blank" class="strip-cta">Suunnittele hautajaiset &rarr;</a>
+  </div>
+</div>
+
+<section class="svc" id="palvelut">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="fade">
+        <p class="eyebrow">Palvelumme</p>
+        <h2>Olemme tukenanne koko matkan ajan</h2>
+      </div>
+      <p class="fade d1">Huolehdimme kaikista hautajaisjärjestelyistä pienintä yksityiskohtaa myöten. Voitte jättää meille kaikki tai osan &mdash; sopeutumme teidän tarpeisiinne.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="sv fade">
+        <div class="sv-n">01</div>
+        <h3>Läheisen kuoltua</h3>
+        <p>Voit aloittaa hautausjärjestelyt heti. Soita tai tule toimistollemme Puistokatu 5. Suosittelemme ajanvarausta parasta palvelua varten.</p>
+        <ul class="sv-list"><li>Arkut ja uurnat</li><li>Kuljetukset</li><li>Kukat</li><li>Siunaus- ja muistotilaisuudet</li></ul>
+      </div>
+      <div class="sv fade d1">
+        <div class="sv-n">02</div>
+        <h3>Hautajaisten jälkeen</h3>
+        <p>Hautakivimyymälämme on avoinna ma&ndash;pe 9&ndash;16. Tervetuloa tutustumaan Jyväskylän keskustassa.</p>
+        <ul class="sv-list"><li>Hautakivet</li><li>Perunkirjoitus</li><li>Kuolinpesän hoito</li></ul>
+      </div>
+      <div class="sv fade d2">
+        <div class="sv-n">03</div>
+        <h3>Elämäsi asiakirjat</h3>
+        <p>Asioiden järjestäminen etukäteen antaa mielenrauhan ja turvaa läheistesi elämää.</p>
+        <ul class="sv-list"><li>Testamentti</li><li>Edunvalvontavaltuutus</li><li>Hautajaisten ennakkosuunnittelu</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="alt">
+  <div class="alt-row">
+    <div class="alt-photo">
+      <img src="../assets/p2.jpg" alt="Hautakivi">
+      <div class="alt-photo-tint"></div>
+    </div>
+    <div class="alt-content fade">
+      <p class="eyebrow">Hautakivet</p>
+      <h2>Hautakivi, joka kuvaa elämää</h2>
+      <p>Ainutkertainen elämä ansaitsee arvoisensa hautakiven. Pääset meillä suunnittelemaan juuri tarpeisiisi sopivan, persoonallisen hautakiven. Hautakivimyymälämme sijaitsee Jyväskylän keskustassa.</p>
+      <a href="#info" class="btn-teal">Ota yhteyttä &rarr;</a>
+    </div>
+  </div>
+  <div class="alt-row rev" style="border-top:2px solid var(--beige)">
+    <div class="alt-photo">
+      <img src="../assets/p3.jpg" alt="Näin minä haluan">
+      <div class="alt-photo-tint"></div>
+    </div>
+    <div class="alt-content fade">
+      <p class="eyebrow">Ennakkosuunnittelu</p>
+      <h2>Näin minä haluan &ndash;vihko</h2>
+      <p>Monilla on toiveita omien hautajaistensa järjestelyistä. Kuolemaan liittyvistä asioista on kuitenkin vaikea puhua ennakkoon. Kirjaa toiveesi ylös &mdash; se on teko, joka kertoo välittämisestä.</p>
+      <a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" target="_blank" class="btn-teal">Aloita suunnittelu &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<section class="steps">
+  <div class="wrap">
+    <div class="steps-top">
+      <p class="eyebrow eyebrow-sage">Memoria-palvelu</p>
+      <h2>Suunnittele hautajaiset vaihe vaiheelta</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="st fade d1"><div class="st-c"><span class="st-n">1</span></div><h3>Aloita suunnittelu</h3><p>Aloita Memoria-palvelussa. Saat heti alustavan hinta-arvion ja suunnitelman järjestelyistä.</p></div>
+      <div class="st fade d2"><div class="st-c"><span class="st-n">2</span></div><h3>Käymme läpi yhdessä</h3><p>Otamme sinuun yhteyttä ja käymme suunnitelman läpi. Saat täsmennetyn tarjouksen.</p></div>
+      <div class="st fade d3"><div class="st-c"><span class="st-n">3</span></div><h3>Me hoidamme loput</h3><p>Hyväksyttyäsi tarjouksen huolehdimme kaikista järjestelyistä kuten sinä haluat.</p></div>
+    </div>
+    <div class="steps-cta"><a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" target="_blank" class="btn-sage-outline">Aloita suunnittelu Memoria-palvelussa &rarr;</a></div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="wrap">
+    <div class="fade">
+      <p class="eyebrow">Asiakkaidemme kokemuksia</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.2vw,46px);font-weight:400;color:var(--teal);line-height:1.15;margin-bottom:0">Palvelua sydämellä</h2>
+    </div>
+    <div class="rv-grid">
+      <div class="rv fade d1"><span class="rv-q">&ldquo;</span><p class="rv-txt">Lämmin kiitos hyvästä ja hienotunteisesta palvelusta. Kaikki järjestelyt toteutettiin suurella sydämellä, omaisten pienimmätkin toiveet huomioon ottaen.</p><div class="rv-meta"><div class="rv-av">RK</div><div><div class="rv-name">Riitta K.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+      <div class="rv fade d2"><span class="rv-q">&ldquo;</span><p class="rv-txt">Erittäin sydämellinen ja ammattitaitoinen palvelu. Rauhallinen ja kiiretön kohtaaminen omaisten kanssa. Asiat hoituivat kuten sovittiin.</p><div class="rv-meta"><div class="rv-av">ML</div><div><div class="rv-name">Matti L.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+      <div class="rv fade d3"><span class="rv-q">&ldquo;</span><p class="rv-txt">Aivan loistavaa asiakaspalvelua. Niin ymmärtäväisesti ja rauhallisesti kerrottiin kaikki oleellinen. Ei voi muuta kuin suositella.</p><div class="rv-meta"><div class="rv-av">SS</div><div><div class="rv-name">Saara S.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="info">
+  <div class="contact-in">
+    <div class="fade">
+      <h2>Olemme lähellä, kun tarvitsette meitä</h2>
+      <p>Voitte ottaa yhteyttä puhelimitse, sähköpostilla tai käymällä toimistollamme. Palvelemme ympäri vuorokauden.</p>
+      <div class="crows">
+        <a href="tel:+358145471905" class="crow"><div class="crow-icon">P</div><div><div class="crow-label">Puhelin &mdash; ympäri vuorokauden</div><div class="crow-val">014 547 1905</div></div></a>
+        <a href="mailto:info@jyvaskylanhautaustoimisto.fi" class="crow"><div class="crow-icon">S</div><div><div class="crow-label">Sähköposti</div><div class="crow-val">info@jyvaskylanhautaustoimisto.fi</div></div></a>
+        <div class="crow"><div class="crow-icon">O</div><div><div class="crow-label">Toimisto &mdash; Ma&ndash;Pe 9&ndash;16</div><div class="crow-val">Puistokatu 5, 40100 Jyväskylä</div></div></div>
+        <a href="https://www.memoria.fi/" target="_blank" class="crow"><div class="crow-icon">M</div><div><div class="crow-label">Memoria-verkosto</div><div class="crow-val">memoria.fi &rarr;</div></div></a>
+      </div>
+    </div>
+    <div class="cf fade d2">
+      <h3>Jätä yhteydenottopyyntö</h3>
+      <div class="fld-2">
+        <div class="fld"><label>Nimi</label><input type="text" placeholder="Etunimi Sukunimi"></div>
+        <div class="fld"><label>Puhelin</label><input type="tel" placeholder="+358 xx xxxxxxx"></div>
+      </div>
+      <div class="fld"><label>Sähköposti</label><input type="email" placeholder="nimi@email.fi"></div>
+      <div class="fld"><label>Asia</label><select><option>Hautajaispalvelut</option><option>Hautakivet</option><option>Asiakirjapalvelut</option><option>Ennakkosuunnittelu</option><option>Muu asia</option></select></div>
+      <div class="fld"><label>Viesti</label><textarea placeholder="Kerro lyhyesti, miten voimme auttaa..."></textarea></div>
+      <button class="sub">Lähetä yhteydenottopyyntö</button>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr-grid">
+    <div class="ftr-brand"><img src="../assets/logo-white.png" alt="Memoria Jyväskylä"><p>Täyden palvelun hautaustoimisto ja hautakiviliike Jyväskylässä. Jäsen Memoria-hautaustoimistoverkostossa.</p></div>
+    <div class="ftr-col"><h4>Palvelut</h4><a href="#">Läheisen kuoltua</a><a href="#">Hautajaisten jälkeen</a><a href="#">Elämäsi asiakirjat</a><a href="#">Hautakivet</a></div>
+    <div class="ftr-col"><h4>Yritys</h4><a href="#">Info ja yhteys</a><a href="https://www.memoria.fi/" target="_blank">Memoria.fi</a><a href="#">Tietosuojaseloste</a></div>
+    <div class="ftr-col"><h4>Yhteystiedot</h4><a href="tel:+358145471905">014 547 1905</a><a href="mailto:info@jyvaskylanhautaustoimisto.fi">info@jyvaskylanhautaustoimisto.fi</a><a href="#">Puistokatu 5, Jyväskylä</a></div>
+  </div>
+  <div class="ftr-bot"><span>&copy; 2025 Memoria Jyväskylä</span><span>Tietosuojaseloste</span></div>
+</footer>
+
+<a href="tel:+358145471905" class="sph" id="sph">014 547 1905</a>
+
+<script>
+window.addEventListener('load',()=>{
+  document.getElementById('hrImg').classList.add('loaded');
+  ['hLogo','hTag','hH1','hIt','hRule','hDesc','hBtns'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('v')});
+});
+// Header scroll
+const hdr=document.getElementById('hdr'),hdrLogo=document.getElementById('hdrLogo');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY>60;
+  hdr.classList.toggle('scrolled',s);
+  hdr.classList.toggle('hdr-logo-dark',!s);
+  if(hdrLogo)hdrLogo.src=s?'../assets/logo.png':'../assets/logo-white.png';
+},{passive:true});
+// Hamburger
+const ham=document.getElementById('ham'),mNav=document.getElementById('mNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mNav.classList.toggle('open')});
+function c(){ham.classList.remove('open');mNav.classList.remove('open')}
+// Sticky
+const sph=document.getElementById('sph'),hero=document.getElementById('hero');
+new IntersectionObserver(e=>{sph.classList.toggle('show',!e[0].isIntersecting)},{threshold:.1}).observe(hero);
+// Fade
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siivouspalvelu Keskustassa, Jyväskylä — Kuura</title>
+<meta name="description" content="Kuura tarjoaa luotettavan siivouspalvelun Keskustassa. Kotitalousvähennys hyödynnettävissä — maksat vain noin 50 % hinnasta. Varaa aika helposti verkossa.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#1a4a5c;--teal-l:#2a6a80;--teal-xl:#e8f2f5;--terra:#c9663c;--cream:#f8f6f1;--white:#fff;--dark:#0f1e26;--text:#1e3340;--text-m:#4a6070;--border:#d5e0e6;--border-l:#e8f0f4;--stone:#f2ede4}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.6}
+.nav{background:rgba(248,246,241,.96);border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--teal);text-decoration:none}
+.nav-phone{font-size:13px;font-weight:600;color:var(--teal);text-decoration:none;border:1px solid var(--teal);border-radius:4px;padding:7px 16px}
+.hero{background:var(--dark);padding:72px 40px;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,74,92,.3) 0%,transparent 60%)}
+.hero-inner{max-width:860px;margin:0 auto;position:relative}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,210,220,.7);margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,60px);font-weight:300;color:#f5f2ec;line-height:1.08;margin-bottom:18px}
+h1 em{font-style:italic;color:#a8d4dc}
+.hero-p{font-size:16px;font-weight:300;color:rgba(245,242,236,.55);line-height:1.85;max-width:500px;margin-bottom:32px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-t{background:var(--teal);color:#fff;font-size:13px;font-weight:500;padding:12px 22px;border-radius:4px;text-decoration:none}
+.btn-o{background:transparent;border:1px solid rgba(245,242,236,.2);color:rgba(245,242,236,.65);font-size:13px;font-weight:500;padding:12px 22px;border-radius:4px;text-decoration:none}
+.kv-bar{background:var(--teal);padding:13px 40px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.kv-i{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:rgba(255,255,255,.75)}
+.content{max-width:860px;margin:0 auto;padding:64px 40px}
+.sec{margin-bottom:52px}
+.sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:300;color:var(--dark);margin-bottom:10px;line-height:1.1}
+.sec h2 em{font-style:italic;color:var(--teal)}
+.rule{width:36px;height:1px;background:var(--teal);margin-bottom:18px}
+.sec p{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;margin-bottom:12px}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.pkg{background:var(--white);border:1px solid var(--border-l);border-radius:8px;padding:24px 20px}
+.pkg.f{background:var(--teal);border-color:var(--teal)}
+.pn{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-m);margin-bottom:8px}
+.pkg.f .pn{color:rgba(255,255,255,.5)}
+.pp{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--dark);line-height:1;margin-bottom:2px}
+.pkg.f .pp{color:#fff}
+.pd{font-size:11px;color:var(--text-m);margin-bottom:14px}
+.pkg.f .pd{color:rgba(255,255,255,.45)}
+.pl{list-style:none}
+.pl li{font-size:12px;font-weight:300;color:var(--text-m);padding:5px 0;border-top:1px solid var(--border-l);display:flex;gap:6px;line-height:1.5}
+.pkg.f .pl li{color:rgba(255,255,255,.65);border-top-color:rgba(255,255,255,.1)}
+.pl li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px}
+.pkg.f .pl li::before{background:#a8d4dc}
+.kv-box{background:var(--stone);border:1px solid var(--border-l);border-radius:8px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.kv-text-col p{font-size:13px;font-weight:300;color:var(--text-m);line-height:1.85}
+.kv-nums{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kv-num{background:var(--white);border-radius:6px;padding:16px;text-align:center}
+.kv-val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--teal);line-height:1}
+.kv-lbl{font-size:10px;font-weight:500;color:var(--text-m);letter-spacing:.04em;margin-top:3px}
+.cbox{background:var(--white);border:1px solid var(--border-l);border-radius:8px;padding:32px}
+.cbox h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--dark);margin-bottom:14px}
+.cf{width:100%;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:10px 13px;font-size:13px;font-family:inherit;color:var(--text);outline:none;margin-bottom:9px}
+.cf:focus{border-color:var(--teal)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.submit{width:100%;background:var(--teal);color:#fff;border:none;border-radius:4px;padding:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:4px}
+.bc{font-size:12px;color:var(--text-m);margin-bottom:18px}
+.bc a{color:var(--text-m);text-decoration:none}
+footer{background:var(--dark);padding:32px 40px;text-align:center}
+.fl{font-family:'Cormorant Garamond',serif;font-size:18px;color:#f5f2ec;margin-bottom:5px}
+.fs{font-size:11px;color:rgba(245,242,236,.28)}
+@media(max-width:768px){.nav,.kv-bar,footer{padding-left:20px;padding-right:20px}.hero{padding:52px 20px}.content{padding:48px 20px}.pkg-grid{grid-template-columns:1fr}.kv-box{grid-template-columns:1fr}.f2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../" class="nav-logo">Kuura</a>
+  <a href="tel:+358401234567" class="nav-phone">040 123 4567</a>
+</nav>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Siivouspalvelu Keskustassa &mdash; Jyv&auml;skyl&auml;</p>
+    <h1>Puhdas koti <em>Keskustassa</em></h1>
+    <p class="hero-p">Jyväskylän eläväinen ydinkeskusta — toimistot, kerrostalot ja liiketilat. Kuura tuo ammattimaisen siivouspalvelun suoraan kotiisi &mdash; kotitalousv&auml;hennyksell&auml; maksat vain noin puolet.</p>
+    <div class="btns">
+      <a href="#varaa" class="btn-t">Varaa siivous</a>
+      <a href="#hinnat" class="btn-o">Katso hinnat</a>
+    </div>
+  </div>
+</section>
+<div class="kv-bar">
+  <div class="kv-i">&#10003; Kotitalousv&auml;hennys hyödynnettävissä</div>
+  <div class="kv-i">&#10003; Kiinte&auml; hinta, ei yll&auml;tyksi&auml;</div>
+  <div class="kv-i">&#10003; Vakuutettu palvelu</div>
+  <div class="kv-i">&#10003; Helppo varaus verkossa</div>
+</div>
+<div class="content">
+  <div class="bc"><a href="../">Kuura</a> &rsaquo; Siivouspalvelu Keskustassa</div>
+  <div class="sec">
+    <h2>Siivouspalvelu <em>Keskustassa</em></h2>
+    <div class="rule"></div>
+    <p>Jyväskylän eläväinen ydinkeskusta — toimistot, kerrostalot ja liiketilat. Kuura palvelee kaikkia Keskustan kotitalouksia &mdash; varaa aika verkossa ja ammattilaiset tulevat sovittuna p&auml;iv&auml;n&auml;.</p>
+    <p>Kotitalousv&auml;hennyksell&auml; todellinen hintasi on vain noin puolet listahinnoista. Hoidamme v&auml;hennykseen liittyv&auml;t paperit puolestasi.</p>
+  </div>
+  <div class="sec" id="hinnat">
+    <h2>Hinnat &mdash; <em>kiinte&auml; hinta</em></h2>
+    <div class="rule"></div>
+    <p>Kaikki paketit ovat kiinte&auml;hintaisia. Ei lis&auml;veloituksia, ei yll&auml;tyksi&auml;.</p>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <p class="pn">Perus</p>
+        <div class="pp">139 &euro;</div>
+        <p class="pd">noin 2 h &bull; ~70 &euro; v&auml;hennyksell&auml;</p>
+        <ul class="pl">
+          <li>Imurointi kaikissa huoneissa</li>
+          <li>P&ouml;lyjen pyyhint&auml;</li>
+          <li>Keittiön pintojen puhdistus</li>
+          <li>WC:n pesu</li>
+        </ul>
+      </div>
+      <div class="pkg f">
+        <p class="pn">Kodikas</p>
+        <div class="pp">199 &euro;</div>
+        <p class="pd">noin 3 h &bull; ~100 &euro; v&auml;hennyksell&auml;</p>
+        <ul class="pl">
+          <li>Kaikki Perus-paketin sis&auml;lt&ouml;</li>
+          <li>Ikkunoiden pyyhint&auml; sis&auml;lt&auml;</li>
+          <li>Kaappien ulkopinnat</li>
+          <li>Kylpyhuoneen perusteellinen pesu</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <p class="pn">T&auml;ydellinen</p>
+        <div class="pp">299 &euro;</div>
+        <p class="pd">noin 4&ndash;5 h &bull; ~150 &euro; v&auml;hennyksell&auml;</p>
+        <ul class="pl">
+          <li>Kaikki Kodikas-paketin sis&auml;lt&ouml;</li>
+          <li>Kaapit sis&auml;lt&auml;</li>
+          <li>Kodinkoneiden puhdistus</li>
+          <li>Saunan pesu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sec" id="varaa">
+    <h2>Varaa siivous <em>Keskustassa</em></h2>
+    <div class="rule"></div>
+    <div class="cbox">
+      <h3>Yhteydenotto</h3>
+      <div class="f2">
+        <input class="cf" type="text" placeholder="Etunimi">
+        <input class="cf" type="text" placeholder="Sukunimi">
+      </div>
+      <input class="cf" type="tel" placeholder="Puhelin" style="margin-top:9px">
+      <input class="cf" type="email" placeholder="S&auml;hk&ouml;posti">
+      <input class="cf" type="text" placeholder="Osoite Keskustassa">
+      <select class="cf">
+        <option>Valitse paketti</option>
+        <option>Perus &mdash; 139 &euro;</option>
+        <option>Kodikas &mdash; 199 &euro;</option>
+        <option>T&auml;ydellinen &mdash; 299 &euro;</option>
+        <option>Loppusiivous &mdash; pyyd&auml; tarjous</option>
+      </select>
+      <textarea class="cf" style="height:80px;resize:vertical" placeholder="Lis&auml;tietoja..."></textarea>
+      <button class="submit">L&auml;het&auml; varaus</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="fl">Kuura</div>
+  <div class="fs">Puhdas koti, selke&auml; mieli. &mdash; 040 123 4567 &mdash; info@kuura.fi &mdash; Jyv&auml;skyl&auml;</div>
+</footer>
+</body>
+</html>

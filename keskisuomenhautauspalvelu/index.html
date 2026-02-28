@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keski-Suomen Hautauspalvelu — Arvokas saattaminen jokaisella paikkakunnalla</title>
+<meta name="description" content="Keski-Suomen Hautauspalvelu tarjoaa arvokkaan ja läpinäkyvästi hinnoitellun hautauspalvelun kaikissa Keski-Suomen kunnissa. Kivijalka Jyväskylässä, palvelu verkossa kaikkialle.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#f7f8fa;
+  --cream2:#eef0f5;
+  --white:#ffffff;
+  --navy:#1e3a5c;
+  --navy-l:#2a5080;
+  --navy-xl:#e8eef5;
+  --slate:#5a6b80;
+  --slate-l:#8a9bb0;
+  --slate-xl:#c8d3e0;
+  --dark:#151e2b;
+  --text:#242d3a;
+  --text-m:#5a6b80;
+  --border:#d8dde6;
+  --border-l:#e8edf4;
+}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,248,250,0);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(247,248,250,.96);backdrop-filter:blur(8px);border-bottom-color:var(--border)}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none}
+.nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--dark);letter-spacing:.01em;line-height:1}
+.nav-logo-sub{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-l);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--slate);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--dark)}
+.nav-phone{font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--navy);border-radius:4px;padding:8px 18px;transition:all .15s}
+.nav-phone:hover{background:var(--navy);color:#fff}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.ham span{width:22px;height:1.5px;background:var(--dark);border-radius:2px;transition:.25s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-nav{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:24px 40px;gap:0;z-index:99}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--slate);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border-l);font-weight:500}
+
+/* HERO */
+.hero{min-height:100svh;background:var(--dark);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero-texture{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-tint{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,92,.25) 0%,transparent 60%);pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;padding:80px 40px;width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(160,190,220,.7);margin-bottom:22px;opacity:0;transition:opacity .6s .1s}
+.hero-eyebrow.v{opacity:1}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5.5vw,76px);font-weight:300;color:#f0f4f8;line-height:1.08;margin-bottom:6px;opacity:0;transform:translateY(12px);transition:opacity .9s .2s,transform .9s .2s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1 em{font-style:italic;color:#a0bedc;display:block}
+.hero-rule{width:44px;height:1px;background:#a0bedc;margin:26px 0;opacity:0;transition:opacity .5s .5s}
+.hero-rule.v{opacity:1}
+.hero-p{font-size:16px;font-weight:300;color:rgba(240,244,248,.5);line-height:1.9;max-width:440px;margin-bottom:38px;opacity:0;transition:opacity .7s .6s}
+.hero-p.v{opacity:1}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;transition:opacity .6s .8s}
+.hero-btns.v{opacity:1}
+.btn-navy{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;font-size:13px;font-weight:500;padding:14px 26px;border-radius:3px;text-decoration:none;transition:background .15s}
+.btn-navy:hover{background:var(--navy-l)}
+.btn-outline-light{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1px solid rgba(240,244,248,.2);color:rgba(240,244,248,.6);font-size:13px;font-weight:500;padding:14px 26px;border-radius:3px;text-decoration:none;transition:all .15s}
+.btn-outline-light:hover{border-color:rgba(240,244,248,.5);color:#f0f4f8}
+.hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:36px;opacity:0;transform:translateY(16px);transition:opacity .8s .5s,transform .8s .5s}
+.hero-card.v{opacity:1;transform:none}
+.hc-title{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,190,220,.7);margin-bottom:20px}
+.hc-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hc-row:last-child{border-bottom:none}
+.hc-name{font-size:14px;color:rgba(240,244,248,.65);font-weight:300}
+.hc-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:#f0f4f8;font-weight:400}
+.hc-note{font-size:11px;color:rgba(160,190,220,.55);margin-top:18px;line-height:1.7}
+
+/* TRUSTBAR */
+.trustbar{background:var(--navy);padding:18px 40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
+.tb-item{display:flex;align-items:center;gap:10px}
+.tb-item svg{width:16px;height:16px;stroke:#a0bedc;flex-shrink:0}
+.tb-text{font-size:12px;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.7)}
+
+/* SECTION BASE */
+section{padding:96px 40px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--navy-l);margin-bottom:14px}
+.section-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:16px}
+.section-h2 em{font-style:italic;color:var(--navy)}
+.section-intro{font-size:15px;font-weight:300;color:var(--text-m);line-height:1.9;max-width:540px;margin-bottom:56px}
+
+/* PALVELUT */
+.palvelut{background:var(--white)}
+.palv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.palv-card{background:var(--cream);border:1px solid var(--border-l);border-radius:8px;padding:36px 30px;position:relative;transition:border-color .2s,box-shadow .2s}
+.palv-card:hover{border-color:var(--slate-xl);box-shadow:0 4px 24px rgba(30,58,92,.07)}
+.palv-icon{width:40px;height:40px;background:var(--navy-xl);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.palv-icon svg{width:20px;height:20px;stroke:var(--navy)}
+.palv-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark);margin-bottom:10px}
+.palv-desc{font-size:13px;font-weight:300;color:var(--text-m);line-height:1.85;margin-bottom:18px}
+.palv-price{font-size:12px;font-weight:600;color:var(--navy);letter-spacing:.04em}
+.palv-featured{border-color:var(--navy);border-width:1.5px}
+.palv-badge{position:absolute;top:-11px;left:28px;background:var(--navy);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 12px;border-radius:3px}
+
+/* PROSESSI */
+.prosessi{background:var(--cream2)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps-grid::before{content:'';position:absolute;top:28px;left:calc(12.5% + 20px);right:calc(12.5% + 20px);height:1px;background:var(--slate-xl)}
+.step-item{text-align:center;padding:0 16px}
+.step-circle{width:56px;height:56px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1;transition:border-color .2s,background .2s}
+.step-circle.active{background:var(--navy);border-color:var(--navy)}
+.step-circle svg{width:20px;height:20px;stroke:var(--slate-xl)}
+.step-circle.active svg{stroke:#fff}
+.step-num{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--slate-l);margin-bottom:8px}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark);margin-bottom:8px}
+.step-desc{font-size:12px;font-weight:300;color:var(--text-m);line-height:1.75}
+
+/* JKL HAUTAUSTOIMISTO */
+.jkl{background:var(--white)}
+.jkl-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.jkl-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,48px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:6px}
+.jkl-left h2 em{font-style:italic;color:var(--navy)}
+.jkl-rule{width:36px;height:1px;background:var(--navy);margin:22px 0}
+.jkl-text{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;margin-bottom:18px}
+.jkl-fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.jkl-fact{background:var(--navy-xl);border-radius:6px;padding:20px}
+.jkl-fact-n{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--navy);line-height:1}
+.jkl-fact-l{font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--navy-l);margin-top:4px}
+.jkl-right{background:var(--cream);border:1px solid var(--border-l);border-radius:10px;padding:40px}
+.jkl-right h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:20px}
+.jkl-list{list-style:none}
+.jkl-list li{font-size:13px;font-weight:300;color:var(--text-m);padding:10px 0;border-bottom:1px solid var(--border-l);display:flex;align-items:center;gap:10px;line-height:1.6}
+.jkl-list li:last-child{border-bottom:none}
+.jkl-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--navy);flex-shrink:0}
+
+/* ALUEET */
+.alueet{background:var(--cream2)}
+.kunnat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:44px}
+.kunta-card{background:var(--white);border:1px solid var(--border-l);border-radius:6px;padding:18px 20px;display:flex;align-items:center;gap:12px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.kunta-card:hover{border-color:var(--navy);box-shadow:0 2px 12px rgba(30,58,92,.09)}
+.kunta-dot{width:7px;height:7px;border-radius:50%;background:var(--navy);flex-shrink:0}
+.kunta-name{font-size:13px;font-weight:500;color:var(--dark)}
+.kunta-dist{font-size:11px;color:var(--slate-l);margin-left:auto}
+
+/* HINNASTO */
+.hinnasto{background:var(--white)}
+.hinta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.hinta-card{border-radius:8px;padding:40px 32px;border:1px solid var(--border-l);background:var(--cream)}
+.hinta-card.featured{background:var(--dark);border-color:var(--dark)}
+.hinta-nimi{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate-l);margin-bottom:16px}
+.hinta-card.featured .hinta-nimi{color:rgba(240,244,248,.4)}
+.hinta-hinta{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--dark);line-height:1;margin-bottom:4px}
+.hinta-card.featured .hinta-hinta{color:#f0f4f8}
+.hinta-lisatieto{font-size:12px;color:var(--slate-l);margin-bottom:28px;line-height:1.6}
+.hinta-card.featured .hinta-lisatieto{color:rgba(240,244,248,.32)}
+.hinta-features{list-style:none;margin-bottom:32px}
+.hinta-features li{font-size:13px;font-weight:300;color:var(--text-m);padding:8px 0;border-top:1px solid var(--border-l);display:flex;align-items:center;gap:9px;line-height:1.6}
+.hinta-card.featured .hinta-features li{color:rgba(240,244,248,.6);border-top-color:rgba(255,255,255,.07)}
+.hinta-features li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--navy);flex-shrink:0}
+.hinta-card.featured .hinta-features li::before{background:#a0bedc}
+.btn-book{display:block;text-align:center;background:var(--navy);color:#fff;font-size:13px;font-weight:500;padding:14px;border-radius:4px;text-decoration:none;transition:background .15s;letter-spacing:.02em}
+.btn-book:hover{background:var(--navy-l)}
+.hinta-card.featured .btn-book{background:var(--cream);color:var(--dark)}
+.hinta-card.featured .btn-book:hover{background:var(--cream2)}
+.hinta-note{font-size:12px;color:var(--slate-l);text-align:center;margin-top:28px;line-height:1.7}
+
+/* UKK */
+.ukk{background:var(--cream2)}
+.ukk-inner{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;color:var(--dark);font-size:15px;font-weight:400;padding:22px 0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;gap:16px;line-height:1.5}
+.faq-q svg{flex-shrink:0;transition:transform .25s;stroke:var(--navy)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.faq-item.open .faq-a{max-height:600px}
+.faq-a p{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;padding-bottom:24px}
+
+/* YHTEYS */
+.yhteys{background:var(--white)}
+.yhteys-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:80px}
+.yl p{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;margin-bottom:24px}
+.yl-info{display:flex;flex-direction:column;gap:14px}
+.yl-row{display:flex;align-items:center;gap:12px}
+.yl-icon{width:34px;height:34px;background:var(--navy-xl);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yl-icon svg{width:15px;height:15px;stroke:var(--navy)}
+.yl-text{font-size:13px;color:var(--text-m);font-weight:300}
+.yl-text a{color:var(--navy);text-decoration:none;font-weight:500}
+.yr input,.yr select,.yr textarea{width:100%;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:12px 14px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:12px;font-weight:300}
+.yr input:focus,.yr select:focus,.yr textarea:focus{border-color:var(--navy);background:var(--white)}
+.yr textarea{height:120px;resize:vertical}
+.yr select option{background:var(--white)}
+.fld2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* FOOTER */
+footer{background:var(--dark);padding:60px 40px 36px}
+.ftr-in{max-width:1100px;margin:0 auto}
+.ftr-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.ftr-brand-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#f0f4f8;margin-bottom:6px}
+.ftr-brand-jkl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(160,190,220,.55);margin-bottom:12px}
+.ftr-brand-desc{font-size:12px;font-weight:300;color:rgba(240,244,248,.32);line-height:1.7;max-width:220px}
+.ftr-col h4{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,244,248,.28);margin-bottom:14px}
+.ftr-col a{display:block;font-size:13px;font-weight:300;color:rgba(240,244,248,.42);text-decoration:none;margin-bottom:9px;transition:color .15s}
+.ftr-col a:hover{color:rgba(240,244,248,.75)}
+.ftr-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ftr-copy{font-size:11px;font-weight:300;color:rgba(240,244,248,.28)}
+.ftr-legal{display:flex;gap:20px}
+.ftr-legal a{font-size:11px;font-weight:300;color:rgba(240,244,248,.28);text-decoration:none;transition:color .15s}
+.ftr-legal a:hover{color:rgba(240,244,248,.55)}
+
+/* FLOATING PHONE */
+.float-phone{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;font-size:13px;font-weight:500;padding:13px 22px;border-radius:4px;text-decoration:none;box-shadow:0 4px 20px rgba(30,58,92,.4);transition:transform .15s,opacity .3s;z-index:80;display:flex;align-items:center;gap:9px;opacity:0;pointer-events:none}
+.float-phone.show{opacity:1;pointer-events:auto}
+.float-phone:hover{transform:translateY(-2px)}
+
+/* ANIMATIONS */
+.fade{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.fade.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-in{grid-template-columns:1fr}
+  .palv-grid,.hinta-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .steps-grid::before{display:none}
+  .jkl-inner,.yhteys-inner{grid-template-columns:1fr}
+  .jkl-fact-grid{grid-template-columns:1fr 1fr}
+  .ftr-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-phone{display:none}
+  .ham{display:flex}
+  section{padding:64px 24px}
+  .nav,.mob-nav,footer{padding-left:24px;padding-right:24px}
+  .hero-in{padding:48px 24px}
+  .trustbar{gap:24px;padding:16px 24px}
+  .steps-grid{grid-template-columns:1fr}
+  .kunnat-grid{grid-template-columns:1fr 1fr}
+  .fld2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <span class="nav-logo-name">Keski-Suomen Hautauspalvelu</span>
+    <span class="nav-logo-sub">Palvelun tuottaa Jyv&#228;skyl&#228;n Hautaustoimisto</span>
+  </a>
+  <div class="nav-links">
+    <a href="#palvelut">Palvelut</a>
+    <a href="#hinnasto">Hinnasto</a>
+    <a href="#alueet">Alueet</a>
+    <a href="#jkl">Hautaustoimisto</a>
+    <a href="#ukk">UKK</a>
+  </div>
+  <a href="tel:+358141234567" class="nav-phone">014 123 4567</a>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mob-nav" id="mNav">
+  <a href="#palvelut" onclick="c()">Palvelut</a>
+  <a href="#hinnasto" onclick="c()">Hinnasto</a>
+  <a href="#alueet" onclick="c()">Alueet</a>
+  <a href="#jkl" onclick="c()">Jyv&#228;skyl&#228;n Hautaustoimisto</a>
+  <a href="#ukk" onclick="c()">UKK</a>
+  <a href="#yhteys" onclick="c()">Ota yhteytt&#228;</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-tint"></div>
+  <div class="hero-in">
+    <div>
+      <p class="hero-eyebrow" id="he">Keski-Suomen Hautauspalvelu &mdash; Jyv&#228;skyl&#228; &mdash; Kaikki kunnat</p>
+      <h1 class="hero-h1" id="hh">Sinun l&#228;hell&#228;si,<em>paikkakunnasta riippumatta.</em></h1>
+      <div class="hero-rule" id="hr"></div>
+      <p class="hero-p" id="hp">Arvokas hautauspalvelu kaikissa Keski-Suomen kunnissa. Kivijalka Jyv&#228;skyl&#228;ss&#228;, palvelu verkossa kaikkialle maakuntaan. Ammattitaitoinen ja empaattinen Jyv&#228;skyl&#228;n Hautaustoimiston toteuttamana.</p>
+      <div class="hero-btns" id="hb">
+        <a href="#yhteys" class="btn-navy">Ota yhteytt&#228;</a>
+        <a href="#hinnasto" class="btn-outline-light">Katso hinnasto</a>
+      </div>
+    </div>
+    <div class="hero-card" id="hc">
+      <p class="hc-title">Hinnasto &mdash; kiinte&#228; hinta</p>
+      <div class="hc-row">
+        <span class="hc-name">Peruspalvelu</span>
+        <span class="hc-price">1 490 &euro;</span>
+      </div>
+      <div class="hc-row">
+        <span class="hc-name">T&#228;ydellinen palvelu</span>
+        <span class="hc-price">2 490 &euro;</span>
+      </div>
+      <div class="hc-row">
+        <span class="hc-name">Suoratuhkaus</span>
+        <span class="hc-price">990 &euro;</span>
+      </div>
+      <div class="hc-row">
+        <span class="hc-name">Krematorion maksu</span>
+        <span class="hc-price">300&ndash;600 &euro;</span>
+      </div>
+      <p class="hc-note">Hinnat sis. ALV. Ei piilokuluja. Palvellaan verkossa kaikissa Keski-Suomen kunnissa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trustbar">
+  <div class="tb-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span class="tb-text">Ammattimainen hautaustoimisto</span>
+  </div>
+  <div class="tb-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    <span class="tb-text">Tavoitettavissa ymp&#228;ri vuorokauden</span>
+  </div>
+  <div class="tb-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span class="tb-text">Kivijalka Jyv&#228;skyl&#228;ss&#228;</span>
+  </div>
+  <div class="tb-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span class="tb-text">L&#228;pin&#228;kyv&#228; hinnasto</span>
+  </div>
+  <div class="tb-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    <span class="tb-text">Ihminen vastaa puhelimeen</span>
+  </div>
+</div>
+
+<!-- PALVELUT -->
+<section class="palvelut" id="palvelut">
+  <div class="section-inner">
+    <p class="section-label fade">Palvelumme</p>
+    <h2 class="section-h2 fade">Kaikki tarvittava <em>yhdest&#228; paikasta</em></h2>
+    <p class="section-intro fade">Hoidamme kaikki k&#228;yt&#228;nn&#246;n j&#228;rjestelyt alusta loppuun. Teid&#228;n ei tarvitse mietit&#228; yksityiskohtia &mdash; me teemme sen puolestanne.</p>
+    <div class="palv-grid">
+      <div class="palv-card fade">
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <h3 class="palv-title">Suoratuhkaus</h3>
+        <p class="palv-desc">Yksinkertainen, arvokas tuhkaus ilman julkista hautaustilaisuutta. Selke&#228;&#228; ja kiinte&#228;hintainen.</p>
+        <span class="palv-price">990 &euro; + krematorio</span>
+      </div>
+      <div class="palv-card palv-featured fade">
+        <span class="palv-badge">Suosituin</span>
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="palv-title">Peruspalvelu</h3>
+        <p class="palv-desc">Kattava hautauspalvelu: nouto, valmistelu, arkkuvalinta, ilmoitukset, krematorio tai hautaus &mdash; kokonaisuutena.</p>
+        <span class="palv-price">1 490 &euro;</span>
+      </div>
+      <div class="palv-card fade">
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="palv-title">T&#228;ydellinen palvelu</h3>
+        <p class="palv-desc">Kaiken kattava paketti: muistotilaisuus, kukkaset, suru-ilmoitus, et&#228;perunkirjoitus. Perheelle t&#228;ysi tuki.</p>
+        <span class="palv-price">2 490 &euro;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSESSI -->
+<section class="prosessi" id="prosessi">
+  <div class="section-inner">
+    <p class="section-label fade">N&#228;in etenee</p>
+    <h2 class="section-h2 fade">Selke&#228; prosessi <em>vaikeana hetkell&#228;</em></h2>
+    <p class="section-intro fade">Ette tarvitse tiet&#228;&#228; mist&#228; aloittaa &mdash; me ohjaanne joka askeleella.</p>
+    <div class="steps-grid">
+      <div class="step-item fade">
+        <div class="step-circle active">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+        </div>
+        <p class="step-num">01</p>
+        <h4 class="step-title">Yhteydenotto</h4>
+        <p class="step-desc">Soittakaa tai ottakaa yhteytt&#228; verkossa. Ympari vuorokauden tavoitettavissa.</p>
+      </div>
+      <div class="step-item fade">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <p class="step-num">02</p>
+        <h4 class="step-title">Suunnittelu</h4>
+        <p class="step-desc">K&#228;ymme toiveet yhdess&#228; l&#228;pi. Verkossa tai Jyv&#228;skyl&#228;n toimipisteell&#228;.</p>
+      </div>
+      <div class="step-item fade">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <p class="step-num">03</p>
+        <h4 class="step-title">Toteutus</h4>
+        <p class="step-desc">Hoidamme k&#228;yt&#228;nn&#246;n j&#228;rjestelyt kokonaisuudessaan.</p>
+      </div>
+      <div class="step-item fade">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="step-num">04</p>
+        <h4 class="step-title">J&#228;lkihoito</h4>
+        <p class="step-desc">Autamme my&#246;s j&#228;lkeen p&#228;in: muistokivet, uurnat, perunkirjoitus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JKL HAUTAUSTOIMISTO -->
+<section class="jkl" id="jkl">
+  <div class="section-inner">
+    <div class="jkl-inner">
+      <div class="fade">
+        <p class="section-label">Palvelun tuottaa</p>
+        <h2 class="jkl-left h2" style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,48px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:6px">Jyv&#228;skyl&#228;n<em style="font-style:italic;color:var(--navy)"> Hautaustoimisto</em></h2>
+        <div class="jkl-rule"></div>
+        <p class="jkl-text">Jyv&#228;skyl&#228;n Hautaustoimisto palvelee Keski-Suomea l&#228;ymm&#228;ll&#228; ammattitaidolla. Kivijalkatoimisto Jyv&#228;skyl&#228;ss&#228; &mdash; ja nyt digitaalisen palvelukanavan kautta kaikkiin maakunnan kuntiin.</p>
+        <p class="jkl-text">Keski-Suomen Hautauspalvelu on Jyv&#228;skyl&#228;n Hautaustoimiston tarjoama moderni tapa tilata hautauspalvelu verkossa tai puhelimitse, minne p&#228;&#228;h&#228;n Keski-Suomea tahansa.</p>
+        <div class="jkl-fact-grid">
+          <div class="jkl-fact">
+            <div class="jkl-fact-n">22</div>
+            <div class="jkl-fact-l">kuntaa palvellaan</div>
+          </div>
+          <div class="jkl-fact">
+            <div class="jkl-fact-n">24/7</div>
+            <div class="jkl-fact-l">tavoitettavissa</div>
+          </div>
+          <div class="jkl-fact">
+            <div class="jkl-fact-n">100%</div>
+            <div class="jkl-fact-l">l&#228;pin&#228;kyv&#228; hinnasto</div>
+          </div>
+          <div class="jkl-fact">
+            <div class="jkl-fact-n">FI&nbsp;EN&nbsp;RU</div>
+            <div class="jkl-fact-l">kieliv&#228;lineist&#246;</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade">
+        <div class="jkl-right">
+          <h3>Mitt&#228; arvostamme</h3>
+          <ul class="jkl-list">
+            <li>Ihminen vastaa aina puhelimeen &mdash; ei automaattia</li>
+            <li>L&#228;pin&#228;kyv&#228; hinnoittelu ilman piilokuluja</li>
+            <li>Arvostava ja empaattinen kohtaaminen</li>
+            <li>Palvelu kaikissa Keski-Suomen kunnissa</li>
+            <li>Palvelu suomeksi, englanniksi ja venaj&#228;ksi</li>
+            <li>Kivijalkatoimisto Jyv&#228;skyl&#228;ss&#228;</li>
+            <li>Et&#228;perunkirjoitus 595 &euro; &mdash; kotoa k&#228;sin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HINNASTO -->
+<section class="hinnasto" id="hinnasto">
+  <div class="section-inner">
+    <p class="section-label fade">Hinnasto</p>
+    <h2 class="section-h2 fade">Selke&#228;t hinnat, <em>ei yll&#228;tyksi&#228;</em></h2>
+    <p class="section-intro fade">Kaikki hinnat sis&#228;lt&#228;v&#228;t ALV:n. Krematorion maksu (300&ndash;600 &euro;) tulee t&#228;m&#228;n p&#228;&#228;lle &mdash; se on riippumaton, julkinen maksu.</p>
+    <div class="hinta-grid">
+      <div class="hinta-card fade">
+        <p class="hinta-nimi">Suoratuhkaus</p>
+        <div class="hinta-hinta">990 &euro;</div>
+        <p class="hinta-lisatieto">+ krematorion maksu 300&ndash;600 &euro;</p>
+        <ul class="hinta-features">
+          <li>Vainajan nouto</li>
+          <li>Valmistelu ja arkkuun laitto</li>
+          <li>Kuljetus krematoriolle</li>
+          <li>Tuhkaus</li>
+          <li>Tuhkan toimitus tai hautaus</li>
+          <li>Viranomaisilmoitukset</li>
+        </ul>
+        <a href="#yhteys" class="btn-book">Ota yhteytt&#228;</a>
+      </div>
+      <div class="hinta-card featured fade">
+        <p class="hinta-nimi">Peruspalvelu</p>
+        <div class="hinta-hinta" style="color:#f0f4f8">1 490 &euro;</div>
+        <p class="hinta-lisatieto">kaikki mukaan lukien hautausmaksu</p>
+        <ul class="hinta-features">
+          <li>Kaikki suoratuhkauksen sis&#228;lt&#246;</li>
+          <li>Arkkuvaihtoehtojen valinta</li>
+          <li>Suru-ilmoitus lehdess&#228;</li>
+          <li>Muistotilaisuuden koordinointi</li>
+          <li>Viranomaisasiointi kokonaan</li>
+          <li>Jatkotuki 30 vrk</li>
+        </ul>
+        <a href="#yhteys" class="btn-book">Ota yhteytt&#228;</a>
+      </div>
+      <div class="hinta-card fade">
+        <p class="hinta-nimi">T&#228;ydellinen palvelu</p>
+        <div class="hinta-hinta">2 490 &euro;</div>
+        <p class="hinta-lisatieto">kattavin kokonaisuus</p>
+        <ul class="hinta-features">
+          <li>Kaikki peruspalvelun sis&#228;lt&#246;</li>
+          <li>Kukkaset ja somistus</li>
+          <li>Muistotilaisuuden j&#228;rjestely</li>
+          <li>Muistokirja omaisille</li>
+          <li>Et&#228;perunkirjoitus 595 &euro; sis.</li>
+          <li>Hautamuistomerkki-suunnittelu</li>
+        </ul>
+        <a href="#yhteys" class="btn-book">Ota yhteytt&#228;</a>
+      </div>
+    </div>
+    <p class="hinta-note fade">Kuljetuslisä yli 60 km matkoilla: 1,80 €/km ylitt&#228;v&#228;lt&#228; osalta. Kaikki hinnat sis&#228;lt&#228;v&#228;t ALV 25,5 %.</p>
+  </div>
+</section>
+
+<!-- ALUEET -->
+<section class="alueet" id="alueet">
+  <div class="section-inner">
+    <p class="section-label fade">Palvelemme</p>
+    <h2 class="section-h2 fade">Kaikki Keski-Suomen <em>kunnat</em></h2>
+    <p class="section-intro fade">Kivijalkatoimisto Jyv&#228;skyl&#228;ss&#228;, mutta palvelemme verkossa ja puhelimitse kaikkia maakunnan kuntia.</p>
+    <div class="kunnat-grid">
+      <a href="kaupungit/hautauspalvelu-jyvaskyla.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Jyv&#228;skyl&#228;</span><span class="kunta-dist">Toimipiste</span></a>
+      <a href="kaupungit/hautauspalvelu-jamsa.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">J&#228;ms&#228;</span></a>
+      <a href="kaupungit/hautauspalvelu-keuruu.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Keuruu</span></a>
+      <a href="kaupungit/hautauspalvelu-äänekoski.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">&#196;&#228;nekoski</span></a>
+      <a href="kaupungit/hautauspalvelu-saarijärvi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Saarijärvi</span></a>
+      <a href="kaupungit/hautauspalvelu-viitasaari.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Viitasaari</span></a>
+      <a href="kaupungit/hautauspalvelu-laukaa.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Laukaa</span></a>
+      <a href="kaupungit/hautauspalvelu-muurame.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Muurame</span></a>
+      <a href="kaupungit/hautauspalvelu-hankasalmi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Hankasalmi</span></a>
+      <a href="kaupungit/hautauspalvelu-joutsa.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Joutsa</span></a>
+      <a href="kaupungit/hautauspalvelu-karstula.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Karstula</span></a>
+      <a href="kaupungit/hautauspalvelu-kinnula.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Kinnula</span></a>
+      <a href="kaupungit/hautauspalvelu-konnevesi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Konnevesi</span></a>
+      <a href="kaupungit/hautauspalvelu-multia.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Multia</span></a>
+      <a href="kaupungit/hautauspalvelu-petajavesi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Pet&#228;j&#228;vesi</span></a>
+      <a href="kaupungit/hautauspalvelu-pihtipudas.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Pihtipudas</span></a>
+      <a href="kaupungit/hautauspalvelu-toivakka.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Toivakka</span></a>
+      <a href="kaupungit/hautauspalvelu-uurainen.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Uurainen</span></a>
+      <a href="kaupungit/hautauspalvelu-kannonkoski.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Kannonkoski</span></a>
+      <a href="kaupungit/hautauspalvelu-kivijärvi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Kivij&#228;rvi</span></a>
+      <a href="kaupungit/hautauspalvelu-kyyjärvi.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Kyyjärvi</span></a>
+      <a href="kaupungit/hautauspalvelu-luhanka.html" class="kunta-card fade"><span class="kunta-dot"></span><span class="kunta-name">Luhanka</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- UKK -->
+<section class="ukk" id="ukk">
+  <div class="ukk-inner">
+    <p class="section-label fade">UKK</p>
+    <h2 class="section-h2 fade">Usein kysytty&#228;</h2>
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">Toimiiko palvelu my&#246;s pienemmiss&#228; kunnissa?
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+      </button>
+      <div class="faq-a"><p>Kyll&#228;. Palvelemme kaikkia Keski-Suomen kuntia &mdash; my&#246;s pienimpi&#228;. Vainajan nouto j&#228;rjestyy kaikkialle. Kuljetuslisä tulee yli 60 km matkoilla (1,80 €/km), ja se kerrotaan aina etuk&#228;teen.</p></div>
+    </div>
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">Mik&#228; on yhteys Jyv&#228;skyl&#228;n Hautaustoimistoon?
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+      </button>
+      <div class="faq-a"><p>Keski-Suomen Hautauspalvelu on Jyv&#228;skyl&#228;n Hautaustoimiston digitaalinen palvelukanava. Palvelun tuottaa sama ammattitaitoinen tiimi &mdash; nyt tavoitettavissa koko maakunnassa verkossa ja puhelimitse.</p></div>
+    </div>
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">Onko mahdollista tulla k&#228;ymaan toimistolla?
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+      </button>
+      <div class="faq-a"><p>Kyll&#228;, kivijalkatoimisto on Jyv&#228;skyl&#228;ss&#228;. Voit my&#246;s hoitaa kaiken et&#228;n&#228; &mdash; verkkolomakkeella, s&#228;hk&#246;postitse tai puhelimitse. Molemmat tavat ovat tasavertaisia.</p></div>
+    </div>
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">Mil&#228; kielill&#228; palvellaan?
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+      </button>
+      <div class="faq-a"><p>Palvelemme suomeksi ja englanniksi.</p></div>
+    </div>
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">Mit&#228; et&#228;perunkirjoitus maksaa?
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+      </button>
+      <div class="faq-a"><p>Et&#228;perunkirjoitus on 595 &euro; kiinte&#228;&#228; hintaa. Se sis&#228;ltyy T&#228;ydelliseen palveluun, tai sen voi tilata erikseen. Kaikki hoituu kotoa k&#228;sin &mdash; asiakirjat s&#228;hk&#246;isesti, tilaisuus Teamsin tai Zoomin kautta.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- YHTEYS -->
+<section class="yhteys" id="yhteys">
+  <div class="section-inner">
+    <div class="yhteys-inner">
+      <div class="fade">
+        <p class="section-label">Ota yhteytt&#228;</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,46px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:14px">Olemme <em style="font-style:italic;color:var(--navy)">tavoitettavissa</em></h2>
+        <p class="yl p" style="font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;margin-bottom:24px">Voit ottaa yhteytt&#228; puhelimitse, s&#228;hk&#246;postitse tai lomakkeella. Kiireellisiin asioihin vastaamme aina, ymp&#228;ri vuorokauden.</p>
+        <div class="yl-info">
+          <div class="yl-row">
+            <div class="yl-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg></div>
+            <div class="yl-text"><a href="tel:+358141234567">014 123 4567</a> &mdash; tavoitettavissa 24/7</div>
+          </div>
+          <div class="yl-row">
+            <div class="yl-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="yl-text"><a href="mailto:info@keskisuomenhautauspalvelu.fi">info@keskisuomenhautauspalvelu.fi</a></div>
+          </div>
+          <div class="yl-row">
+            <div class="yl-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="yl-text">Kauppakatu 25, 40100 Jyv&#228;skyl&#228;</div>
+          </div>
+        </div>
+      </div>
+      <div class="yr fade">
+        <div class="fld2">
+          <input type="text" placeholder="Etunimi">
+          <input type="text" placeholder="Sukunimi">
+        </div>
+        <input type="tel" placeholder="Puhelinnumero">
+        <input type="email" placeholder="S&#228;hk&#246;posti">
+        <select>
+          <option value="">Palvelu</option>
+          <option>Suoratuhkaus (990 &euro; + krematorio)</option>
+          <option>Peruspalvelu (1 490 &euro;)</option>
+          <option>T&#228;ydellinen palvelu (2 490 &euro;)</option>
+          <option>Et&#228;perunkirjoitus (595 &euro;)</option>
+          <option>Halusin tietoa / muu asia</option>
+        </select>
+        <input type="text" placeholder="Paikkakunta">
+        <textarea placeholder="Viesti (vapaaehtoinen)"></textarea>
+        <button class="btn-navy" style="width:100%;justify-content:center;border:none;cursor:pointer;padding:14px;font-size:13px;font-weight:500;border-radius:3px">L&#228;het&#228; yhteydenotto</button>
+        <p style="font-size:11px;color:var(--slate-l);margin-top:12px;text-align:center;line-height:1.6">Vastaamme arkisin 2 tunnin sis&#228;ll&#228;, kiireellisiin asioihin aina heti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftr-in">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-brand-name">Keski-Suomen Hautauspalvelu</div>
+        <div class="ftr-brand-jkl">Palvelun tuottaa Jyv&#228;skyl&#228;n Hautaustoimisto</div>
+        <p class="ftr-brand-desc">Arvokas ja l&#228;pin&#228;kyv&#228;sti hinnoiteltu hautauspalvelu kaikissa Keski-Suomen kunnissa.</p>
+      </div>
+      <div class="ftr-col">
+        <h4>Palvelut</h4>
+        <a href="#palvelut">Suoratuhkaus</a>
+        <a href="#palvelut">Peruspalvelu</a>
+        <a href="#palvelut">T&#228;ydellinen palvelu</a>
+        <a href="#palvelut">Et&#228;perunkirjoitus</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Alueet</h4>
+        <a href="kaupungit/hautauspalvelu-jyvaskyla.html">Jyv&#228;skyl&#228;</a>
+        <a href="kaupungit/hautauspalvelu-jamsa.html">J&#228;ms&#228;</a>
+        <a href="kaupungit/hautauspalvelu-keuruu.html">Keuruu</a>
+        <a href="#alueet">Kaikki kunnat</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Yhteys</h4>
+        <a href="tel:+358141234567">014 123 4567</a>
+        <a href="mailto:info@keskisuomenhautauspalvelu.fi">info@keskisuomenhautauspalvelu.fi</a>
+        <a href="#">Kauppakatu 25, Jyv&#228;skyl&#228;</a>
+        <a href="#">Tietosuoja</a>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span class="ftr-copy">&copy; 2025 Keski-Suomen Hautauspalvelu &mdash; Palvelun tuottaa Jyv&#228;skyl&#228;n Hautaustoimisto</span>
+      <div class="ftr-legal">
+        <a href="#">Tietosuoja</a>
+        <a href="#">K&#228;ytt&#246;ehdot</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+358141234567" class="float-phone" id="fp">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+  014 123 4567
+</a>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 60);
+  document.getElementById('fp').classList.toggle('show', scrollY > 300);
+}, {passive: true});
+const ham = document.getElementById('ham'), mNav = document.getElementById('mNav');
+ham.addEventListener('click', () => { ham.classList.toggle('open'); mNav.classList.toggle('open'); });
+function c() { ham.classList.remove('open'); mNav.classList.remove('open'); }
+['he','hh','hr','hp','hb','hc'].forEach(id => {
+  const e = document.getElementById(id);
+  if (e) setTimeout(() => e.classList.add('v'), 100);
+});
+const io = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } });
+}, {threshold: .1});
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

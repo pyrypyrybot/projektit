@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keski-Suomen Hautakivi – Memoriakivi & Loimaan Kivi | Hautamuistomerkki Keski-Suomessa</title>
+<meta name="description" content="Hautakivi Keski-Suomessa. Suunnittelu, valmistus ja asennus koko maakuntaan – Memoriakivi yhteistyössä Loimaan Kiven kanssa. Kotimainen graniitti, 3D-suunnittelu, kunnostukset.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#181614;
+  --granite:#2c2925;
+  --granite-m:#3d3832;
+  --stone:#5a5650;
+  --stone-l:#9a938b;
+  --stone-xl:#d0cbc4;
+  --sand:#ece7e0;
+  --cream:#f7f4f0;
+  --white:#fff;
+  --gold:#b8956a;
+  --gold-l:#d4b896;
+  --gold-x:#f0e8dc;
+  --text:#1e1c19;
+  --text-m:#5a5650;
+  --border:#ddd8d0;
+  --forest:#2a4030;
+  --forest-l:#3d6048;
+}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:transparent;transition:background .35s,border-color .35s;border-bottom:1px solid transparent;height:68px;display:flex;align-items:center}
+.nav.scrolled{background:rgba(247,244,240,.97);backdrop-filter:blur(8px);border-bottom-color:var(--border)}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 32px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.logo-main{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:#fff;letter-spacing:.02em;transition:color .2s}
+.nav.scrolled .logo-main{color:var(--dark)}
+.logo-sub{font-size:9.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:3px;transition:color .2s}
+.nav.scrolled .logo-sub{color:var(--stone-l)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{font-size:12.5px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;padding:7px 12px;border-radius:3px;transition:color .15s;letter-spacing:.02em}
+.nav.scrolled .nav-links a{color:var(--stone)}
+.nav-links a:hover{color:#fff}
+.nav.scrolled .nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--gold);color:#fff;text-decoration:none;padding:9px 20px;border-radius:3px;font-size:12.5px;font-weight:600;transition:background .15s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold-l)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.ham span{width:22px;height:1.5px;background:#fff;border-radius:2px;transition:.25s}
+.nav.scrolled .ham span{background:var(--dark)}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-nav{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:20px 32px;z-index:199}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--stone);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);font-weight:500}
+.mob-nav a:last-child{border-bottom:none}
+
+/* HERO */
+.hero{min-height:100svh;background:var(--dark);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(125deg,rgba(42,64,48,.55) 0%,rgba(24,22,20,.75) 55%,rgba(24,22,20,.95) 100%);pointer-events:none}
+.hero-grain{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-in{max-width:1120px;margin:0 auto;padding:80px 32px;width:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;transition:opacity .6s .1s}
+.hero-eyebrow.v{opacity:1}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5.5vw,78px);font-weight:300;color:#f2ede6;line-height:1.06;margin-bottom:8px;opacity:0;transform:translateY(12px);transition:opacity .9s .2s,transform .9s .2s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1 em{font-style:italic;color:var(--gold-l);display:block}
+.hero-rule{width:48px;height:1px;background:var(--gold);margin:26px 0;opacity:0;transition:opacity .6s .45s}
+.hero-rule.v{opacity:1}
+.hero-p{font-size:16px;font-weight:300;color:rgba(242,237,230,.55);line-height:1.9;max-width:460px;margin-bottom:36px;opacity:0;transition:opacity .7s .55s}
+.hero-p.v{opacity:1}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transition:opacity .6s .72s}
+.hero-btns.v{opacity:1}
+.btn-gold{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#fff;font-size:13px;font-weight:600;padding:13px 24px;border-radius:3px;text-decoration:none;transition:background .15s}
+.btn-gold:hover{background:var(--gold-l)}
+.btn-outline-w{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1px solid rgba(242,237,230,.2);color:rgba(242,237,230,.7);font-size:13px;font-weight:500;padding:12px 22px;border-radius:3px;text-decoration:none;transition:all .15s}
+.btn-outline-w:hover{border-color:rgba(242,237,230,.5);color:#f2ede6}
+
+/* HERO CARD */
+.hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:32px;opacity:0;transform:translateY(14px);transition:opacity .8s .45s,transform .8s .45s}
+.hero-card.v{opacity:1;transform:none}
+.hc-label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.hc-items{display:flex;flex-direction:column}
+.hc-item{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:14px}
+.hc-item:last-child{border-bottom:none}
+.hc-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hc-text{font-size:13.5px;color:rgba(242,237,230,.75);font-weight:300;line-height:1.5}
+.hc-note{font-size:11.5px;color:rgba(242,237,230,.35);margin-top:18px;line-height:1.7;border-top:1px solid rgba(255,255,255,.06);padding-top:16px}
+
+/* TRUST */
+.trust{background:var(--granite);padding:18px 32px}
+.trust-in{max-width:1120px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 40px}
+.ti{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.5);font-weight:500}
+.ti-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;flex-shrink:0}
+
+/* SECTIONS */
+section{padding:92px 32px}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,50px);font-weight:300;color:var(--dark);line-height:1.1}
+.sec-h2 em{font-style:italic;color:var(--gold)}
+
+/* PALVELUT */
+.palvelut{background:var(--white)}
+.palv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.palv{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:36px 28px;transition:border-color .2s,box-shadow .2s;position:relative}
+.palv:hover{border-color:var(--gold);box-shadow:0 4px 28px rgba(184,149,106,.1)}
+.palv.featured{border-color:var(--dark);border-width:1.5px}
+.palv-badge{position:absolute;top:-11px;left:24px;background:var(--dark);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 12px;border-radius:3px}
+.palv-icon{width:42px;height:42px;background:var(--gold-x);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.palv-icon svg{width:20px;height:20px;stroke:var(--gold)}
+.palv-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark);margin-bottom:10px;line-height:1.2}
+.palv-desc{font-size:13px;font-weight:300;color:var(--text-m);line-height:1.85;margin-bottom:16px}
+.palv-list{list-style:none;margin-bottom:20px}
+.palv-list li{font-size:12.5px;color:var(--text-m);padding:5px 0;border-bottom:1px solid var(--sand);display:flex;align-items:center;gap:8px;font-weight:300}
+.palv-list li:last-child{border-bottom:none}
+.palv-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.palv-link{font-size:12.5px;font-weight:600;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.palv-link:hover{color:var(--stone)}
+
+/* PROSESSI */
+.prosessi{background:var(--sand)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:52px;position:relative}
+.steps::before{content:'';position:absolute;top:26px;left:calc(10% + 12px);right:calc(10% + 12px);height:1px;background:var(--stone-xl)}
+.step{text-align:center;padding:0 10px}
+.step-num{width:52px;height:52px;border-radius:50%;background:var(--white);border:1px solid var(--stone-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);position:relative;z-index:1}
+.step.active .step-num{background:var(--dark);border-color:var(--dark);color:#fff}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--dark);margin-bottom:7px;line-height:1.3}
+.step-desc{font-size:11.5px;font-weight:300;color:var(--text-m);line-height:1.75}
+
+/* ALUEET */
+.alueet{background:var(--white)}
+.kunnat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:40px}
+.kunta-tag{background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:13px 16px;display:flex;align-items:center;gap:10px;text-decoration:none;transition:border-color .15s,background .15s}
+.kunta-tag:hover{border-color:var(--gold);background:var(--gold-x)}
+.kunta-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.kunta-name{font-size:13px;font-weight:500;color:var(--dark)}
+
+/* TUOTTAJAT */
+.tuottajat{background:var(--sand)}
+.tuottajat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.tuottaja{border-radius:8px;padding:40px 36px;border:1px solid var(--border)}
+.tuottaja.memoria{background:var(--white)}
+.tuottaja.loimaan{background:var(--dark);border-color:var(--dark)}
+.tuottaja-label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-l);margin-bottom:14px}
+.tuottaja.loimaan .tuottaja-label{color:rgba(255,255,255,.35)}
+.tuottaja-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--dark);margin-bottom:6px}
+.tuottaja.loimaan .tuottaja-name{color:#f2ede6}
+.tuottaja-rule{width:32px;height:1px;background:var(--gold);margin:16px 0}
+.tuottaja-text{font-size:13.5px;font-weight:300;color:var(--text-m);line-height:1.85;margin-bottom:20px}
+.tuottaja.loimaan .tuottaja-text{color:rgba(242,237,230,.55)}
+.tuottaja-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tf{background:rgba(0,0,0,.03);border-radius:5px;padding:14px 16px}
+.tuottaja.loimaan .tf{background:rgba(255,255,255,.06)}
+.tf-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--dark);line-height:1}
+.tuottaja.loimaan .tf-n{color:#f2ede6}
+.tf-l{font-size:11px;font-weight:500;color:var(--stone-l);margin-top:4px;line-height:1.4}
+.tuottaja.loimaan .tf-l{color:rgba(255,255,255,.4)}
+
+/* MYYMÄLÄT */
+.myymalat{background:var(--white)}
+.mm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.mm-card{background:var(--cream);border-radius:6px;padding:24px 22px;border:1px solid var(--border)}
+.mm-city{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--dark);margin-bottom:6px}
+.mm-addr{font-size:13px;font-weight:300;color:var(--text-m);line-height:1.7;margin-bottom:12px}
+.mm-hours{font-size:12px;color:var(--stone-l);line-height:1.7;border-top:1px solid var(--sand);padding-top:10px}
+
+/* UKK */
+.ukk{background:var(--sand)}
+.ukk-wrap{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;color:var(--dark);font-size:14.5px;font-weight:400;padding:20px 0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;gap:16px;line-height:1.5}
+.faq-q svg{flex-shrink:0;transition:transform .22s;stroke:var(--gold)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a p{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.88;padding-bottom:22px}
+
+/* YHTEYS */
+.yhteys{background:var(--granite);padding:92px 32px}
+.yhteys-in{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+.yh-left p{font-size:14px;font-weight:300;color:rgba(242,237,230,.5);line-height:1.88;margin-bottom:28px}
+.yh-info{display:flex;flex-direction:column;gap:14px}
+.yh-row{display:flex;align-items:center;gap:12px}
+.yh-dot{width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yh-dot svg{width:14px;height:14px;stroke:var(--gold)}
+.yh-text{font-size:13px;color:rgba(242,237,230,.55);font-weight:300}
+.yh-text a{color:var(--gold-l);text-decoration:none;font-weight:500}
+.yh-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:36px}
+.yh-form h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:#f2ede6;margin-bottom:20px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.35);margin-bottom:6px}
+.fld input,.fld select,.fld textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:11px 13px;font-size:13px;font-family:'Inter',sans-serif;color:#f2ede6;outline:none;transition:border-color .15s;-webkit-appearance:none}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:rgba(184,149,106,.5);background:rgba(255,255,255,.09)}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(242,237,230,.25)}
+.fld select option{background:var(--granite);color:#f2ede6}
+.fld textarea{height:90px;resize:none}
+.fld2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sub-btn{width:100%;background:var(--gold);color:#fff;border:none;padding:14px;border-radius:4px;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px}
+.sub-btn:hover{background:var(--gold-l)}
+
+/* FOOTER */
+footer{background:var(--dark);padding:52px 32px 28px}
+.ftr-in{max-width:1120px;margin:0 auto}
+.ftr-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ftr-brand-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:#f2ede6;margin-bottom:4px}
+.ftr-brand-sub{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px}
+.ftr-brand-p{font-size:12px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.75;max-width:220px}
+.ftr-col h4{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:13px}
+.ftr-col a{display:block;font-size:12.5px;font-weight:300;color:rgba(255,255,255,.35);text-decoration:none;margin-bottom:8px;transition:color .15s}
+.ftr-col a:hover{color:rgba(255,255,255,.75)}
+.ftr-bot{margin-top:22px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:8px}
+.ftr-legal{display:flex;gap:18px}
+.ftr-legal a{color:rgba(255,255,255,.2);text-decoration:none;font-size:11px;transition:color .14s}
+.ftr-legal a:hover{color:rgba(255,255,255,.5)}
+
+/* FLOAT */
+.float-btn{position:fixed;bottom:24px;right:24px;z-index:300;background:var(--gold);color:#fff;font-size:13px;font-weight:600;padding:12px 22px;border-radius:40px;text-decoration:none;box-shadow:0 4px 20px rgba(184,149,106,.45);opacity:0;pointer-events:none;transition:opacity .28s,transform .18s;display:flex;align-items:center;gap:8px}
+.float-btn.show{opacity:1;pointer-events:auto}
+.float-btn:hover{transform:translateY(-2px)}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(18px);transition:opacity .65s,transform .65s}
+.fade.d1{transition-delay:.1s}.fade.d2{transition-delay:.2s}.fade.d3{transition-delay:.3s}.fade.d4{transition-delay:.4s}
+.fade.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-in{grid-template-columns:1fr}
+  .hero-card{max-width:100%}
+  .palv-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;gap:32px}
+  .steps::before{display:none}
+  .tuottajat-grid{grid-template-columns:1fr}
+  .mm-grid{grid-template-columns:1fr 1fr}
+  .yhteys-in{grid-template-columns:1fr}
+  .ftr-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .ham{display:flex}
+  section{padding:64px 20px}
+  .hero{padding-top:60px}
+  .palvelut,.prosessi,.alueet,.tuottajat,.myymalat,.ukk{padding:56px 20px}
+  .yhteys{padding:56px 20px}
+  .nav-in{padding:0 20px}
+  .trust{padding:14px 20px}
+  .trust-in{gap:8px 16px;font-size:11.5px}
+  .steps{grid-template-columns:1fr}
+  .mm-grid{grid-template-columns:1fr}
+  .kunnat-grid{grid-template-columns:1fr 1fr}
+  .ftr-top{grid-template-columns:1fr}
+  .fld2{grid-template-columns:1fr}
+  .hero-in{padding:48px 20px 56px}
+  .hero-card{padding:24px 20px}
+  .hc-item{padding:10px 0}
+  .tuottaja{padding:28px 22px}
+  .tuottaja-facts{grid-template-columns:1fr 1fr}
+  .palv{padding:26px 20px}
+  .yh-form{padding:24px 20px}
+  footer{padding:36px 20px 20px}
+  .float-btn{bottom:16px;right:16px;padding:10px 18px;font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="/" class="logo">
+      <span class="logo-main">Keski-Suomen Hautakivi</span>
+      <span class="logo-sub">Memoriakivi &amp; Loimaan Kivi</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#palvelut">Palvelut</a>
+      <a href="#alueet">Alueet</a>
+      <a href="#tuottajat">Meistä</a>
+      <a href="#myymalat">Myymälät</a>
+      <a href="#ukk">UKK</a>
+      <a href="#yhteys">Yhteystiedot</a>
+    </nav>
+    <a href="#yhteys" class="nav-cta">Pyydä tarjous</a>
+    <button class="ham" id="ham" aria-label="Valikko"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mob-nav" id="mNav">
+  <a href="#palvelut" onclick="c()">Palvelut</a>
+  <a href="#alueet" onclick="c()">Alueet</a>
+  <a href="#tuottajat" onclick="c()">Meistä</a>
+  <a href="#myymalat" onclick="c()">Myymälät</a>
+  <a href="#ukk" onclick="c()">UKK</a>
+  <a href="#yhteys" onclick="c()">Ota yhteyttä</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-in">
+    <div>
+      <p class="hero-eyebrow" id="he">Hautakivi Keski-Suomessa &nbsp;&middot;&nbsp; Suunnittelu &middot; Valmistus &middot; Asennus</p>
+      <h1 class="hero-h1" id="hh">Muisto kiveen,<em>ikuisesti.</em></h1>
+      <div class="hero-rule" id="hr"></div>
+      <p class="hero-p" id="hp">Kotimainen graniitti, yksilöllinen suunnittelu ja ammattitaitoinen asennus kaikkialle Keski-Suomeen. Memoriakivi yhteistyössä Loimaan Kiven kanssa &mdash; yli 100 vuoden kivikokemuksella.</p>
+      <div class="hero-btns" id="hb">
+        <a href="#yhteys" class="btn-gold">Pyydä tarjous &rarr;</a>
+        <a href="#palvelut" class="btn-outline-w">Tutustu palveluihin</a>
+      </div>
+    </div>
+    <div class="hero-card" id="hc">
+      <div class="hc-label">Täyden palvelun hautakivi</div>
+      <div class="hc-items">
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">Yksilöllinen suunnittelu &amp; 3D-mallinnus</div></div>
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">Kotimainen graniitti &mdash; kestää sukupolvelta toiselle</div></div>
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">Asennuslupa seurakunnalta &mdash; me hoidamme</div></div>
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">Toimitus ja asennus koko Keski-Suomeen</div></div>
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">2 v. oikaisutakuu + 5 v. ilkivaltavakuutus</div></div>
+        <div class="hc-item"><div class="hc-dot"></div><div class="hc-text">Vanhojen kivien kunnostus, kaiverrukset, pesut</div></div>
+      </div>
+      <p class="hc-note">Hinnat sisältävät ALV. Ilmainen tarjous aina ennen tilausta &mdash; ei sitovuutta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-in">
+    <div class="ti"><div class="ti-dot"></div>Yli 100 vuotta kivikokemusta</div>
+    <div class="ti"><div class="ti-dot"></div>Kotimainen graniitti</div>
+    <div class="ti"><div class="ti-dot"></div>3D-suunnittelu</div>
+    <div class="ti"><div class="ti-dot"></div>Myymälät Jyväskylässä &amp; Korpilahdella</div>
+    <div class="ti"><div class="ti-dot"></div>ISO-sertifioitu laatu</div>
+    <div class="ti"><div class="ti-dot"></div>Koko maakunta</div>
+  </div>
+</div>
+
+<!-- PALVELUT -->
+<section class="palvelut" id="palvelut">
+  <div class="wrap">
+    <p class="eyebrow fade">Palvelumme</p>
+    <h2 class="sec-h2 fade">Kaikki hautakivipalvelut <em>yhdeltä luukulta</em></h2>
+    <p class="fade" style="font-size:15px;font-weight:300;color:var(--text-m);line-height:1.88;max-width:560px;margin-top:12px">Suunnittelusta asennukseen, kunnostuksesta lisäkaivarruksiin &mdash; hoidamme kaiken. Teidän ei tarvitse huolehtia luvista, kuljetuksesta eikä viranomaisasioinnista.</p>
+    <div class="palv-grid">
+      <div class="palv fade d1">
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3 class="palv-title">Uusi hautakivi</h3>
+        <p class="palv-desc">Suunnittelemme yhdessä teidän toiveidenne mukaisen muistomerkin. Näette 3D-mallinnuksella kiven ulkonäön ennen tilauksen vahvistamista.</p>
+        <ul class="palv-list">
+          <li>Henkilökohtainen suunnitteluneuvottelu</li>
+          <li>3D-kuva ennen tilausta</li>
+          <li>Laaja kivimateriaalivalikoima</li>
+          <li>Pronssikoristeita saatavilla</li>
+          <li>Kaiverrus, kultaukset &amp; maalaukset</li>
+          <li>Asennus koko Keski-Suomeen</li>
+        </ul>
+        <a href="#yhteys" class="palv-link">Pyydä tarjous &rarr;</a>
+      </div>
+      <div class="palv featured fade d2">
+        <div class="palv-badge">Suosituin</div>
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="palv-title">Kokonaispalvelu</h3>
+        <p class="palv-desc">Täyden palvelun paketti &mdash; suunnittelusta asennukseen. Haemme asennusluvan seurakunnasta ja hoidamme kaiken paperityön. Takuu ja vakuutus mukana.</p>
+        <ul class="palv-list">
+          <li>Kaikki uuden kiven palvelut</li>
+          <li>Asennuslupa seurakunnasta</li>
+          <li>Kuljetus ja asennus kaikkialle</li>
+          <li>2 v. oikaisutakuu asennusvuoden jälkeen</li>
+          <li>5 v. ilkivalta- ja varkausvakuutus</li>
+          <li>Ilmoitus teille asennusvahvistuksesta</li>
+        </ul>
+        <a href="#yhteys" class="palv-link">Pyydä tarjous &rarr;</a>
+      </div>
+      <div class="palv fade d3">
+        <div class="palv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="palv-title">Kunnostus &amp; hoito</h3>
+        <p class="palv-desc">Vanhan kiven kunnostaminen antaa muistomerkille uuden elämän. Lisänimikaiverruksesta täyteen kunnostukseen &mdash; ammattitaidolla.</p>
+        <ul class="palv-list">
+          <li>Hautakiven pesu</li>
+          <li>Tekstien kultaukset ja maalaukset</li>
+          <li>Lisänimikaiverrukset ja -laatat</li>
+          <li>Kiven hionta ja uudelleen tekstitys</li>
+          <li>Hautakiven ja reunakivien oikaisu</li>
+          <li>Pronssikoristeiden uusiminen</li>
+        </ul>
+        <a href="#yhteys" class="palv-link">Kysy lisää &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSESSI -->
+<section class="prosessi" id="prosessi">
+  <div class="wrap">
+    <p class="eyebrow fade">Näin etenee</p>
+    <h2 class="sec-h2 fade">Selkeä prosessi &mdash; <em>askel askeleelta</em></h2>
+    <div class="steps">
+      <div class="step active fade">
+        <div class="step-num">1</div>
+        <div class="step-title">Yhteydenotto</div>
+        <p class="step-desc">Täytä lomake tai soita. Kerro toiveista &mdash; autamme alkuun.</p>
+      </div>
+      <div class="step fade d1">
+        <div class="step-num">2</div>
+        <div class="step-title">Suunnittelu</div>
+        <p class="step-desc">Teemme 3D-kuvan ja eritellyn tarjouksen. Muokkauksista ei lisämaksua.</p>
+      </div>
+      <div class="step fade d2">
+        <div class="step-num">3</div>
+        <div class="step-title">Valmistus</div>
+        <p class="step-desc">Kotimainen graniitti jalostetaan huolellisesti tuotantolaitoksella.</p>
+      </div>
+      <div class="step fade d3">
+        <div class="step-num">4</div>
+        <div class="step-title">Lupa &amp; toimitus</div>
+        <p class="step-desc">Haemme asennusluvan seurakunnasta ja kuljetamme kiven paikkakunnallenne.</p>
+      </div>
+      <div class="step fade d4">
+        <div class="step-num">5</div>
+        <div class="step-title">Asennus</div>
+        <p class="step-desc">Asennamme muistomerkin paikalleen ja ilmoitamme teille valmistumisesta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALUEET -->
+<section class="alueet" id="alueet">
+  <div class="wrap">
+    <p class="eyebrow fade">Palvelemme</p>
+    <h2 class="sec-h2 fade">Kaikki <em>Keski-Suomen kunnat</em></h2>
+    <p class="fade" style="font-size:15px;font-weight:300;color:var(--text-m);line-height:1.88;max-width:560px;margin-top:12px">Myymälät Jyväskylässä ja Korpilahdella &mdash; mutta asennamme hautakivet kaikkialle maakuntaan. Palvelemme myös etänä koko Suomessa.</p>
+    <div class="kunnat-grid">
+      <a href="kunnat/kivi-jyvaskyla.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Jyväskylä</span></a>
+      <a href="kunnat/kivi-jamsa.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Jämsä</span></a>
+      <a href="kunnat/kivi-aanekoski.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Äänekoski</span></a>
+      <a href="kunnat/kivi-saarijarvi.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Saarijärvi</span></a>
+      <a href="kunnat/kivi-joutsa.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Joutsa</span></a>
+      <a href="kunnat/kivi-laukaa.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Laukaa</span></a>
+      <a href="kunnat/kivi-muurame.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Muurame</span></a>
+      <a href="kunnat/kivi-keuruu.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Keuruu</span></a>
+      <a href="kunnat/kivi-korpilahti.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Korpilahti</span></a>
+      <a href="kunnat/kivi-petajavesi.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Petäjävesi</span></a>
+      <a href="kunnat/kivi-hankasalmi.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Hankasalmi</span></a>
+      <a href="kunnat/kivi-viitasaari.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Viitasaari</span></a>
+      <a href="kunnat/kivi-pihtipudas.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Pihtipudas</span></a>
+      <a href="kunnat/kivi-karstula.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Karstula</span></a>
+      <a href="kunnat/kivi-multia.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Multia</span></a>
+      <a href="kunnat/kivi-uurainen.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Uurainen</span></a>
+      <a href="kunnat/kivi-konnevesi.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Konnevesi</span></a>
+      <a href="kunnat/kivi-toivakka.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Toivakka</span></a>
+      <a href="kunnat/kivi-kinnula.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Kinnula</span></a>
+      <a href="kunnat/kivi-kannonkoski.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Kannonkoski</span></a>
+      <a href="kunnat/kivi-luhanka.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Luhanka</span></a>
+      <a href="kunnat/kivi-kyyjarvi.html" class="kunta-tag fade"><span class="kunta-dot"></span><span class="kunta-name">Kyyjärvi</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TUOTTAJAT -->
+<section class="tuottajat" id="tuottajat">
+  <div class="wrap">
+    <p class="eyebrow fade">Palvelun tuottaa</p>
+    <h2 class="sec-h2 fade">Memoriakivi &amp; <em>Loimaan Kivi</em></h2>
+    <p class="fade" style="font-size:15px;font-weight:300;color:var(--text-m);line-height:1.88;max-width:580px;margin-top:12px;margin-bottom:0">Kahden vahvan toimijan yhteistyö: Memoriakivi tuo hautausalan osaamisen ja asiakasläheisyyden &mdash; Loimaan Kivi tuo yli vuosisadan kiviteollisuuden asiantuntemuksen ja ISO-sertifioidun laadun.</p>
+    <div class="tuottajat-grid">
+      <div class="tuottaja memoria fade d1">
+        <div class="tuottaja-label">Asiakaspalvelu &amp; koordinointi</div>
+        <div class="tuottaja-name">Memoriakivi</div>
+        <div class="tuottaja-rule"></div>
+        <p class="tuottaja-text">Memoriakivi on Memoria-hautausverkostoon pohjautuva hautakivipalvelu. Autamme surutyön kaikissa vaiheissa &mdash; myös muistomerkin hankinnassa. Tunnemme Keski-Suomen seurakunnat, paikalliset käytännöt ja varmistamme, että prosessi on teille mahdollisimman sujuva.</p>
+        <div class="tuottaja-facts">
+          <div class="tf"><div class="tf-n">24/7</div><div class="tf-l">Tavoitettavissa</div></div>
+          <div class="tf"><div class="tf-n">Koko</div><div class="tf-l">maakunta palvelee</div></div>
+        </div>
+      </div>
+      <div class="tuottaja loimaan fade d2">
+        <div class="tuottaja-label">Valmistus &amp; asennus</div>
+        <div class="tuottaja-name">Loimaan Kivi</div>
+        <div class="tuottaja-rule"></div>
+        <p class="tuottaja-text">Loimaan Kivi on yksi Suomen arvostetuimmista kivenjalostajista &mdash; yli 100 vuotta kokemusta, ISO-sertifioitu laadunhallinta ja täysin kotimainen tuotantoketju. Myymälät Jyväskylässä ja Korpilahdella palvelevat koko Keski-Suomea.</p>
+        <div class="tuottaja-facts">
+          <div class="tf"><div class="tf-n">100+</div><div class="tf-l">vuotta toiminnassa</div></div>
+          <div class="tf"><div class="tf-n">ISO</div><div class="tf-l">9001 · 14001 · 45001</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MYYMÄLÄT -->
+<section class="myymalat" id="myymalat">
+  <div class="wrap">
+    <p class="eyebrow fade">Palvelupisteet</p>
+    <h2 class="sec-h2 fade">Myymälät <em>Keski-Suomessa</em></h2>
+    <p class="fade" style="font-size:15px;font-weight:300;color:var(--text-m);line-height:1.88;max-width:560px;margin-top:12px">Voit tutustua hautakiviin ja kivimateriaaleihin myymälässä asiantuntijamme kanssa. Palvelemme myös etänä koko maakunnan alueella.</p>
+    <div class="mm-grid">
+      <div class="mm-card fade d1">
+        <div class="mm-city">Jyväskylä</div>
+        <div class="mm-addr">Loimaan Kivi Jyväskylä<br>Puistokatu 5, 40100 Jyväskylä</div>
+        <div class="mm-hours">ma&ndash;to 10&ndash;17 &middot; pe 10&ndash;16<br>Muina aikoina sopimuksesta</div>
+      </div>
+      <div class="mm-card fade d2">
+        <div class="mm-city">Korpilahti</div>
+        <div class="mm-addr">Loimaan Kivi Korpilahti<br>Petäjävedentie 5, 41800 Korpilahti</div>
+        <div class="mm-hours">ma&ndash;to 10&ndash;17 &middot; pe 10&ndash;16<br>Muina aikoina sopimuksesta</div>
+      </div>
+      <div class="mm-card fade d3">
+        <div class="mm-city">Etäpalvelu</div>
+        <div class="mm-addr">Suunnittelu ja tarjous myös täysin etänä &mdash; puhelimitse, sähköpostitse tai videoyhteydellä.</div>
+        <div class="mm-hours">Koko Keski-Suomi &middot; Koko Suomi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UKK -->
+<section class="ukk" id="ukk">
+  <div class="wrap">
+    <p class="eyebrow fade">Usein kysyttyä</p>
+    <h2 class="sec-h2 fade">Vastauksia <em>yleisimpiin kysymyksiin</em></h2>
+    <div class="ukk-wrap" style="margin-top:44px">
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Miten hautakiven tilaaminen tapahtuu?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Yhteydenotto &rarr; suunnitteluneuvottelu (myymälässä tai etänä) &rarr; 3D-kuva ja eritelty tarjous &rarr; tilauksen hyväksyminen &rarr; valmistus &rarr; asennuslupa seurakunnasta &rarr; asennus &rarr; ilmoitus teille. Me hoidamme kaiken &mdash; teidän tarvitsee vain hyväksyä suunnitelma.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Palveletteko kaikkia Keski-Suomen kuntia?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Kyllä. Asennamme hautakivet kaikissa Keski-Suomen kunnissa. Myymälät sijaitsevat Jyväskylässä ja Korpilahdella, mutta suunnitteluneuvottelu onnistuu myös etänä. Pitkät kuljetusmatkat voivat vaikuttaa kokonaishintaan &mdash; kerromme tämän aina tarjouksessa.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Mistä hautakiven hinta muodostuu?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Hintaan vaikuttavat kivimateriaali ja sen laatu, kiven koko ja muoto, pintakäsittely, kaiverrukset ja tekstimäärä, kirjasintyyppi, kultaukset tai maalaukset, mahdolliset pronssikoristeeet sekä asennus. Teemme aina selkeän eritellyn tarjouksen 3D-mallinnuksen yhteydessä ennen tilauksen vahvistamista. Hinnat sisältävät ALV.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Milloin hautakivi asennetaan?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Hautakivi voidaan tyypillisesti asentaa noin puolen vuoden kuluttua hautauksesta, kun maa on riittävästi asettunut. Seurakunnat voivat vaihdella käytäntöjä &mdash; tarkistamme aina paikkakuntakohtaiset säännöt puolestanne. Valmistusaika tilauksesta on tavallisesti 4&ndash;8 viikkoa.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Voiko vanhalle hautakivelle tehdä jotain?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Kyllä &mdash; kunnostus on usein erinomainen vaihtoehto. Pesemme, uudelleenkultaamme, kaiverramme lisänimiä, hionnomme ja oikaisemme kiviä. Kunnostus antaa vanhalle kivelle täysin uuden ulkonäön murto-osalla uuden kiven hinnasta.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q" onclick="faq(this)">Miksi kotimainen graniitti on paras valinta?
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>
+        </button>
+        <div class="faq-a"><p>Suomalainen luonnongraniitti kestää vuosikymmeniä pohjoismaisissa sääolosuhteissa ilman erityistä huoltoa. Jokainen kivi on väriltään ja tekstuuriltaan yksilöllinen. Se on myös ekologinen ja eettinen valinta &mdash; kotimainen tuotantoketju, lyhyet kuljetusmatkat ja ISO-sertifioitu ympäristöjärjestelmä.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YHTEYS -->
+<section class="yhteys" id="yhteys">
+  <div class="wrap">
+    <div class="yhteys-in">
+      <div class="fade">
+        <p class="eyebrow" style="color:var(--gold)">Ota yhteyttä</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-weight:300;color:#f2ede6;line-height:1.1;margin-bottom:12px">Pyydä ilmainen <em style="font-style:italic;color:var(--gold-l)">tarjous</em></h2>
+        <p class="yh-left p">Vastaamme tarjouspyyntöihin arkisin kahden tunnin sisällä. Suunnitteluneuvottelu ei sido teitä mihinkään &mdash; saat 3D-kuvan ja tarjouksen ennen päätöksentekoa.</p>
+        <div class="yh-info">
+          <div class="yh-row">
+            <div class="yh-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.79a16 16 0 005.55 5.55l.85-.86a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg></div>
+            <div class="yh-text"><a href="tel:+358140000000">014 000 0000</a> &mdash; Keski-Suomi</div>
+          </div>
+          <div class="yh-row">
+            <div class="yh-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="yh-text"><a href="mailto:info@keskisuomenhautakivi.fi">info@keskisuomenhautakivi.fi</a></div>
+          </div>
+          <div class="yh-row">
+            <div class="yh-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="yh-text">Puistokatu 5, 40100 Jyväskylä (Loimaan Kivi)</div>
+          </div>
+          <div class="yh-row">
+            <div class="yh-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="yh-text">Petäjävedentie 5, 41800 Korpilahti (Loimaan Kivi)</div>
+          </div>
+        </div>
+      </div>
+      <div class="yh-form fade d2">
+        <h3>Tarjouspyyntö</h3>
+        <div class="fld2">
+          <div class="fld"><label>Etunimi</label><input type="text" placeholder="Etunimi"></div>
+          <div class="fld"><label>Sukunimi</label><input type="text" placeholder="Sukunimi"></div>
+        </div>
+        <div class="fld"><label>Puhelin</label><input type="tel" placeholder="+358 xx xxxxxxx"></div>
+        <div class="fld"><label>Sähköposti</label><input type="email" placeholder="nimi@email.fi"></div>
+        <div class="fld"><label>Palvelu</label>
+          <select>
+            <option value="">Valitse palvelu</option>
+            <option>Uusi hautakivi — kokonaispalvelu</option>
+            <option>Uusi hautakivi — suunnittelu</option>
+            <option>Kunnostus (pesu, kultaukset, kaiverrukset)</option>
+            <option>Lisänimikaiverrukset</option>
+            <option>Halusin tietoa / muu asia</option>
+          </select>
+        </div>
+        <div class="fld"><label>Paikkakunta</label><input type="text" placeholder="Missä hautakivi sijaitsee?"></div>
+        <div class="fld"><label>Viesti</label><textarea placeholder="Kertokaa toiveista tai kysymyksestä..."></textarea></div>
+        <button class="sub-btn">Lähetä tarjouspyyntö &rarr;</button>
+        <p style="font-size:11px;color:rgba(242,237,230,.25);margin-top:12px;text-align:center;line-height:1.6">Hinnat sisältävät ALV. Tarjouspyyntö ei sido teitä mihinkään.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftr-in">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-brand-name">Keski-Suomen Hautakivi</div>
+        <div class="ftr-brand-sub">Memoriakivi &amp; Loimaan Kivi</div>
+        <p class="ftr-brand-p">Hautamuistomerkki kotimaista graniittia — suunnittelu, valmistus ja asennus koko Keski-Suomeen.</p>
+      </div>
+      <div class="ftr-col">
+        <h4>Palvelut</h4>
+        <a href="#palvelut">Uusi hautakivi</a>
+        <a href="#palvelut">Kokonaispalvelu</a>
+        <a href="#palvelut">Kunnostus</a>
+        <a href="#palvelut">Etäpalvelu</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Tuottajat</h4>
+        <a href="#tuottajat">Memoriakivi</a>
+        <a href="https://www.loimaankivi.fi" target="_blank" rel="noopener">Loimaan Kivi</a>
+        <a href="#myymalat">Myymälät</a>
+        <a href="#alueet">Alueet</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Yhteys</h4>
+        <a href="tel:+358140000000">014 000 0000</a>
+        <a href="mailto:info@keskisuomenhautakivi.fi">info@keskisuomenhautakivi.fi</a>
+        <a href="#myymalat">Jyväskylä &amp; Korpilahti</a>
+        <a href="#">Tietosuoja</a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>&copy; 2026 Keski-Suomen Hautakivi &mdash; Palvelun tuottaa Memoriakivi yhteistyössä Loimaan Kiven kanssa</span>
+      <div class="ftr-legal"><a href="#">Tietosuoja</a><a href="#">Käyttöehdot</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+358140000000" class="float-btn" id="fb">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.79a16 16 0 005.55 5.55l.85-.86a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg>
+  014 000 0000
+</a>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>60);
+  document.getElementById('fb').classList.toggle('show',scrollY>300);
+},{passive:true});
+const ham=document.getElementById('ham'),mNav=document.getElementById('mNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mNav.classList.toggle('open')});
+function c(){ham.classList.remove('open');mNav.classList.remove('open')}
+['he','hh','hr','hp','hb','hc'].forEach(id=>{const e=document.getElementById(id);if(e)setTimeout(()=>e.classList.add('v'),80)});
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+function faq(btn){
+  const item=btn.closest('.faq-item');
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>

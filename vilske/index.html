@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vilske — Paikallinen ruokalähetti Jyväskylässä</title>
+<meta name="description" content="Vilske tuo jyväskyläläisten ravintoloiden ruoan ovellesi nopeasti. Ravintoloille reilu 15 % provisio — puolet vähemmän kuin kilpailijoilla.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#f5c800;
+  --yellow-d:#d4a800;
+  --black:#0f0f0f;
+  --dark:#161616;
+  --surface:#1e1e1e;
+  --surface2:#252525;
+  --border:#2e2e2e;
+  --text:#f0f0f0;
+  --text-m:#a0a0a0;
+  --text-l:#606060;
+  --green:#22c55e;
+  --red:#ef4444;
+}
+html{scroll-behavior:smooth;background:var(--black)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--black);line-height:1.5;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,backdrop-filter .3s}
+.nav.scrolled{background:rgba(15,15,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-mark{width:36px;height:36px;background:var(--yellow);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.nav-logo-mark svg{width:20px;height:20px}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:#fff}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text-m);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:#fff}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-tab{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:5px;cursor:pointer;border:none;transition:all .15s;text-decoration:none}
+.nav-tab.consumer{background:var(--yellow);color:var(--black)}
+.nav-tab.restaurant{background:transparent;border:1px solid var(--border);color:var(--text-m)}
+.nav-tab:hover{opacity:.85}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.ham span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mob-nav{display:none;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--dark);border-bottom:1px solid var(--border);padding:20px 28px;gap:14px;z-index:99}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;font-weight:500;color:var(--text-m);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border-bottom:none}
+
+/* TABS */
+.page-consumer .restaurant-only{display:none}
+.page-restaurant .consumer-only{display:none}
+.page-restaurant .nav-tab.restaurant{background:var(--yellow);color:var(--black)}
+.page-restaurant .nav-tab.consumer{background:transparent;border:1px solid var(--border);color:var(--text-m)}
+
+/* HERO */
+.hero{min-height:100svh;background:var(--black);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:64px}
+.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");pointer-events:none}
+.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(var(--yellow) 0%,transparent 65%);opacity:.06;pointer-events:none;animation:glow-pulse 4s ease-in-out infinite}
+@keyframes glow-pulse{0%,100%{opacity:.06}50%{opacity:.1}}
+.hero-in{max-width:1100px;margin:0 auto;padding:64px 28px 80px;width:100%;text-align:center}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:rgba(245,200,0,.12);border:1px solid rgba(245,200,0,.25);border-radius:20px;padding:6px 16px;margin-bottom:28px;opacity:0;transition:opacity .5s .1s}
+.hero-label.v{opacity:1}
+.hero-label span{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);line-height:.9;color:#fff;letter-spacing:.01em;margin-bottom:12px;opacity:0;transform:translateY(20px);transition:opacity .8s .2s,transform .8s .2s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1 em{color:var(--yellow);font-style:normal}
+.hero-sub{font-size:clamp(16px,2vw,21px);color:var(--text-m);line-height:1.7;max-width:600px;margin:0 auto 44px;font-weight:300;opacity:0;transition:opacity .7s .45s}
+.hero-sub.v{opacity:1}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;transition:opacity .6s .65s}
+.hero-btns.v{opacity:1}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--black);font-size:14px;font-weight:700;padding:14px 28px;border-radius:7px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,0,.3)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--border);color:var(--text-m);font-size:14px;font-weight:600;padding:14px 28px;border-radius:7px;text-decoration:none;transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:72px;opacity:0;transition:opacity .7s .9s;flex-wrap:wrap}
+.hero-stats.v{opacity:1}
+.stat{text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#fff;line-height:1}
+.stat-n em{color:var(--yellow);font-style:normal}
+.stat-l{font-size:12px;color:var(--text-l);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+/* HERO RESTAURANT VARIANT */
+.hero-r .hero-h1-text::before{content:'Sinulle,\00000Aravintoloitsija.'}
+.hero-label.r-label span::before{content:'Ravintoloille'}
+
+/* HOW IT WORKS */
+.how{background:var(--dark);padding:96px 28px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
+.how-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);color:#fff;line-height:1;margin-bottom:16px}
+.how-sub{font-size:16px;color:var(--text-m);line-height:1.8;max-width:520px;margin-bottom:60px}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;position:relative;transition:border-color .2s}
+.step:hover{border-color:var(--yellow)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--yellow);opacity:.25;line-height:1;margin-bottom:14px}
+.step-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+
+/* COMMISSION */
+.commission{background:var(--black);padding:96px 28px}
+.comm-inner{max-width:900px;margin:0 auto}
+.comm-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.comm-card{border-radius:14px;padding:40px 36px;position:relative;overflow:hidden}
+.comm-card.them{background:var(--surface);border:1px solid var(--border)}
+.comm-card.us{background:var(--yellow);border:1px solid var(--yellow)}
+.comm-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:20px}
+.comm-card.them .comm-badge{background:rgba(255,255,255,.08);color:var(--text-l)}
+.comm-card.us .comm-badge{background:rgba(0,0,0,.15);color:var(--black)}
+.comm-pct{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:.9;margin-bottom:12px}
+.comm-card.them .comm-pct{color:#fff}
+.comm-card.us .comm-pct{color:var(--black)}
+.comm-label{font-size:14px;font-weight:600}
+.comm-card.them .comm-label{color:var(--text-m)}
+.comm-card.us .comm-label{color:var(--black);opacity:.7}
+.comm-detail{margin-top:24px}
+.comm-detail li{font-size:13px;color:var(--text-m);padding:7px 0;border-top:1px solid var(--border);list-style:none;display:flex;align-items:center;gap:8px}
+.comm-card.us .comm-detail li{color:rgba(0,0,0,.65);border-top-color:rgba(0,0,0,.12)}
+.comm-detail li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--text-l);flex-shrink:0}
+.comm-card.us .comm-detail li::before{background:var(--black);opacity:.4}
+
+/* ZONES */
+.zones{background:var(--dark);padding:96px 28px}
+.zones-inner{max-width:1100px;margin:0 auto}
+.zone-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:48px}
+.zone-pill{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;font-size:13px;font-weight:500;color:var(--text-m);display:flex;align-items:center;gap:8px;transition:border-color .15s}
+.zone-pill:hover{border-color:var(--yellow);color:#fff}
+.zone-dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);flex-shrink:0}
+
+/* CONSUMER SECTION */
+.order{background:var(--black);padding:96px 28px}
+.order-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.order-visual{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden}
+.order-phone{background:var(--black);border:2px solid var(--border);border-radius:24px;padding:20px 16px;margin:0 auto;max-width:240px;position:relative}
+.op-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.op-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--yellow);letter-spacing:.04em}
+.op-tag{font-size:10px;color:var(--green);font-weight:700}
+.op-rest-item{background:var(--surface2);border-radius:8px;padding:12px;margin-bottom:8px;display:flex;gap:12px;align-items:center}
+.op-rest-img{width:40px;height:40px;border-radius:6px;background:var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.op-rest-name{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
+.op-rest-info{font-size:10px;color:var(--text-m)}
+.op-btn{background:var(--yellow);color:var(--black);font-size:12px;font-weight:700;padding:10px;border-radius:7px;text-align:center;margin-top:16px;cursor:pointer}
+
+/* RESTAURANT CTA */
+.join{background:linear-gradient(135deg,var(--dark) 0%,var(--surface) 100%);border:1px solid var(--border);border-radius:20px;padding:72px 56px;margin:0 28px 96px;max-width:1100px;margin-left:auto;margin-right:auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.join-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,60px);color:#fff;line-height:1;margin-bottom:16px}
+.join-title em{color:var(--yellow);font-style:normal}
+.join-desc{font-size:15px;color:var(--text-m);line-height:1.8;max-width:480px}
+.join-form-box{min-width:300px}
+.join-form-box input,.join-form-box select,.join-form-box textarea{width:100%;background:var(--black);border:1px solid var(--border);border-radius:7px;padding:12px 14px;font-size:13px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:10px}
+.join-form-box input:focus,.join-form-box select:focus,.join-form-box textarea:focus{border-color:var(--yellow)}
+.join-form-box select option{background:var(--dark)}
+
+/* PRICING (consumer) */
+.pricing{background:var(--dark);padding:96px 28px}
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;max-width:900px;margin-left:auto;margin-right:auto}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 28px;text-align:center;position:relative;transition:border-color .2s}
+.price-card.featured{border-color:var(--yellow)}
+.pc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--black);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:12px;white-space:nowrap}
+.pc-name{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:16px}
+.pc-price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:#fff;line-height:1;margin-bottom:4px}
+.pc-price em{font-size:20px;font-style:normal;color:var(--text-m)}
+.pc-desc{font-size:12px;color:var(--text-l);margin-bottom:24px}
+.pc-features{list-style:none;margin-bottom:28px;text-align:left}
+.pc-features li{font-size:13px;color:var(--text-m);padding:7px 0;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.pc-features li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0}
+
+/* APP */
+.app{background:var(--black);padding:96px 28px}
+.app-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.app-features{margin-top:32px}
+.af{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.af-icon{width:40px;height:40px;background:rgba(245,200,0,.12);border:1px solid rgba(245,200,0,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.af-icon svg{width:18px;height:18px;stroke:var(--yellow)}
+.af-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.af-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+.app-phone{background:var(--surface);border:2px solid var(--border);border-radius:28px;padding:24px 20px;max-width:260px;margin:0 auto}
+.aph-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.aph-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--green)}
+.aph-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.aph-order{background:var(--black);border-radius:10px;padding:14px;margin-bottom:10px}
+.aph-order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.aph-order-name{font-size:12px;font-weight:600;color:#fff}
+.aph-order-earn{font-size:14px;font-weight:700;color:var(--yellow)}
+.aph-order-info{font-size:11px;color:var(--text-m)}
+.aph-map{background:var(--surface2);border-radius:8px;height:100px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-l)}
+.aph-accept{background:var(--yellow);color:var(--black);font-size:13px;font-weight:700;padding:12px;border-radius:8px;text-align:center}
+
+/* FAQ */
+.faq{background:var(--dark);padding:96px 28px}
+.faq-inner{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:#fff;font-size:15px;font-weight:600;padding:22px 0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit}
+.faq-q svg{flex-shrink:0;transition:transform .25s;stroke:var(--yellow)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a p{font-size:14px;color:var(--text-m);line-height:1.85;padding-bottom:22px}
+
+/* CONTACT */
+.contact-sect{background:var(--black);padding:96px 28px}
+.contact-inner{max-width:900px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:56px;display:grid;grid-template-columns:1fr 1.5fr;gap:56px}
+.cl h2{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#fff;line-height:1;margin-bottom:16px}
+.cl h2 em{color:var(--yellow);font-style:normal}
+.cl p{font-size:14px;color:var(--text-m);line-height:1.85;margin-bottom:20px}
+.contact-info-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ci-icon{width:32px;height:32px;background:rgba(245,200,0,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-icon svg{width:15px;height:15px;stroke:var(--yellow)}
+.ci-text{font-size:13px;color:var(--text-m)}
+.ci-text a{color:var(--yellow);text-decoration:none}
+.cr input,.cr select,.cr textarea{width:100%;background:var(--black);border:1px solid var(--border);border-radius:7px;padding:12px 14px;font-size:13px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:12px}
+.cr input:focus,.cr select:focus,.cr textarea:focus{border-color:var(--yellow)}
+.cr select option{background:var(--dark)}
+.cr textarea{height:110px;resize:vertical}
+.fld2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:48px 28px 32px}
+.ftr-in{max-width:1100px;margin:0 auto}
+.ftr-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ftr-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ftr-brand-mark{width:32px;height:32px;background:var(--yellow);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.ftr-brand-name{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;letter-spacing:.04em}
+.ftr-brand-desc{font-size:13px;color:var(--text-l);line-height:1.7;max-width:220px}
+.ftr-col h4{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-bottom:14px}
+.ftr-col a{display:block;font-size:13px;color:var(--text-m);text-decoration:none;margin-bottom:8px;transition:color .15s}
+.ftr-col a:hover{color:#fff}
+.ftr-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ftr-copy{font-size:12px;color:var(--text-l)}
+.ftr-legal{display:flex;gap:20px}
+.ftr-legal a{font-size:12px;color:var(--text-l);text-decoration:none;transition:color .15s}
+.ftr-legal a:hover{color:var(--text-m)}
+
+/* SCROLL CTA */
+.scroll-cta{position:fixed;bottom:24px;right:24px;background:var(--yellow);color:var(--black);font-size:13px;font-weight:700;padding:13px 22px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(245,200,0,.35);transition:transform .15s,opacity .3s;z-index:80;opacity:0;pointer-events:none}
+.scroll-cta.show{opacity:1;pointer-events:auto}
+.scroll-cta:hover{transform:translateY(-2px)}
+
+/* FADE ANIMATIONS */
+.fade{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.fade.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .how-steps{grid-template-columns:repeat(2,1fr)}
+  .comm-compare,.order-inner,.app-inner,.contact-inner{grid-template-columns:1fr}
+  .pricing-cards{grid-template-columns:1fr}
+  .join{grid-template-columns:1fr}
+  .ftr-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-right{display:none}
+  .ham{display:flex}
+  .how-steps{grid-template-columns:1fr}
+  .zone-grid{grid-template-columns:repeat(2,1fr)}
+  .join{padding:40px 24px;margin:0 16px 64px}
+  .contact-inner{padding:32px 20px}
+  .ftr-top{grid-template-columns:1fr}
+  .fld2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="page-consumer">
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo" style="text-decoration:none">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round">
+        <path d="M10 2 L10 10 L16 14"/>
+        <circle cx="10" cy="10" r="8"/>
+      </svg>
+    </div>
+    <span class="nav-brand">Vilske</span>
+  </a>
+  <div class="nav-links">
+    <a href="#miten">Miten toimii</a>
+    <a href="#alueet" class="consumer-only">Alueet</a>
+    <a href="#sovellus">Sovellus</a>
+    <a href="#liity" class="restaurant-only">Liity mukaan</a>
+    <a href="#ukk">UKK</a>
+    <a href="#ota-yhteytta">Yhteystiedot</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-tab consumer" onclick="switchTab('consumer')">Tilaan ruokaa</button>
+    <button class="nav-tab restaurant" onclick="switchTab('restaurant')">Olen ravintoloitsija</button>
+  </div>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<nav class="mob-nav" id="mNav">
+  <a href="#miten" onclick="c()">Miten toimii</a>
+  <a href="#alueet" onclick="c()">Alueet</a>
+  <a href="#sovellus" onclick="c()">Sovellus</a>
+  <a href="#ukk" onclick="c()">UKK</a>
+  <a href="#ota-yhteytta" onclick="c()">Yhteystiedot</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-in">
+
+    <!-- CONSUMER HERO -->
+    <div class="consumer-only">
+      <div class="hero-label" id="hl"><span>Jyväskylän oma ruokalähettipalvelu</span></div>
+      <h1 class="hero-h1" id="hh">NOPEA<br><em>LÄHIRUOKA</em><br>OVELLESI</h1>
+      <p class="hero-sub" id="hs">Tilaa suosikkiravintoloistasi — kuljetus 30–45 minuutissa. Tuemme paikallisia ravintoloita pitämällä provisiot reiluina.</p>
+      <div class="hero-btns" id="hb">
+        <a href="#tilaa" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Selaa ravintoloita
+        </a>
+        <a href="#sovellus" class="btn-ghost">Lataa sovellus</a>
+      </div>
+      <div class="hero-stats" id="hst">
+        <div class="stat"><div class="stat-n"><em>30</em>&ndash;45</div><div class="stat-l">min toimitusaika</div></div>
+        <div class="stat"><div class="stat-n"><em>0</em></div><div class="stat-l">tilaustietoja myydaan</div></div>
+        <div class="stat"><div class="stat-n"><em>100</em><em>%</em></div><div class="stat-l">jyväskyläläinenn</div></div>
+      </div>
+    </div>
+
+    <!-- RESTAURANT HERO -->
+    <div class="restaurant-only">
+      <div class="hero-label" id="hl-r"><span>Ravintoloille — Reilu kumppani</span></div>
+      <h1 class="hero-h1" id="hh-r">ENEMMAN<br><em>KATETTA.</em><br>SINULLE.</h1>
+      <p class="hero-sub" id="hs-r">Vilske veloittaa 15 % provisiota — ei 25&ndash;30 % kuten Wolt. Lasket itse, kuinka paljon jaaat enemmän per tilaus.</p>
+      <div class="hero-btns" id="hb-r">
+        <a href="#liity" class="btn-primary">Liity mukaan &mdash; ilmainen kokeilu</a>
+        <a href="#provisio" class="btn-ghost">Laske saastosi</a>
+      </div>
+      <div class="hero-stats" id="hst-r">
+        <div class="stat"><div class="stat-n"><em>15</em>%</div><div class="stat-l">Vilske provisio</div></div>
+        <div class="stat"><div class="stat-n"><em>25&ndash;30</em>%</div><div class="stat-l">kilpailijat veloittavat</div></div>
+        <div class="stat"><div class="stat-n"><em>0</em></div><div class="stat-l">kiinteita kuukausimaksuja</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS (consumer) -->
+<section class="how consumer-only" id="miten">
+  <div style="max-width:1100px;margin:0 auto">
+    <p class="section-label fade">Nain se toimii</p>
+    <h2 class="how-h2 fade">Nopea kuin pyora</h2>
+    <p class="how-sub fade">Neljassa vaiheessa ovellesi — ilman tilaustietojesi myymista tai piilomaksuja.</p>
+    <div class="how-steps">
+      <div class="step fade">
+        <div class="step-num">01</div>
+        <div class="step-title">Avaa sovellus</div>
+        <div class="step-desc">Lataa Vilske App tai tilaa verkossa. Kirjaudu sisaan sekunnissa — ei turhia lomakkeita.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">02</div>
+        <div class="step-title">Valitse ravintola</div>
+        <div class="step-desc">Näytä lähellä olevat paikalliset ravintolat reaaliajassa. Kaikki Jyväskylästä, ei ketjuja.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">03</div>
+        <div class="step-title">Tilaa ja maksa</div>
+        <div class="step-desc">Kortilla, MobilePaylla tai laskulla. Tilausvahvistus tulee sekunnissa.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">04</div>
+        <div class="step-title">Lahetimme tuo</div>
+        <div class="step-desc">Nahdat lahettilas liikumisen kartalta reaaliajassa. Yleensa 30&ndash;45 minuutissa ovellesi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (restaurant) -->
+<section class="how restaurant-only" id="miten-r">
+  <div style="max-width:1100px;margin:0 auto">
+    <p class="section-label fade">Nain kumppanuus toimii</p>
+    <h2 class="how-h2 fade">Yksinkertainen ja reilu</h2>
+    <p class="how-sub fade">Et tarvitse uusia laitteita tai mutkikkaita integraatioita — aloittaminen vie yhden paivan.</p>
+    <div class="how-steps">
+      <div class="step fade">
+        <div class="step-num">01</div>
+        <div class="step-title">Rekisteroidy ilmaiseksi</div>
+        <div class="step-desc">Taytat lomakkeen, lahetamme sopimuksen. Aktivointi 24 tunnissa.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">02</div>
+        <div class="step-title">Laat menun</div>
+        <div class="step-desc">Hallinnoit menuasi itse — helppo hallintapaneeli selaimessa. Muutokset nakyvat hetkessa.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">03</div>
+        <div class="step-title">Tilaukset tulevat</div>
+        <div class="step-desc">Tilaukset nakyva kassarilla tai tabletilla. Hyvaksy tai muokkaa — sinulla on kontrolli.</div>
+      </div>
+      <div class="step fade">
+        <div class="step-num">04</div>
+        <div class="step-title">Tilitys viikottain</div>
+        <div class="step-desc">Myyntirapotti selaimessa reaaliajassa. Maksu tilillasi viikottain, ei kuukausittain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSION SECTION (restaurant) -->
+<section class="commission restaurant-only" id="provisio">
+  <div class="comm-inner">
+    <p class="section-label fade">Provisiota verrataan</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);color:#fff;line-height:1;margin-bottom:16px" class="fade">Laske itse, paljonko jaat enemmaan</h2>
+    <p style="font-size:16px;color:var(--text-m);line-height:1.8;max-width:520px;margin-bottom:0" class="fade">Sama tilaus, sama hinta — mutta Vilskeen kanssa sinulle jaa selvaasti enemmän.</p>
+    <div class="comm-compare">
+      <div class="comm-card them fade">
+        <span class="comm-badge">Kilpailija (Wolt jne.)</span>
+        <div class="comm-pct">25&ndash;30%</div>
+        <div class="comm-label">provisio per tilaus</div>
+        <ul class="comm-detail">
+          <li>25&ndash;30 % + mahdolliset lisamaksut</li>
+          <li>Kuukausittaiset kiinteat kulut joillain</li>
+          <li>Tilitys vaihtelee sopimuksittain</li>
+          <li>Et hallitse hinnoittelua itse</li>
+        </ul>
+      </div>
+      <div class="comm-card us fade">
+        <span class="comm-badge">Vilske</span>
+        <div class="comm-pct">15%</div>
+        <div class="comm-label">provisio per tilaus</div>
+        <ul class="comm-detail">
+          <li>Tasan 15 % — ei piilomaksuja</li>
+          <li>Ei kiinteita kuukausimaksuja</li>
+          <li>Viikottainen tilitys tilillesi</li>
+          <li>Omat hinnat, oma menu</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;margin-top:32px" class="fade">
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;margin-bottom:20px">Saastolasku</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px" id="calc-grid">
+        <div>
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);display:block;margin-bottom:6px">Tilauksia/kk</label>
+          <input type="number" id="calcOrders" value="200" min="1" style="width:100%;background:var(--black);border:1px solid var(--border);border-radius:7px;padding:10px 12px;font-size:14px;color:var(--text);font-family:inherit;outline:none" oninput="calcSave()">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);display:block;margin-bottom:6px">Keskim. tilaus (EUR)</label>
+          <input type="number" id="calcAvg" value="18" min="1" style="width:100%;background:var(--black);border:1px solid var(--border);border-radius:7px;padding:10px 12px;font-size:14px;color:var(--text);font-family:inherit;outline:none" oninput="calcSave()">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);display:block;margin-bottom:6px">Kilpailijan provisio %</label>
+          <input type="number" id="calcComp" value="27" min="1" max="50" style="width:100%;background:var(--black);border:1px solid var(--border);border-radius:7px;padding:10px 12px;font-size:14px;color:var(--text);font-family:inherit;outline:none" oninput="calcSave()">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:var(--black);border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);margin-bottom:8px">Kilpailijalla jää sinulle</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--text-m);line-height:1" id="calcResultOther">2 628 &euro;/kk</div>
+        </div>
+        <div style="background:rgba(245,200,0,.08);border:1px solid rgba(245,200,0,.2);border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px">Vilskeen kanssa jää sinulle</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--yellow);line-height:1" id="calcResultUs">3 060 &euro;/kk</div>
+          <div style="font-size:11px;color:var(--text-m);margin-top:4px" id="calcDiff">+432 &euro; enemmaan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<section class="zones consumer-only" id="alueet">
+  <div class="zones-inner">
+    <p class="section-label fade">Toimitetaan naalle</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);color:#fff;line-height:1;margin-bottom:16px" class="fade">Jyväskylä kattavasti</h2>
+    <p style="font-size:16px;color:var(--text-m);line-height:1.8;max-width:520px" class="fade">Toimitus kaikkiin Jyvaeskylaan kaupunginosiin seka lahikuntiin.</p>
+    <div class="zone-grid">
+      <div class="zone-pill fade"><span class="zone-dot"></span>Keskusta</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Kuokkala</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Keljo</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Tikkakoski</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Vaajakoski</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Palokka</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Ristonmaki</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Pupuhuhta</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Muurame</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Laukaa</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Ainola</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Huhtasuo</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Kortepohja</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Nisula</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Seppala</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Taulumaki</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Lutakko</div>
+      <div class="zone-pill fade"><span class="zone-dot"></span>Tourulan suunta</div>
+    </div>
+  </div>
+</section>
+
+<!-- DRIVER APP -->
+<section class="app" id="sovellus">
+  <div class="app-inner">
+    <div>
+      <p class="section-label fade">Vilske Driver App</p>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);color:#fff;line-height:1;margin-bottom:16px" class="fade">Tienaa joustavasti<br><em style="color:var(--yellow);font-style:normal">omilla ehdoilla</em></h2>
+      <p style="font-size:16px;color:var(--text-m);line-height:1.8;max-width:480px;margin-bottom:32px" class="fade">Tee toimitusteht&#228;vi&#228; milloin sinulle sopii — kello 10 tai kello 22. Maksu per toimitus, bonuksia kiireaikoina.</p>
+      <div class="app-features">
+        <div class="af fade">
+          <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><div class="af-title">Joustava aikataulu</div><div class="af-desc">Laitat itsesi online kun haluat. Ei minimiaikoja, ei sopimuspakkoja.</div></div>
+        </div>
+        <div class="af fade">
+          <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+          <div><div class="af-title">Viikottainen maksu</div><div class="af-desc">Ansiot tilillesi joka viikko — ei odottelua.</div></div>
+        </div>
+        <div class="af fade">
+          <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg></div>
+          <div><div class="af-title">Reittioptimointia</div><div class="af-desc">App ehdottaa parhaan reitin ja yhdistelee lähellä olevia tilauksia.</div></div>
+        </div>
+        <div class="af fade">
+          <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div><div class="af-title">Bonus kiireaikoina</div><div class="af-desc">Ruuhkatunneilla ja viikonloppuisin perus + 20&ndash;30 % bonus.</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px" class="fade">
+        <a href="#" class="btn-primary">Lataa App Store</a>
+        <a href="#" class="btn-ghost">Google Play</a>
+      </div>
+    </div>
+    <div class="fade">
+      <div class="app-phone">
+        <div class="aph-header">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--yellow)">VILSKE DRIVER</span>
+          <div class="aph-status"><span class="aph-dot"></span> Online</div>
+        </div>
+        <div class="aph-order">
+          <div class="aph-order-top">
+            <span class="aph-order-name">Ravintola Vesilahti</span>
+            <span class="aph-order-earn">7,40 &euro;</span>
+          </div>
+          <div class="aph-order-info">Pickup 1.4 km &bull; Toimitus 2.1 km &bull; 23 min</div>
+        </div>
+        <div class="aph-map">
+          <span style="color:var(--yellow)">&#9679;</span>&nbsp;Karttanakym&#228; reaaliajassa
+        </div>
+        <div class="aph-accept">Hyv&#228;ksy toimitus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN RESTAURANT -->
+<div class="join restaurant-only fade" id="liity">
+  <div>
+    <h2 class="join-title">Liity mukaan.<br><em>Ilmainen kokeilu.</em></h2>
+    <p class="join-desc">Aktivointipaiva on 24h. Ensimmainen kuukausi provisiotta — naet itse toimiiko malli sinulle. Ei sitovaa sopimusta.</p>
+    <ul style="list-style:none;margin-top:20px">
+      <li style="font-size:13px;color:var(--text-m);padding:7px 0;display:flex;align-items:center;gap:8px"><span style="color:var(--yellow);font-weight:700">&#10003;</span>Aktivointi 24 tunnissa</li>
+      <li style="font-size:13px;color:var(--text-m);padding:7px 0;display:flex;align-items:center;gap:8px"><span style="color:var(--yellow);font-weight:700">&#10003;</span>Ensimmainen kuukausi provisiotta</li>
+      <li style="font-size:13px;color:var(--text-m);padding:7px 0;display:flex;align-items:center;gap:8px"><span style="color:var(--yellow);font-weight:700">&#10003;</span>Ei kiinteta kuukausimaksua</li>
+      <li style="font-size:13px;color:var(--text-m);padding:7px 0;display:flex;align-items:center;gap:8px"><span style="color:var(--yellow);font-weight:700">&#10003;</span>Irtisanomisaika 30 pv</li>
+    </ul>
+  </div>
+  <div class="join-form-box">
+    <h3 style="font-size:16px;font-weight:700;color:#fff;margin-bottom:16px">Rekisteroityminen</h3>
+    <input type="text" placeholder="Ravintolan nimi">
+    <input type="text" placeholder="Y-tunnus">
+    <div class="fld2" style="margin-bottom:0">
+      <input type="text" placeholder="Etunimi">
+      <input type="text" placeholder="Sukunimi">
+    </div>
+    <input type="tel" placeholder="Puhelin">
+    <input type="email" placeholder="Sahkoposti">
+    <input type="text" placeholder="Osoite (ravintola)">
+    <select>
+      <option value="">Ravintolalaji</option>
+      <option>Suomalainen</option>
+      <option>Pizza</option>
+      <option>Sushi / Aasialaainen</option>
+      <option>Burger</option>
+      <option>Kasvisruoka</option>
+      <option>Muu</option>
+    </select>
+    <button class="btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer;font-size:14px;margin-top:4px">Laheta hakemus</button>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="ukk">
+  <div class="faq-inner">
+    <p class="section-label fade">UKK</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);color:#fff;line-height:1;margin-bottom:40px" class="fade">Usein kysyttya</h2>
+
+    <div class="faq-item consumer-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Minka alueen ravintoloita palvelee?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Kattaa Jyvaeskylaan kaikki kaupunginosat seka Muuramen ja Laukaan. Toiminta-alue laajenee kysynnan mukaan.</p></div>
+    </div>
+    <div class="faq-item consumer-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Paljonko toimitus maksaa?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Toimituskulut nakyva sovelluksessa ennen tilauksen vahvistamista. Lahialueella tyypillisesti 2&ndash;4 &euro;. Toimitusajat 30&ndash;45 min.</p></div>
+    </div>
+    <div class="faq-item consumer-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Miten maksaminen toimii?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Maksat sovelluksessa kortilla tai MobilePaylla. Kateiskauppaa ei ole; kaikki maksut ovat turvallisia ja kayttajasi tietoja ei myydaa kolmansille osapuolille.</p></div>
+    </div>
+    <div class="faq-item restaurant-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Mita 15 % sisaltaa?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Provisio kattaa tilauksen kasittelyn, maksuliikenteen, lahettilogistiikan ja asiakaspalvelun. Piilomaksuja ei ole — loput myyntihin on sinun.</p></div>
+    </div>
+    <div class="faq-item restaurant-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Tarvitsenko erillislaitteita?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Ei. Tilaukset nakyva selainpohjaisessa hallintapaneelissa tai vaihtoehtoisesti tulostimella joka meilla on valinnaisena. Integraatio olemassaolevaan kassajaarjestelmaan saatavilla erikseen.</p></div>
+    </div>
+    <div class="faq-item restaurant-only">
+      <button class="faq-q" onclick="toggleFaq(this)">Kuinka nopeasti aktivointi tapahtuu?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Tyypillisesti 24 tunnissa hakemuksesta. K&#228;ymme l&#228;pi menun kanssasi et&#228;n&#228; tai paikan p&#228;&#228;ll&#228; — ja olet valmis ottamaan tilauksia.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Kuka Vilske on?
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
+      </button>
+      <div class="faq-a"><p>Vilske on jyväskyläläinenn, paikallinen ruokakuljetuspalvelu. Perustettiin vastaamaan paikallisten ravintoloiden tarpeeseen reilan kumppanin jaaksia sen jalkeen kun isot ketjut lopettivat tai korottivat hintoja Suomessa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sect" id="ota-yhteytta">
+  <div class="contact-inner">
+    <div class="cl">
+      <h2>Ota<br><em>yhteytta</em></h2>
+      <p>Kysymyksia? Haluatko liittya lahettina tai kumppaniravintolaksi? Olemme taalla.</p>
+      <div class="contact-info-row">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg></div>
+        <div class="ci-text"><a href="tel:+358401234569">040 123 4569</a></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="ci-text"><a href="mailto:info@vilske.fi">info@vilske.fi</a></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="ci-text">Jyväskylä, toiminta-alue Keski-Suomi</div>
+      </div>
+    </div>
+    <div class="cr">
+      <div class="fld2">
+        <input type="text" placeholder="Etunimi">
+        <input type="text" placeholder="Sukunimi">
+      </div>
+      <input type="email" placeholder="Sahkoposti">
+      <input type="tel" placeholder="Puhelin">
+      <select>
+        <option value="">Asia</option>
+        <option>Tilaan ruokaa — kysymys</option>
+        <option>Haluan ryhtyaa lahettiksi</option>
+        <option>Ravintoloitsija — kiinnostunut kumppanuudesta</option>
+        <option>Muu asia</option>
+      </select>
+      <textarea placeholder="Viesti"></textarea>
+      <button class="btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer">Laheta viesti</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftr-in">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-brand">
+          <div class="ftr-brand-mark">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round">
+              <path d="M10 2 L10 10 L16 14"/><circle cx="10" cy="10" r="8"/>
+            </svg>
+          </div>
+          <span class="ftr-brand-name">Vilske</span>
+        </div>
+        <p class="ftr-brand-desc">Paikallinen ruokakuljetus Jyvaeskylassa. Reilu ravintoloille, nopea sinulle.</p>
+      </div>
+      <div class="ftr-col">
+        <h4>Palvelu</h4>
+        <a href="#miten">Miten toimii</a>
+        <a href="#alueet">Toiminta-alueet</a>
+        <a href="#sovellus">Driver App</a>
+        <a href="#ukk">UKK</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Ravintoloille</h4>
+        <a href="#provisio">Hinnasto</a>
+        <a href="#liity">Liity kumppaniverkostoon</a>
+        <a href="#ota-yhteytta">Yhteydenotto</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Yritys</h4>
+        <a href="#">Tietoa meista</a>
+        <a href="#">Tietosuoja</a>
+        <a href="#">Kayttoehdot</a>
+        <a href="#">info@vilske.fi</a>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span class="ftr-copy">&copy; 2025 Vilske &mdash; Jyväskylä</span>
+      <div class="ftr-legal">
+        <a href="#">Tietosuoja</a>
+        <a href="#">Kayttoehdot</a>
+        <a href="#">Evasteet</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="#tilaa" class="scroll-cta consumer-only" id="sca">Tilaa ruokaa</a>
+<a href="#liity" class="scroll-cta restaurant-only" id="sca-r">Liity kumppaniverkostoon</a>
+
+<script>
+// Tab switching
+function switchTab(tab) {
+  document.body.className = 'page-' + tab;
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive: true});
+
+// Hamburger
+const ham = document.getElementById('ham'), mNav = document.getElementById('mNav');
+ham.addEventListener('click', () => { ham.classList.toggle('open'); mNav.classList.toggle('open'); });
+function c() { ham.classList.remove('open'); mNav.classList.remove('open'); }
+
+// Hero reveal
+['hl','hh','hs','hb','hst'].forEach(id => {
+  const e = document.getElementById(id);
+  if (e) setTimeout(() => e.classList.add('v'), 50);
+});
+
+// Scroll CTA
+const sca = document.getElementById('sca');
+const hero = document.getElementById('hero');
+if (sca && hero) {
+  new IntersectionObserver(e => {
+    sca.classList.toggle('show', !e[0].isIntersecting);
+  }, {threshold: .1}).observe(hero);
+}
+
+// Fade in
+const io = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } });
+}, {threshold: .1});
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Savings calculator
+function calcSave() {
+  const orders = parseFloat(document.getElementById('calcOrders').value) || 0;
+  const avg = parseFloat(document.getElementById('calcAvg').value) || 0;
+  const comp = parseFloat(document.getElementById('calcComp').value) || 27;
+  const total = orders * avg;
+  const theirCut = total * (comp / 100);
+  const ourCut = total * 0.15;
+  const yourOther = total - theirCut;
+  const yourUs = total - ourCut;
+  const diff = yourUs - yourOther;
+  document.getElementById('calcResultOther').textContent = Math.round(yourOther).toLocaleString('fi-FI') + ' \u20ac/kk';
+  document.getElementById('calcResultUs').textContent = Math.round(yourUs).toLocaleString('fi-FI') + ' \u20ac/kk';
+  document.getElementById('calcDiff').textContent = '+' + Math.round(diff).toLocaleString('fi-FI') + ' \u20ac enemm\u00e4\u00e4n';
+}
+calcSave();
+</script>
+</body>
+</html>

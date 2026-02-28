@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muuttopalvelu Keuruulla — Kanto</title>
+<meta name="description" content="Kanto tarjoaa kiinteähintaisen muuttopalvelun Keuruulla. Vakuutettu kuljetus, ammattimainen tiimi ja selkeä hinta etukäteen. Varaa aika helposti.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2e4a;--navy-l:#2a4a6e;--navy-xl:#e8eef5;--orange:#e8760a;--orange-l:#f08c2a;--cream:#f8f6f1;--white:#fff;--dark:#0f1a26;--text:#1e2a3a;--text-m:#506070;--border:#d5dce6;--border-l:#e8edf4;--stone:#f2ede4}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.6}
+.nav{background:rgba(248,246,241,.96);border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--navy);text-decoration:none}
+.nav-phone{font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--navy);border-radius:4px;padding:7px 16px}
+.hero{background:var(--dark);padding:72px 40px;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,46,74,.35) 0%,transparent 60%)}
+.hero-inner{max-width:860px;margin:0 auto;position:relative}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,150,80,.7);margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,60px);font-weight:300;color:#f5f2ec;line-height:1.08;margin-bottom:18px}
+h1 em{font-style:italic;color:#f0a060}
+.hero-p{font-size:15px;font-weight:300;color:rgba(245,242,236,.55);line-height:1.85;max-width:500px;margin-bottom:32px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-n{background:var(--navy);color:#fff;font-size:13px;font-weight:500;padding:12px 22px;border-radius:4px;text-decoration:none}
+.btn-o{background:transparent;border:1px solid rgba(245,242,236,.2);color:rgba(245,242,236,.65);font-size:13px;font-weight:500;padding:12px 22px;border-radius:4px;text-decoration:none}
+.trust-bar{background:var(--navy);padding:13px 40px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.tb-i{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:rgba(255,255,255,.7)}
+.content{max-width:860px;margin:0 auto;padding:64px 40px}
+.sec{margin-bottom:52px}
+.sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:300;color:var(--dark);margin-bottom:10px;line-height:1.1}
+.sec h2 em{font-style:italic;color:var(--navy)}
+.rule{width:36px;height:1px;background:var(--orange);margin-bottom:18px}
+.sec p{font-size:14px;font-weight:300;color:var(--text-m);line-height:1.9;margin-bottom:12px}
+.price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.pc{background:var(--white);border:1px solid var(--border-l);border-radius:8px;padding:24px 20px}
+.pc.f{background:var(--navy);border-color:var(--navy)}
+.pn{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-m);margin-bottom:8px}
+.pc.f .pn{color:rgba(255,255,255,.45)}
+.pp{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--dark);line-height:1;margin-bottom:2px}
+.pc.f .pp{color:#f5f2ec}
+.pd{font-size:11px;color:var(--text-m);margin-bottom:14px}
+.pc.f .pd{color:rgba(255,255,255,.38)}
+.pl{list-style:none}
+.pl li{font-size:12px;font-weight:300;color:var(--text-m);padding:5px 0;border-top:1px solid var(--border-l);display:flex;gap:6px;line-height:1.5}
+.pc.f .pl li{color:rgba(245,242,236,.6);border-top-color:rgba(255,255,255,.09)}
+.pl li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:6px}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:24px}
+.step{display:flex;gap:18px;padding-bottom:24px;position:relative}
+.step::before{content:'';position:absolute;left:14px;top:34px;bottom:0;width:1px;background:var(--border-l)}
+.step:last-child::before{display:none}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--navy-xl);border:1px solid var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--navy)}
+.step-b h4{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px}
+.step-b p{font-size:13px;font-weight:300;color:var(--text-m);line-height:1.75;margin:0}
+.cbox{background:var(--white);border:1px solid var(--border-l);border-radius:8px;padding:32px}
+.cbox h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--dark);margin-bottom:14px}
+.cf{width:100%;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:10px 13px;font-size:13px;font-family:inherit;color:var(--text);outline:none;margin-bottom:9px}
+.cf:focus{border-color:var(--navy)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.submit{width:100%;background:var(--navy);color:#fff;border:none;border-radius:4px;padding:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:4px}
+.bc{font-size:12px;color:var(--text-m);margin-bottom:18px}
+.bc a{color:var(--text-m);text-decoration:none}
+footer{background:var(--dark);padding:32px 40px;text-align:center}
+.fl{font-family:'Cormorant Garamond',serif;font-size:18px;color:#f5f2ec;margin-bottom:5px}
+.fs{font-size:11px;color:rgba(245,242,236,.28)}
+@media(max-width:768px){.nav,.trust-bar,footer{padding-left:20px;padding-right:20px}.hero{padding:52px 20px}.content{padding:48px 20px}.price-grid{grid-template-columns:1fr}.f2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../" class="nav-logo">Kanto</a>
+  <a href="tel:+358401234568" class="nav-phone">040 123 4568</a>
+</nav>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Muuttopalvelu Keuruulla &mdash; Jyv&auml;skyl&auml;</p>
+    <h1>Muutto <em>Keuruulla</em></h1>
+    <p class="hero-p">Järvirikas kaupunki Jyväskylän länsipuolella, noin 75 km. Kanto hoitaa muuttosi kiinte&auml;ll&auml; hinnalla &mdash; vakuutettu kuljetus, ammattitaitoinen tiimi, ei yll&auml;tyksi&auml;.</p>
+    <div class="btns">
+      <a href="#varaa" class="btn-n">Pyyd&auml; tarjous</a>
+      <a href="#hinnat" class="btn-o">Katso hinnat</a>
+    </div>
+  </div>
+</section>
+<div class="trust-bar">
+  <div class="tb-i">&#10003; Kiinte&auml; hinta etuk&auml;teen</div>
+  <div class="tb-i">&#10003; Vakuutettu kuljetus</div>
+  <div class="tb-i">&#10003; Ammattitaitoinen tiimi</div>
+  <div class="tb-i">&#10003; Helppo varaus verkossa</div>
+</div>
+<div class="content">
+  <div class="bc"><a href="../">Kanto</a> &rsaquo; Muuttopalvelu Keuruulla</div>
+  <div class="sec">
+    <h2>Muuttopalvelu <em>Keuruulla</em></h2>
+    <div class="rule"></div>
+    <p>Järvirikas kaupunki Jyväskylän länsipuolella, noin 75 km. Kanto palvelee Keuruun muuttajia &mdash; sekä muuttoja alueelle ett&auml; sieltä pois. Kerro tarpeet, saat kiinteän hinnan heti.</p>
+    <p>Kaikki kuljetettavat tavarat ovat vakuutettuja koko muuton ajan. Et maksa ylim&auml;&auml;r&auml;ist&auml; portaista, pitkist&auml; k&auml;yt&auml;vist&auml; tai muista yll&auml;tyksist&auml; &mdash; hinta sovitaan etuk&auml;teen.</p>
+  </div>
+  <div class="sec" id="hinnat">
+    <h2>Hinnat &mdash; <em>kiinte&auml; hinta</em></h2>
+    <div class="rule"></div>
+    <p>Hinnat Jyv&auml;skyl&auml;n sis&auml;isille muutoille. Pitemmille matkoille hinta tarjouksen mukaan.</p>
+    <div class="price-grid">
+      <div class="pc">
+        <p class="pn">Yxi&ouml;</p>
+        <div class="pp">290 &euro;</div>
+        <p class="pd">noin 30 m&sup2; &bull; Jyv&auml;skyl&auml;n sis&auml;ll&auml;</p>
+        <ul class="pl">
+          <li>2 muuttomiestä</li>
+          <li>Pakettiauto</li>
+          <li>Vakuutettu kuljetus</li>
+          <li>Kaikki kantaminen mukaan lukien</li>
+        </ul>
+      </div>
+      <div class="pc f">
+        <p class="pn">Kaksio</p>
+        <div class="pp">490 &euro;</div>
+        <p class="pd">noin 55 m&sup2; &bull; Jyv&auml;skyl&auml;n sis&auml;ll&auml;</p>
+        <ul class="pl">
+          <li>2&ndash;3 muuttomiestä</li>
+          <li>Iso pakettiauto tai kuorma-auto</li>
+          <li>Vakuutettu kuljetus</li>
+          <li>Huonekalujen purku ja kasaus</li>
+        </ul>
+      </div>
+      <div class="pc">
+        <p class="pn">Kolmio</p>
+        <div class="pp">690 &euro;</div>
+        <p class="pd">noin 75 m&sup2; &bull; Jyv&auml;skyl&auml;n sis&auml;ll&auml;</p>
+        <ul class="pl">
+          <li>3 muuttomiestä</li>
+          <li>Kuorma-auto</li>
+          <li>Vakuutettu kuljetus</li>
+          <li>Kaikki kantaminen ja kasaus</li>
+        </ul>
+      </div>
+      <div class="pc">
+        <p class="pn">Pidemm&auml;t matkat</p>
+        <div class="pp">Tarjous</div>
+        <p class="pd">yli 10 km &bull; koko Suomi</p>
+        <ul class="pl">
+          <li>Kiinte&auml; hinta tarjouksesta</li>
+          <li>Ei km-perusteisia yll&auml;tyksi&auml;</li>
+          <li>V&auml;livarastointi mahdollinen</li>
+          <li>Pakkaamisapu saatavilla</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <h2>N&auml;in muutto <em>etenee</em></h2>
+    <div class="rule"></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-b"><h4>Varaus verkossa tai puhelimitse</h4><p>T&auml;yt&auml; lomake tai soita. Kerro asunnon koko ja matka &mdash; saat kiinte&auml;n hinnan heti.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b"><h4>Vahvistus ja sopimus</h4><p>L&auml;hetämme vahvistuksen s&auml;hk&ouml;postiin. Hinta on lukittu &mdash; ei muutu p&auml;iv&auml;n&auml;.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b"><h4>Muuttop&auml;iv&auml;</h4><p>Tiimimme saapuu sovittuna aikana. Hoidamme kantamisen, kuljetuksen ja tavaroiden sijoittamisen uuteen kotiin.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b"><h4>Valmis — maksu j&auml;lkeen p&auml;in</h4><p>Maksat vasta kun muutto on tehty ja olet tyytyv&auml;inen. Laskutus verkossa.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec" id="varaa">
+    <h2>Pyyd&auml; tarjous <em>Keuruulla</em></h2>
+    <div class="rule"></div>
+    <div class="cbox">
+      <h3>Yhteydenotto</h3>
+      <div class="f2">
+        <input class="cf" type="text" placeholder="Etunimi">
+        <input class="cf" type="text" placeholder="Sukunimi">
+      </div>
+      <input class="cf" type="tel" placeholder="Puhelin" style="margin-top:9px">
+      <input class="cf" type="email" placeholder="S&auml;hk&ouml;posti">
+      <input class="cf" type="text" placeholder="L&auml;ht&ouml;osoite">
+      <input class="cf" type="text" placeholder="Kohde­osoite">
+      <select class="cf">
+        <option>Asunnon koko</option>
+        <option>Yxi&ouml; (~30 m&sup2;)</option>
+        <option>Kaksio (~55 m&sup2;)</option>
+        <option>Kolmio (~75 m&sup2;)</option>
+        <option>4+ huonetta (~100+ m&sup2;)</option>
+        <option>Omakotitalo</option>
+      </select>
+      <select class="cf">
+        <option>Toivottu ajankohta</option>
+        <option>1&ndash;2 viikon sis&auml;ll&auml;</option>
+        <option>2&ndash;4 viikon sis&auml;ll&auml;</option>
+        <option>1&ndash;2 kuukauden sis&auml;ll&auml;</option>
+        <option>Yli 2 kuukauden p&auml;&auml;st&auml;</option>
+      </select>
+      <textarea class="cf" style="height:80px;resize:vertical" placeholder="Lis&auml;tietoja (piano, iso kirjahylly, kellari...)"></textarea>
+      <button class="submit">L&auml;het&auml; tarjouspyynt&ouml;</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="fl">Kanto</div>
+  <div class="fs">Uusi paikka. Helposti. &mdash; 040 123 4568 &mdash; info@kanto.fi &mdash; Jyv&auml;skyl&auml;</div>
+</footer>
+</body>
+</html>

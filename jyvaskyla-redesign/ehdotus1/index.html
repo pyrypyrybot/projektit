@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoria Jyväskylä – Hautaustoimisto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#004a59;--teal-m:#00687d;--teal-l:#008fa8;
+  --forest:#395752;--sage:#d0ddd9;--sage-d:#a8bfb8;
+  --cream:#f3f1ee;--beige:#e8e4de;--warm:#c5bbaa;
+  --text:#1a1a1a;--text-m:#4a4a4a;--text-l:#888;
+  --gold:#b8955a;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:200;background:var(--white);border-bottom:1px solid var(--beige);box-shadow:0 1px 12px rgba(0,0,0,.05)}
+.hdr-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-logo img{height:36px;display:block}
+.hdr-nav{display:flex;align-items:center;gap:2px}
+.hdr-nav a{font-size:13.5px;font-weight:500;color:var(--text-m);text-decoration:none;padding:8px 13px;border-radius:4px;transition:background .15s,color .15s;white-space:nowrap}
+.hdr-nav a:hover{background:var(--cream);color:var(--teal)}
+.hdr-phone{background:var(--teal);color:#fff;text-decoration:none;padding:9px 18px;border-radius:4px;font-size:13.5px;font-weight:700;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.hdr-phone:hover{background:var(--teal-m)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.ham span{display:block;width:24px;height:2px;background:var(--teal);border-radius:2px;transition:all .25s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:var(--white);border-top:1px solid var(--beige);padding:12px 20px 20px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--text);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--beige);font-weight:500}
+.mob-nav a:last-of-type{border-bottom:none}
+.mob-nav .mc{margin-top:14px;display:block;background:var(--teal);color:#fff;text-align:center;padding:15px;border-radius:4px;font-weight:700;font-size:16px;text-decoration:none}
+
+/* HERO */
+.hero{position:relative;height:clamp(360px,62vh,600px);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('../assets/hero1.jpg') center 40%/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out}
+.hero-bg.loaded{transform:scale(1)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,40,50,.15) 0%,rgba(0,40,50,.42) 45%,rgba(0,40,50,.88) 100%)}
+.hero-txt{position:absolute;bottom:0;left:0;right:0;padding:0 28px 36px;max-width:1100px;margin:0 auto}
+.hero-eye{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;opacity:0;transform:translateY(8px);transition:opacity .6s .1s,transform .6s .1s}
+.hero-eye.v{opacity:1;transform:none}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5.5vw,68px);font-weight:300;color:#fff;line-height:1.1;opacity:0;transform:translateY(12px);transition:opacity .8s .25s,transform .8s .25s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,40px);font-weight:300;font-style:italic;color:var(--sage);display:block;line-height:1.25;opacity:0;transform:translateY(10px);transition:opacity .8s .4s,transform .8s .4s}
+.hero-sub.v{opacity:1;transform:none}
+
+/* CTA BLOCK */
+.cta-blk{background:var(--teal)}
+.cta-blk-in{max-width:1100px;margin:0 auto;padding:28px 28px 0}
+.cta-lead{font-size:16px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:22px;max-width:540px}
+.cta-rows{border-top:1px solid rgba(255,255,255,.12)}
+.cta-row{display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:#fff;transition:background .15s;margin:0 -28px;padding:17px 28px;border-bottom:1px solid rgba(255,255,255,.12)}
+.cta-row:hover{background:rgba(255,255,255,.06)}
+.cta-rl{font-size:15px;font-weight:600;letter-spacing:.01em}
+.cta-rs{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
+.cta-arr{width:30px;height:30px;border:1.5px solid rgba(255,255,255,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:border-color .15s,background .15s}
+.cta-row:hover .cta-arr{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.08)}
+
+/* INTRO */
+.intro{background:var(--cream);padding:72px 28px}
+.intro-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+.intro-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.2vw,46px);font-weight:400;color:var(--teal);line-height:1.15;margin-bottom:16px}
+.intro-text p{font-size:16px;color:var(--text-m);line-height:1.85;margin-bottom:14px}
+.intro-steps{margin-top:28px;padding-top:24px;border-top:1px solid var(--beige)}
+.istep{display:flex;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--beige)}
+.istep:last-child{border-bottom:none}
+.istep-n{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--teal);opacity:.2;line-height:1;flex-shrink:0;width:24px;text-align:right;counter-increment:istep}
+.istep-n::before{content:counter(istep)}
+.intro-steps{counter-reset:istep}
+.istep-b h4{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--teal);margin-bottom:3px}
+.istep-b p{font-size:14px;color:var(--text-m);line-height:1.7}
+.intro-img img{width:100%;height:420px;object-fit:cover;border-radius:6px;display:block}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-l);margin-bottom:12px}
+.eyebrow-sage{color:var(--sage-d)}
+
+/* SERVICES */
+.svc{background:var(--beige);padding:72px 28px}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-head{margin-bottom:48px}
+.sec-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.2vw,46px);font-weight:400;color:var(--teal);line-height:1.15}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--warm);border-radius:8px;overflow:hidden}
+.sv{background:var(--cream);padding:40px 32px;transition:background .2s;position:relative}
+.sv:hover{background:var(--white)}
+.sv::after{content:'';position:absolute;bottom:0;left:32px;right:32px;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .24s}
+.sv:hover::after{transform:scaleX(1)}
+.sv-n{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--teal);opacity:.1;line-height:1;margin-bottom:-6px}
+.sv h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:var(--teal);margin-bottom:10px}
+.sv p{font-size:14px;color:var(--text-m);line-height:1.75;margin-bottom:20px}
+.sv-links{list-style:none}
+.sv-links li{font-size:13.5px;color:var(--text-m);padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:center;gap:8px}
+.sv-links li:last-child{border-bottom:none}
+.sv-links li::before{content:'—';color:var(--gold);font-size:10px}
+
+/* STEPS */
+.steps{background:var(--teal);padding:72px 28px}
+.steps-head{text-align:center;margin-bottom:56px}
+.steps-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.2vw,46px);font-weight:400;color:#fff;line-height:1.15}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1100px;margin:0 auto;position:relative}
+.steps-grid::before{content:'';position:absolute;top:37px;left:17%;right:17%;height:1px;background:rgba(255,255,255,.12)}
+.step{text-align:center;position:relative;z-index:1}
+.step-c{width:74px;height:74px;border:1.5px solid rgba(255,255,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;background:rgba(255,255,255,.05)}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--sage)}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:10px}
+.step p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.75}
+.steps-cta{text-align:center;margin-top:48px}
+.btn-inv{display:inline-block;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;font-size:14.5px;font-weight:700;transition:all .2s}
+.btn-inv:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.7)}
+
+/* TWO-COL EXTRAS */
+.extras{background:var(--cream);padding:72px 28px}
+.extras-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.extra-img img{width:100%;height:340px;object-fit:cover;border-radius:6px;display:block}
+.extra-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.8vw,40px);font-weight:400;color:var(--teal);line-height:1.18;margin-bottom:14px}
+.extra-text p{font-size:15.5px;color:var(--text-m);line-height:1.85;margin-bottom:20px}
+.btn-teal{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:4px;text-decoration:none;font-size:14.5px;font-weight:700;transition:background .18s}
+.btn-teal:hover{background:var(--teal-m)}
+
+/* NAHM section */
+.nahm{background:var(--beige);padding:72px 28px}
+.nahm-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.nahm-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.8vw,40px);font-weight:400;color:var(--teal);line-height:1.18;margin-bottom:14px}
+.nahm-text p{font-size:15.5px;color:var(--text-m);line-height:1.85;margin-bottom:20px}
+.nahm-img img{width:100%;height:340px;object-fit:cover;border-radius:6px;display:block}
+
+/* REVIEWS */
+.reviews{background:var(--sage);padding:72px 28px}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.rv{background:var(--white);border-radius:8px;padding:30px}
+.rv-q{font-family:'Cormorant Garamond',serif;font-size:60px;color:var(--sage-d);line-height:.5;margin-bottom:16px;display:block}
+.rv-txt{font-size:15px;color:var(--text-m);font-style:italic;line-height:1.8;margin-bottom:18px}
+.rv-meta{display:flex;align-items:center;gap:11px}
+.rv-av{width:36px;height:36px;background:var(--beige);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--teal);flex-shrink:0}
+.rv-name{font-weight:700;font-size:13.5px;color:var(--teal)}
+.rv-stars{font-size:11px;color:var(--gold);letter-spacing:2px}
+
+/* CONTACT */
+.contact{background:var(--cream);padding:72px 28px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;margin-top:44px;align-items:start}
+.contact-left h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--teal);margin-bottom:16px}
+.branch{padding:14px 0;border-bottom:1px solid var(--beige)}
+.branch:last-child{border-bottom:none}
+.bc{font-weight:700;font-size:13.5px;color:var(--teal);margin-bottom:3px}
+.bi{font-size:13.5px;color:var(--text-m);line-height:1.7}
+.bi a{color:var(--teal);font-weight:700;text-decoration:none}
+.cf{background:var(--white);border-radius:8px;padding:40px;box-shadow:0 2px 20px rgba(0,50,60,.07)}
+.cf h3{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--teal);margin-bottom:22px}
+.fld{margin-bottom:15px}
+.fld label{display:block;font-size:12px;font-weight:700;color:var(--text-l);letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.fld input,.fld textarea,.fld select{width:100%;padding:11px 13px;border:1.5px solid var(--beige);border-radius:4px;font-family:'Inter',sans-serif;font-size:14.5px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.fld input:focus,.fld textarea:focus{border-color:var(--teal);background:var(--white)}
+.fld textarea{resize:none;height:90px}
+.fld-2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.sub{width:100%;background:var(--teal);color:#fff;border:none;padding:14px;border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .18s;margin-top:4px}
+.sub:hover{background:var(--teal-m)}
+
+/* FOOTER */
+.ftr{background:#0d1e20;padding:56px 28px 28px}
+.ftr-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:44px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ftr-brand img{height:32px;filter:brightness(0) invert(1);opacity:.7;display:block;margin-bottom:14px}
+.ftr-brand p{font-size:13px;color:rgba(255,255,255,.42);line-height:1.85;max-width:260px}
+.ftr-col h4{color:rgba(255,255,255,.82);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.ftr-col a{display:block;color:rgba(255,255,255,.4);text-decoration:none;font-size:13.5px;padding:3px 0;transition:color .14s}
+.ftr-col a:hover{color:rgba(255,255,255,.85)}
+.ftr-bot{max-width:1100px;margin:20px auto 0;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.22);flex-wrap:wrap;gap:6px}
+
+/* STICKY */
+.sph{position:fixed;bottom:22px;right:22px;z-index:300;background:var(--teal);color:#fff;padding:12px 22px;border-radius:40px;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 4px 20px rgba(0,50,60,.45);transition:transform .2s,opacity .3s;opacity:0;pointer-events:none}
+.sph.show{opacity:1;pointer-events:auto}
+.sph:hover{transform:translateY(-2px)}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.fade.d1{transition-delay:.1s}.fade.d2{transition-delay:.2s}.fade.d3{transition-delay:.3s}
+.fade.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hdr-nav,.hdr-phone{display:none}
+  .ham{display:flex}
+  .hero-txt{padding:0 20px 28px}
+  .intro-in{grid-template-columns:1fr}
+  .intro-img{display:none}
+  .svc-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr;gap:28px}
+  .steps-grid::before{display:none}
+  .extras-grid,.nahm-in{grid-template-columns:1fr}
+  .rv-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cf{padding:24px 18px}
+  .fld-2{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .cta-blk-in{padding:22px 20px 0}
+  .cta-row{margin:0 -20px;padding:16px 20px}
+}
+@media(max-width:480px){
+  .ftr-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="hdr-inner">
+    <a href="#"><img src="../assets/logo.png" alt="Memoria Jyväskylä" style="height:36px;display:block"></a>
+    <nav class="hdr-nav">
+      <a href="#info">Info ja yhteys</a>
+      <a href="#palvelut">Palvelut</a>
+      <a href="https://www.memoria.fi/" target="_blank">Memoria.fi</a>
+    </nav>
+    <a href="tel:+358145471905" class="hdr-phone">014 547 1905</a>
+    <button class="ham" id="ham" aria-label="Valikko"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mob-nav" id="mNav">
+    <a href="#info" onclick="c()">Info ja yhteys</a>
+    <a href="#palvelut" onclick="c()">Palvelut</a>
+    <a href="https://www.memoria.fi/" target="_blank">Memoria.fi</a>
+    <a href="tel:+358145471905" class="mc">014 547 1905</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hbg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-txt">
+    <p class="hero-eye" id="he">Memoria Jyväskylä &nbsp;&middot;&nbsp; Puistokatu 5</p>
+    <h1 class="hero-h1" id="hh">Surun kohdatessa</h1>
+    <span class="hero-sub" id="hs">olemme tukenne</span>
+  </div>
+</section>
+
+<div class="cta-blk">
+  <div class="cta-blk-in">
+    <p class="cta-lead">Hautajaisten järjestely voidaan aloittaa heti &mdash; kuolintodistusta tai hautauslupaa ei tarvita vielä tässä vaiheessa.</p>
+    <div class="cta-rows">
+      <a href="tel:+358145471905" class="cta-row">
+        <div><div class="cta-rl">Soita 014 547 1905</div><div class="cta-rs">Päivystys ympäri vuorokauden</div></div>
+        <div class="cta-arr">&rarr;</div>
+      </a>
+      <a href="https://wa.me/358145471905" class="cta-row">
+        <div><div class="cta-rl">WhatsApp</div><div class="cta-rs">Lähetä viesti</div></div>
+        <div class="cta-arr">&rarr;</div>
+      </a>
+      <a href="#info" class="cta-row">
+        <div><div class="cta-rl">Ota yhteyttä</div><div class="cta-rs">Yhteydenottolomake</div></div>
+        <div class="cta-arr">&rarr;</div>
+      </a>
+      <a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" class="cta-row" target="_blank">
+        <div><div class="cta-rl">Aloita suunnittelu verkossa</div><div class="cta-rs">Memoria-palvelu</div></div>
+        <div class="cta-arr">&rarr;</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="intro-in">
+    <div class="fade">
+      <p class="eyebrow">Hautaustoimisto Jyväskylässä</p>
+      <h2>Mitä tehdä läheisen kuollessa</h2>
+      <p>Läheisen menehdyttyä on hoidettava monia käytännön asioita. Memoria Jyväskylän hautaustoimistossa autamme sinua kaikkien hautajaisten järjestelyissä alusta loppuun asti.</p>
+      <p>Täyden palvelun hautaustoimisto ja hautakiviliike &mdash; kaikki tarvitsemasi löydät meiltä.</p>
+      <div class="intro-steps">
+        <div class="istep"><div class="istep-n"></div><div class="istep-b"><h4>Aloita suunnittelu</h4><p>Soita meille tai aloita Memoria-palvelussa. Saat heti alustavan hinta-arvion.</p></div></div>
+        <div class="istep"><div class="istep-n"></div><div class="istep-b"><h4>Käymme läpi yhdessä</h4><p>Otamme yhteyttä ja käymme suunnitelman läpi kanssasi henkilökohtaisesti.</p></div></div>
+        <div class="istep"><div class="istep-n"></div><div class="istep-b"><h4>Me hoidamme loput</h4><p>Huolehdimme kaikista järjestelyistä kuten sinä haluat. Voitte levätä rauhassa.</p></div></div>
+      </div>
+    </div>
+    <div class="intro-img fade d2">
+      <img src="../assets/p1.jpg" alt="Memoria Jyväskylä">
+    </div>
+  </div>
+</section>
+
+<section class="svc" id="palvelut">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <p class="eyebrow">Palvelumme</p>
+      <h2>Olemme tukenanne koko matkan ajan</h2>
+    </div>
+    <div class="svc-grid">
+      <div class="sv fade d1">
+        <div class="sv-n">01</div>
+        <h3>Läheisen kuoltua</h3>
+        <p>Voit aloittaa hautausjärjestelyt heti. Soita järjestelyistä tai tule keskustelemaan toimistollemme Puistokatu 5.</p>
+        <ul class="sv-links">
+          <li>Arkut ja uurnat</li><li>Kuljetukset</li><li>Kukat</li><li>Siunaus- ja muistotilaisuudet</li>
+        </ul>
+      </div>
+      <div class="sv fade d2">
+        <div class="sv-n">02</div>
+        <h3>Hautajaisten jälkeen</h3>
+        <p>Hautakivimyymälämme on avoinna ma&ndash;pe 9&ndash;16. Tervetuloa tutustumaan hautakiviin Jyväskylän keskustassa.</p>
+        <ul class="sv-links">
+          <li>Hautakivet</li><li>Perunkirjoitus</li><li>Kuolinpesän hoito</li>
+        </ul>
+      </div>
+      <div class="sv fade d3">
+        <div class="sv-n">03</div>
+        <h3>Elämäsi asiakirjat</h3>
+        <p>Asioiden järjestäminen etukäteen antaa mielenrauhan itsellesi ja turvaa läheistesi elämää.</p>
+        <ul class="sv-links">
+          <li>Testamentti</li><li>Edunvalvontavaltuutus</li><li>Hautajaisten ennakkosuunnittelu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <div class="steps-head">
+      <p class="eyebrow eyebrow-sage">Memoria-palvelu</p>
+      <h2>Suunnittele hautajaiset vaihe vaiheelta</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step fade d1"><div class="step-c"><span class="step-n">1</span></div><h3>Aloita suunnittelu</h3><p>Aloita Memoria-palvelussa. Saat heti alustavan hinta-arvion ja suunnitelman järjestelyistä.</p></div>
+      <div class="step fade d2"><div class="step-c"><span class="step-n">2</span></div><h3>Käymme läpi yhdessä</h3><p>Otamme sinuun yhteyttä ja käymme suunnitelman läpi. Saat täsmennetyn tarjouksen.</p></div>
+      <div class="step fade d3"><div class="step-c"><span class="step-n">3</span></div><h3>Me hoidamme loput</h3><p>Hyväksyttyäsi tarjouksen huolehdimme hautajaisjärjestelyistä kuten sinä haluat.</p></div>
+    </div>
+    <div class="steps-cta"><a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" target="_blank" class="btn-inv">Aloita suunnittelu Memoria-palvelussa &rarr;</a></div>
+  </div>
+</section>
+
+<section class="extras">
+  <div class="extras-grid">
+    <div class="extra-img fade"><img src="../assets/p2.jpg" alt="Hautakivi"></div>
+    <div class="extra-text fade d2">
+      <p class="eyebrow">Hautakivet</p>
+      <h2>Hautakivi, joka kuvaa elämää</h2>
+      <p>Ainutkertainen elämä ansaitsee arvoisensa hautakiven. Pääset meillä suunnittelemaan juuri tarpeisiisi sopivan, persoonallisen hautakiven Jyväskylän keskustassa sijaitsevassa hautakivimyymälässämme.</p>
+      <a href="#info" class="btn-teal">Ota yhteyttä &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="nahm">
+  <div class="nahm-in">
+    <div class="nahm-text fade">
+      <p class="eyebrow">Ennakkosuunnittelu</p>
+      <h2>Näin minä haluan &ndash;vihko</h2>
+      <p>Monilla on toiveita siitä, miten haluaisi omat hautajaisensa järjestettävän. Kuolemaan liittyvistä asioista on kuitenkin vaikea puhua ennakkoon läheisten kanssa. Kirjaa toiveesi Näin minä haluan -vihkoon.</p>
+      <a href="https://app.memoria.fi/toimisto/memoria-jyvaskyla" target="_blank" class="btn-teal">Aloita suunnittelu &rarr;</a>
+    </div>
+    <div class="fade d2"><img src="../assets/p3.jpg" alt="Näin minä haluan" style="width:100%;height:340px;object-fit:cover;border-radius:6px;display:block"></div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <p class="eyebrow">Asiakkaidemme kokemuksia</p>
+      <h2>Palvelua sydämellä</h2>
+    </div>
+    <div class="rv-grid">
+      <div class="rv fade d1"><span class="rv-q">&ldquo;</span><p class="rv-txt">Lämmin kiitos hyvästä ja hienotunteisesta palvelusta. Kaikki järjestelyt toteutettiin suurella sydämellä, omaisten pienimmätkin toiveet huomioon ottaen.</p><div class="rv-meta"><div class="rv-av">RK</div><div><div class="rv-name">Riitta K.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+      <div class="rv fade d2"><span class="rv-q">&ldquo;</span><p class="rv-txt">Erittäin sydämellinen ja ammattitaitoinen palvelu. Rauhallinen ja kiiretön kohtaaminen omaisten kanssa. Kaikki sujui kuten sovittiin.</p><div class="rv-meta"><div class="rv-av">ML</div><div><div class="rv-name">Matti L.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+      <div class="rv fade d3"><span class="rv-q">&ldquo;</span><p class="rv-txt">Aivan loistavaa asiakaspalvelua. Niin ymmärtäväisesti ja rauhallisesti kerrottiin kaikki oleellinen. Ei voi muuta kuin suositella.</p><div class="rv-meta"><div class="rv-av">SS</div><div><div class="rv-name">Saara S.</div><div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="info">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <p class="eyebrow">Yhteystiedot</p>
+      <h2>Ota meihin yhteyttä</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade d1">
+        <h3>Memoria Jyväskylä</h3>
+        <div class="branch"><div class="bc">Toimisto ja hautakivimyymälä</div><div class="bi">Puistokatu 5, 40100 Jyväskylä<br>Ma&ndash;Pe 9:00&ndash;16:00<br>Päivystys ympäri vuorokauden<br><a href="tel:+358145471905">014 547 1905</a></div></div>
+        <div class="branch"><div class="bc">Sähköposti</div><div class="bi"><a href="mailto:info@jyvaskylanhautaustoimisto.fi">info@jyvaskylanhautaustoimisto.fi</a></div></div>
+        <div class="branch"><div class="bc">Memoria-verkosto</div><div class="bi"><a href="https://www.memoria.fi/" target="_blank">memoria.fi</a></div></div>
+      </div>
+      <div class="cf fade d2">
+        <h3>Jätä yhteydenottopyyntö</h3>
+        <div class="fld-2">
+          <div class="fld"><label>Nimi</label><input type="text" placeholder="Etunimi Sukunimi"></div>
+          <div class="fld"><label>Puhelin</label><input type="tel" placeholder="+358 xx xxxxxxx"></div>
+        </div>
+        <div class="fld"><label>Sähköposti</label><input type="email" placeholder="nimi@email.fi"></div>
+        <div class="fld"><label>Asia</label><select><option>Hautajaispalvelut</option><option>Hautakivet</option><option>Asiakirjapalvelut</option><option>Ennakkosuunnittelu</option><option>Muu asia</option></select></div>
+        <div class="fld"><label>Viesti</label><textarea placeholder="Kerro lyhyesti, miten voimme auttaa..."></textarea></div>
+        <button class="sub">Lähetä yhteydenottopyyntö</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr-grid">
+    <div class="ftr-brand"><img src="../assets/logo-white.png" alt="Memoria Jyväskylä"><p>Täyden palvelun hautaustoimisto ja hautakiviliike Jyväskylässä. Jäsen Memoria-hautaustoimistoverkostossa.</p></div>
+    <div class="ftr-col"><h4>Palvelut</h4><a href="#">Läheisen kuoltua</a><a href="#">Hautajaisten jälkeen</a><a href="#">Elämäsi asiakirjat</a><a href="#">Hautakivet</a></div>
+    <div class="ftr-col"><h4>Yritys</h4><a href="#">Info ja yhteys</a><a href="https://www.memoria.fi/" target="_blank">Memoria.fi</a><a href="#">Tietosuojaseloste</a></div>
+    <div class="ftr-col"><h4>Yhteystiedot</h4><a href="tel:+358145471905">014 547 1905</a><a href="mailto:info@jyvaskylanhautaustoimisto.fi">info@jyvaskylanhautaustoimisto.fi</a><a href="#">Puistokatu 5, Jyväskylä</a></div>
+  </div>
+  <div class="ftr-bot"><span>&copy; 2025 Memoria Jyväskylä</span><span>Tietosuojaseloste</span></div>
+</footer>
+
+<a href="tel:+358145471905" class="sph" id="sph">014 547 1905</a>
+
+<script>
+window.addEventListener('load',()=>{document.getElementById('hbg').classList.add('loaded');['he','hh','hs'].forEach(id=>document.getElementById(id).classList.add('v'))});
+const ham=document.getElementById('ham'),mNav=document.getElementById('mNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mNav.classList.toggle('open')});
+function c(){ham.classList.remove('open');mNav.classList.remove('open')}
+const sph=document.getElementById('sph'),hero=document.getElementById('hero');
+new IntersectionObserver(e=>{sph.classList.toggle('show',!e[0].isIntersecting)},{threshold:.1}).observe(hero);
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

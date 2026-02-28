@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projektit — Sivustojen hallintapaneeli</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--surface:#181c24;--surface2:#1e232e;--border:#2a2f3d;
+  --text:#e8eaf0;--text-m:#8b92a8;--text-l:#555e78;
+  --green:#22c55e;--green-d:#16a34a;--yellow:#eab308;--red:#ef4444;--blue:#3b82f6;
+  --accent:#6366f1;--accent-l:#818cf8;
+}
+html{background:var(--bg)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);min-height:100vh;line-height:1.5}
+
+header{border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10;backdrop-filter:blur(8px)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:16px;height:16px}
+.logo-text{font-size:15px;font-weight:700;color:var(--text)}
+.logo-sub{font-size:11px;color:var(--text-l);margin-left:2px}
+.header-right{display:flex;align-items:center;gap:12px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.status-text{font-size:12px;color:var(--text-m);font-weight:500}
+.tunnel-url{font-size:12px;color:var(--accent-l);background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);padding:5px 12px;border-radius:4px;font-family:monospace;cursor:pointer;transition:background .15s}
+.tunnel-url:hover{background:rgba(99,102,241,.18)}
+
+main{max-width:1200px;margin:0 auto;padding:32px}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.section-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l)}
+.section-count{font-size:12px;color:var(--text-l);background:var(--surface2);border:1px solid var(--border);padding:2px 8px;border-radius:10px}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:40px}
+
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .15s,transform .15s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.pc-header{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.pc-brand{display:flex;align-items:center;gap:10px}
+.pc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pc-dot.live{background:var(--green)}
+.pc-dot.wip{background:var(--yellow)}
+.pc-name{font-size:16px;font-weight:700;color:var(--text)}
+.pc-domain{font-size:12px;color:var(--text-l);margin-top:1px}
+.pc-badge{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex-shrink:0}
+.pc-badge.preview{background:rgba(99,102,241,.15);color:var(--accent-l)}
+.pc-badge.wip{background:rgba(234,179,8,.12);color:var(--yellow)}
+.pc-body{padding:16px 20px}
+.pc-desc{font-size:13px;color:var(--text-m);line-height:1.65;margin-bottom:14px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;background:var(--surface2);color:var(--text-m);border:1px solid var(--border)}
+.pc-links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pc-link{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:8px 12px;text-decoration:none;font-size:12.5px;font-weight:600;color:var(--text-m);transition:all .15s}
+.pc-link:hover{background:rgba(99,102,241,.12);border-color:var(--accent);color:var(--accent-l)}
+.pc-link.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.pc-link.primary:hover{background:var(--accent-l)}
+.pc-link svg{width:13px;height:13px;flex-shrink:0}
+.pc-link.full{grid-column:1/-1}
+
+.pc-meta{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:16px;background:var(--bg)}
+.pc-meta-item{display:flex;flex-direction:column;gap:2px}
+.pc-meta-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-l)}
+.pc-meta-val{font-size:12px;color:var(--text-m);font-weight:500}
+
+.info-bar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;display:flex;align-items:center;gap:14px;margin-bottom:32px;font-size:13px;color:var(--text-m)}
+.info-bar-icon{color:var(--accent-l);flex-shrink:0}
+
+footer{border-top:1px solid var(--border);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-l)}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 18px;font-size:13px;color:var(--text);display:none;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:100}
+.toast.show{display:block;animation:slideIn .2s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media(max-width:700px){main{padding:20px}.projects{grid-template-columns:1fr}header{padding:14px 20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="white" opacity=".9"/><rect x="9" y="1" width="6" height="6" rx="1" fill="white" opacity=".6"/><rect x="1" y="9" width="6" height="6" rx="1" fill="white" opacity=".6"/><rect x="9" y="9" width="6" height="6" rx="1" fill="white" opacity=".3"/></svg></div>
+    <div><div class="logo-text">Projektit</div><div class="logo-sub">Sivustojen hallintapaneeli</div></div>
+  </div>
+  <div class="header-right">
+    <div class="status-dot"></div>
+    <span class="status-text">GitHub Pages</span>
+    <span class="tunnel-url" onclick="copyUrl(this)" id="tunnelUrl" title="Kopioi URL">Ladataan...</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-head">
+    <span class="section-title">Aktiiviset projektit</span>
+    <span class="section-count">10 projektia</span>
+  </div>
+
+  <div class="projects">
+
+    <!-- KUURA -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Kuura</div><div class="pc-domain">kuura.fi</div></div></div>
+        <span class="pc-badge wip">Kehitysvaihe</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Siivouspalvelu Jyväskylä. Kotisiivous, toimistosiivous, loppusiivous. Kotitalousvähennys-painotteinen. 22 kaupunginosasivua (tulossa).</p>
+        <div class="pc-tags"><span class="tag">Siivousala</span><span class="tag">Jyväskylä</span><span class="tag">Asiakaspalvelu</span><span class="tag">Kotitalousvähennys</span></div>
+        <div class="pc-links">
+          <a href="kuura/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="kuura/kaupunginosat/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>Kaupunginosat
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kaupunginosat</div><div class="pc-meta-val" style="color:#22c55e">22 sivua</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Toimintaohje</div><div class="pc-meta-val" style="color:#22c55e">Drive</div></div>
+      </div>
+    </div>
+
+    <!-- KANTO -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Kanto</div><div class="pc-domain">kanto.fi</div></div></div>
+        <span class="pc-badge wip">Kehitysvaihe</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Muuttopalvelu Jyväskylä. Kiinteä hinta, tavaravakuutus, hintaestimaattori. Monikielinen tiimi, kiinteä hinta.</p>
+        <div class="pc-tags"><span class="tag">Muuttopalvelu</span><span class="tag">Jyväskylä</span><span class="tag">Kiinteä hinta</span></div>
+        <div class="pc-links">
+          <a href="kanto/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="kanto/alueet/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>Alueet
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Alueet</div><div class="pc-meta-val" style="color:#22c55e">13 sivua</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Google Docs</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+      </div>
+    </div>
+
+    <!-- VILSKE -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Vilske</div><div class="pc-domain">vilske.fi</div></div></div>
+        <span class="pc-badge wip">Kehitysvaihe</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Jyväskylän paikallinen ruokalähetti. 15% provisio vs. Woltin 28-30%. Flutter-appi tulossa. Foodoran jälkeinen markkina.</p>
+        <div class="pc-tags"><span class="tag">Ruokalähetti</span><span class="tag">Jyväskylä</span><span class="tag">Flutter</span><span class="tag">Ravintolat</span></div>
+        <div class="pc-links">
+          <a href="vilske/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="vilske/index.html#ravintolat" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1v11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Ravintoloille
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Flutter-plan</div><div class="pc-meta-val" style="color:#22c55e">Sivulla</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Google Docs</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+      </div>
+    </div>
+
+    <!-- SUORATUHKAUS -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot live"></div><div><div class="pc-name">Suoratuhkaus.fi</div><div class="pc-domain">suoratuhkaus.fi</div></div></div>
+        <span class="pc-badge preview">Preview</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Valtakunnallinen suoratuhkauspalvelu. Hintalaskuri 264 kunnalle, etä perunkirjoitus 595 €, läpinäkyvä hinnoittelu.</p>
+        <div class="pc-tags"><span class="tag">Hautausala</span><span class="tag">Koko Suomi</span><span class="tag">264 kaupunkisivua</span></div>
+        <div class="pc-links">
+          <a href="suoratuhkaus/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="suoratuhkaus/kaupungit/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>264 kaupunkisivua
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kaupunkisivut</div><div class="pc-meta-val" style="color:#22c55e">264 kpl</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Toimintaohje</div><div class="pc-meta-val" style="color:#22c55e">Drive</div></div>
+      </div>
+    </div>
+
+    <!-- MIELONEN -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot live"></div><div><div class="pc-name">Hautaustoimisto Mielonen</div><div class="pc-domain">hautaustoimistomielonen.fi</div></div></div>
+        <span class="pc-badge preview">2 versiota</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Kaksi redesign-ehdotusta Mikkelin hautaustoimistolle. Versio 1: lämmin/moderni, Versio 2: klassinen/arvokas. Graafinen ohjeisto 2023 mukaisesti.</p>
+        <div class="pc-tags"><span class="tag">Hautausala</span><span class="tag">Mikkeli</span><span class="tag">Redesign</span><span class="tag">Memoria</span></div>
+        <div class="pc-links">
+          <a href="mielonen-redesign/versio1/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Versio 1
+          </a>
+          <a href="mielonen-redesign/versio2/index.html" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Versio 2
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Versio 1</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Versio 2</div><div class="pc-meta-val" style="color:#eab308">Osittain</div></div>
+      </div>
+    </div>
+
+    <!-- JYVÄSKYLÄ HAUTAUS -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot live"></div><div><div class="pc-name">Jyväskylän Hautaustoimisto</div><div class="pc-domain">jyvaskylanhautaustoimisto.fi</div></div></div>
+        <span class="pc-badge preview">2 ehdotusta</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Kaksi redesign-ehdotusta Jyväskylän hautaustoimistolle. Memoria-brändi-identiteetti säilytetty molemmissa versioissa.</p>
+        <div class="pc-tags"><span class="tag">Hautausala</span><span class="tag">Jyväskylä</span><span class="tag">Redesign</span><span class="tag">Memoria</span></div>
+        <div class="pc-links">
+          <a href="jyvaskyla-redesign/ehdotus1/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ehdotus 1
+          </a>
+          <a href="jyvaskyla-redesign/ehdotus2/index.html" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ehdotus 2
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Ehdotus 1</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Ehdotus 2</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+      </div>
+    </div>
+
+    <!-- ETELÄ-SAVON HAUTAUSPALVELU -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Etelä-Savon Hautauspalvelu</div><div class="pc-domain">etelasvonhautauspalvelu.fi</div></div></div>
+        <span class="pc-badge preview">Preview</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Maakunnallinen hautauspalvelu kaikissa Etelä-Savon kunnissa. Palvelun tuottaa Hautaustoimisto Mielonen (80 v). Kivijalka Mikkelissä, verkossa kaikkialle. Memoria-design.</p>
+        <div class="pc-tags"><span class="tag">Hautausala</span><span class="tag">Etelä-Savo</span><span class="tag">Mielonen</span><span class="tag">14 kuntaa</span></div>
+        <div class="pc-links">
+          <a href="etelasvonhautauspalvelu/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="etelasvonhautauspalvelu/kaupungit/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>Kuntasivut
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kuntasivut</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Drive-kansio</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+      </div>
+    </div>
+
+    <!-- KESKI-SUOMEN HAUTAUSPALVELU -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Keski-Suomen Hautauspalvelu</div><div class="pc-domain">keskisuomenhautauspalvelu.fi</div></div></div>
+        <span class="pc-badge preview">Preview</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Maakunnallinen hautauspalvelu kaikissa Keski-Suomen kunnissa. Palvelun tuottaa Jyväskylän Hautaustoimisto. Kivijalka Jyväskylässä, verkossa kaikkialle. FI/EN/RU. Memoria-design.</p>
+        <div class="pc-tags"><span class="tag">Hautausala</span><span class="tag">Keski-Suomi</span><span class="tag">JKL Hautaustoimisto</span><span class="tag">22 kuntaa</span></div>
+        <div class="pc-links">
+          <a href="keskisuomenhautauspalvelu/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="keskisuomenhautauspalvelu/kaupungit/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>Kuntasivut
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kuntasivut</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Drive-kansio</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+      </div>
+    </div>
+
+    <!-- JYVÄSKYLÄN HAUTAKIVI -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Jyväskylän Hautakivi</div><div class="pc-domain">jyvaskylanhautakivi.fi</div></div></div>
+        <span class="pc-badge preview">Preview</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Hautakivimyynti Jyväskylässä. Palvelun tuottaa Memoriakivi yhteistyössä Loimaan Kiven kanssa. Uudet kivet, kunnostus, 3D-suunnittelu. Myymälä Puistokatu 5.</p>
+        <div class="pc-tags"><span class="tag">Hautakivi</span><span class="tag">Jyväskylä</span><span class="tag">Memoriakivi</span><span class="tag">Loimaan Kivi</span></div>
+        <div class="pc-links">
+          <a href="jyvaskylanhautakivi/index.html" target="_blank" class="pc-link primary full">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Tuottajat</div><div class="pc-meta-val" style="color:#22c55e">Memoriakivi + LK</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kuntasivut</div><div class="pc-meta-val" style="color:#eab308">Tulossa</div></div>
+      </div>
+    </div>
+
+    <!-- KESKI-SUOMEN HAUTAKIVI -->
+    <div class="project-card">
+      <div class="pc-header">
+        <div class="pc-brand"><div class="pc-dot wip"></div><div><div class="pc-name">Keski-Suomen Hautakivi</div><div class="pc-domain">keskisuomenhautakivi.fi</div></div></div>
+        <span class="pc-badge preview">Preview</span>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Hautakivimyynti koko Keski-Suomeen. Palvelun tuottaa Memoriakivi yhteistyössä Loimaan Kiven kanssa. 22 kuntaa, uudet kivet, kunnostus, 3D-suunnittelu, etäpalvelu.</p>
+        <div class="pc-tags"><span class="tag">Hautakivi</span><span class="tag">Keski-Suomi</span><span class="tag">Memoriakivi</span><span class="tag">22 kuntaa</span></div>
+        <div class="pc-links">
+          <a href="keskisuomenhautakivi/index.html" target="_blank" class="pc-link primary">
+            <svg viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H5M11 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Avaa sivusto
+          </a>
+          <a href="keskisuomenhautakivi/kunnat/" target="_blank" class="pc-link">
+            <svg viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11M5 5v7" stroke="currentColor" stroke-width="1.3"/></svg>22 kuntasivua
+          </a>
+        </div>
+      </div>
+      <div class="pc-meta">
+        <div class="pc-meta-item"><div class="pc-meta-label">Pääsivu</div><div class="pc-meta-val" style="color:#22c55e">Valmis</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Kuntasivut</div><div class="pc-meta-val" style="color:#22c55e">22 kpl</div></div>
+        <div class="pc-meta-item"><div class="pc-meta-label">Myymälät</div><div class="pc-meta-val" style="color:#22c55e">JKL + Korpilahti</div></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span>Sisäinen hallintapaneeli &mdash; ei julkinen</span>
+  <span id="footerTime"></span>
+</footer>
+
+<div class="toast" id="toast">URL kopioitu leikepöydälle</div>
+
+<script>
+// Näytä tunnelin URL osoiterivillä
+const url = window.location.origin;
+document.getElementById('tunnelUrl').textContent = url;
+
+function copyUrl(el) {
+  navigator.clipboard.writeText(window.location.origin).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  });
+}
+
+// Aika footerissa
+function updateTime() {
+  document.getElementById('footerTime').textContent =
+    new Date().toLocaleString('fi-FI', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+</script>
+</body>
+</html>
