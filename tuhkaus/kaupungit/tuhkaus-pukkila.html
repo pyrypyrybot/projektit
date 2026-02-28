@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuhkaus Pukkila | Läpinäkyvä hinnoittelu – Tuhkaus.fi</title>
+<meta name="description" content="Tuhkaus Pukkilassa. Kiinteä palvelumaksu 690 €, krematorion maksu erikseen. Lähin krematorio: Lahti (49 km). Arviohinta yhteensä 990–1 290 €. Pyydä tarjous.">
+<link rel="canonical" href="https://tuhkaus.fi/tuhkaus-pukkila/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#1c1a17;--dark-m:#2e2b26;
+  --forest:#2a3d2e;--forest-m:#364f3a;--forest-l:#4a7858;
+  --sage:#6b9478;--sage-l:#9dbfa9;--sage-x:#cddfd5;
+  --stone:#f0ebe3;--sand:#e2dbd0;--warm:#faf9f6;
+  --terra:#b87355;--terra-l:#d4a080;--terra-x:#f0ddd0;
+  --text:#1c1a17;--text-m:#4a4640;--text-l:#8a847a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--warm);line-height:1.7;overflow-x:hidden}
+a{text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--forest)}
+.nav-in{max-width:1100px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;color:#fff}
+.logo-main{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.logo-sub{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-l);margin-top:2px;display:block}
+.nav-back{font-size:13px;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.2);padding:7px 14px;border-radius:3px;transition:all .15s}
+.nav-back:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-cta{background:var(--terra);color:#fff;padding:8px 18px;border-radius:4px;font-size:13px;font-weight:700;transition:background .15s}
+.nav-cta:hover{background:var(--terra-l)}
+
+.hero{padding:110px 24px 72px;background:var(--forest);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:0;right:0;bottom:0;width:45%;opacity:.04;background-image:radial-gradient(var(--sage-l) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center}
+.hero-ey{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:14px}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,72px);font-weight:300;color:#fff;line-height:1.08;margin-bottom:18px}
+.hero-h1 em{font-style:italic;color:var(--sage-l);display:block}
+.hero-p{font-size:16px;color:rgba(255,255,255,.65);line-height:1.82;margin-bottom:32px;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-t{display:inline-flex;align-items:center;gap:8px;background:var(--terra);color:#fff;padding:13px 24px;border-radius:4px;font-size:14px;font-weight:700;transition:background .15s}
+.btn-t:hover{background:var(--terra-l)}
+.btn-w{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.85);padding:12px 22px;border-radius:4px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.22);transition:all .15s}
+.btn-w:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.5);color:#fff}
+.hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:28px;backdrop-filter:blur(6px)}
+.hc-head{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-l);margin-bottom:16px}
+.hc-row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.05);border-radius:6px;border:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.hc-row:last-of-type{margin-bottom:0}
+.hc-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:500}
+.hc-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:#fff}
+.hc-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px;text-align:right}
+.hc-note{font-size:12px;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.7}
+.hc-note strong{color:rgba(255,255,255,.55)}
+
+.trust{background:var(--dark);padding:14px 24px}
+.trust-in{max-width:1100px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 32px}
+.ti{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.ti-dot{width:4px;height:4px;border-radius:50%;background:var(--sage-l);flex-shrink:0}
+
+section{padding:72px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-bottom:10px}
+.eyebrow-t{color:var(--terra)}
+.eyebrow-s{color:var(--sage)}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,48px);font-weight:400;color:var(--forest);line-height:1.12;margin-bottom:14px}
+.sec-p{font-size:15.5px;color:var(--text-m);line-height:1.85}
+
+.info-sect{background:var(--warm)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.info-text p{font-size:15.5px;color:var(--text-m);line-height:1.85;margin-bottom:14px}
+.info-box{background:var(--stone);border-radius:10px;padding:32px}
+.ib-row{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--sand)}
+.ib-row:last-child{border-bottom:none}
+.ib-label{font-size:13px;color:var(--text-l);font-weight:500}
+.ib-val{font-size:15px;font-weight:700;color:var(--forest);text-align:right}
+.ib-val small{display:block;font-size:12px;font-weight:400;color:var(--text-l)}
+
+.how-sect{background:var(--stone)}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--sand);border-radius:8px;overflow:hidden;margin-top:40px}
+.how-step{background:var(--warm);padding:32px 24px;position:relative}
+.how-n{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;color:var(--forest);opacity:.08;line-height:1;position:absolute;top:14px;right:14px}
+.how-icon{width:42px;height:42px;background:var(--sage-x);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.how-step h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--forest);margin-bottom:8px}
+.how-step p{font-size:13.5px;color:var(--text-m);line-height:1.72}
+
+.price-sect{background:var(--warm)}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px;margin:40px auto 0}
+.pkg{background:var(--stone);border-radius:10px;padding:34px;border:2px solid transparent;transition:border-color .2s}
+.pkg.pop{border-color:var(--forest);position:relative}
+.pkg-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--forest);color:#fff;font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--forest);margin-bottom:6px}
+.pkg-price{display:flex;align-items:baseline;gap:2px;margin:12px 0 4px}
+.pkg-eur{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;color:var(--dark);line-height:1}
+.pkg-cur{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--text-m)}
+.pkg-note{font-size:12.5px;color:var(--text-l);margin-bottom:18px}
+.pkg-rule{height:1px;background:var(--sand);margin-bottom:16px}
+.pkg-list{list-style:none;margin-bottom:22px}
+.pkg-list li{font-size:13.5px;color:var(--text-m);padding:5px 0;border-bottom:1px solid var(--sand);display:flex;gap:8px;line-height:1.5}
+.pkg-list li:last-child{border-bottom:none}
+.pkg-list li::before{content:'✓';color:var(--sage);font-weight:700;flex-shrink:0}
+.btn-pkg{display:block;width:100%;background:var(--forest);color:#fff;border:none;padding:13px;border-radius:4px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s}
+.btn-pkg:hover{background:var(--forest-m)}
+.pop .btn-pkg{background:var(--terra)}
+.pop .btn-pkg:hover{background:var(--terra-l)}
+.krematorio-note{grid-column:1/-1;background:var(--stone);border-radius:8px;padding:24px 28px;border:2px dashed var(--sand);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.kn-text p{font-size:14px;color:var(--text-m);line-height:1.7;max-width:560px}
+.kn-price{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--forest);flex-shrink:0}
+
+.cta-sect{background:var(--dark);padding:72px 24px;text-align:center}
+.cta-sect h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,56px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:10px}
+.cta-sect h2 em{font-style:italic;color:var(--sage-l)}
+.cta-sect p{font-size:16px;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 36px;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.cta-phone{font-size:26px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:300}
+.cta-phone:hover{color:var(--sage-l)}
+.cta-note{font-size:12px;color:rgba(255,255,255,.3);margin-top:6px}
+
+.nearby{background:var(--stone);padding:48px 24px}
+.nearby h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--forest);margin-bottom:18px}
+.nearby-links{display:flex;flex-wrap:wrap;gap:8px}
+.nb-link{font-size:13px;color:var(--forest);background:var(--warm);border:1px solid var(--sand);padding:7px 14px;border-radius:4px;transition:all .15s}
+.nb-link:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+
+.ftr{background:var(--dark);padding:40px 24px 24px}
+.ftr-in{max-width:1100px;margin:0 auto}
+.ftr-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ftr-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#fff;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.ftr-sub{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-l);margin-bottom:12px}
+.ftr-p{font-size:12.5px;color:rgba(255,255,255,.32);line-height:1.8;max-width:260px}
+.ftr-col h4{color:rgba(255,255,255,.65);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.ftr-col a{display:block;color:rgba(255,255,255,.32);font-size:13px;padding:2px 0;transition:color .14s}
+.ftr-col a:hover{color:rgba(255,255,255,.8)}
+.ftr-bot{max-width:1100px;margin:18px auto 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.18)}
+
+.sph{position:fixed;bottom:20px;right:20px;z-index:400;background:var(--terra);color:#fff;padding:11px 20px;border-radius:40px;font-size:13.5px;font-weight:700;box-shadow:0 4px 20px rgba(184,115,85,.45);transition:opacity .3s;display:flex;align-items:center;gap:7px}
+.sph:hover{background:var(--terra-l)}
+
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr}
+  .hero-card{max-width:400px}
+  .info-grid,.how-grid,.price-grid{grid-template-columns:1fr}
+  .krematorio-note{grid-column:1}
+  .ftr-top{grid-template-columns:1fr 1fr}
+  section{padding:52px 20px}
+}
+@media(max-width:600px){
+  .hero-btns{flex-direction:column}
+  .ftr-top{grid-template-columns:1fr}
+  .how-grid{gap:1px}
+  .price-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="/suoratuhkaus/" class="logo">
+      <div>
+        <span class="logo-main">Tuhkaus</span>
+        <span class="logo-sub">Koko Suomessa</span>
+      </div>
+    </a>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="/suoratuhkaus/" class="nav-back">&larr; Etusivulle</a>
+      <a href="/suoratuhkaus/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="hero-ey">Suoratuhkaus &nbsp;&middot;&nbsp; Pukkila &nbsp;&middot;&nbsp; Avoin hinnoittelu</p>
+      <h1 class="hero-h1">Suoratuhkaus<em>Pukkilassa</em></h1>
+      <p class="hero-p">Hoidamme suoratuhkauksen Pukkilassa ja lähikunnissa. Palvelumaksumme on kiinteä. Krematorion maksu ja mahdolliset kuljetuskulut kerrotaan avoimesti ennen kuin mitään sovitaan.</p>
+      <div class="hero-btns">
+        <a href="/suoratuhkaus/#yhteystiedot" class="btn-t">Pyydä tarjous &rarr;</a>
+        <a href="tel:+358800000000" class="btn-w">Soita 0800 000 000</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-head">Hinta-arvio &mdash; Pukkila</div>
+      <div class="hc-row">
+        <div>
+          <div class="hc-label">Palvelumaksu (kiinteä)</div>
+        </div>
+        <div>
+          <div class="hc-val">690 &euro;</div>
+          <div class="hc-sub">Perus-paketti</div>
+        </div>
+      </div>
+      <div class="hc-row">
+        <div>
+          <div class="hc-label">Krematorio</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">Lahti &middot; 49 km</div>
+        </div>
+        <div>
+          <div class="hc-val">300&ndash;600 &euro;</div>
+          <div class="hc-sub">Paikkakunnasta riippuen</div>
+        </div>
+      </div>
+      <div class="hc-note">
+        <strong>Yhteensä arviolta 990–1 290 €</strong><br>
+        Tarkka tarjous pyydettäessä &mdash; ilmaiseksi<br>
+        <a href="/suoratuhkaus/#laske" style="color:var(--terra-l)">Laske tarkemmin &darr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-in">
+    <div class="ti"><div class="ti-dot"></div>Palvelemme Pukkilassa</div>
+    <div class="ti"><div class="ti-dot"></div>24/7 päivystys</div>
+    <div class="ti"><div class="ti-dot"></div>Kaikki kulut kerrotaan etukäteen</div>
+    <div class="ti"><div class="ti-dot"></div>Lähin krematorio: Lahti (49 km)</div>
+  </div>
+</div>
+
+<section class="info-sect">
+  <div class="wrap">
+    <div class="info-grid">
+      <div>
+        <p class="eyebrow eyebrow-s">Mikä on suoratuhkaus?</p>
+        <h2 class="sec-h2">Yksinkertainen hyvästijättö Pukkilassa</h2>
+        <div>
+          <p class="sec-p">Suoratuhkaus tarkoittaa, että vainaja tuhkataan ilman etukäteistä siunaustilaisuutta. Se on kasvava, arvokas vaihtoehto perinteiselle hautaukselle.</p>
+          <p class="sec-p" style="margin-top:12px">Hoidamme kaiken: haemme vainajan, hoidamme lupa-asiat, kuljetamme krematoriolle (Lahti) ja toimitamme tuhkat perheelle. Teidän ei tarvitse huolehtia mistään käytännön asiasta.</p>
+          <p class="sec-p" style="margin-top:12px">Palvelemme Pukkilassa ja kaikissa lähikunnissa. Muistotilaisuuden voi järjestää erikseen, milloin perheelle sopii.</p>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="ib-row">
+          <span class="ib-label">Kaupunki</span>
+          <span class="ib-val">Pukkila</span>
+        </div>
+        <div class="ib-row">
+          <span class="ib-label">Lähin krematorio</span>
+          <span class="ib-val">Lahti<small>49 km (arvio tieajosta)</small></span>
+        </div>
+        <div class="ib-row">
+          <span class="ib-label">Palvelumaksu (Perus)</span>
+          <span class="ib-val">690 &euro;<small>Kiinteä, ei piilokuluja</small></span>
+        </div>
+        <div class="ib-row">
+          <span class="ib-label">Krematorion maksu</span>
+          <span class="ib-val">300&ndash;600 &euro;<small>Paikkakunnasta riippuen</small></span>
+        </div>
+        
+        <div class="ib-row">
+          <span class="ib-label">Arvioitu kokonaishinta</span>
+          <span class="ib-val" style="color:var(--forest)">990–1 290 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-sect">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-s">Prosessi</p>
+    <h2 class="sec-h2">Miten suoratuhkaus toimii Pukkilassa?</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-n">1</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="#2a3d2e" stroke-width="1.5"/><path d="M6 10h8M6 7h8M6 13h5" stroke="#2a3d2e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Ota yhteyttä</h3>
+        <p>Soita 0800 000 000 tai lähetä yhteydenottopyyntö. Vastaamme ympäri vuorokauden.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-n">2</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="#2a3d2e" stroke-width="1.5"/><path d="M14 2v4M6 2v4M2 8h16" stroke="#2a3d2e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Saat kirjallisen tarjouksen</h3>
+        <p>Tarjous sisältää palvelumaksun, krematorion maksun ja mahdolliset kuljetuskulut. Ei yllätyksiä.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-n">3</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#2a3d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Me hoidamme käytännön</h3>
+        <p>Noudamme vainajan Pukkilassa, hoidamme kaikki luvat ja kuljetamme krematoriolle (Lahti).</p>
+      </div>
+      <div class="how-step">
+        <div class="how-n">4</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C10 3 4 7 4 12a6 6 0 0012 0C16 7 10 3 10 3Z" stroke="#2a3d2e" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Tuhkat perheelle</h3>
+        <p>Toimitetaan tuhkat postitse tai noudettavissa. Muistohetki on, kun teille sopii.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price-sect">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:8px">
+      <p class="eyebrow eyebrow-t">Hinnoittelu</p>
+      <h2 class="sec-h2">Suoratuhkauksen hinta Pukkilassa</h2>
+      <p class="sec-p" style="max-width:540px;margin:0 auto">Kaksi selkeää pakettia. Palvelumaksu on kiinteä. Krematorion maksu ja kuljetuskulut kerrotaan tarjouksessa.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pkg">
+        <div class="pkg-name">Perus</div>
+        <p style="font-size:13.5px;color:var(--text-m);min-height:36px">Kaikki käytännön asiat hoidettu.</p>
+        <div class="pkg-price"><span class="pkg-cur">&euro;</span><span class="pkg-eur">690</span></div>
+        <p class="pkg-note">palvelumaksu + krematorio erikseen</p>
+        <div class="pkg-rule"></div>
+        <ul class="pkg-list">
+          <li>Vainajan nouto Pukkilassa</li>
+          <li>Kuljetus krematoriolle (Lahti)</li>
+          <li>Krematoriovarauksen hoito</li>
+          <li>Kaikki viranomaisasiakirjat</li>
+          <li>Tuhkien toimitus perheelle</li>
+          <li>24/7 puhelinpalvelu</li>
+        </ul>
+        <a href="/suoratuhkaus/#yhteystiedot" class="btn-pkg">Valitse Perus &rarr;</a>
+      </div>
+      <div class="pkg pop">
+        <div class="pkg-badge">Suosituin</div>
+        <div class="pkg-name">Täydellinen</div>
+        <p style="font-size:13.5px;color:var(--text-m);min-height:36px">Uurna ja henkilökohtainen palvelija.</p>
+        <div class="pkg-price"><span class="pkg-cur">&euro;</span><span class="pkg-eur">1 090</span></div>
+        <p class="pkg-note">palvelumaksu + krematorio erikseen</p>
+        <div class="pkg-rule"></div>
+        <ul class="pkg-list">
+          <li>Kaikki Perus-paketin palvelut</li>
+          <li>Laadukas uurna valintasi mukaan</li>
+          <li>Aikataulun valinta</li>
+          <li>Henkilökohtainen palvelija</li>
+          <li>Muistokortti vainajasta</li>
+        </ul>
+        <a href="/suoratuhkaus/#yhteystiedot" class="btn-pkg">Valitse Täydellinen &rarr;</a>
+      </div>
+      <div class="krematorio-note">
+        <div class="kn-text">
+          <strong style="color:var(--forest);font-size:15px;display:block;margin-bottom:4px">Krematorion maksu &mdash; Lahti</strong>
+          <p>Lähin krematorio on Lahti (49 km). Krematorion maksu peritään suoraan krematoriolta ja on tyypillisesti 300&ndash;600 euroa. Kerromme tarkan summan tarjouksessa.</p>
+        </div>
+        <div class="kn-price">300&ndash;600 &euro;</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--text-l);margin-top:20px;line-height:1.8">
+      Kaikki hinnat sis. ALV 25,5&nbsp;%. Perus-paketin arvioitu kokonaishinta Pukkilassa: <strong style="color:var(--forest)">990–1 290 €</strong>
+      
+    </p>
+  </div>
+</section>
+
+<div class="cta-sect">
+  <h2>Palvelemme Pukkilassa<em>ympäri vuorokauden</em></h2>
+  <p>Yhteydenottoon ei tarvita erityistä syytä. Voit ottaa yhteyttä etukäteen tai juuri nyt.</p>
+  <div class="cta-btns">
+    <a href="/suoratuhkaus/#yhteystiedot" class="btn-t">Pyydä tarjous &rarr;</a>
+    <a href="/suoratuhkaus/#perunkirjoitus" class="btn-w">Etä perunkirjoitus 595 &euro;</a>
+  </div>
+  <a href="tel:+358800000000" class="cta-phone">0800 000 000</a>
+  <p class="cta-note">Päivystys ympäri vuorokauden &middot; puhelu maksuton</p>
+</div>
+
+<div class="nearby">
+  <div class="wrap">
+    <h3>Palvelemme myös lähikunnissa</h3>
+    <div class="nearby-links">
+      <a href="/tuhkaus-askola/" class="nb-link">Askola</a>
+<a href="/tuhkaus-mantsala/" class="nb-link">Mäntsälä</a>
+<a href="/tuhkaus-myrskyla/" class="nb-link">Myrskylä</a>
+<a href="/tuhkaus-orimattila/" class="nb-link">Orimattila</a>
+<a href="/tuhkaus-pornainen/" class="nb-link">Pornainen</a>
+<a href="/tuhkaus-porvoo/" class="nb-link">Porvoo</a>
+<a href="/tuhkaus-karkola/" class="nb-link">Kärkölä</a>
+<a href="/tuhkaus-jarvenpaa/" class="nb-link">Järvenpää</a>
+      <a href="/suoratuhkaus/" class="nb-link" style="background:var(--forest);color:#fff;border-color:var(--forest)">Kaikki kunnat &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer class="ftr">
+  <div class="ftr-in">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-brand">Tuhkaus</div>
+        <div class="ftr-sub">Koko Suomessa</div>
+        <p class="ftr-p">Selkeä, rehellinen suoratuhkauspalvelu. Palvelemme Pukkilassa ja kaikissa muissa Suomen kunnissa.</p>
+      </div>
+      <div class="ftr-col">
+        <h4>Palvelut</h4>
+        <a href="/suoratuhkaus/#paketit">Perus-paketti</a>
+        <a href="/suoratuhkaus/#paketit">Täydellinen-paketti</a>
+        <a href="/suoratuhkaus/#perunkirjoitus">Etä perunkirjoitus</a>
+        <a href="/suoratuhkaus/#paketit">Muistotilaisuus</a>
+      </div>
+      <div class="ftr-col">
+        <h4>Yhteystiedot</h4>
+        <a href="tel:+358800000000">0800 000 000</a>
+        <a href="mailto:info@tuhkaus.fi">info@tuhkaus.fi</a>
+        <a href="/suoratuhkaus/#yhteystiedot">Yhteydenottolomake</a>
+        <a href="/suoratuhkaus/">Etusivu</a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>&copy; 2026 Suoratuhkaus &mdash; Pukkila</span>
+      <span>Tietosuojaseloste</span>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+358800000000" class="sph">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12.5 9.5v1.5a1 1 0 01-1.09.998A9.985 9.985 0 011 1.59 1 1 0 012 .5h1.5a1 1 0 011 .877c.1.773.328 1.527.676 2.226a1 1 0 01-.225 1.12l-.751.751a8 8 0 004.23 4.23l.847-.75a1 1 0 011.12-.225c.7.348 1.453.576 2.226.676A1 1 0 0112.5 9.5z" stroke="white" stroke-width="1.2" fill="none"/></svg>
+  Soita
+</a>
+
+</body>
+</html>
