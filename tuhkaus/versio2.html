@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuhkaus.fi – Suoratuhkaus koko Suomessa</title>
+<meta name="description" content="Suoratuhkaus koko Suomessa. Perus 890 €, Täydellinen 1 290 €. Krematorion maksu 300–600 € erikseen. Kaikki kulut kerrotaan etukäteen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0e0c;
+  --ink-m:#3a3834;
+  --ink-l:#7a7771;
+  --paper:#fafaf8;
+  --paper-d:#f2f1ee;
+  --paper-dd:#e8e6e2;
+  --rule:#d4d2ce;
+  --fire:#c4622d;
+  --fire-l:#d4814e;
+  --fire-x:#faeee6;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--white);border-bottom:1px solid var(--rule)}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{text-decoration:none;display:flex;align-items:baseline;gap:6px}
+.logo-word{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);letter-spacing:-.02em}
+.logo-dot{width:7px;height:7px;background:var(--fire);border-radius:50%;margin-bottom:3px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink-l);text-decoration:none;padding:6px 11px;border-radius:3px;transition:color .12s;white-space:nowrap}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-tel{font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.nav-tel:hover{color:var(--fire)}
+.nav-btn{background:var(--ink);color:var(--white);text-decoration:none;padding:8px 18px;border-radius:3px;font-size:13px;font-weight:700;white-space:nowrap;transition:background .12s}
+.nav-btn:hover{background:var(--fire)}
+.ham{display:none;flex-direction:column;gap:4.5px;background:none;border:none;cursor:pointer;padding:8px}
+.ham span{display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:all .2s}
+.ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:var(--white);border-bottom:1px solid var(--rule);padding:8px 32px 20px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:14px;color:var(--ink-m);text-decoration:none;padding:11px 0;border-bottom:1px solid var(--paper-dd);font-weight:500}
+.mob-nav a:last-of-type{border:none}
+.mob-nav .m-cta{margin-top:12px;background:var(--ink);color:var(--white);text-align:center;padding:13px;border-radius:3px;font-weight:700;font-size:15px}
+
+/* HERO */
+.hero{padding:120px 32px 80px;background:var(--white);border-bottom:1px solid var(--rule)}
+.hero-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:80px;align-items:center}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--fire);margin-bottom:16px}
+.hero-h1{font-family:'DM Serif Display',serif;font-size:clamp(44px,5.5vw,78px);color:var(--ink);line-height:1.02;margin-bottom:16px;letter-spacing:-.03em}
+.hero-h1 em{font-style:italic;color:var(--ink-m)}
+.hero-body{font-size:17px;color:var(--ink-m);line-height:1.75;max-width:480px;margin-bottom:32px;font-weight:300}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-fire{display:inline-flex;align-items:center;gap:8px;background:var(--fire);color:var(--white);padding:13px 24px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:700;transition:background .15s}
+.btn-fire:hover{background:var(--fire-l)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);padding:12px 22px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:600;border:1.5px solid var(--rule);transition:all .15s}
+.btn-ghost:hover{border-color:var(--ink);background:var(--paper)}
+
+/* PRICE CARD */
+.hero-prices{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.hp-head{padding:16px 22px;background:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.hp-title{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.hp-note{font-size:11px;color:rgba(255,255,255,.35)}
+.hp-row{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--paper-dd);gap:12px}
+.hp-row:last-of-type{border-bottom:none}
+.hp-row.alt{background:var(--white)}
+.hp-name{font-size:14px;font-weight:600;color:var(--ink)}
+.hp-desc{font-size:12px;color:var(--ink-l);margin-top:2px}
+.hp-price{text-align:right;flex-shrink:0}
+.hp-eur{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink);line-height:1}
+.hp-sub{font-size:11px;color:var(--ink-l);margin-top:1px}
+.hp-var{padding:16px 22px;background:var(--fire-x);border-top:1px solid rgba(196,98,45,.15)}
+.hp-var-t{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire);margin-bottom:5px}
+.hp-var-body{font-size:13px;color:var(--ink-m);line-height:1.65}
+
+/* STRIP */
+.strip{background:var(--ink);padding:14px 32px}
+.strip-in{max-width:1120px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 36px}
+.si{font-size:12.5px;color:rgba(255,255,255,.45);font-weight:500;display:flex;align-items:center;gap:7px}
+.si-sep{width:1px;height:12px;background:rgba(255,255,255,.15)}
+
+/* SECTIONS */
+section{padding:80px 32px}
+.wrap{max-width:1120px;margin:0 auto}
+.sec-rule{width:100%;height:1px;background:var(--rule);margin-bottom:48px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-l);margin-bottom:10px}
+.sec-h2{font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,46px);color:var(--ink);line-height:1.1;letter-spacing:-.02em}
+.sec-lead{font-size:16px;color:var(--ink-m);line-height:1.8;max-width:560px;margin-top:12px;font-weight:300}
+
+/* WHAT */
+.what{background:var(--white)}
+.what-grid{display:grid;grid-template-columns:5fr 4fr;gap:80px;align-items:start}
+.what-text p{font-size:16px;color:var(--ink-m);line-height:1.85;margin-top:18px;font-weight:300}
+.what-text p strong{color:var(--ink);font-weight:600}
+.what-box{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:28px;margin-top:28px}
+.what-box-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-l);margin-bottom:16px}
+.what-compare{display:flex;flex-direction:column;gap:12px}
+.wc-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wc-label{font-size:14px;color:var(--ink-m)}
+.wc-val{font-size:14px;font-weight:700;color:var(--ink);text-align:right}
+.wc-val.fire{color:var(--fire)}
+.wc-rule{height:1px;background:var(--paper-dd)}
+.what-facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
+.wf{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:22px 20px}
+.wf-n{font-family:'DM Serif Display',serif;font-size:34px;color:var(--ink);opacity:.15;line-height:1}
+.wf-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;margin-top:-4px}
+.wf-body{font-size:12.5px;color:var(--ink-l);line-height:1.65}
+
+/* PRICING */
+.pricing{background:var(--paper);padding:80px 32px}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.pkg{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:36px;transition:box-shadow .2s}
+.pkg:hover{box-shadow:0 8px 40px rgba(0,0,0,.06)}
+.pkg.featured{border-color:var(--ink);border-width:2px}
+.pkg-tag{display:inline-block;background:var(--ink);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:16px}
+.pkg-name{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em}
+.pkg-tagline{font-size:14px;color:var(--ink-l);margin-bottom:22px;line-height:1.6;min-height:42px}
+.pkg-price-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-l);margin-bottom:4px}
+.pkg-price{display:flex;align-items:baseline;gap:2px;margin-bottom:4px}
+.pkg-eur{font-family:'DM Serif Display',serif;font-size:52px;color:var(--ink);line-height:1}
+.pkg-cur{font-size:18px;color:var(--ink-l);font-family:'DM Serif Display',serif}
+.pkg-price-note{font-size:12.5px;color:var(--ink-l);margin-bottom:24px}
+.pkg-divider{height:1px;background:var(--paper-dd);margin-bottom:22px}
+.pkg-list{list-style:none;margin-bottom:28px}
+.pkg-list li{font-size:14px;color:var(--ink-m);padding:7px 0;border-bottom:1px solid var(--paper-d);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.pkg-list li:last-child{border-bottom:none}
+.pkg-list li::before{content:'—';color:var(--ink-l);font-size:13px;flex-shrink:0;margin-top:1px}
+.btn-pkg{display:block;width:100%;padding:13px;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;text-decoration:none}
+.btn-pkg-main{background:var(--ink);color:var(--white);border:none}
+.btn-pkg-main:hover{background:var(--fire)}
+.btn-pkg-outline{background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
+.btn-pkg-outline:hover{border-color:var(--ink);background:var(--paper)}
+
+/* EXTRA BOXES */
+.extra-grid{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.extra-box{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:24px 28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.extra-box.full{grid-template-columns:1fr}
+.extra-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
+.extra-body{font-size:14px;color:var(--ink-m);line-height:1.7}
+.extra-price{text-align:right;flex-shrink:0}
+.extra-range{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink);line-height:1}
+.extra-note{font-size:11px;color:var(--ink-l);margin-top:3px}
+.total-strip{background:var(--ink);border-radius:4px;padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px}
+.ts-item{}
+.ts-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
+.ts-price{font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);line-height:1}
+.ts-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.pricing-disclaimer{font-size:13px;color:var(--ink-l);margin-top:20px;line-height:1.8;max-width:620px}
+.pricing-disclaimer strong{color:var(--fire)}
+
+/* HOW */
+.how{background:var(--white)}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-top:48px}
+.hs{background:var(--white);padding:32px 24px;transition:background .15s}
+.hs:hover{background:var(--paper)}
+.hs-n{font-family:'DM Serif Display',serif;font-size:56px;color:var(--ink);opacity:.08;line-height:1;margin-bottom:12px}
+.hs-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.hs-body{font-size:13.5px;color:var(--ink-m);line-height:1.75}
+
+/* PERUNKIRJOITUS */
+.pk-sect{background:var(--paper);padding:80px 32px}
+.pk-grid{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start}
+.pk-body{font-size:16px;color:var(--ink-m);line-height:1.82;margin-top:16px;font-weight:300}
+.pk-steps{display:flex;flex-direction:column;gap:14px;margin:24px 0}
+.pk-step{display:flex;align-items:flex-start;gap:14px}
+.pk-n{width:28px;height:28px;background:var(--fire);border-radius:50%;color:var(--white);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pk-step-body{font-size:14.5px;color:var(--ink-m);line-height:1.6}
+.pk-step-body strong{color:var(--ink);display:block;margin-bottom:1px;font-size:14px}
+.pk-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.pk-card-top{background:var(--ink);padding:24px}
+.pk-card-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px}
+.pk-card-price{font-family:'DM Serif Display',serif;font-size:58px;color:var(--white);line-height:1}
+.pk-card-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:5px}
+.pk-card-body{padding:24px}
+.pk-includes{list-style:none;display:flex;flex-direction:column;gap:0}
+.pk-includes li{font-size:13.5px;color:var(--ink-m);padding:8px 0;border-bottom:1px solid var(--paper-dd);display:flex;align-items:flex-start;gap:9px;line-height:1.5}
+.pk-includes li:last-child{border-bottom:none}
+.pk-includes li::before{content:'—';color:var(--ink-l);font-size:12px;flex-shrink:0;margin-top:2px}
+.pk-card-btn{display:block;width:100%;background:var(--fire);color:var(--white);border:none;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border-radius:3px;margin-top:16px;text-align:center;text-decoration:none;transition:background .15s}
+.pk-card-btn:hover{background:var(--fire-l)}
+
+/* CALCULATOR */
+.calc{background:var(--ink);padding:80px 32px}
+.calc-head{margin-bottom:40px}
+.calc-head .sec-h2{color:var(--white)}
+.calc-head .sec-lead{color:rgba(255,255,255,.5)}
+.calc-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:36px;max-width:720px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin-bottom:24px}
+.calc-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+.calc-field input,.calc-field select{width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--white);background:rgba(255,255,255,.07);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.calc-field input:focus,.calc-field select:focus{border-color:rgba(255,255,255,.4)}
+.calc-field input::placeholder{color:rgba(255,255,255,.25)}
+.calc-field select option{color:var(--ink);background:var(--white)}
+.calc-submit{background:var(--fire);color:var(--white);border:none;padding:12px 22px;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;height:45px}
+.calc-submit:hover{background:var(--fire-l)}
+.calc-result{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cr-meta{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.cr-m{background:rgba(255,255,255,.07);border-radius:3px;padding:10px 16px;flex:1;min-width:120px}
+.cr-m-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:3px}
+.cr-m-val{font-size:14px;font-weight:600;color:var(--white)}
+.cr-breakdown{margin-bottom:20px}
+.cr-b-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:14px}
+.cr-b-row:last-child{border-bottom:none}
+.cr-b-label{color:rgba(255,255,255,.55)}
+.cr-b-val{color:var(--white);font-weight:600}
+.cr-b-val.accent{color:var(--fire-l)}
+.cr-total{background:rgba(255,255,255,.08);border-radius:3px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cr-total-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.cr-total-val{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white)}
+.cr-surcharge{background:rgba(196,98,45,.2);border:1px solid rgba(196,98,45,.3);border-radius:3px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--fire-l);line-height:1.6}
+.calc-notfound{font-size:14px;color:rgba(255,255,255,.4);padding:12px 0}
+.calc-notfound a{color:var(--fire-l);text-decoration:none}
+
+/* USPS */
+.usps{background:var(--paper);padding:80px 32px}
+.usps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-top:48px}
+.usp{background:var(--white);padding:28px 22px;transition:background .15s}
+.usp:hover{background:var(--paper)}
+.usp-icon{font-size:22px;margin-bottom:12px}
+.usp-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.usp-body{font-size:13.5px;color:var(--ink-m);line-height:1.72}
+
+/* FAQ */
+.faq{background:var(--white);padding:80px 32px}
+.faq-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:start}
+.faq-items{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.faq-item{}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;font-size:14.5px;font-weight:600;color:var(--ink);width:100%;text-align:left;background:var(--white);border:none;gap:12px;transition:background .12s}
+.faq-q:hover{background:var(--paper)}
+.faq-q.open{background:var(--paper)}
+.faq-arr{width:20px;height:20px;border:1.5px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-l);flex-shrink:0;transition:transform .2s;font-weight:700}
+.faq-q.open .faq-arr{transform:rotate(45deg);border-color:var(--ink);color:var(--ink)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;padding:0 22px;font-size:14px;color:var(--ink-m);line-height:1.8;background:var(--paper)}
+.faq-a.open{max-height:260px;padding:0 22px 18px}
+.faq-side p{font-size:15px;color:var(--ink-m);line-height:1.82;margin-top:12px;font-weight:300}
+.faq-cta{margin-top:28px}
+
+/* REVIEWS */
+.reviews{background:var(--paper);padding:80px 32px}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.rv{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:28px}
+.rv-stars{font-size:11px;color:var(--fire);letter-spacing:3px;margin-bottom:14px}
+.rv-txt{font-size:15px;color:var(--ink-m);line-height:1.8;margin-bottom:18px;font-weight:300}
+.rv-meta{display:flex;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--paper-dd)}
+.rv-av{width:32px;height:32px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--white);flex-shrink:0}
+.rv-name{font-size:13px;font-weight:700;color:var(--ink)}
+.rv-loc{font-size:12px;color:var(--ink-l)}
+
+/* CTA */
+.cta{background:var(--fire);padding:72px 32px;text-align:center}
+.cta h2{font-family:'DM Serif Display',serif;font-size:clamp(30px,4vw,56px);color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
+.cta p{font-size:17px;color:rgba(255,255,255,.75);max-width:460px;margin:0 auto 32px;line-height:1.75;font-weight:300}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--fire);padding:13px 24px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:700;transition:all .15s}
+.btn-white:hover{background:var(--ink);color:var(--white)}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:12px 22px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.4);transition:all .15s}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.8)}
+.cta-tel{margin-top:28px;font-family:'DM Serif Display',serif;font-size:30px;color:var(--white)}
+.cta-tel a{color:var(--white);text-decoration:none}
+.cta-tel-note{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+
+/* CONTACT */
+.contact{background:var(--white);padding:80px 32px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:start}
+.cinfo{display:flex;flex-direction:column;gap:0;margin-top:24px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.ci{display:grid;grid-template-columns:80px 1fr;align-items:center;padding:15px 18px;border-bottom:1px solid var(--paper-d);background:var(--white);transition:background .12s}
+.ci:hover{background:var(--paper)}
+.ci:last-child{border-bottom:none}
+.ci-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-l)}
+.ci-val{font-size:15px;font-weight:600;color:var(--ink)}
+.ci-val a{color:var(--ink);text-decoration:none}
+.ci-val a:hover{color:var(--fire)}
+.cf{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:36px}
+.cf-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink);margin-bottom:22px;letter-spacing:-.01em}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-l);margin-bottom:6px}
+.fld input,.fld textarea,.fld select{width:100%;padding:11px 13px;border:1px solid var(--rule);border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--white);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--ink)}
+.fld textarea{resize:none;height:84px}
+.fld-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-submit{width:100%;background:var(--ink);color:var(--white);border:none;padding:13px;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:4px}
+.cf-submit:hover{background:var(--fire)}
+
+/* FOOTER */
+.ftr{background:var(--ink);padding:48px 32px 24px}
+.ftr-in{max-width:1120px;margin:0 auto}
+.ftr-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:20px}
+.ftr-brand{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);margin-bottom:8px;letter-spacing:-.01em}
+.ftr-tagline{font-size:12px;color:rgba(255,255,255,.3);line-height:1.8;max-width:240px}
+.ftr-col h4{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px}
+.ftr-col a{display:block;font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;padding:3px 0;transition:color .12s}
+.ftr-col a:hover{color:rgba(255,255,255,.85)}
+.ftr-bot{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:6px}
+
+/* STICKY */
+.sticky-tel{position:fixed;bottom:20px;right:20px;z-index:400;background:var(--fire);color:var(--white);padding:11px 20px;border-radius:40px;text-decoration:none;font-size:13px;font-weight:700;box-shadow:0 4px 24px rgba(196,98,45,.4);transition:transform .2s,opacity .25s;opacity:0;pointer-events:none;display:flex;align-items:center;gap:7px}
+.sticky-tel.show{opacity:1;pointer-events:auto}
+.sticky-tel:hover{transform:translateY(-2px)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr;gap:40px}
+  .what-grid{grid-template-columns:1fr}
+  .what-facts{margin-top:0}
+  .pricing-grid{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr 1fr}
+  .usps-grid{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .rv-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .pk-grid{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .total-strip{grid-template-columns:1fr}
+  .extra-box{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .nav-links,.nav-tel{display:none}
+  .nav-btn{display:none}
+  .ham{display:flex}
+  section,.pricing,.pk-sect,.calc,.usps,.reviews,.faq,.contact{padding:56px 20px}
+  .hero{padding:96px 20px 56px}
+  .strip{padding:12px 20px}
+  .how-steps{grid-template-columns:1fr}
+  .usps-grid{grid-template-columns:1fr}
+  .fld-2{grid-template-columns:1fr}
+  .calc-row{grid-template-columns:1fr}
+  .cr-total{flex-direction:column;align-items:flex-start}
+  .ftr-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo">
+      <span class="logo-word">Tuhkaus.fi</span>
+      <span class="logo-dot"></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#mita">Mikä se on?</a>
+      <a href="#hinnat">Hinnat</a>
+      <a href="#miten">Miten toimii</a>
+      <a href="#perunkirjoitus">Perunkirjoitus</a>
+      <a href="#laske">Laske hinta</a>
+      <a href="#ukk">UKK</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+358800000000" class="nav-tel">0800 000 000</a>
+      <a href="#yhteystiedot" class="nav-btn">Ota yhteyttä</a>
+    </div>
+    <button class="ham" id="ham" aria-label="Valikko"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mob-nav" id="mNav">
+    <a href="#mita" onclick="c()">Mikä on suoratuhkaus?</a>
+    <a href="#hinnat" onclick="c()">Hinnat</a>
+    <a href="#miten" onclick="c()">Miten toimii</a>
+    <a href="#perunkirjoitus" onclick="c()">Etäperunkirjoitus</a>
+    <a href="#laske" onclick="c()">Laske hinta</a>
+    <a href="#ukk" onclick="c()">UKK</a>
+    <a href="tel:+358800000000" class="m-cta">Soita 0800 000 000</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div class="hero-left">
+      <p class="hero-kicker">Suoratuhkaus · Koko Suomi</p>
+      <h1 class="hero-h1">Tuhkaus.<em>Selkeästi.</em></h1>
+      <p class="hero-body">Hoidamme kuljetuksen, paperit ja tuhkauksen koko Suomessa. Hinta kerrotaan etukäteen. Ei piilomaksuja.</p>
+      <div class="hero-btns">
+        <a href="#hinnat" class="btn-fire">Katso hinnat</a>
+        <a href="tel:+358800000000" class="btn-ghost">Soita 0800 000 000</a>
+      </div>
+    </div>
+    <div class="hero-prices">
+      <div class="hp-head">
+        <span class="hp-title">Palvelumaksut</span>
+        <span class="hp-note">+ krematorio erikseen</span>
+      </div>
+      <div class="hp-row">
+        <div>
+          <div class="hp-name">Perus</div>
+          <div class="hp-desc">Kuljetus + arkku + paperit + tuhkaus</div>
+        </div>
+        <div class="hp-price">
+          <div class="hp-eur">890 €</div>
+          <div class="hp-sub">palvelumaksu</div>
+        </div>
+      </div>
+      <div class="hp-row alt">
+        <div>
+          <div class="hp-name">Täydellinen</div>
+          <div class="hp-desc">Perus + laadukas uurna</div>
+        </div>
+        <div class="hp-price">
+          <div class="hp-eur">1 290 €</div>
+          <div class="hp-sub">palvelumaksu</div>
+        </div>
+      </div>
+      <div class="hp-var">
+        <div class="hp-var-t">+ krematorion maksu</div>
+        <div class="hp-var-body">300–600 € · vaihtelee paikkakunnittain · kerrotaan ennen sopimista</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-in">
+    <span class="si">Asiakaspalvelu ma–pe 9–17</span>
+    <span class="si-sep"></span>
+    <span class="si">Koko Suomi</span>
+    <span class="si-sep"></span>
+    <span class="si">Kaikki kulut etukäteen</span>
+    <span class="si-sep"></span>
+    <span class="si">Etäperunkirjoitus 695 €</span>
+    <span class="si-sep"></span>
+    <span class="si">Tilaa verkossa tai puhelimitse</span>
+  </div>
+</div>
+
+<!-- WHAT IS -->
+<section class="what" id="mita">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <div class="what-grid">
+      <div>
+        <p class="sec-label">Mikä on suoratuhkaus?</p>
+        <h2 class="sec-h2">Tuhkaus ilman siunaustilaisuutta etukäteen.</h2>
+        <p class="what-text">Suoratuhkaus tarkoittaa, että vainaja tuhkataan suoraan — ilman erillistä siunaus- tai hartaustilaisuutta ennen tuhkausta. Muistotilaisuuden voi järjestää myöhemmin, teille sopivana ajankohtana.</p>
+        <p class="what-text">Hoidamme kaiken: vainajan noudon kotoa tai sairaalasta, kuljetuksen krematoriolle, krematoriovarauksen, kaikki viranomaisilmoitukset ja tuhkien toimituksen. Ei tarvitse soittaa moneen paikkaan.</p>
+        <p class="what-text">Hinta kerrotaan kirjallisesti ennen kuin mitään sovitaan. Krematorion maksu eritellään erikseen — emme lisää siihen katetta.</p>
+        <div class="what-box">
+          <div class="what-box-title">Hintavertailu</div>
+          <div class="what-compare">
+            <div class="wc-row"><span class="wc-label">Perinteinen hautaus</span><span class="wc-val">3 000–6 000 €</span></div>
+            <div class="wc-rule"></div>
+            <div class="wc-row"><span class="wc-label">Suoratuhkaus (Perus)</span><span class="wc-val fire">1 190–1 490 €</span></div>
+            <div class="wc-row"><span class="wc-label">Suoratuhkaus (Täydellinen)</span><span class="wc-val fire">1 590–1 890 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="what-facts">
+          <div class="wf"><div class="wf-n">19</div><div class="wf-title">Krematoriota</div><div class="wf-body">Toimimme kaikkien Suomen krematorioiden kanssa</div></div>
+          <div class="wf"><div class="wf-n">1</div><div class="wf-title">Yhteydenotto riittää</div><div class="wf-body">Me hoidamme kaiken muun — ei tarvitse soittaa eri tahoihin</div></div>
+          <div class="wf"><div class="wf-n">3kk</div><div class="wf-title">Perunkirjoitusaika</div><div class="wf-body">Lain mukaan perunkirjoitus on tehtävä 3 kk sisällä kuolemasta</div></div>
+          <div class="wf"><div class="wf-n">0</div><div class="wf-title">Piilomaksuja</div><div class="wf-body">Kaikki kulut — myös krematorion maksu — kerrotaan kirjallisesti etukäteen</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="hinnat">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <p class="sec-label">Hinnoittelu</p>
+    <h2 class="sec-h2">Kiinteä palvelumaksu. Krematorio eriteltynä.</h2>
+    <p class="sec-lead">Kokonaishinta = palvelumaksumme + krematorion paikkakuntakohtainen maksu. Saat molemmat kirjallisena ennen kuin mitään sovitaan.</p>
+    <div class="pricing-grid">
+      <div class="pkg">
+        <div class="pkg-name">Perus</div>
+        <p class="pkg-tagline">Kaikki käytännön asiat hoidettu. Kunnioittava ja selkeä prosessi alusta loppuun.</p>
+        <div class="pkg-price-label">Palvelumaksu</div>
+        <div class="pkg-price"><span class="pkg-eur">890</span><span class="pkg-cur"> €</span></div>
+        <p class="pkg-price-note">+ krematorion maksu (ks. alla)</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-list">
+          <li>Vainajan nouto kotoa, sairaalasta tai hoitokodista</li>
+          <li>Kuljetus krematoriolle</li>
+          <li>Krematoriovarauksen hoito</li>
+          <li>Tuhkausarkku</li>
+          <li>Kaikki viranomaisilmoitukset ja -luvat</li>
+          <li>Tuhkien toimitus omaisille tai nouto krematoriolta</li>
+        </ul>
+        <a href="#yhteystiedot" class="btn-pkg btn-pkg-outline">Valitse Perus →</a>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-tag">Suosituin</div>
+        <div class="pkg-name">Täydellinen</div>
+        <p class="pkg-tagline">Kaikki Perus-paketin palvelut ja lisäksi laadukas uurna omaisille.</p>
+        <div class="pkg-price-label">Palvelumaksu</div>
+        <div class="pkg-price"><span class="pkg-eur">1 290</span><span class="pkg-cur"> €</span></div>
+        <p class="pkg-price-note">+ krematorion maksu (ks. alla)</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-list">
+          <li>Kaikki Perus-paketin palvelut</li>
+          <li>Laadukas uurna valinnan mukaan</li>
+          <li>Muistokortti vainajasta</li>
+        </ul>
+        <a href="#yhteystiedot" class="btn-pkg btn-pkg-main">Valitse Täydellinen →</a>
+      </div>
+    </div>
+
+    <div class="extra-grid">
+      <div class="extra-box">
+        <div>
+          <div class="extra-name">Krematorion maksu</div>
+          <p class="extra-body">Krematorion maksu menee suoraan krematoriolle — emme lisää siihen katetta. Maksu vaihtelee paikkakunnittain. Kerromme tarkan summan heti kun tiedämme sijaintikunnan, ennen kuin mitään sovitaan.</p>
+        </div>
+        <div class="extra-price">
+          <div class="extra-range">300–600 €</div>
+          <div class="extra-note">vaihtelee paikkakunnittain</div>
+        </div>
+      </div>
+      <div class="extra-box full">
+        <div>
+          <div class="extra-name">Muistotilaisuus, hautakivet ja kunnostukset — lisäpalveluna</div>
+          <p class="extra-body">Muistotilaisuuden voi järjestää tuhkauksen jälkeen milloin tahansa. Autamme myös uuden hautakiven hankinnassa tai vanhan kunnostuksessa. Hinta sovitaan erikseen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="total-strip">
+      <div class="ts-item">
+        <div class="ts-label">Perus yhteensä</div>
+        <div class="ts-price">1 190–1 490 €</div>
+        <div class="ts-note">890 € + 300–600 € krematorio</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-label">Täydellinen yhteensä</div>
+        <div class="ts-price">1 590–1 890 €</div>
+        <div class="ts-note">1 290 € + 300–600 € krematorio</div>
+      </div>
+    </div>
+
+    <p class="pricing-disclaimer">Hinnat sisältävät kulloinkin voimassa olevan arvonlisäveron. <strong>Saat kirjallisen tarjouksen ennen kuin mitään sovitaan.</strong> Yli 60 km kuljetukset voivat aiheuttaa lisäkuluja — kerrotaan avoimesti tarjouksen yhteydessä.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc" id="laske">
+  <div class="wrap">
+    <div class="calc-head">
+      <p class="sec-label" style="color:rgba(255,255,255,.35)">Hintaestimaatti</p>
+      <h2 class="sec-h2" style="color:var(--white)">Laske hinta paikkakunnastasi</h2>
+      <p class="sec-lead" style="color:rgba(255,255,255,.5)">Syötä paikkakuntasi — kerrotaan lähin krematorio, arvioitu matka ja kokonaishinta-arvio.</p>
+    </div>
+    <div class="calc-card">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Paikkakunta</label>
+          <input type="text" id="calcKunta" list="kuntaList" placeholder="Esim. Rovaniemi" autocomplete="off" oninput="calcReset()">
+          <datalist id="kuntaList"></datalist>
+        </div>
+        <div class="calc-field">
+          <label>Paketti</label>
+          <select id="calcPkg">
+            <option value="890">Perus — 890 €</option>
+            <option value="1290" selected>Täydellinen — 1 290 €</option>
+          </select>
+        </div>
+        <button class="calc-submit" onclick="laske()">Laske →</button>
+      </div>
+      <div id="calcResult" style="display:none" class="calc-result">
+        <div class="cr-meta">
+          <div class="cr-m"><div class="cr-m-label">Lähin krematorio</div><div class="cr-m-val" id="crKrema">—</div></div>
+          <div class="cr-m"><div class="cr-m-label">Arvioitu matka</div><div class="cr-m-val" id="crDist">—</div></div>
+        </div>
+        <div id="crSurchargeNote" style="display:none" class="cr-surcharge"></div>
+        <div class="cr-breakdown">
+          <div class="cr-b-row"><span class="cr-b-label">Palvelumaksu</span><span class="cr-b-val" id="crPalvelu">—</span></div>
+          <div class="cr-b-row"><span class="cr-b-label">Krematorion maksu (arvio)</span><span class="cr-b-val">300–600 €</span></div>
+          <div class="cr-b-row" id="crSurchargeRow" style="display:none"><span class="cr-b-label">Kuljetuslisä</span><span class="cr-b-val accent" id="crSurchargeVal">—</span></div>
+        </div>
+        <div class="cr-total">
+          <div class="cr-total-label">Kokonaishinta-arvio</div>
+          <div class="cr-total-val" id="crTotal">—</div>
+        </div>
+      </div>
+      <div id="calcNotfound" style="display:none" class="calc-notfound">Paikkakuntaa ei löydy. <a href="#yhteystiedot">Pyydä tarjous suoraan →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="miten">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <p class="sec-label">Prosessi</p>
+    <h2 class="sec-h2">Neljä vaihetta. Me hoidamme kolme.</h2>
+    <p class="sec-lead">Teidän tehtävänne on ottaa yhteyttä. Loput kuuluu meille.</p>
+    <div class="how-steps">
+      <div class="hs">
+        <div class="hs-n">1</div>
+        <div class="hs-title">Ota yhteyttä</div>
+        <p class="hs-body">Soita, lähetä viesti tai tee tilaus verkossa. Voit ottaa yhteyttä heti tai etukäteen.</p>
+      </div>
+      <div class="hs">
+        <div class="hs-n">2</div>
+        <div class="hs-title">Saat kirjallisen tarjouksen</div>
+        <p class="hs-body">Käymme läpi yksityiskohdat ja lähetämme tarjouksen — krematorion maksu eriteltynä. Mitään ei sovita ennen kuin olette hyväksyneet tarjouksen.</p>
+      </div>
+      <div class="hs">
+        <div class="hs-n">3</div>
+        <div class="hs-title">Me hoidamme käytännön</div>
+        <p class="hs-body">Noudamme vainajan, hoidamme kaikki luvat ja paperit, kuljetamme krematoriolle ja tuhkaus tehdään krematorion aikataulun mukaan.</p>
+      </div>
+      <div class="hs">
+        <div class="hs-n">4</div>
+        <div class="hs-title">Tuhkat omaisille</div>
+        <p class="hs-body">Tuhkat ovat noudettavissa krematoriolta tai toimitamme omaisille (+150 €). Muistotilaisuuden voi järjestää myöhemmin — teille sopivana ajankohtana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERUNKIRJOITUS -->
+<section class="pk-sect" id="perunkirjoitus">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <div class="pk-grid">
+      <div>
+        <p class="sec-label">Lisäpalvelu</p>
+        <h2 class="sec-h2">Etäperunkirjoitus</h2>
+        <p class="pk-body">Perunkirjoitus on tehtävä lain mukaan kolmen kuukauden sisällä kuolemasta. Hoidamme sen kokonaan etänä — asiakirjat toimitetaan turvasähköpostilla, tilaisuus pidetään videoyhteydellä.</p>
+        <div class="pk-steps">
+          <div class="pk-step"><div class="pk-n">1</div><div class="pk-step-body"><strong>Toimita asiakirjat</strong>Turvasähköpostilla tai tietopankkiimme — salattu yhteys</div></div>
+          <div class="pk-step"><div class="pk-n">2</div><div class="pk-step-body"><strong>Me laaditaan perukirja</strong>Koulutettu henkilö käy asiakirjat läpi ja valmistelee perukirjan</div></div>
+          <div class="pk-step"><div class="pk-n">3</div><div class="pk-step-body"><strong>Perunkirjoitustilaisuus etänä</strong>Pidetään videoyhteydellä — teille sopivana ajankohtana</div></div>
+          <div class="pk-step"><div class="pk-n">4</div><div class="pk-step-body"><strong>Valmis perukirja</strong>Allekirjoitettu sähköisesti ja postitse pyydettäessä</div></div>
+        </div>
+        <a href="#yhteystiedot" class="btn-fire" style="display:inline-flex">Tilaa etäperunkirjoitus →</a>
+      </div>
+      <div class="pk-card">
+        <div class="pk-card-top">
+          <div class="pk-card-label">Kiinteä hinta</div>
+          <div class="pk-card-price">695 €</div>
+          <div class="pk-card-note">Sis. ALV. Ennakkomaksu ennen työn aloitusta.</div>
+        </div>
+        <div class="pk-card-body">
+          <ul class="pk-includes">
+            <li>Asiakirjojen vastaanotto turvasähköpostilla tai tietopankilla</li>
+            <li>Perukirjan laadinta</li>
+            <li>Perunkirjoitustilaisuus etäyhteydellä</li>
+            <li>Sähköisesti allekirjoitettu valmis perukirja</li>
+            <li>Ohjeet OmaVero-ilmoittamiseen</li>
+            <li>Asiakirjat arkistoitu 10 vuodeksi</li>
+          </ul>
+          <a href="#yhteystiedot" class="pk-card-btn">Aloita tilaus →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USPS -->
+<section class="usps">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <p class="sec-label">Miksi tuhkaus.fi?</p>
+    <h2 class="sec-h2">Mitä lupaamme — ja pidämme.</h2>
+    <div class="usps-grid">
+      <div class="usp">
+        <div class="usp-icon">📋</div>
+        <div class="usp-title">Hinta etukäteen</div>
+        <p class="usp-body">Palvelumaksumme on kiinteä. Krematorion maksu eritellään ennen tarjouksen hyväksymistä. Ei lisälaskuja jälkikäteen.</p>
+      </div>
+      <div class="usp">
+        <div class="usp-icon">🗺</div>
+        <div class="usp-title">Koko Suomi</div>
+        <p class="usp-body">Palvelemme kaikkialla Suomessa — myös haja-asutusalueilla. Pitkistä kuljetuksista kerrotaan avoimesti.</p>
+      </div>
+      <div class="usp">
+        <div class="usp-icon">📞</div>
+        <div class="usp-title">Asiakaspalvelu ma–pe 9–17</div>
+        <p class="usp-body">Tavoitat meidät puhelimitse tai sähköpostilla arkisin. Yhteydenottoihin vastataan virka-aikana mahdollisimman pian.</p>
+      </div>
+      <div class="usp">
+        <div class="usp-icon">✓</div>
+        <div class="usp-title">Yksi yhteydenotto</div>
+        <p class="usp-body">Hoida kaikki yhden puhelun tai lomakkeen avulla. Me koordinoimme krematorion, viranomaiset ja kuljetukset.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="ukk">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <div class="faq-grid">
+      <div class="faq-side">
+        <p class="sec-label">Usein kysyttyä</p>
+        <h2 class="sec-h2">Vastauksia tavallisimpiin kysymyksiin</h2>
+        <p>Suoratuhkaus on monille uusi asia. Näissä vastauksissa on oleellisin — mutta voit aina soittaa ja kysyä lisää.</p>
+        <div class="faq-cta" style="margin-top:24px"><a href="tel:+358800000000" class="btn-fire">Soita 0800 000 000</a></div>
+      </div>
+      <div class="faq-items">
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Onko suoratuhkaus arvokas vaihtoehto?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Suoratuhkaus on yhä kasvava tapa ympäri maailman. Se tarkoittaa, että vainaja tuhkataan ilman erillistä siunaustilaisuutta etukäteen — ei sitä, ettei vainajaa kunnioiteta. Muistotilaisuuden voi järjestää myöhemmin, omalla tavalla.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Miksi krematorion hinta vaihtelee?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Krematorion maksu peritään suoraan krematoriolaitokselta — me emme lisää siihen mitään katetta. Maksu vaihtelee paikkakunnittain ja on tyypillisesti 300–600 €. Kerromme tarkan summan heti kun tiedämme sijaintikunnan, aina ennen kuin mitään sovitaan.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Kuinka nopeasti voitte toimia?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Vainajan nouto voidaan järjestää nopeasti yhteydenoton jälkeen. Tuhkauksen aikataulu riippuu krematorion aikatauluista — siihen emme pysty vaikuttamaan. Kerromme krematorion arvioidun aikataulun heti kun tieto on meillä. Asiakaspalvelumme on tavoitettavissa ma–pe 9–17.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Voiko muistotilaisuuden järjestää erikseen?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Kyllä. Muistotilaisuuden voi järjestää milloin tahansa tuhkauksen jälkeen — viikkojen tai kuukausienkin päästä. Autamme mielellämme järjestelyissä. Hinta sovitaan erikseen tilaisuuden mukaan.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Mitä jos vainaja on toisella paikkakunnalla?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Hoidamme kuljetuksen koko Suomessa. Yli 60 km kuljetukset voivat aiheuttaa lisäkuluja — nämä kerrotaan avoimesti tarjouksen yhteydessä.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Voiko palvelun tilata etukäteen?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Kyllä. Ennakkosuunnittelu helpottaa omaisten taakkaa vaikealla hetkellä. Kysy lisää puhelimitse tai sähköpostilla.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="faq(this)">Onko etäperunkirjoitus oikeudellisesti pätevä?<span class="faq-arr">+</span></button>
+          <div class="faq-a">Kyllä. Perukirja on pätevä riippumatta siitä, onko tilaisuus pidetty fyysisesti vai etäyhteydellä. Tärkeintä on, että läsnä on kaksi uskottua miestä, kaikki osapuolet allekirjoittavat ja asiakirjat vastaavat todellista omaisuustilannetta. Nämä kaikki varmistetaan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <p class="sec-label">Asiakkaiden kokemuksia</p>
+    <h2 class="sec-h2">Mitä asiakkaamme sanovat</h2>
+    <div class="rv-grid">
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-txt">"Olin epävarma suoratuhkauksesta aluksi, mutta tämä oli juuri oikea ratkaisu. Kaikki sujui ammattimaisesti ja palvelu oli lämmintä läpi vaikean suruajan."</p>
+        <div class="rv-meta"><div class="rv-av">AK</div><div><div class="rv-name">Anna K.</div><div class="rv-loc">Helsinki</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-txt">"Isäni toive oli jättää suuret hautajaiset väliin. Hinnoittelu on rehellistä — ei yllätyksiä laskussa."</p>
+        <div class="rv-meta"><div class="rv-av">PL</div><div><div class="rv-name">Pekka L.</div><div class="rv-loc">Tampere</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-txt">"Äidin kuoleman jälkeen kaikki tuntui niin monimutkaiselta. He tekivät kaiken helpoksi. Kiitos."</p>
+        <div class="rv-meta"><div class="rv-av">SM</div><div><div class="rv-name">Sari M.</div><div class="rv-loc">Oulu</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Ota yhteyttä.</h2>
+  <p>Puhelimitse, sähköpostilla tai lomakkeella. Autamme teitä eteenpäin.</p>
+  <div class="cta-btns">
+    <a href="#yhteystiedot" class="btn-white">Yhteydenottolomake</a>
+    <a href="tel:+358800000000" class="btn-outline-white">Soita 0800 000 000</a>
+  </div>
+  <div class="cta-tel-note" style="margin-top:16px">Asiakaspalvelu ma–pe klo 9–17 · puhelu maksuton</div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="yhteystiedot">
+  <div class="wrap">
+    <div class="sec-rule"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="sec-label">Yhteystiedot</p>
+        <h2 class="sec-h2">Ota yhteyttä</h2>
+        <p style="font-size:15px;color:var(--ink-m);line-height:1.8;margin-top:12px;font-weight:300">Soita, lähetä viesti tai täytä lomake. Yhteydenottoihin vastataan virka-aikana (ma–pe 9–17) mahdollisimman pian.</p>
+        <div class="cinfo">
+          <div class="ci"><div class="ci-label">Puhelin</div><div class="ci-val"><a href="tel:+358800000000">0800 000 000</a></div></div>
+          <div class="ci"><div class="ci-label">WhatsApp</div><div class="ci-val"><a href="https://wa.me/358800000000">Lähetä viesti</a></div></div>
+          <div class="ci"><div class="ci-label">Sähköposti</div><div class="ci-val"><a href="mailto:info@tuhkaus.fi">info@tuhkaus.fi</a></div></div>
+          <div class="ci"><div class="ci-label">Alue</div><div class="ci-val">Koko Suomi</div></div>
+          <div class="ci"><div class="ci-label">Palveluaika</div><div class="ci-val">ma–pe klo 9–17</div></div>
+        </div>
+      </div>
+      <div class="cf">
+        <div class="cf-title">Yhteydenottopyyntö</div>
+        <div class="fld-2">
+          <div class="fld"><label>Nimi</label><input type="text" placeholder="Etunimi Sukunimi"></div>
+          <div class="fld"><label>Puhelin</label><input type="tel" placeholder="+358 xx xxxxxxx"></div>
+        </div>
+        <div class="fld"><label>Sähköposti</label><input type="email" placeholder="nimi@email.fi"></div>
+        <div class="fld"><label>Paikkakunta</label><input type="text" placeholder="Mistä paikkakunnalta?"></div>
+        <div class="fld"><label>Palvelu</label>
+          <select>
+            <option>Suoratuhkaus — Perus (890 € + krematorio)</option>
+            <option>Suoratuhkaus — Täydellinen (1 290 € + krematorio)</option>
+            <option>Etäperunkirjoitus — 695 €</option>
+            <option>Muistotilaisuus (lisäpalvelu)</option>
+            <option>Hautakivi tai kunnostus (lisäpalvelu)</option>
+            <option>Ennakkosuunnittelu</option>
+            <option>Muu kysymys</option>
+          </select>
+        </div>
+        <div class="fld"><label>Viesti</label><textarea placeholder="Kertokaa lyhyesti tilanteesta tai kysymyksestä..."></textarea></div>
+        <button class="cf-submit">Lähetä yhteydenottopyyntö</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ftr">
+  <div class="ftr-in">
+    <div class="ftr-grid">
+      <div>
+        <div class="ftr-brand">Tuhkaus.fi</div>
+        <p class="ftr-tagline">Selkeä suoratuhkauspalvelu kaikkialle Suomeen. Asiakaspalvelu ma–pe 9–17.</p>
+      </div>
+      <div class="ftr-col"><h4>Palvelut</h4><a href="#hinnat">Perus-paketti</a><a href="#hinnat">Täydellinen-paketti</a><a href="#perunkirjoitus">Etäperunkirjoitus</a><a href="#hinnat">Muistotilaisuus</a><a href="#hinnat">Hautakivet</a></div>
+      <div class="ftr-col"><h4>Tietoa</h4><a href="#mita">Mikä on suoratuhkaus?</a><a href="#miten">Miten toimii?</a><a href="#ukk">Usein kysyttyä</a><a href="#">Tietosuojaseloste</a></div>
+      <div class="ftr-col"><h4>Yhteystiedot</h4><a href="tel:+358800000000">0800 000 000</a><a href="mailto:info@tuhkaus.fi">info@tuhkaus.fi</a><a>Koko Suomi</a><a>ma–pe klo 9–17</a></div>
+    </div>
+    <div class="ftr-bot"><span>© 2026 Tuhkaus.fi</span><span>Tietosuojaseloste · Evästeet</span></div>
+  </div>
+</footer>
+
+<a href="tel:+358800000000" class="sticky-tel" id="sph">
+  <svg width="13" height="13" viewBox="0 0 15 15" fill="none"><path d="M13.5 10.5v1.5a1 1 0 01-1.09.998A9.985 9.985 0 012 2.59 1 1 0 013 1.5h1.5a1 1 0 011 .877c.1.773.328 1.527.676 2.226a1 1 0 01-.225 1.12L5.2 6.57a8 8 0 004.23 4.23l.847-.75a1 1 0 011.12-.225c.7.348 1.453.576 2.226.676A1 1 0 0113.5 10.5z" stroke="white" stroke-width="1.3" fill="none"/></svg>
+  0800 000 000
+</a>
+
+<script>
+const nav=document.getElementById('nav'),ham=document.getElementById('ham'),mNav=document.getElementById('mNav');
+window.addEventListener('scroll',()=>{},{ passive:true});
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mNav.classList.toggle('open')});
+function c(){ham.classList.remove('open');mNav.classList.remove('open')}
+const sph=document.getElementById('sph');
+const heroEl=document.querySelector('.hero');
+new IntersectionObserver(e=>{sph.classList.toggle('show',!e[0].isIntersecting)},{threshold:.1}).observe(heroEl);
+
+function faq(btn){
+  const item=btn.parentElement;
+  const ans=item.querySelector('.faq-a');
+  const wasOpen=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q=>{q.classList.remove('open');q.parentElement.querySelector('.faq-a').classList.remove('open')});
+  if(!wasOpen){btn.classList.add('open');ans.classList.add('open')}
+}
+
+// === HINTAESTIMAATTI ===
+const KUNNAT={"Akaa":[61.1715,23.8599],"Alajärvi":[62.9958,23.8117],"Alavieska":[63.9971,24.3196],"Alavus":[62.589,23.6232],"Asikkala":[61.1772,25.5524],"Askola":[60.5271,25.5952],"Äänekoski":[62.5985,25.7253],"Enonkoski":[61.9917,28.7498],"Enontekiö":[68.3777,23.6231],"Espoo":[60.2052,24.6522],"Eura":[61.1335,22.1363],"Eurajoki":[61.2013,21.7263],"Evijärvi":[63.3629,23.4847],"Forssa":[60.8153,23.6207],"Haapajärvi":[63.7571,25.337],"Haapavesi":[64.1383,25.3556],"Hailuoto":[65.0333,25.1333],"Halsua":[63.4588,24.1879],"Hamina":[60.5692,27.1963],"Hankasalmi":[62.3937,26.4254],"Hanko":[59.8297,23.0004],"Harjavalta":[61.3172,22.1541],"Hartola":[61.5857,26.0158],"Hattula":[61.0565,24.3452],"Hausjärvi":[60.7787,25.0145],"Heinola":[61.2012,26.0332],"Heinävesi":[62.4357,28.6392],"Helsinki":[60.1699,24.9384],"Hirvensalmi":[61.6335,26.8059],"Hollola":[60.9906,25.5157],"Huittinen":[61.1762,22.698],"Humppila":[60.9191,23.3843],"Hyrynsalmi":[64.6763,28.5375],"Hyvinkää":[60.6317,24.8606],"Hämeenkyrö":[61.6375,23.1939],"Hämeenlinna":[60.9961,24.4645],"Ii":[65.3116,25.3788],"Iisalmi":[63.5567,27.1915],"Ikaalinen":[61.7694,23.0663],"Ilmajoki":[62.7344,22.5743],"Ilomantsi":[62.668,30.9166],"Imatra":[61.1723,28.772],"Inari":[68.9038,27.0256],"Inkoo":[60.0547,24.0028],"Isojoki":[62.1198,21.9649],"Isokyrö":[62.9961,22.3164],"Janakkala":[60.8961,24.6007],"Joensuu":[62.601,29.7636],"Jokioinen":[60.8041,23.4806],"Joroinen":[62.1768,27.8216],"Joutseno":[61.1137,28.5009],"Joutsa":[61.7481,26.1094],"Juuka":[63.2408,29.2497],"Jurva":[62.6736,21.9887],"Juva":[61.8993,27.8619],"Jyväskylä":[62.2415,25.7209],"Jämsä":[61.8638,25.1901],"Järvenpää":[60.4749,25.0898],"Kaarina":[60.4035,22.3752],"Kajaani":[64.2273,27.729],"Kalajoki":[64.2594,23.9573],"Kangasala":[61.4647,24.0727],"Kangasniemi":[61.9875,26.6479],"Kankaanpää":[61.8018,22.3966],"Kannonkoski":[63.156,25.3442],"Kannus":[63.9019,23.923],"Karijoki":[62.2238,21.8396],"Karstula":[62.8726,24.7973],"Kaskinen":[62.3802,21.2225],"Kauhajoki":[62.4321,22.1771],"Kauhava":[63.1042,23.0618],"Kaustinen":[63.5518,23.6947],"Keitele":[63.1907,26.3337],"Kemi":[65.7368,24.5642],"Kemijärvi":[66.7141,27.4289],"Keminmaa":[65.7803,24.5644],"Kemiönsaari":[60.178,22.7246],"Kempele":[64.9134,25.5217],"Kerava":[60.4032,25.1043],"Keuruu":[62.2594,24.7051],"Kihniö":[62.2049,23.1671],"Kiiminki":[65.1356,25.7488],"Kinnula":[63.3856,25.0055],"Kirkkonummi":[60.1282,24.4422],"Kitee":[62.0978,30.1447],"Kittilä":[67.6596,24.904],"Kiuruvesi":[63.6525,26.6186],"Kokemäki":[61.2586,22.3517],"Kokkola":[63.8373,23.1333],"Kolari":[67.3368,23.7938],"Kontiolahti":[62.7494,29.8454],"Korsnäs":[62.8793,21.2124],"Kotka":[60.4669,26.9458],"Kouvola":[60.8679,26.7042],"Kristiinankaupunki":[62.2752,21.3716],"Kruunupyy":[63.7228,23.0126],"Kuhmo":[64.1282,29.5212],"Kuhmoinen":[61.5639,25.1814],"Kuopio":[62.8924,27.677],"Kuortane":[62.8048,23.5074],"Kurikka":[62.6088,22.4185],"Kuusamo":[65.9651,29.186],"Kyyjärvi":[62.9956,24.5735],"Kärkölä":[60.8828,25.3111],"Kärsämäki":[63.9842,25.7591],"Lahti":[60.9827,25.6617],"Laihia":[62.978,22.0043],"Laitila":[60.8774,21.6942],"Lapinjärvi":[60.6123,26.1519],"Lapinlahti":[63.3644,27.3978],"Lappeenranta":[61.0587,28.1887],"Lapua":[62.9714,23.006],"Laukaa":[62.4162,25.9449],"Lemi":[61.0533,28.3169],"Lempäälä":[61.3161,23.751],"Leppävirta":[62.4917,27.7725],"Lestijärvi":[63.5367,24.6507],"Lieto":[60.4993,22.4568],"Liperi":[62.533,29.383],"Lohja":[60.25,24.0664],"Loimaa":[60.8534,23.0564],"Loppi":[60.7248,24.4428],"Loviisa":[60.4573,26.2247],"Lumijoki":[64.8854,25.154],"Luoto":[63.7978,22.9027],"Luumäki":[60.9156,27.5824],"Maalahti":[62.945,21.5573],"Maaninka":[63.1667,27.3003],"Marttila":[60.6259,22.9072],"Masku":[60.5705,22.1053],"Merijärvi":[64.1178,24.1665],"Merikarvia":[61.8524,21.5012],"Miehikkälä":[60.6734,27.4613],"Mikkeli":[61.688,27.2727],"Muhos":[64.8082,25.9906],"Multia":[62.4285,24.7786],"Muonio":[67.957,23.6774],"Mustasaari":[63.1155,21.7826],"Mynämäki":[60.6835,21.9896],"Myrskylä":[60.674,25.8559],"Mäntsälä":[60.6355,25.3191],"Mäntyharju":[61.4134,26.8817],"Mänttä-Vilppula":[62.0271,24.6258],"Naantali":[60.4676,22.0247],"Nakkila":[61.3633,21.9],"Nilsiä":[63.1897,28.0702],"Nivala":[63.9285,24.9745],"Nokia":[61.4783,23.5091],"Nousiainen":[60.6367,22.1383],"Nurmes":[63.5441,29.1279],"Nurmijärvi":[60.4676,24.8046],"Orimattila":[60.8049,25.7314],"Orivesi":[61.6759,24.366],"Oulainen":[64.2669,24.8196],"Oulu":[65.0121,25.4651],"Padasjoki":[61.3478,25.1128],"Paimio":[60.4574,22.6831],"Paltamo":[64.3928,27.8301],"Parainen":[60.3006,22.3006],"Parkano":[62.0135,23.0188],"Pedersören kunta":[63.6455,22.9063],"Pelkosenniemi":[67.1091,27.5098],"Pello":[66.7765,23.9649],"Perho":[63.3125,24.5213],"Pertunmaa":[61.505,26.4803],"Petäjävesi":[62.2579,25.1934],"Pieksämäki":[62.3018,27.1399],"Pielavesi":[63.2373,26.765],"Pietarsaari":[63.6731,22.6915],"Pihtipudas":[63.3744,25.5696],"Pirkkala":[61.4635,23.6445],"Polvijärvi":[62.8544,29.3879],"Pomarkku":[61.6928,22.0238],"Pornainen":[60.4821,25.368],"Porvoo":[60.3929,25.6647],"Posio":[66.1109,28.1593],"Pudasjärvi":[65.3622,26.9153],"Pukkila":[60.6393,25.5673],"Punkalaidun":[61.1138,23.1009],"Puolanka":[64.8663,27.6722],"Puumala":[61.5267,28.1829],"Pyhäjärvi":[63.6682,25.9049],"Pyhäjoki":[64.4634,24.239],"Pyhäranta":[60.9544,21.4607],"Pälkäne":[61.3421,24.28],"Pöytyä":[60.727,22.6921],"Raahe":[64.684,24.4805],"Raisio":[60.4864,22.1714],"Ranua":[65.9271,26.5296],"Rauma":[61.1285,21.5107],"Rautalampi":[62.6289,26.8359],"Rautavaara":[63.8617,28.3088],"Rautjärvi":[61.4035,29.3455],"Reisjärvi":[63.8224,25.2889],"Riihimäki":[60.7392,24.7759],"Ristijärvi":[64.5076,28.2211],"Rovaniemi":[66.5039,25.7294],"Ruokolahti":[61.2883,28.8262],"Ruovesi":[61.9836,24.071],"Saarijärvi":[62.7059,25.2553],"Saari":[61.6782,29.8127],"Salla":[67.0993,28.6736],"Salo":[60.3839,23.1247],"Sastamala":[61.3441,22.9028],"Savitaipale":[61.1971,27.7069],"Savonlinna":[61.8693,28.8812],"Savukoski":[67.2953,29.0987],"Seinäjoki":[62.7906,22.8403],"Sievi":[63.9085,24.5146],"Siikajoki":[64.8348,25.084],"Siikalatva":[64.2823,26.173],"Siilinjärvi":[63.0767,27.6587],"Simo":[65.658,25.0638],"Sipoo":[60.3756,25.2711],"Siuntio":[60.1475,24.2148],"Sodankylä":[67.4181,26.5892],"Soini":[62.8641,24.222],"Somero":[60.6334,23.5168],"Sonkajärvi":[63.6784,27.5238],"Sotkamo":[64.1329,28.4022],"Sulkava":[61.7828,28.3727],"Suomussalmi":[64.8792,28.9026],"Suonenjoki":[62.6238,27.1178],"Sysmä":[61.5028,25.6888],"Taipalsaari":[61.1768,28.0863],"Taivalkoski":[65.5693,28.2393],"Taivassalo":[60.5621,21.5688],"Tammela":[60.8122,23.8079],"Tampere":[61.4978,23.761],"Tervo":[62.9488,26.7561],"Tervola":[66.0837,24.8054],"Teuva":[62.4841,21.7447],"Tohmajärvi":[62.2259,30.3476],"Toholampi":[63.7795,24.2436],"Toivakka":[62.0878,26.0912],"Tornio":[65.8501,24.1441],"Turku":[60.4518,22.2666],"Tuusula":[60.4034,25.0219],"Tuusniemi":[62.808,28.482],"Tyrnävä":[64.8073,25.6532],"Ulvila":[61.4271,21.8777],"Urjala":[61.082,23.5345],"Utajärvi":[64.7537,26.4189],"Utsjoki":[69.9078,27.0219],"Uurainen":[62.5231,25.4094],"Uusikaupunki":[60.7978,21.4082],"Uusikaarlepyy":[63.5229,22.5315],"Vaala":[64.5476,26.7753],"Vaasa":[63.096,21.6158],"Valkeakoski":[61.263,24.033],"Vantaa":[60.2934,25.0378],"Varkaus":[62.3155,27.8718],"Vesilahti":[61.3452,23.619],"Veteli":[63.4741,23.6908],"Vieremä":[63.7599,26.9944],"Vihti":[60.4218,24.3953],"Vimpeli":[63.1508,23.8277],"Virolahti":[60.5362,27.6861],"Virrat":[62.2388,23.7731],"Ylivieska":[64.0745,24.5565],"Ylitornio":[66.3176,23.6679],"Ylöjärvi":[61.5563,23.5941],"Ypäjä":[60.7854,23.3199],"Ähtäri":[62.5564,24.0723]};
+const KREMATORIOT=[{n:"Helsinki",lat:60.1726,lng:24.9113},{n:"Vantaa",lat:60.3218,lng:25.0611},{n:"Tampere",lat:61.5016,lng:23.758},{n:"Turku",lat:60.4518,lng:22.2666},{n:"Oulu",lat:65.0121,lng:25.4651},{n:"Jyväskylä",lat:62.2328,lng:25.7292},{n:"Kuopio",lat:62.8924,lng:27.677},{n:"Lahti",lat:60.9827,lng:25.6617},{n:"Joensuu",lat:62.601,lng:29.7636},{n:"Rovaniemi",lat:66.5039,lng:25.7294},{n:"Hämeenlinna",lat:60.9961,lng:24.4645},{n:"Kouvola",lat:60.8679,lng:26.7042},{n:"Seinäjoki",lat:62.7906,lng:22.8403},{n:"Vaasa",lat:63.096,lng:21.6158},{n:"Mikkeli",lat:61.688,lng:27.2727},{n:"Pori",lat:61.4851,lng:21.7975},{n:"Lappeenranta",lat:61.0587,lng:28.1887},{n:"Kajaani",lat:64.2273,lng:27.729},{n:"Savonlinna",lat:61.8693,lng:28.8812},{n:"Kemi",lat:65.7368,lng:24.5642},{n:"Kotka",lat:60.4669,lng:26.9458},{n:"Hyvinkää",lat:60.6317,lng:24.8606},{n:"Rauma",lat:61.1285,lng:21.5107},{n:"Kokkola",lat:63.8373,lng:23.1333},{n:"Iisalmi",lat:63.5567,lng:27.1915},{n:"Pietarsaari",lat:63.6731,lng:22.6915},{n:"Riihimäki",lat:60.7392,lng:24.7759}];
+function hvsin(a,b,c,d){const R=6371,dL=(c-a)*Math.PI/180,dl=(d-b)*Math.PI/180,x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dl/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
+document.addEventListener('DOMContentLoaded',()=>{const dl=document.getElementById('kuntaList');if(dl)Object.keys(KUNNAT).sort().forEach(k=>{const o=document.createElement('option');o.value=k;dl.appendChild(o)})});
+function calcReset(){document.getElementById('calcResult').style.display='none';document.getElementById('calcNotfound').style.display='none'}
+function laske(){
+  const kunta=document.getElementById('calcKunta').value.trim();
+  const palvelu=parseInt(document.getElementById('calcPkg').value);
+  const coords=KUNNAT[kunta];
+  if(!coords){document.getElementById('calcNotfound').style.display='block';document.getElementById('calcResult').style.display='none';return}
+  let minD=Infinity,nearest=null;
+  for(const k of KREMATORIOT){const d=hvsin(coords[0],coords[1],k.lat,k.lng);if(d<minD){minD=d;nearest=k}}
+  const roadKm=Math.round(minD*1.28);
+  let lisä=0;
+  if(roadKm>200)lisä=500;else if(roadKm>120)lisä=300;else if(roadKm>60)lisä=150;
+  document.getElementById('crKrema').textContent=nearest.n;
+  document.getElementById('crDist').textContent='~'+roadKm+' km';
+  document.getElementById('crPalvelu').textContent=palvelu.toLocaleString('fi-FI')+' €';
+  const surNote=document.getElementById('crSurchargeNote');
+  const surRow=document.getElementById('crSurchargeRow');
+  if(lisä>0){surNote.textContent='Matka lähimmälle krematoriolle on yli 60 km — kuljetuslisä '+lisä+' €.';surNote.style.display='block';document.getElementById('crSurchargeVal').textContent='+'+lisä+' €';surRow.style.display='flex'}else{surNote.style.display='none';surRow.style.display='none'}
+  document.getElementById('crTotal').textContent=(palvelu+300+lisä).toLocaleString('fi-FI')+'–'+(palvelu+600+lisä).toLocaleString('fi-FI')+' €';
+  document.getElementById('calcResult').style.display='block';
+  document.getElementById('calcNotfound').style.display='none';
+}
+</script>
+</body>
+</html>
