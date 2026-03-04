@@ -8,88 +8,88 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Georgia,'Times New Roman',serif;color:#2c2117;background:#f7f3ee;line-height:1.7}
+body{font-family:Georgia,'Times New Roman',serif;color:#1a2f10;background:#f4f9f0;line-height:1.7}
 p,li{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:#2c2117;padding:0 6%}
+nav{position:sticky;top:0;z-index:100;background:#1a2f10;padding:0 6%}
 .nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-size:1.1rem;font-weight:400;color:#f7f3ee;text-decoration:none;letter-spacing:.04em}
-.logo strong{font-weight:700;color:#d4892a}
+.logo{font-size:1.1rem;font-weight:400;color:#f4f9f0;text-decoration:none;letter-spacing:.04em}
+.logo strong{font-weight:700;color:#3a5c1a}
 .nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{color:#b8a890;text-decoration:none;font-size:.82rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
-.nav-links a:hover{color:#f7f3ee}
-.nav-cta{background:#d4892a!important;color:#fff!important;padding:8px 18px;border-radius:2px;transition:background .2s!important}
-.nav-cta:hover{background:#b87220!important;color:#fff!important}
+.nav-links a{color:#a8b898;text-decoration:none;font-size:.82rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.nav-links a:hover{color:#f4f9f0}
+.nav-cta{background:#3a5c1a!important;color:#fff!important;padding:8px 18px;border-radius:2px;transition:background .2s!important}
+.nav-cta:hover{background:#2e4a12!important;color:#fff!important}
 
 /* HERO */
-.hero{padding:80px 6% 90px;background:#2c2117;position:relative;overflow:hidden}
+.hero{padding:80px 6% 90px;background:#1a2f10;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(212,137,42,.03) 0,rgba(212,137,42,.03) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(212,137,42,.03) 0,rgba(212,137,42,.03) 1px,transparent 1px,transparent 60px)}
 .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1}
-.hero-tag{display:inline-block;border:1px solid rgba(212,137,42,.5);color:#d4892a;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:1px;margin-bottom:2rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:600}
-.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;color:#f7f3ee;margin-bottom:1.75rem;max-width:700px}
-.hero h1 em{font-style:italic;color:#d4892a}
-.hero-sub{font-size:1rem;color:#8a7a68;max-width:520px;margin-bottom:2.5rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+.hero-tag{display:inline-block;border:1px solid rgba(212,137,42,.5);color:#3a5c1a;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:1px;margin-bottom:2rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:600}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;color:#f4f9f0;margin-bottom:1.75rem;max-width:700px}
+.hero h1 em{font-style:italic;color:#3a5c1a}
+.hero-sub{font-size:1rem;color:#788a68;max-width:520px;margin-bottom:2.5rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
 .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.btn-gold{display:inline-block;background:#d4892a;color:#fff;padding:14px 28px;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:700;font-size:.875rem;letter-spacing:.03em;transition:background .2s;border-radius:2px}
-.btn-gold:hover{background:#b87220}
-.hero-note{font-size:.8rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;align-self:center}
+.btn-gold{display:inline-block;background:#3a5c1a;color:#fff;padding:14px 28px;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:700;font-size:.875rem;letter-spacing:.03em;transition:background .2s;border-radius:2px}
+.btn-gold:hover{background:#2e4a12}
+.hero-note{font-size:.8rem;color:#5a6850;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;align-self:center}
 .hero-stats{display:flex;gap:48px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
-.stat-val{display:block;font-size:2rem;font-weight:400;color:#d4892a;letter-spacing:-.02em;line-height:1}
-.stat-label{display:block;font-size:.75rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-top:.4rem}
+.stat-val{display:block;font-size:2rem;font-weight:400;color:#3a5c1a;letter-spacing:-.02em;line-height:1}
+.stat-label{display:block;font-size:.75rem;color:#5a6850;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-top:.4rem}
 
 /* TRUST */
-.trust{background:#f0e8dc;border-bottom:1px solid #e0d5c5;padding:40px 6%}
+.trust{background:#e8f2de;border-bottom:1px solid #cddfc0;padding:40px 6%}
 .trust-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
 .trust-item{display:flex;gap:16px;align-items:flex-start}
-.trust-icon{width:42px;height:42px;background:#2c2117;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.trust-icon svg{width:20px;height:20px;stroke:#d4892a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.trust-item h4{font-size:.875rem;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#2c2117;margin-bottom:.25rem}
-.trust-item p{font-size:.8rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
+.trust-icon{width:42px;height:42px;background:#1a2f10;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-icon svg{width:20px;height:20px;stroke:#3a5c1a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.trust-item h4{font-size:.875rem;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a2f10;margin-bottom:.25rem}
+.trust-item p{font-size:.8rem;color:#627058;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
 
 /* SECTION COMMON */
 .section{padding:80px 6%}
 .section-inner{max-width:1120px;margin:0 auto}
 .section-head{margin-bottom:3.5rem}
-.overline{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#d4892a;margin-bottom:.75rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.section-h{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;letter-spacing:-.02em;line-height:1.2;color:#2c2117;margin-bottom:1rem}
-.section-sub{font-size:.9rem;color:#7a6a58;max-width:540px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.overline{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#3a5c1a;margin-bottom:.75rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.section-h{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;letter-spacing:-.02em;line-height:1.2;color:#1a2f10;margin-bottom:1rem}
+.section-sub{font-size:.9rem;color:#627058;max-width:540px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 
 /* PALVELUT */
-.palvelut-bg{background:#f7f3ee}
-.palvelu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#e0d5c5}
-.palvelu-card{background:#f7f3ee;padding:36px 32px}
-.palvelu-card h3{font-size:1.05rem;font-weight:400;color:#2c2117;margin-bottom:.6rem}
-.palvelu-card p{font-size:.85rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
-.palvelu-card::before{content:attr(data-num);display:block;font-size:2rem;color:#d4892a;margin-bottom:.75rem;opacity:.6}
+.palvelut-bg{background:#f4f9f0}
+.palvelu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#cddfc0}
+.palvelu-card{background:#f4f9f0;padding:36px 32px}
+.palvelu-card h3{font-size:1.05rem;font-weight:400;color:#1a2f10;margin-bottom:.6rem}
+.palvelu-card p{font-size:.85rem;color:#627058;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+.palvelu-card::before{content:attr(data-num);display:block;font-size:2rem;color:#3a5c1a;margin-bottom:.75rem;opacity:.6}
 
 /* PROSESSI */
-.prosessi-bg{background:#f0e8dc}
+.prosessi-bg{background:#e8f2de}
 .timeline{position:relative;padding-left:40px}
-.timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:1px;background:#d4892a;opacity:.3}
+.timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:1px;background:#3a5c1a;opacity:.3}
 .t-step{position:relative;padding:0 0 36px 32px}
 .t-step:last-child{padding-bottom:0}
-.t-dot{position:absolute;left:-28px;top:4px;width:10px;height:10px;border-radius:50%;background:#d4892a;border:2px solid #f0e8dc;box-shadow:0 0 0 1px #d4892a}
-.t-num{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#d4892a;text-transform:uppercase;margin-bottom:.35rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.t-step h3{font-size:1rem;font-weight:400;color:#2c2117;margin-bottom:.4rem}
-.t-step p{font-size:.85rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.55;max-width:500px}
+.t-dot{position:absolute;left:-28px;top:4px;width:10px;height:10px;border-radius:50%;background:#3a5c1a;border:2px solid #e8f2de;box-shadow:0 0 0 1px #3a5c1a}
+.t-num{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#3a5c1a;text-transform:uppercase;margin-bottom:.35rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.t-step h3{font-size:1rem;font-weight:400;color:#1a2f10;margin-bottom:.4rem}
+.t-step p{font-size:.85rem;color:#627058;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.55;max-width:500px}
 
 /* QUOTE */
-.quote-section{background:#2c2117;padding:70px 6%;text-align:center}
-blockquote{max-width:720px;margin:0 auto;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:#f7f3ee;line-height:1.4;font-style:italic}
-blockquote strong{font-style:normal;color:#d4892a;font-weight:400}
+.quote-section{background:#1a2f10;padding:70px 6%;text-align:center}
+blockquote{max-width:720px;margin:0 auto;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:#f4f9f0;line-height:1.4;font-style:italic}
+blockquote strong{font-style:normal;color:#3a5c1a;font-weight:400}
 
 /* CTA */
-.cta-bg{background:#f7f3ee;border-top:4px solid #d4892a}
+.cta-bg{background:#f4f9f0;border-top:4px solid #3a5c1a}
 .cta-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
-.cta-inner h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-.02em;margin-bottom:.75rem;color:#2c2117}
-.cta-inner p{font-size:.9rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:480px}
+.cta-inner h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-.02em;margin-bottom:.75rem;color:#1a2f10}
+.cta-inner p{font-size:.9rem;color:#627058;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:480px}
 
 /* FOOTER */
-footer{background:#2c2117;padding:36px 6%}
+footer{background:#1a2f10;padding:36px 6%}
 .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-footer p{font-size:.8rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-footer a{color:#8a7a68;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.8rem}
+footer p{font-size:.8rem;color:#5a6850;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+footer a{color:#788a68;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.8rem}
 
 @media(max-width:768px){
   .trust-inner{grid-template-columns:1fr}
@@ -106,7 +106,7 @@ footer a{color:#8a7a68;text-decoration:none;font-family:-apple-system,BlinkMacSy
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">Luotto<strong>terassit</strong></a>
+    <a href="#" class="logo"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" style="margin-right:8px;vertical-align:middle"><rect x="4" y="13" width="20" height="12" rx="1" fill="#3a5c1a"/><polygon points="2,14 14,4 26,14" fill="#3a5c1a"/><polyline points="10,19 13,22 19,15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Luotto<strong>terassit</strong></a>
     <div class="nav-links">
       <a href="#palvelut">Palvelut</a>
       <a href="#prosessi">Prosessi</a>
@@ -270,7 +270,7 @@ footer a{color:#8a7a68;text-decoration:none;font-family:-apple-system,BlinkMacSy
 
 <footer>
   <div class="footer-inner">
-    <p>Luottoterassit &mdash; Terassirakentamisen asiantuntija, Uusimaa</p>
+    <p>Luottoterassit &mdash; Osa Luottokoti Kiinteistöhuolto Oy:tä</p>
     <a href="https://luottoterassit.fi">luottoterassit.fi</a>
   </div>
 </footer>
