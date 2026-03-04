@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luottomaalaus – Ammattimainen maalaus Uudellamaalla</title>
+<meta name="description" content="Julkisivut, katot ja terassit Uudellamaalla. Timpurin tarkkuus, kiinteä urakkahinta. Luottokoti Kiinteistöhuolto Oy.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#fff;line-height:1.6}
+
+nav{position:sticky;top:0;z-index:100;background:#0f1a08;padding:0 5%}
+.nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-family:Georgia,serif;font-size:1.05rem;color:#f4f9f0;font-weight:400}
+.logo-text strong{font-weight:700}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{color:#a8bca0;text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 10px;border-radius:3px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#f4f9f0}
+.nav-cta{background:#3a5c1a!important;color:#f4f9f0!important;padding:8px 16px!important;border-radius:3px!important;transition:background .2s!important}
+.nav-cta:hover{background:#2e4a12!important}
+
+/* HERO */
+.hero{padding:90px 5% 80px;background:#0f1a08;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(58,92,26,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(58,92,26,.08) 1px,transparent 1px);background-size:48px 48px}
+.hero-in{max-width:1120px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-tag{display:inline-block;border:1px solid rgba(58,92,26,.6);color:#8ab878;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:1.75rem}
+.hero h1{font-family:Georgia,serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;color:#f4f9f0;line-height:1.1;margin-bottom:1.4rem}
+.hero h1 em{font-style:italic;color:#8ab878}
+.hero-sub{font-size:1rem;color:#7a8e70;max-width:480px;margin-bottom:2.25rem;line-height:1.7}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;background:#3a5c1a;color:#fff;padding:14px 28px;border-radius:3px;text-decoration:none;font-weight:700;font-size:.9rem;transition:background .2s}
+.btn:hover{background:#2e4a12}
+.btn-ghost{display:inline-block;color:#8ab878;border:2px solid rgba(138,184,120,.4);padding:12px 26px;border-radius:3px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .2s}
+.btn-ghost:hover{border-color:#8ab878;color:#f4f9f0}
+
+/* Hero right badges */
+.hero-badges{display:flex;flex-direction:column;gap:14px}
+.badge{background:rgba(58,92,26,.12);border:1px solid rgba(58,92,26,.25);border-radius:6px;padding:18px 20px;display:flex;gap:12px;align-items:flex-start}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:#8ab878;flex-shrink:0;margin-top:5px}
+.badge h4{font-size:.875rem;font-weight:700;color:#f4f9f0;margin-bottom:.2rem}
+.badge p{font-size:.8rem;color:#7a8e70;line-height:1.45}
+
+/* PALVELUT */
+.palvelut{padding:80px 5%;background:#f4f9f0}
+.sec-in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3a5c1a;margin-bottom:.75rem}
+.sec-h{font-family:Georgia,serif;font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:400;letter-spacing:-.01em;line-height:1.2;margin-bottom:.75rem;color:#1a1a1a}
+.sec-sub{font-size:.95rem;color:#5a6850;max-width:560px;margin-bottom:3rem}
+.palvelu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.palvelu-card{background:#fff;border:1px solid #cddfc0;border-radius:8px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.palvelu-card:hover{border-color:#3a5c1a;box-shadow:0 6px 24px rgba(58,92,26,.1)}
+.pc-accent{height:4px;background:#3a5c1a}
+.pc-body{padding:28px}
+.pc-num{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3a5c1a;margin-bottom:1rem}
+.pc-body h3{font-family:Georgia,serif;font-size:1.2rem;font-weight:400;margin-bottom:.75rem;color:#1a1a1a}
+.pc-body p{font-size:.875rem;color:#5a6850;line-height:1.65;margin-bottom:1.25rem}
+.pc-list{list-style:none}
+.pc-list li{font-size:.82rem;color:#3a5c1a;padding:4px 0;display:flex;align-items:center;gap:8px;font-weight:600}
+.pc-list li::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:#3a5c1a;flex-shrink:0}
+
+/* USP */
+.usp{padding:72px 5%;background:#fff;border-top:1px solid #e8f2de;border-bottom:1px solid #e8f2de}
+.usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:3rem}
+.usp-card{padding:32px;border:1px solid #cddfc0;border-radius:6px;background:#f4f9f0}
+.usp-num{font-family:Georgia,serif;font-size:2rem;color:#3a5c1a;opacity:.5;margin-bottom:.75rem}
+.usp-card h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.usp-card p{font-size:.875rem;color:#5a6850;line-height:1.6}
+
+/* PROSESSI */
+.prosessi{padding:80px 5%;background:#f4f9f0}
+.prosessi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3rem;border:1px solid #cddfc0;border-radius:8px;overflow:hidden}
+.p-step{padding:28px;border-right:1px solid #cddfc0;background:#fff;position:relative}
+.p-step:nth-child(3n){border-right:none}
+.p-step:nth-child(4),.p-step:nth-child(5),.p-step:nth-child(6){border-top:1px solid #cddfc0}
+.p-step-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:#3a5c1a;text-transform:uppercase;margin-bottom:.6rem}
+.p-step h3{font-size:.9rem;font-weight:700;margin-bottom:.4rem;color:#1a1a1a}
+.p-step p{font-size:.82rem;color:#5a6850;line-height:1.5}
+
+/* TARINA */
+.story{padding:72px 5%;background:#0f1a08}
+.story-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.story-text h2{font-family:Georgia,serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;color:#f4f9f0;margin-bottom:1.25rem;line-height:1.25}
+.story-text p{font-size:.9rem;color:#7a8e70;line-height:1.75;margin-bottom:1rem}
+.story-badge{background:rgba(58,92,26,.2);border:1px solid rgba(58,92,26,.4);border-radius:6px;padding:24px;display:flex;align-items:center;gap:14px}
+.story-badge svg{flex-shrink:0}
+.story-badge p{font-size:.875rem;color:#a8bca0;line-height:1.55}
+.story-badge strong{color:#8ab878;display:block;margin-bottom:.25rem}
+
+/* CTA */
+.cta-sec{padding:80px 5%;background:#3a5c1a}
+.cta-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.cta-text h2{font-family:Georgia,serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:400;color:#fff;margin-bottom:.75rem}
+.cta-text p{color:rgba(255,255,255,.7);font-size:.95rem;max-width:480px}
+.btn-white{display:inline-block;background:#fff;color:#1a1a1a;padding:14px 28px;border-radius:3px;text-decoration:none;font-weight:700;font-size:.9rem;white-space:nowrap;transition:background .2s}
+.btn-white:hover{background:#f4f9f0}
+
+/* FOOTER */
+footer{background:#080f05;padding:36px 5%;font-size:.82rem}
+.ft-in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer p{color:#4a5e44}
+.ft-links{display:flex;gap:20px}
+.ft-links a{color:#5a7050;text-decoration:none;transition:color .15s}
+.ft-links a:hover{color:#8ab878}
+
+@media(max-width:768px){
+  .hero-in,.palvelu-grid,.usp-grid,.story-in,.cta-in{grid-template-columns:1fr}
+  .prosessi-grid{grid-template-columns:1fr}
+  .p-step{border-right:none;border-bottom:1px solid #cddfc0}
+  .p-step:last-child{border-bottom:none}
+  .cta-in{text-align:center}
+  .ft-in{flex-direction:column;text-align:center}
+  .nav-links a:not(.nav-cta){display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="." class="logo">
+      <svg width="30" height="30" viewBox="0 0 28 28" fill="none"><rect x="4" y="13" width="20" height="12" rx="1" fill="#3a5c1a"/><polygon points="2,14 14,4 26,14" fill="#3a5c1a"/><polyline points="10,19 13,22 19,15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text"><strong>Luottomaalaus</strong></span>
+    </a>
+    <div class="nav-links">
+      <a href="../luottokoti/">Luottokoti</a>
+      <a href="." class="active">Luottomaalaus</a>
+      <a href="../luottoterassit/">Luottoterassit</a>
+      <a href="#yhteystiedot" class="nav-cta">Pyydä tarjous</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="hero-tag">Maalauspalvelut — Uusimaa</div>
+      <h1>Ammattimainen maalaus —<br>tulos, johon <em>voi luottaa</em></h1>
+      <p class="hero-sub">Julkisivut, katot ja terassit Uudellamaalla. Oikeat materiaalit, timpurin tarkkuus, kiinteä urakkahinta — ei yllätyksiä.</p>
+      <div class="btns">
+        <a href="#yhteystiedot" class="btn">Pyydä maksuton tarjous</a>
+        <a href="#palvelut" class="btn-ghost">Palvelumme</a>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <div>
+          <h4>Kiinteä urakkahinta</h4>
+          <p>Sovittu hinta pitää. Ei ikäviä yllätyksiä laskussa projektin jälkeen.</p>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <div>
+          <h4>Oikeat materiaalit</h4>
+          <p>Tunnemme materiaalit ja osaamme valita oikean tuotteen jokaiselle pinnalle.</p>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <div>
+          <h4>Siisti lopputulos</h4>
+          <p>Jäljemme näkyy positiivisesti — suojaamme pinnat, siivoamme jäljet, hoidamme projektin alusta loppuun.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="palvelut" id="palvelut">
+  <div class="sec-in">
+    <div class="eyebrow">Palvelut</div>
+    <h2 class="sec-h">Maalaamme kaiken —<br>alustasta harjaan</h2>
+    <p class="sec-sub">Erikoistumme asuinkiinteistöjen ulkopintoihin Uudellamaalla. Jokaiselle pinnalle oikea tuote ja oikea tekijä.</p>
+    <div class="palvelu-grid">
+
+      <div class="palvelu-card">
+        <div class="pc-accent"></div>
+        <div class="pc-body">
+          <div class="pc-num">01</div>
+          <h3>Julkisivumaalaus</h3>
+          <p>Talon ulkopintojen maalaus ja pintakäsittely. Pidennetään rakenteiden käyttöikää ja parannetaan kotisi ulkonäköä merkittävästi.</p>
+          <ul class="pc-list">
+            <li>Puupinnat ja lautaverhous</li>
+            <li>Rappaus- ja eristysmaalit</li>
+            <li>Ikkunat ja ovet</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="palvelu-card">
+        <div class="pc-accent"></div>
+        <div class="pc-body">
+          <div class="pc-num">02</div>
+          <h3>Kattomaalaus</h3>
+          <p>Pelti-, tiili- ja huopakattojen maalaus ja pinnoitus. Hyvin hoidettu katto kestää vuosikymmeniä — huonosti hoidettu vuotaa.</p>
+          <ul class="pc-list">
+            <li>Peltikaton maalaus ja pinnoitus</li>
+            <li>Betonikattotiilien käsittely</li>
+            <li>Huopakaton pinnoitus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="palvelu-card">
+        <div class="pc-accent"></div>
+        <div class="pc-body">
+          <div class="pc-num">03</div>
+          <h3>Terassin pintakäsittely</h3>
+          <p>Terassiöljyt, kuultomaalit ja peittomaalit. Ennen ja jälkeen -ero on huomattava — harmaantunut puu muuttuu uuden näköiseksi.</p>
+          <ul class="pc-list">
+            <li>Öljykäsittely (kuulto/peitto)</li>
+            <li>Peittomaalaus</li>
+            <li>Vanhan pinnan puhdistus ja kunnostus</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="usp">
+  <div class="sec-in">
+    <div class="eyebrow">Miksi Luottomaalaus</div>
+    <h2 class="sec-h">Laadulla on merkitys</h2>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-num">01</div>
+        <h3>Kiinteä urakkahinta</h3>
+        <p>Hinta sovitaan ennen töiden aloittamista. Se ei muutu projektin aikana, ellei sopimus muutu.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-num">02</div>
+        <h3>Materiaalituntemus</h3>
+        <p>Tiedämme mikä tuote sopii mihinkin pintaan. Oikea maali oikeaan paikkaan tarkoittaa pitkäkestoisempaa tulosta.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-num">03</div>
+        <h3>Ammattimainen asenne</h3>
+        <p>Kunnioitamme kotia, aikatauluja ja sopimuksia. Jäljemme siivotaan, ja työ tehdään kerralla oikein.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prosessi" id="prosessi">
+  <div class="sec-in">
+    <div class="eyebrow">Prosessi</div>
+    <h2 class="sec-h">Näin maalaushanke etenee</h2>
+    <div class="prosessi-grid">
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 1</div>
+        <h3>Yhteydenotto</h3>
+        <p>Kerro tarpeistasi. Sovitaan käynti kohteeseen — maksuton.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 2</div>
+        <h3>Kartoituskäynti</h3>
+        <p>Arvioimme pinnat, materiaalit ja työmäärän. Otamme mitat ja valokuvat.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 3</div>
+        <h3>Tarjous</h3>
+        <p>Annamme kiinteän urakkatarifin. Hinta sisältää materiaalit ja työn.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 4</div>
+        <h3>Aloituspalaveri</h3>
+        <p>Käydään projekti läpi. Sovitaan aikataulu ja materiaalivalinnat lopullisesti.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 5</div>
+        <h3>Maalaustyö</h3>
+        <p>Toteutamme työn suunnitelmien mukaan. Suojaamme ympäristön, pidämme paikan siistinä.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">Vaihe 6</div>
+        <h3>Loppukatselmus</h3>
+        <p>Käydään lopputulos läpi yhdessä. Varmistamme, että olet tyytyväinen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="story-in">
+    <div class="story-text">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8ab878;margin-bottom:.75rem">Taustamme</div>
+      <h2>Duomaalauksen osaaminen — Luottomaalauksen nimellä</h2>
+      <p>Luottomaalaus syntyi, kun Duomaalaus Oy liittyi osaksi Luottokoti Kiinteistöhuolto Oy:tä loppuvuodesta 2025. Uuden nimen alla jatkuu sama ammattimainen maalaustyö, nyt entistä laajemmilla resursseilla.</p>
+      <p>Olemme osa Luottokoti-perhettä yhdessä Luottoterassien kanssa. Sama asenne, sama lupaus, sama tulos.</p>
+    </div>
+    <div>
+      <div class="story-badge">
+        <svg width="36" height="36" viewBox="0 0 28 28" fill="none"><rect x="4" y="13" width="20" height="12" rx="1" fill="#3a5c1a"/><polygon points="2,14 14,4 26,14" fill="#3a5c1a"/><polyline points="10,19 13,22 19,15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><strong>Osa Luottokoti Kiinteistöhuolto Oy:tä</strong>Duomaalaus Oy liittyi Luottokotiin loppuvuodesta 2025. Osaaminen jatkuu uudella nimellä, samoilla arvoilla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec" id="yhteystiedot">
+  <div class="cta-in">
+    <div class="cta-text">
+      <h2>Mielessä maalaushanke?</h2>
+      <p>Ota yhteyttä ja kerro suunnitelmistasi. Kartoituskäynti ja tarjous ovat täysin maksuttomia.</p>
+    </div>
+    <a href="tel:+358" class="btn-white">Soita tai pyydä tarjous</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <div>
+      <p style="color:#6a8060;margin-bottom:4px;font-family:Georgia,serif">Luottomaalaus</p>
+      <p>Osa Luottokoti Kiinteistöhuolto Oy:tä &nbsp;|&nbsp; Uusimaa &nbsp;|&nbsp; &copy; 2025</p>
+    </div>
+    <div class="ft-links">
+      <a href="../luottokoti/">luottokoti.fi</a>
+      <a href="../luottoterassit/">luottoterassit.fi</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
