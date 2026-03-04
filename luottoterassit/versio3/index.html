@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luottoterassit – Terassirakentamisen asiantuntija</title>
+<meta name="description" content="Rakennamme, laajennamme ja remontoimme terassit Uudenmaan alueella. Kiinteä urakkahinta, timpurin ammattitaito.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;color:#2c2117;background:#f7f3ee;line-height:1.7}
+p,li{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#2c2117;padding:0 6%}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-size:1.1rem;font-weight:400;color:#f7f3ee;text-decoration:none;letter-spacing:.04em}
+.logo strong{font-weight:700;color:#d4892a}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{color:#b8a890;text-decoration:none;font-size:.82rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.nav-links a:hover{color:#f7f3ee}
+.nav-cta{background:#d4892a!important;color:#fff!important;padding:8px 18px;border-radius:2px;transition:background .2s!important}
+.nav-cta:hover{background:#b87220!important;color:#fff!important}
+
+/* HERO */
+.hero{padding:80px 6% 90px;background:#2c2117;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(212,137,42,.03) 0,rgba(212,137,42,.03) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(212,137,42,.03) 0,rgba(212,137,42,.03) 1px,transparent 1px,transparent 60px)}
+.hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{display:inline-block;border:1px solid rgba(212,137,42,.5);color:#d4892a;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:1px;margin-bottom:2rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:600}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;color:#f7f3ee;margin-bottom:1.75rem;max-width:700px}
+.hero h1 em{font-style:italic;color:#d4892a}
+.hero-sub{font-size:1rem;color:#8a7a68;max-width:520px;margin-bottom:2.5rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-gold{display:inline-block;background:#d4892a;color:#fff;padding:14px 28px;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:700;font-size:.875rem;letter-spacing:.03em;transition:background .2s;border-radius:2px}
+.btn-gold:hover{background:#b87220}
+.hero-note{font-size:.8rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;align-self:center}
+.hero-stats{display:flex;gap:48px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
+.stat-val{display:block;font-size:2rem;font-weight:400;color:#d4892a;letter-spacing:-.02em;line-height:1}
+.stat-label{display:block;font-size:.75rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-top:.4rem}
+
+/* TRUST */
+.trust{background:#f0e8dc;border-bottom:1px solid #e0d5c5;padding:40px 6%}
+.trust-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.trust-item{display:flex;gap:16px;align-items:flex-start}
+.trust-icon{width:42px;height:42px;background:#2c2117;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-icon svg{width:20px;height:20px;stroke:#d4892a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.trust-item h4{font-size:.875rem;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#2c2117;margin-bottom:.25rem}
+.trust-item p{font-size:.8rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
+
+/* SECTION COMMON */
+.section{padding:80px 6%}
+.section-inner{max-width:1120px;margin:0 auto}
+.section-head{margin-bottom:3.5rem}
+.overline{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#d4892a;margin-bottom:.75rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.section-h{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;letter-spacing:-.02em;line-height:1.2;color:#2c2117;margin-bottom:1rem}
+.section-sub{font-size:.9rem;color:#7a6a58;max-width:540px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+
+/* PALVELUT */
+.palvelut-bg{background:#f7f3ee}
+.palvelu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#e0d5c5}
+.palvelu-card{background:#f7f3ee;padding:36px 32px}
+.palvelu-card h3{font-size:1.05rem;font-weight:400;color:#2c2117;margin-bottom:.6rem}
+.palvelu-card p{font-size:.85rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+.palvelu-card::before{content:attr(data-num);display:block;font-size:2rem;color:#d4892a;margin-bottom:.75rem;opacity:.6}
+
+/* PROSESSI */
+.prosessi-bg{background:#f0e8dc}
+.timeline{position:relative;padding-left:40px}
+.timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:1px;background:#d4892a;opacity:.3}
+.t-step{position:relative;padding:0 0 36px 32px}
+.t-step:last-child{padding-bottom:0}
+.t-dot{position:absolute;left:-28px;top:4px;width:10px;height:10px;border-radius:50%;background:#d4892a;border:2px solid #f0e8dc;box-shadow:0 0 0 1px #d4892a}
+.t-num{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#d4892a;text-transform:uppercase;margin-bottom:.35rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.t-step h3{font-size:1rem;font-weight:400;color:#2c2117;margin-bottom:.4rem}
+.t-step p{font-size:.85rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.55;max-width:500px}
+
+/* QUOTE */
+.quote-section{background:#2c2117;padding:70px 6%;text-align:center}
+blockquote{max-width:720px;margin:0 auto;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:#f7f3ee;line-height:1.4;font-style:italic}
+blockquote strong{font-style:normal;color:#d4892a;font-weight:400}
+
+/* CTA */
+.cta-bg{background:#f7f3ee;border-top:4px solid #d4892a}
+.cta-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.cta-inner h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-.02em;margin-bottom:.75rem;color:#2c2117}
+.cta-inner p{font-size:.9rem;color:#7a6a58;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:480px}
+
+/* FOOTER */
+footer{background:#2c2117;padding:36px 6%}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.8rem;color:#6e6050;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+footer a{color:#8a7a68;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.8rem}
+
+@media(max-width:768px){
+  .trust-inner{grid-template-columns:1fr}
+  .palvelu-grid{grid-template-columns:1fr}
+  .cta-inner{grid-template-columns:1fr;text-align:center}
+  .cta-inner .btn-gold{margin:0 auto}
+  .hero-stats{gap:28px}
+  .footer-inner{flex-direction:column;gap:10px;text-align:center}
+  .nav-links a:not(.nav-cta){display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Luotto<strong>terassit</strong></a>
+    <div class="nav-links">
+      <a href="#palvelut">Palvelut</a>
+      <a href="#prosessi">Prosessi</a>
+      <a href="#yhteystiedot" class="nav-cta">Pyydä tarjous</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Terassirakentaminen &mdash; Uusimaa</div>
+    <h1>Terassi, joka <em>kestää</em><br>vuodesta toiseen</h1>
+    <p class="hero-sub">Rakennamme, laajennamme ja remontoimme terasseja Uudenmaan alueella. Timpurin käsityötaito, kiinteä urakkahinta, sovittu aikataulu — joka kerta.</p>
+    <div class="hero-actions">
+      <a href="#yhteystiedot" class="btn-gold">Pyydä maksuton tarjous</a>
+      <span class="hero-note">Kartoituskäynti maksutta</span>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-val">100%</span>
+        <span class="stat-label">Kiintea urakkahinta</span>
+      </div>
+      <div>
+        <span class="stat-val">6</span>
+        <span class="stat-label">Vaiheen prosessi</span>
+      </div>
+      <div>
+        <span class="stat-val">Uusimaa</span>
+        <span class="stat-label">Palvelualue</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <h4>Kiinteä urakkahinta</h4>
+        <p>Sovittu hinta pitää. Ei ikäviä yllätyksiä laskussa projektin jälkeen.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+      </div>
+      <div>
+        <h4>Timpurin ammattitaito</h4>
+        <p>Pitkä kokemus ja ammattitaito näkyvät jokaisessa projektin yksityiskohdassa.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <h4>Sovittu aikataulu</h4>
+        <p>Kunnioitamme aikataulujasi. Projekti valmistuu kun on sovittu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section palvelut-bg" id="palvelut">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="overline">Palvelut</div>
+      <h2 class="section-h">Kaikki terassiin liittyvä<br>yhdeltä tekijältä</h2>
+      <p class="section-sub">Suunnittelusta toteutukseen. Kysy myös piharakennuksista kuten aidoista, roskakatoksista ja varastoista.</p>
+    </div>
+    <div class="palvelu-grid">
+      <div class="palvelu-card" data-num="01">
+        <h3>Uuden terassin rakentaminen</h3>
+        <p>Suunnittelemme ja toteutamme terassin juuri sinun tarpeidesi ja toiveidesi mukaan. Materiaalivalinnoista rakenteisiin.</p>
+      </div>
+      <div class="palvelu-card" data-num="02">
+        <h3>Terassin laajennus</h3>
+        <p>Lisätilaa olemassa olevaan terassiin siististi ja kestävästi. Vanhan rakenteen ehdoilla.</p>
+      </div>
+      <div class="palvelu-card" data-num="03">
+        <h3>Terassin remontointi</h3>
+        <p>Vanhan terassin uusiminen tai kunnostaminen takaisin parhaaseen kuntoon. Tarkistamme myös rakenteet.</p>
+      </div>
+      <div class="palvelu-card" data-num="04">
+        <h3>Portaat, kaiteet ja katokset</h3>
+        <p>Turvalliset ja ulkonäöltään siistit portaat ja kaiteet. Lasitukset ja katokset, jotka pidentävät käyttökautta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <blockquote>
+    "Varmista onnistunut lopputulos<br>tilaamalla terassityöt <strong>erikoisosaajalta</strong>."
+  </blockquote>
+</section>
+
+<section class="section prosessi-bg" id="prosessi">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="overline">Prosessi</div>
+      <h2 class="section-h">Näin terassiprojekti etenee</h2>
+      <p class="section-sub">Selkeä, kuusivaiheinen prosessi varmistaa, että lopputulos vastaa odotuksia ja projekti sujuu ongelmitta.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 1</div>
+        <h3>Yhteydenotto</h3>
+        <p>Kerro meille tarpeistasi. Sovitaan sitten käynti kohteeseen — se on maksuton.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 2</div>
+        <h3>Kartoituskäynti</h3>
+        <p>Tulemme arvioimaan kohteen ja maapohjan sekä ottamaan mitat. Kuunnellaan toiveet tarkemmin.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 3</div>
+        <h3>Suunnitelma ja tarjous</h3>
+        <p>Teemme suunnitelman terassin toteutuksesta ja annamme kokonaishinnan urakalle. Kiinteä hinta — ei yllätyksiä.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 4</div>
+        <h3>Aloituspalaveri</h3>
+        <p>Tarjouksen hyväksyttyäsi käydään vielä projekti läpi. Tarvittaessa hoidetaan luvat kuntoon.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 5</div>
+        <h3>Urakan toteutus</h3>
+        <p>Toteutamme urakan suunnitelmien mukaan, noudattaen sovittua aikataulua. Siististi ja ammattimaisesti.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="t-num">Vaihe 6</div>
+        <h3>Loppukatselmus</h3>
+        <p>Käydään läpi lopputulos ja varmistetaan, että olet täysin tyytyväinen työn jälkeen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-bg" id="yhteystiedot">
+  <div class="section-inner">
+    <div class="cta-inner">
+      <div>
+        <h2>Mielessä uusi terassi<br>tai vanha kuntoon?</h2>
+        <p>Ota yhteyttä ja kerro suunnitelmistasi. Kartoituskäynti ja tarjous ovat täysin maksuttomia — tulemme mielellämme katsomaan.</p>
+      </div>
+      <a href="tel:+358" class="btn-gold">Soita tai pyydä tarjous</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>Luottoterassit &mdash; Terassirakentamisen asiantuntija, Uusimaa</p>
+    <a href="https://luottoterassit.fi">luottoterassit.fi</a>
+  </div>
+</footer>
+
+</body>
+</html>

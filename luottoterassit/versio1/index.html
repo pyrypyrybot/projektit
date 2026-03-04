@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luottoterassit – Terassirakentamisen asiantuntija</title>
+<meta name="description" content="Rakennamme, laajennamme ja remontoimme terassit Uudenmaan alueella. Kiinteä urakkahinta, timpurin ammattitaito.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#fff;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-bottom:1px solid #e8e8e8;padding:0 5%}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;color:#1a1a1a;text-decoration:none}
+.logo span{color:#c47a2b}
+nav a.cta{background:#c47a2b;color:#fff;padding:9px 20px;border-radius:4px;text-decoration:none;font-size:.875rem;font-weight:600;transition:background .2s}
+nav a.cta:hover{background:#a8621f}
+
+/* HERO */
+.hero{padding:140px 5% 100px;background:#fafafa;border-bottom:1px solid #ebebeb}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:1.2rem}
+.hero h1 em{font-style:normal;color:#c47a2b}
+.hero p{font-size:1.1rem;color:#555;margin-bottom:2rem;max-width:440px}
+.btn{display:inline-block;background:#c47a2b;color:#fff;padding:14px 28px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.95rem;transition:background .2s;margin-right:12px}
+.btn:hover{background:#a8621f}
+.btn-ghost{display:inline-block;color:#c47a2b;border:2px solid #c47a2b;padding:12px 26px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .2s}
+.btn-ghost:hover{background:#c47a2b;color:#fff}
+.hero-visual{background:#e8ddd0;border-radius:8px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.hero-visual svg{opacity:.25}
+
+/* USP */
+.usp{padding:70px 5%;background:#fff}
+.usp-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.usp-card{padding:36px;border:1px solid #ebebeb;border-radius:8px}
+.usp-card h3{font-size:1rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a}
+.usp-card p{font-size:.9rem;color:#666;line-height:1.6}
+.usp-number{font-size:2rem;font-weight:800;color:#c47a2b;margin-bottom:.75rem;font-variant-numeric:tabular-nums}
+
+/* PALVELUT */
+.palvelut{padding:80px 5%;background:#fafafa;border-top:1px solid #ebebeb;border-bottom:1px solid #ebebeb}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c47a2b;margin-bottom:.75rem}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.025em;margin-bottom:1.5rem;line-height:1.2}
+.section-subtitle{font-size:1rem;color:#666;max-width:600px;margin-bottom:3rem}
+.palvelu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.palvelu-item{background:#fff;border:1px solid #ebebeb;border-radius:8px;padding:32px}
+.palvelu-item h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+.palvelu-item p{font-size:.875rem;color:#666}
+
+/* PROSESSI */
+.prosessi{padding:80px 5%}
+.prosessi-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3rem;border:1px solid #ebebeb;border-radius:8px;overflow:hidden}
+.step{padding:32px;border-right:1px solid #ebebeb;position:relative}
+.step:nth-child(3n){border-right:none}
+.step:nth-child(4),.step:nth-child(5),.step:nth-child(6){border-top:1px solid #ebebeb}
+.step-num{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:#c47a2b;text-transform:uppercase;margin-bottom:.75rem}
+.step h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.step p{font-size:.85rem;color:#666;line-height:1.5}
+
+/* CTA */
+.cta-section{padding:80px 5%;background:#1a1a1a;color:#fff}
+.cta-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.cta-text h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.75rem;letter-spacing:-0.02em}
+.cta-text p{color:#aaa;max-width:500px}
+.btn-white{display:inline-block;background:#fff;color:#1a1a1a;padding:14px 28px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.95rem;white-space:nowrap;transition:background .2s}
+.btn-white:hover{background:#f0f0f0}
+
+/* FOOTER */
+footer{padding:40px 5%;background:#111;color:#666;font-size:.85rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+footer a{color:#888;text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.usp-inner,.palvelu-grid,.prosessi-steps{grid-template-columns:1fr}
+  .step{border-right:none;border-bottom:1px solid #ebebeb}
+  .step:last-child{border-bottom:none}
+  .cta-inner{flex-direction:column;text-align:center}
+  .footer-inner{flex-direction:column;gap:12px;text-align:center}
+  .hero-visual{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Luotto<span>terassit</span></a>
+    <a href="#yhteystiedot" class="cta">Pyydä tarjous</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Terassi, johon voi<br><em>luottaa</em></h1>
+      <p>Rakennamme, laajennamme ja remontoimme terassit Uudenmaan alueella. Kiinteä urakkahinta, timpurin ammattitaito, sovittu aikataulu.</p>
+      <a href="#yhteystiedot" class="btn">Pyydä maksuton tarjous</a>
+      <a href="#palvelut" class="btn-ghost">Katso palvelut</a>
+    </div>
+    <div class="hero-visual">
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="usp">
+  <div class="usp-inner">
+    <div class="usp-card">
+      <div class="usp-number">01</div>
+      <h3>Laadukas kädenjälki</h3>
+      <p>Pitkä kokemus ja timpurin ammattitaito takaavat siistin ja kestävän lopputuloksen.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-number">02</div>
+      <h3>Kiinteä urakkahinta</h3>
+      <p>Hinta sovitaan etukäteen eikä ylity. Tiedät tarkalleen mitä maksat.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-number">03</div>
+      <h3>Ammattimainen tekeminen</h3>
+      <p>Kunnioitamme sinua, kotiasi ja aikataulujasi joka projektin vaiheessa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="palvelut" id="palvelut">
+  <div class="section-inner">
+    <div class="section-label">Palvelut</div>
+    <h2 class="section-title">Kaikki terassiin liittyva<br>yhdeltä tekijältä</h2>
+    <p class="section-subtitle">Hoidamme koko projektin suunnittelusta toteutukseen. Kysy myös pienrakennuksista.</p>
+    <div class="palvelu-grid">
+      <div class="palvelu-item">
+        <h3>Uuden terassin rakentaminen</h3>
+        <p>Suunnittelemme ja toteutamme terassin juuri sinun tarpeidesi mukaan.</p>
+      </div>
+      <div class="palvelu-item">
+        <h3>Terassin laajennus</h3>
+        <p>Lisätilaa olemassa olevaan terassiin siististi ja kestävästi.</p>
+      </div>
+      <div class="palvelu-item">
+        <h3>Terassin remontointi</h3>
+        <p>Vanhan terassin uusiminen tai kunnostaminen takaisin parhaaseen kuntoon.</p>
+      </div>
+      <div class="palvelu-item">
+        <h3>Portaat ja kaiteet</h3>
+        <p>Turvalliset ja ulkonäöltään siistit portaat ja kaiteet mihin tahansa kohteeseen.</p>
+      </div>
+      <div class="palvelu-item">
+        <h3>Lasitukset ja katokset</h3>
+        <p>Suojaa terassiasi vuodenajoilta ja pidennä käyttökautta selvästi.</p>
+      </div>
+      <div class="palvelu-item">
+        <h3>Piharakennukset</h3>
+        <p>Aidat, roskakatokset, varastot ja muut pienrakennukset ammattitaidolla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prosessi" id="prosessi">
+  <div class="section-inner">
+    <div class="section-label">Prosessi</div>
+    <h2 class="section-title">Näin terassiprojekti etenee</h2>
+    <div class="prosessi-steps">
+      <div class="step">
+        <div class="step-num">Vaihe 1</div>
+        <h3>Yhteydenotto</h3>
+        <p>Kerro meille tarpeistasi. Sovitaan sitten käynti kohteeseen.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 2</div>
+        <h3>Kartoituskäynti</h3>
+        <p>Tulemme arvioimaan kohteen ja maapohjan sekä ottamaan mitat.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 3</div>
+        <h3>Suunnitelma ja tarjous</h3>
+        <p>Teemme suunnitelman ja annamme kokonaishinnan urakalle.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 4</div>
+        <h3>Aloituspalaveri</h3>
+        <p>Käydään projekti läpi. Tarvittaessa hoidetaan luvat kuntoon.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 5</div>
+        <h3>Urakan toteutus</h3>
+        <p>Toteutamme urakan suunnitelmien mukaan, sovitussa aikataulussa.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 6</div>
+        <h3>Loppukatselmus</h3>
+        <p>Käydään läpi lopputulos ja varmistetaan, että olet tyytyväinen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="yhteystiedot">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Mielessä uusi terassi?</h2>
+      <p>Ota yhteyttä ja kerro suunnitelmistasi. Kartoituskäynti ja tarjous ovat maksuttomia.</p>
+    </div>
+    <a href="tel:+358" class="btn-white">Soita tai pyydä tarjous</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>Luottoterassit &mdash; Uusimaa</span>
+    <a href="https://luottoterassit.fi">luottoterassit.fi</a>
+  </div>
+</footer>
+
+</body>
+</html>
