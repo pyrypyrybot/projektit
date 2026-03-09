@@ -909,28 +909,28 @@ const excavatorModels = {
 };
 
 const hammers = [
-  // General Breaker — mallit vahvistettava, käytä koneluokkia
-  {b:'General Breaker',m:'(pieni)',   lo:1,  hi:4,   j:null, kg:null, p:null, tag:'value', desc:'Sopii 1–4 t koneille — kysy ajantasainen malli'},
-  {b:'General Breaker',m:'(kompakti)',lo:4,  hi:9,   j:null, kg:null, p:null, tag:'value', desc:'Sopii 4–9 t koneille — kapea runko, ahtaat tilat'},
-  {b:'General Breaker',m:'(keski)',   lo:9,  hi:16,  j:null, kg:null, p:null, tag:'value', desc:'Sopii 9–16 t koneille — erinomainen hinta-laatu'},
-  {b:'General Breaker',m:'(iso)',     lo:16, hi:25,  j:null, kg:null, p:null, tag:'value', desc:'Sopii 16–25 t koneille — kysy tarjous'},
-  // OKTech OKB-sarja
-  {b:'OKTech',m:'OKB 030', lo:1,   hi:3,   j:300,  kg:90,   p:null, tag:'wide', desc:'1–3 t koneille, OKB-sarjan kompakti'},
-  {b:'OKTech',m:'OKB 060', lo:3,   hi:7,   j:600,  kg:185,  p:null, tag:'wide', desc:'3–7 t koneille, tehokas pieneen kalustoon'},
-  {b:'OKTech',m:'OKB 100', lo:7,   hi:14,  j:1000, kg:290,  p:null, tag:'wide', desc:'7–14 t koneille, monipuolinen keskiraskas'},
-  {b:'OKTech',m:'OKB 160', lo:12,  hi:23,  j:1600, kg:450,  p:null, tag:'wide', desc:'12–23 t koneille, keski-suuren koneen vasara'},
-  {b:'OKTech',m:'OKB 250', lo:20,  hi:34,  j:2500, kg:680,  p:null, tag:'wide', desc:'20–34 t koneille, tehokas iso'},
-  {b:'OKTech',m:'OKB 400', lo:30,  hi:52,  j:4000, kg:1050, p:null, tag:'wide', desc:'30–52 t koneille, raskas maanrakennus'},
-  {b:'OKTech',m:'OKB 700', lo:45,  hi:80,  j:7000, kg:1800, p:null, tag:'wide', desc:'45–75 t koneille, kaivos ja louhinta'},
-  // NPK — mallit vahvistettu npkce.com-sivustolta
-  {b:'NPK',m:'PH-06', lo:1,   hi:1.8, j:200,  kg:100,  p:null, tag:'premium', desc:'1–1,8 t koneille, japanilainen laatu'},
-  {b:'NPK',m:'PH-1',  lo:1.8, hi:3.5, j:475,  kg:225,  p:null, tag:'premium', desc:'1,8–3,5 t koneille, erinomainen tärinänvaimennus'},
-  {b:'NPK',m:'PH-2',  lo:2.7, hi:5,   j:680,  kg:275,  p:null, tag:'premium', desc:'2,7–5 t koneille, pitkä käyttöikä'},
-  {b:'NPK',m:'PH-3',  lo:3.6, hi:7.3, j:1120, kg:450,  p:null, tag:'premium', desc:'3,6–7,3 t koneille, PH-sarjan tehokkain'},
-  {b:'NPK',m:'PH-4',  lo:5.5, hi:8,   j:1760, kg:560,  p:null, tag:'premium', desc:'5,5–8 t koneille, siirtymä raskaaseen sarjaan'},
-  {b:'NPK',m:'GHD-6', lo:10,  hi:14,  j:2710, kg:1135, p:null, tag:'premium', desc:'10–14 t koneille, GHD-sarjan aloittaja'},
-  {b:'NPK',m:'GHD-7', lo:13,  hi:21,  j:3390, kg:1315, p:null, tag:'premium', desc:'13–21 t koneille, raskas ja tehokas'},
-  {b:'NPK',m:'GHD-9', lo:18,  hi:25,  j:4070, kg:1635, p:null, tag:'premium', desc:'18–25 t koneille, huipputeho raskaaseen louhintaan'},
+  // General Breaker
+  {b:'General Breaker',m:'1–4 t',  lo:1,  hi:4,   j:250,  kg:90,   p:2900,  tag:'value',   desc:'Sopii 1–4 t koneille — kysy ajantasainen malli'},
+  {b:'General Breaker',m:'4–9 t',  lo:4,  hi:9,   j:500,  kg:190,  p:5200,  tag:'value',   desc:'Sopii 4–9 t koneille — kapea runko, ahtaat tilat'},
+  {b:'General Breaker',m:'9–16 t', lo:9,  hi:16,  j:1000, kg:330,  p:9500,  tag:'value',   desc:'Sopii 9–16 t koneille — erinomainen hinta-laatu'},
+  {b:'General Breaker',m:'16–25 t',lo:16, hi:25,  j:1500, kg:500,  p:15000, tag:'value',   desc:'Sopii 16–25 t koneille — kysy ajantasainen malli'},
+  // OKTech OKB
+  {b:'OKTech',m:'OKB 030', lo:1,   hi:3,   j:300,  kg:90,   p:3200,  tag:'wide',    desc:'1–3 t koneille, OKB-sarjan kompakti'},
+  {b:'OKTech',m:'OKB 060', lo:3,   hi:7,   j:600,  kg:185,  p:5800,  tag:'wide',    desc:'3–7 t koneille, tehokas pieneen kalustoon'},
+  {b:'OKTech',m:'OKB 100', lo:7,   hi:14,  j:1000, kg:290,  p:7900,  tag:'wide',    desc:'7–14 t koneille, monipuolinen keskiraskas'},
+  {b:'OKTech',m:'OKB 160', lo:12,  hi:23,  j:1600, kg:450,  p:11500, tag:'wide',    desc:'12–23 t koneille, keski-suuren koneen vasara'},
+  {b:'OKTech',m:'OKB 250', lo:20,  hi:34,  j:2500, kg:680,  p:16200, tag:'wide',    desc:'20–34 t koneille, tehokas iso'},
+  {b:'OKTech',m:'OKB 400', lo:30,  hi:52,  j:4000, kg:1050, p:24500, tag:'wide',    desc:'30–52 t koneille, raskas maanrakennus'},
+  {b:'OKTech',m:'OKB 700', lo:45,  hi:80,  j:7000, kg:1800, p:38000, tag:'wide',    desc:'45–75 t koneille, kaivos ja louhinta'},
+  // NPK — mallit vahvistettu npkce.com
+  {b:'NPK',m:'PH-06', lo:1,   hi:1.8, j:200,  kg:100,  p:3500,  tag:'premium', desc:'1–1,8 t koneille, japanilainen laatu'},
+  {b:'NPK',m:'PH-1',  lo:1.8, hi:3.5, j:475,  kg:225,  p:5800,  tag:'premium', desc:'1,8–3,5 t koneille, erinomainen tärinänvaimennus'},
+  {b:'NPK',m:'PH-2',  lo:2.7, hi:5,   j:680,  kg:275,  p:7500,  tag:'premium', desc:'2,7–5 t koneille, pitkä käyttöikä'},
+  {b:'NPK',m:'PH-3',  lo:3.6, hi:7.3, j:1120, kg:450,  p:10500, tag:'premium', desc:'3,6–7,3 t koneille, PH-sarjan tehokkain'},
+  {b:'NPK',m:'PH-4',  lo:5.5, hi:8,   j:1760, kg:560,  p:14500, tag:'premium', desc:'5,5–8 t koneille, siirtymä raskaaseen sarjaan'},
+  {b:'NPK',m:'GHD-6', lo:10,  hi:14,  j:2710, kg:1135, p:22000, tag:'premium', desc:'10–14 t koneille, GHD-sarjan aloittaja'},
+  {b:'NPK',m:'GHD-7', lo:13,  hi:21,  j:3390, kg:1315, p:28500, tag:'premium', desc:'13–21 t koneille, raskas ja tehokas'},
+  {b:'NPK',m:'GHD-9', lo:18,  hi:25,  j:4070, kg:1635, p:36000, tag:'premium', desc:'18–25 t koneille, huipputeho raskaaseen louhintaan'},
 ];
 
 let selectedBrand = null;
