@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasarakauppa.fi | Hydrauliikkavasarat maanrakennukseen — General Breaker, OKTech, NPK</title>
+<meta name="description" content="Valitse kaivinkoneesi — me kerromme oikean vasaran. Konfiguraattoripohjainen verkkokauppa hydraulisille iskuvasaroille. General Breaker, OKTech, NPK.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0F1923;
+  --bg2:#141F2C;
+  --card:#18253A;
+  --card2:#1E2E45;
+  --border:#243650;
+  --border2:#2E4060;
+  --yellow:#E8A000;
+  --yellow-l:#FFB800;
+  --yellow-dim:rgba(232,160,0,.12);
+  --yellow-glow:rgba(232,160,0,.25);
+  --text:#EEF2F7;
+  --text-m:#9EB3C8;
+  --text-l:#5E7A94;
+  --white:#fff;
+  --green:#2EBD82;
+  --red:#E85050;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+
+/* === NAV === */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(15,25,35,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:38px;height:38px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:22px;height:22px;fill:#000}
+.logo-text{display:flex;flex-direction:column}
+.logo-main{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:#fff;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+.logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--text-m);text-decoration:none;padding:8px 13px;border-radius:5px;transition:all .15s}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-phone{font-size:13.5px;font-weight:700;color:var(--text-m);text-decoration:none;padding:8px 10px}
+.nav-cta{background:var(--yellow);color:#000;text-decoration:none;padding:10px 20px;border-radius:5px;font-size:13.5px;font-weight:800;transition:all .15s;letter-spacing:.02em}
+.nav-cta:hover{background:var(--yellow-l);transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.ham span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .22s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:var(--bg2);padding:12px 24px 20px;border-top:1px solid var(--border)}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--text-m);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);font-weight:500}
+.mob-nav .mob-cta{margin-top:14px;display:block;background:var(--yellow);color:#000;text-align:center;padding:14px;border-radius:5px;font-weight:800;font-size:15px;border:none}
+
+/* === HERO === */
+.hero{min-height:100svh;background:var(--bg);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.25;pointer-events:none}
+.hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(232,160,0,.06) 0%,transparent 70%);pointer-events:none}
+.hero-in{max-width:1200px;margin:0 auto;padding:72px 28px 80px;width:100%;display:grid;grid-template-columns:1fr 460px;gap:72px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-dim);border:1px solid rgba(232,160,0,.3);border-radius:24px;padding:5px 14px;margin-bottom:20px;opacity:0;transition:opacity .5s .1s}
+.hero-badge.v{opacity:1}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--yellow-l);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.badge-txt{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow-l)}
+.hero-h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(48px,6.5vw,96px);font-weight:800;color:#fff;line-height:.95;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px;opacity:0;transform:translateY(16px);transition:opacity .9s .2s,transform .9s .2s}
+.hero-h1.v{opacity:1;transform:none}
+.hero-h1 .yellow{color:var(--yellow)}
+.hero-rule{width:52px;height:3px;background:var(--yellow);margin:22px 0;opacity:0;transition:opacity .6s .5s}
+.hero-rule.v{opacity:1}
+.hero-p{font-size:clamp(15px,1.6vw,17px);color:var(--text-m);line-height:1.85;max-width:500px;margin-bottom:36px;opacity:0;transition:opacity .8s .65s}
+.hero-p.v{opacity:1}
+.hero-stats{display:flex;gap:32px;margin-bottom:40px;opacity:0;transition:opacity .7s .75s}
+.hero-stats.v{opacity:1}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);line-height:1}
+.stat-lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-top:3px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transition:opacity .7s .85s}
+.hero-btns.v{opacity:1}
+.btn-yellow{display:inline-flex;align-items:center;gap:9px;background:var(--yellow);color:#000;padding:15px 28px;border-radius:5px;font-size:15px;font-weight:800;text-decoration:none;transition:all .15s}
+.btn-yellow:hover{background:var(--yellow-l);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;color:var(--text-m);padding:14px 24px;border-radius:5px;font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid var(--border2);transition:all .15s}
+.btn-outline:hover{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
+
+/* HERO CARD */
+.hero-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:28px;opacity:0;transform:translateY(16px);transition:opacity .9s .45s,transform .9s .45s}
+.hero-card.v{opacity:1;transform:none}
+.hc-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:4px}
+.hc-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px}
+.hc-desc{font-size:13px;color:var(--text-l);margin-bottom:22px;line-height:1.5}
+.hc-field{margin-bottom:14px}
+.hc-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-bottom:6px}
+.hc-field select,.hc-field input[type=text]{width:100%;padding:11px 14px;border:1.5px solid var(--border2);border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);background:var(--bg2);outline:none;-webkit-appearance:none;transition:border-color .15s}
+.hc-field select:focus,.hc-field input:focus{border-color:var(--yellow)}
+.hc-field select option{color:#000;background:#fff}
+.hc-or{text-align:center;font-size:11px;color:var(--text-l);margin:4px 0;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.hc-btn{width:100%;background:var(--yellow);color:#000;border:none;padding:14px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;cursor:pointer;transition:background .15s;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+.hc-btn:hover{background:var(--yellow-l)}
+
+/* === SECTION BASICS === */
+.section{padding:96px 0}
+.section-bg{background:var(--bg2)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.sec-pre{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+.sec-h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,4.5vw,58px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin-bottom:12px}
+.sec-p{font-size:16px;color:var(--text-m);line-height:1.85;max-width:560px}
+.sec-rule{width:44px;height:3px;background:var(--yellow);margin:20px 0 32px}
+
+/* === HOW IT WORKS === */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+.how-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;position:relative}
+.how-num{font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:800;color:var(--yellow-dim);line-height:1;margin-bottom:16px;letter-spacing:-.03em}
+.how-icon{width:46px;height:46px;background:var(--yellow-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.how-icon svg{width:24px;height:24px;fill:var(--yellow)}
+.how-h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.how-p{font-size:13.5px;color:var(--text-m);line-height:1.65}
+.how-arrow{position:absolute;top:50%;right:-14px;transform:translateY(-50%);width:28px;height:28px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1}
+.how-arrow svg{width:13px;height:13px;fill:#000}
+
+/* === CONFIGURATOR === */
+#konfiguraattori{padding:96px 0}
+.conf-header{text-align:center;margin-bottom:56px}
+.conf-header .sec-rule{margin:20px auto 0}
+.conf-wrap{background:var(--card);border:1px solid var(--border2);border-radius:16px;overflow:hidden}
+.conf-top{padding:36px 40px;border-bottom:1px solid var(--border)}
+.conf-steps{display:flex;gap:0;margin-bottom:36px}
+.conf-step{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:7px;transition:all .2s;cursor:default}
+.conf-step.active{background:var(--yellow-dim);border:1px solid rgba(232,160,0,.3)}
+.conf-step.done{opacity:.6}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-l);flex-shrink:0;transition:all .2s}
+.conf-step.active .step-num{background:var(--yellow);color:#000}
+.conf-step.done .step-num{background:var(--green);color:#fff}
+.step-label{font-size:13px;font-weight:600;color:var(--text-m)}
+.conf-step.active .step-label{color:var(--text)}
+
+/* Step 1 - Kone */
+.conf-body{padding:40px}
+.conf-panel{display:none}
+.conf-panel.active{display:block}
+.brand-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.brand-btn{background:var(--bg2);border:2px solid var(--border);border-radius:8px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.brand-btn:hover{border-color:var(--yellow);background:var(--yellow-dim)}
+.brand-btn.selected{border-color:var(--yellow);background:var(--yellow-dim)}
+.brand-btn span{font-size:12px;font-weight:700;color:var(--text-m);letter-spacing:.05em}
+.brand-btn.selected span{color:var(--yellow)}
+.brand-logo-txt{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--text-l);line-height:1}
+.brand-btn.selected .brand-logo-txt{color:var(--yellow)}
+.conf-model-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+.conf-or-row{text-align:center;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text-l);margin:16px 0;position:relative}
+.conf-or-row::before,.conf-or-row::after{content:'';position:absolute;top:50%;height:1px;width:38%;background:var(--border)}
+.conf-or-row::before{left:0}
+.conf-or-row::after{right:0}
+.conf-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-bottom:6px}
+.conf-field select,.conf-field input{width:100%;padding:12px 16px;border:1.5px solid var(--border2);border-radius:7px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);background:var(--bg);outline:none;-webkit-appearance:none;transition:border-color .15s}
+.conf-field select:focus,.conf-field input:focus{border-color:var(--yellow)}
+.conf-field select option{color:#000;background:#fff}
+.conf-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.conf-btn-next{background:var(--yellow);color:#000;border:none;padding:13px 28px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:8px}
+.conf-btn-next:hover{background:var(--yellow-l)}
+.conf-btn-back{background:transparent;color:var(--text-m);border:1.5px solid var(--border2);padding:12px 24px;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.conf-btn-back:hover{border-color:var(--text-m);color:var(--text)}
+
+/* Step 2 - Käyttö */
+.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.use-btn{background:var(--bg2);border:2px solid var(--border);border-radius:10px;padding:20px 16px;cursor:pointer;transition:all .2s;text-align:left}
+.use-btn:hover{border-color:var(--yellow);background:var(--yellow-dim)}
+.use-btn.selected{border-color:var(--yellow);background:var(--yellow-dim)}
+.use-icon{font-size:28px;margin-bottom:10px;display:block}
+.use-h{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.use-btn.selected .use-h{color:var(--yellow)}
+.use-p{font-size:12px;color:var(--text-l);line-height:1.55}
+
+/* Results */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.result-card{background:var(--bg2);border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.result-card:hover{border-color:var(--border2)}
+.rc-brand{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.rc-brand-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:.04em}
+.rc-brand-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+.tag-value{background:rgba(46,189,130,.12);color:var(--green)}
+.tag-premium{background:rgba(232,160,0,.12);color:var(--yellow)}
+.tag-wide{background:rgba(30,100,200,.15);color:#5B9BF0}
+.rc-body{padding:20px}
+.rc-model{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:.02em;margin-bottom:4px}
+.rc-desc{font-size:12px;color:var(--text-l);margin-bottom:18px;line-height:1.5}
+.rc-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.spec-item{background:var(--card);border-radius:6px;padding:10px 12px}
+.spec-val{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--text);line-height:1}
+.spec-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);margin-top:2px}
+.rc-price{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:4px}
+.rc-price-note{font-size:11px;color:var(--text-l);margin-bottom:18px}
+.rc-btn{display:block;width:100%;background:var(--yellow);color:#000;border:none;padding:12px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s;text-transform:uppercase;letter-spacing:.04em}
+.rc-btn:hover{background:var(--yellow-l)}
+.rc-secondary{display:block;width:100%;background:transparent;color:var(--text-m);border:1.5px solid var(--border2);padding:10px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;margin-top:8px;transition:all .15s}
+.rc-secondary:hover{border-color:var(--text-m);color:var(--text)}
+.rc-recommended{border-color:var(--yellow) !important;position:relative}
+.rc-recommended::before{content:'SUOSITELLAAN';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--yellow);color:#000;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;padding:3px 12px;border-radius:0 0 6px 6px}
+
+/* === BRANDS === */
+#merkit{padding:96px 0}
+.brands-header{margin-bottom:60px}
+.brands-tabs{display:flex;gap:8px;margin-bottom:44px;border-bottom:1px solid var(--border);padding-bottom:0}
+.brand-tab{background:none;border:none;padding:14px 24px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--text-l);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;border-bottom:3px solid transparent;margin-bottom:-1px;transition:all .2s}
+.brand-tab:hover{color:var(--text)}
+.brand-tab.active{color:var(--yellow);border-bottom-color:var(--yellow)}
+.brand-panel{display:none}
+.brand-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.bp-left{}
+.bp-logo{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.bp-origin{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-bottom:18px}
+.bp-desc{font-size:15.5px;color:var(--text-m);line-height:1.9;margin-bottom:24px}
+.bp-highlights{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.bp-hl{display:flex;align-items:flex-start;gap:12px}
+.bp-hl-dot{width:20px;height:20px;background:var(--yellow-dim);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.bp-hl-dot svg{width:11px;height:11px;fill:var(--yellow)}
+.bp-hl-txt{font-size:14px;color:var(--text-m);line-height:1.55}
+.bp-hl-txt strong{color:var(--text);font-weight:600}
+.bp-cta{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:#000;padding:13px 24px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;transition:all .15s}
+.bp-cta:hover{background:var(--yellow-l)}
+.bp-right{}
+.model-table{width:100%;border-collapse:collapse}
+.model-table th{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text-l);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.model-table td{padding:12px 14px;font-size:13.5px;color:var(--text-m);border-bottom:1px solid var(--border);transition:all .15s}
+.model-table tr:hover td{background:var(--yellow-dim);color:var(--text)}
+.model-table td:first-child{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--text);letter-spacing:.03em}
+.td-price{color:var(--yellow) !important;font-weight:600}
+
+/* === WHY === */
+#miksi{padding:96px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px 26px}
+.wc-icon{width:48px;height:48px;background:var(--yellow-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.wc-icon svg{width:25px;height:25px;fill:var(--yellow)}
+.wc-h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.wc-p{font-size:14px;color:var(--text-m);line-height:1.7}
+
+/* === MARKKINA === */
+.market-section{padding:96px 0;background:var(--bg2)}
+.market-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:52px}
+.market-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mstat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px}
+.mstat-num{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:4px}
+.mstat-lbl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);line-height:1.5}
+.market-text .sec-p{max-width:100%}
+.market-list{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.mlist-item{display:flex;align-items:flex-start;gap:12px}
+.mlist-item::before{content:'';width:6px;height:6px;background:var(--yellow);border-radius:50%;margin-top:9px;flex-shrink:0}
+.mlist-item span{font-size:14.5px;color:var(--text-m);line-height:1.6}
+.mlist-item strong{color:var(--text)}
+
+/* === CTA === */
+.cta-section{padding:96px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(232,160,0,.07) 0%,transparent 70%)}
+.cta-section .sec-h2{font-size:clamp(40px,5vw,70px);margin-bottom:16px}
+.cta-section .sec-p{margin:0 auto 40px;max-width:540px;font-size:17px;text-align:center}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* === FOOTER === */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 36px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{margin-bottom:14px}
+.footer-brand p{font-size:13.5px;color:var(--text-l);line-height:1.75;max-width:260px}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-bottom:14px}
+.footer-col a{display:block;font-size:13.5px;color:var(--text-m);text-decoration:none;padding:4px 0;transition:color .15s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12.5px;color:var(--text-l)}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .hero-in{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .how-arrow{display:none}
+  .brand-panel.active{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-phone,.nav-cta{display:none}
+  .ham{display:flex}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .how-grid{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr}
+  .brand-grid{grid-template-columns:repeat(3,1fr)}
+  .conf-model-row{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .market-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .use-grid{grid-template-columns:1fr 1fr}
+  .conf-steps{display:none}
+}
+@media(max-width:480px){
+  .brand-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-btns{flex-direction:column}
+  .btn-yellow,.btn-outline{justify-content:center}
+  .market-stats{grid-template-columns:1fr}
+  .use-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 8l-4-4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-8 8l-4-4 1.4-1.4L12 13.2l5.6-5.6L19 9l-7 7z"/></svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">Vasarakauppa</span>
+        <span class="logo-sub">.fi</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#konfiguraattori">Konfiguraattori</a>
+      <a href="#merkit">Merkit</a>
+      <a href="#miksi">Miksi me</a>
+      <a href="#markkina">Markkina</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+358">Soita meille</a>
+      <a class="nav-cta" href="#konfiguraattori">Valitse vasara</a>
+    </div>
+    <button class="ham" id="ham" aria-label="Valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mob-nav" id="mob-nav">
+    <a href="#konfiguraattori" class="mob-link">Konfiguraattori</a>
+    <a href="#merkit" class="mob-link">Merkit</a>
+    <a href="#miksi" class="mob-link">Miksi me</a>
+    <a href="#markkina" class="mob-link">Markkina</a>
+    <a href="#konfiguraattori" class="mob-cta">Valitse vasara</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-in wrap">
+    <div class="hero-left">
+      <div class="hero-badge" id="h-badge">
+        <div class="badge-dot"></div>
+        <span class="badge-txt">Konfiguraattoripohjainen verkkokauppa</span>
+      </div>
+      <h1 class="hero-h1" id="h-h1">
+        Oikea vasara.<br>
+        <span class="yellow">Helposti.</span><br>
+        Nopeasti.
+      </h1>
+      <div class="hero-rule" id="h-rule"></div>
+      <p class="hero-p" id="h-p">
+        Valitse kaivinkoneesi — me kerromme oikean hydrauliikkavasaran. 
+        General Breaker, OKTech ja NPK: kaikki koneluokat, kaikki hintapisteet. 
+        Toimitus suoraan tyomaalle.
+      </p>
+      <div class="hero-stats" id="h-stats">
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Laadukasta merkkia</div>
+        </div>
+        <div>
+          <div class="stat-num">60+</div>
+          <div class="stat-lbl">Vasaramallia</div>
+        </div>
+        <div>
+          <div class="stat-num">1&ndash;70+t</div>
+          <div class="stat-lbl">Kaikki koneet</div>
+        </div>
+      </div>
+      <div class="hero-btns" id="h-btns">
+        <a href="#konfiguraattori" class="btn-yellow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Valitse vasara
+        </a>
+        <a href="#merkit" class="btn-outline">
+          Tutustu merkkeihin
+        </a>
+      </div>
+    </div>
+    <div class="hero-card" id="h-card">
+      <div class="hc-label">Konfiguraattori</div>
+      <div class="hc-title">Mika kaivinkone sinulla on?</div>
+      <div class="hc-desc">Valitse merkki ja malli tai syota koneen paino — saat heti sopivat vasarat.</div>
+      <div class="hc-field">
+        <label>Kaivinkonemerki</label>
+        <select id="hero-brand">
+          <option value="">Valitse merkki...</option>
+          <option>Volvo</option>
+          <option>Caterpillar</option>
+          <option>Komatsu</option>
+          <option>Hitachi</option>
+          <option>Doosan / Develon</option>
+          <option>JCB</option>
+          <option>Muu / ei tiedossa</option>
+        </select>
+      </div>
+      <div class="hc-field">
+        <label>Konemalli</label>
+        <select id="hero-model" disabled>
+          <option value="">Valitse ensin merkki</option>
+        </select>
+      </div>
+      <div class="hc-or">tai</div>
+      <div class="hc-field">
+        <label>Koneen paino (tonnia)</label>
+        <input type="text" id="hero-weight" placeholder="esim. 14">
+      </div>
+      <button class="hc-btn" onclick="heroSearch()">Nayta sopivat vasarat &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-bg">
+  <div class="wrap">
+    <div class="sec-pre">Nain se toimii</div>
+    <h2 class="sec-h2">Neljassa askeleessa oikeaan vasaraan</h2>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="how-num">01</div>
+        <div class="how-h3">Valitse kone</div>
+        <p class="how-p">Syota kaivinkoneesi merkki, malli tai paino. Konfiguraattori tuntee yli 100 kaivinkonemallia ja niiden hydrauliikkaominaisuudet.</p>
+        <div class="how-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" stroke="#000" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg></div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <div class="how-h3">Kerro kayttotarkoitus</div>
+        <p class="how-p">Betonin purku, kalliotyot, asfaltti vai kaikki vahan? Kayttotarkoitus vaikuttaa suositeltavaan malliin ja varustukseen.</p>
+        <div class="how-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" stroke="#000" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg></div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <div class="how-h3">Vertaile ehdotuksia</div>
+        <p class="how-p">Naat yhdella silmayksella kolmen merkin parhaat vaihtoehdot: iskuenergia, paino, hinta ja takuu. Kaikki hinnat sisaltavat kiinnikkeen ja letkut.</p>
+        <div class="how-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" stroke="#000" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg></div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">04</div>
+        <div class="how-h3">Tilaa ja saat toimituksen</div>
+        <p class="how-p">Vasara, kiinnike, letkut ja tera — kaikki yhdessa paketissa. Toimitus tyomaalle tai noutopiste. Rahoitusvaihtoehdot saatavilla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section id="konfiguraattori">
+  <div class="wrap">
+    <div class="conf-header">
+      <div class="sec-pre">Konfiguraattori</div>
+      <h2 class="sec-h2">Valitse kaivinkoneesi</h2>
+      <p class="sec-p" style="margin:0 auto">Saat heti suositukset sopivimmista vasaroista kaikista kolmesta merkista — hinnat, tekniset tiedot ja vertailu.</p>
+      <div class="sec-rule" style="margin:20px auto 0"></div>
+    </div>
+
+    <div class="conf-wrap">
+      <div class="conf-top">
+        <div class="conf-steps">
+          <div class="conf-step active" id="step-ind-1">
+            <div class="step-num">1</div>
+            <span class="step-label">Valitse kone</span>
+          </div>
+          <div class="conf-step" id="step-ind-2">
+            <div class="step-num">2</div>
+            <span class="step-label">Kayttotarkoitus</span>
+          </div>
+          <div class="conf-step" id="step-ind-3">
+            <div class="step-num">3</div>
+            <span class="step-label">Vertaile vasaroita</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="conf-body">
+
+        <!-- STEP 1 -->
+        <div class="conf-panel active" id="step-1">
+          <p style="font-size:14px;color:var(--text-l);margin-bottom:20px">Valitse kaivinkonemerkkisi alta tai syota koneen paino suoraan.</p>
+          <div class="brand-grid" id="brand-grid">
+            <div class="brand-btn" onclick="selectBrand('Volvo',this)">
+              <span class="brand-logo-txt">VOLVO</span>
+              <span>CE</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Caterpillar',this)">
+              <span class="brand-logo-txt">CAT</span>
+              <span>Caterpillar</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Komatsu',this)">
+              <span class="brand-logo-txt">KOMATSU</span>
+              <span>KMT</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Hitachi',this)">
+              <span class="brand-logo-txt">HITACHI</span>
+              <span>Zaxis</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Doosan',this)">
+              <span class="brand-logo-txt">DEVELON</span>
+              <span>Doosan</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('JCB',this)">
+              <span class="brand-logo-txt">JCB</span>
+              <span>JS/J series</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Liebherr',this)">
+              <span class="brand-logo-txt">LIEBHERR</span>
+              <span>R series</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Hyundai',this)">
+              <span class="brand-logo-txt">HYUNDAI</span>
+              <span>HX/HW</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Bobcat',this)">
+              <span class="brand-logo-txt">BOBCAT</span>
+              <span>E series</span>
+            </div>
+            <div class="brand-btn" onclick="selectBrand('Muu',this)">
+              <span class="brand-logo-txt">MUU</span>
+              <span>Syota paino</span>
+            </div>
+          </div>
+
+          <div class="conf-model-row" id="model-row" style="display:none">
+            <div class="conf-field">
+              <label>Konemalli</label>
+              <select id="model-select">
+                <option value="">Valitse malli...</option>
+              </select>
+            </div>
+            <div class="conf-field">
+              <label>Tai: Kayttopainoalue (t)</label>
+              <select id="weight-select">
+                <option value="">Valitse painoluokka...</option>
+                <option value="1">1–3 tonnia (minikaivinkone)</option>
+                <option value="3">3–6 tonnia (pieni)</option>
+                <option value="6">6–12 tonnia (kompakti)</option>
+                <option value="12">12–20 tonnia (keski)</option>
+                <option value="20">20–30 tonnia (iso)</option>
+                <option value="30">30–50 tonnia (raskas)</option>
+                <option value="50">50+ tonnia (jattilainen)</option>
+              </select>
+            </div>
+          </div>
+          <div class="conf-or-row" id="manual-or" style="display:none">tai syota paino suoraan</div>
+          <div class="conf-field" id="manual-weight-field">
+            <label>Koneen kayttopainoalue (tonnia)</label>
+            <select id="manual-weight">
+              <option value="">Valitse painoluokka...</option>
+              <option value="1">1–3 tonnia (minikaivinkone)</option>
+              <option value="3">3–6 tonnia (pieni)</option>
+              <option value="6">6–12 tonnia (kompakti)</option>
+              <option value="12">12–20 tonnia (keski)</option>
+              <option value="20">20–30 tonnia (iso)</option>
+              <option value="30">30–50 tonnia (raskas)</option>
+              <option value="50">50+ tonnia (jattilainen)</option>
+            </select>
+          </div>
+
+          <div class="conf-actions">
+            <button class="conf-btn-next" onclick="goStep2()">
+              Seuraava — Kayttotarkoitus
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="conf-panel" id="step-2">
+          <p style="font-size:14px;color:var(--text-l);margin-bottom:24px">Mita tyota vasara tekee paaosin?</p>
+          <div class="use-grid">
+            <div class="use-btn" onclick="selectUse('beton',this)">
+              <span class="use-icon">🧱</span>
+              <div class="use-h">Betonin purku</div>
+              <p class="use-p">Rakennusten purku, perustukset, betonisillat. Tarvitaan kestava ja tehokas vasara.</p>
+            </div>
+            <div class="use-btn" onclick="selectUse('kallio',this)">
+              <span class="use-icon">🪨</span>
+              <div class="use-h">Kalliotyot</div>
+              <p class="use-p">Suomalainen graniitti on kovaa — tarvitset ensiluokkaisen iskuenergian ja kestavan teran.</p>
+            </div>
+            <div class="use-btn" onclick="selectUse('asfaltti',this)">
+              <span class="use-icon">🛣️</span>
+              <div class="use-h">Asfaltti ja tiepinta</div>
+              <p class="use-p">Tietoiden purku, katukorjaukset, kunnallistekniikka. Kevyempi vasara riittaa.</p>
+            </div>
+            <div class="use-btn" onclick="selectUse('monipuolinen',this)">
+              <span class="use-icon">🔧</span>
+              <div class="use-h">Monipuolinen kaytto</div>
+              <p class="use-p">Vaihteleva tyokanta — betoni, asfaltti, kevyt kallio. Tasapainoinen yleisvasara.</p>
+            </div>
+            <div class="use-btn" onclick="selectUse('kaivos',this)">
+              <span class="use-icon">⛏️</span>
+              <div class="use-h">Kaivos ja louhinta</div>
+              <p class="use-p">Vaatii max iskuenergian, paksuimman tassun ja parhaan klarausjärjestelman.</p>
+            </div>
+            <div class="use-btn" onclick="selectUse('purkaminen',this)">
+              <span class="use-icon">🏗️</span>
+              <div class="use-h">Rakennusten purku</div>
+              <p class="use-p">Tiili, kevytbetoni, palkistot. Tehokas mutta ei yliraskas — nopea kayttotahti.</p>
+            </div>
+          </div>
+
+          <div class="conf-actions">
+            <button class="conf-btn-back" onclick="goStep(1)">Takaisin</button>
+            <button class="conf-btn-next" onclick="goStep3()">
+              Nayta sopivat vasarat
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3 - Results -->
+        <div class="conf-panel" id="step-3">
+          <div id="results-info" style="margin-bottom:24px;padding:16px 20px;background:var(--yellow-dim);border:1px solid rgba(232,160,0,.2);border-radius:8px;font-size:14px;color:var(--text-m)"></div>
+          <div class="results-grid" id="results-grid"></div>
+
+          <div style="margin-top:40px;padding:28px;background:var(--bg2);border-radius:10px;border:1px solid var(--border)">
+            <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px">Haluatko tarjouksen tai lisatietoja?</p>
+            <p style="font-size:13px;color:var(--text-m);margin-bottom:18px">Asiantuntijamme auttaa valitsemaan juuri oikean vasaran, kiinnikkeen ja varustuksen tyollesi.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a href="#yhteystiedot" class="conf-btn-next" style="text-decoration:none">Pyydä tarjous</a>
+              <button class="conf-btn-back" onclick="goStep(1)">Aloita alusta</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MERKIT -->
+<section id="merkit" class="section section-bg">
+  <div class="wrap">
+    <div class="brands-header">
+      <div class="sec-pre">Valikoima</div>
+      <h2 class="sec-h2">Kolme laadukasta merkkia</h2>
+      <p class="sec-p">General Breaker, OKTech ja NPK yhdessa kattavat kaikki koneluokat 1-tonnisista minikaivinkoneistayli 70-tonnisiin jattilaisiin.</p>
+    </div>
+    <div class="brands-tabs">
+      <button class="brand-tab active" onclick="showBrand('gb',this)">General Breaker</button>
+      <button class="brand-tab" onclick="showBrand('oktech',this)">OKTech</button>
+      <button class="brand-tab" onclick="showBrand('npk',this)">NPK</button>
+    </div>
+
+    <!-- GB -->
+    <div class="brand-panel active" id="brand-gb">
+      <div class="bp-left">
+        <div class="bp-logo">General<br>Breaker</div>
+        <div class="bp-origin">Etela-Korea · GB Industries Co., Ltd.</div>
+        <p class="bp-desc">General Breaker tunnetaan yksinkertaisesta ja kestävästä rakenteesta. Ainoastaan kaksi liikkuvaa osaa minimoi huoltotarpeen ja maksimoi luotettavuuden. Erinomainen valinta, kun halutaan pitava tyokalu ilman ylimaaraista komplikaatioita.</p>
+        <div class="bp-highlights">
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Vain 2 liikkuvaa osaa</strong> — markkinoiden yksinkertaisin rakenne, minimaalinen huolto</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Kapea runko</strong> — soveltuu ahtaisiin tiloihin ja kaupunkityomaille</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Erinomainen hinta-laatu-suhde</strong> — luokkansa paras panostus kestoon</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>T-, F-, E- ja Unicon-sarjat</strong> — kattaa 1-15 tonnin kaivinkoneluokat</p>
+          </div>
+        </div>
+        <a href="#konfiguraattori" class="bp-cta">Valitse GB-vasara &rarr;</a>
+      </div>
+      <div class="bp-right">
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>Malli</th>
+              <th>Kone (t)</th>
+              <th>Iskuenergia</th>
+              <th>Paino</th>
+              <th>Hinta alkaen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>T120</td><td>1–2 t</td><td>120 J</td><td>46 kg</td><td class="td-price">2 900 €</td></tr>
+            <tr><td>T170</td><td>2–4 t</td><td>170 J</td><td>68 kg</td><td class="td-price">3 800 €</td></tr>
+            <tr><td>T350</td><td>4–7 t</td><td>350 J</td><td>120 kg</td><td class="td-price">5 200 €</td></tr>
+            <tr><td>T600</td><td>7–12 t</td><td>600 J</td><td>195 kg</td><td class="td-price">7 400 €</td></tr>
+            <tr><td>T1000</td><td>10–18 t</td><td>1 000 J</td><td>320 kg</td><td class="td-price">10 500 €</td></tr>
+            <tr><td>T1500</td><td>15–25 t</td><td>1 500 J</td><td>480 kg</td><td class="td-price">14 800 €</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sis. kiinnike ja letkut. ALV 0 %. Lopulliset hinnat tarjouspyynnon perusteella.</p>
+      </div>
+    </div>
+
+    <!-- OKTech -->
+    <div class="brand-panel" id="brand-oktech">
+      <div class="bp-left">
+        <div class="bp-logo">OKTech<br>OKB</div>
+        <div class="bp-origin">Etela-Korea · OKTech Co., Ltd.</div>
+        <p class="bp-desc">OKTech tarjoaa markkinoiden laajimman malliston — Alpha-sarjan minikaivinkoneista OKB 7000:een yli 70-tonnisille koneille. OKB-vasarat tunnetaan erinomaisesta kestävyydestään ja tehokkaasta iskuenergiastaan kaikissa olosuhteissa, mukaan lukien Suomen ankarat talvet.</p>
+        <div class="bp-highlights">
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Laajin mallisto markkinoilla</strong> — jokaiselle konekoolle 0,8 t:sta 75+ t:iin</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Alpha-sarja</strong> kompakteille 0,8–9 tonnin koneille — pienen tilan ammattilainen</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>OKB-sarja</strong> raskaaseen kaytt&ouml;&ouml;n — 7 000 J:iin asti, kaivostoimintaan</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>R- ja Z-sarjat</strong> erikoiskohteisiin — muun muassa vedenalainen kaytto</p>
+          </div>
+        </div>
+        <a href="#konfiguraattori" class="bp-cta">Valitse OKTech-vasara &rarr;</a>
+      </div>
+      <div class="bp-right">
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>Malli</th>
+              <th>Kone (t)</th>
+              <th>Iskuenergia</th>
+              <th>Paino</th>
+              <th>Hinta alkaen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alpha 30</td><td>1–3 t</td><td>300 J</td><td>90 kg</td><td class="td-price">3 200 €</td></tr>
+            <tr><td>Alpha 60</td><td>3–7 t</td><td>600 J</td><td>185 kg</td><td class="td-price">5 800 €</td></tr>
+            <tr><td>OKB 100</td><td>7–13 t</td><td>1 000 J</td><td>290 kg</td><td class="td-price">7 900 €</td></tr>
+            <tr><td>OKB 160</td><td>12–22 t</td><td>1 600 J</td><td>450 kg</td><td class="td-price">11 500 €</td></tr>
+            <tr><td>OKB 250</td><td>20–32 t</td><td>2 500 J</td><td>680 kg</td><td class="td-price">16 200 €</td></tr>
+            <tr><td>OKB 400</td><td>30–50 t</td><td>4 000 J</td><td>1 050 kg</td><td class="td-price">24 500 €</td></tr>
+            <tr><td>OKB 700</td><td>45–75 t</td><td>7 000 J</td><td>1 800 kg</td><td class="td-price">38 000 €</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sis. kiinnike ja letkut. ALV 0 %. Lopulliset hinnat tarjouspyynnon perusteella.</p>
+      </div>
+    </div>
+
+    <!-- NPK -->
+    <div class="brand-panel" id="brand-npk">
+      <div class="bp-left">
+        <div class="bp-logo">NPK</div>
+        <div class="bp-origin">Japani · Nippon Pneumatic Machinery Co., Ltd. (perustettu 1923)</div>
+        <p class="bp-desc">NPK on valmistut hydrauliikkavasaroita 1970-luvulta lahtienja juurtensa johtavat vuoteen 1923. NPK tunnetaan japanilaisesta laadunfilosofiasta, erinomaisesta tarinanvaimennuksesta ja pitkista huoltoväleista. GH- ja PH-sarjat edustavat alan huippua.</p>
+        <div class="bp-highlights">
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Japanilainen laatu</strong> — pitkat huoltovalit, erinomainen käyttövarmuus</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Ainutlaatuinen tärinavaimennus</strong> — vähentää kaivinkoneeseen kohdistuvaa rasitusta merkittavasti</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>Laaja globaali varaosaverkosto</strong> — osat aina saatavilla</p>
+          </div>
+          <div class="bp-hl">
+            <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+            <p class="bp-hl-txt"><strong>GH-sarja</strong> vaativimpiin kohteisiin — kaivos, louhinta, vedenalainen tyo</p>
+          </div>
+        </div>
+        <a href="#konfiguraattori" class="bp-cta">Valitse NPK-vasara &rarr;</a>
+      </div>
+      <div class="bp-right">
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>Malli</th>
+              <th>Kone (t)</th>
+              <th>Iskuenergia</th>
+              <th>Paino</th>
+              <th>Hinta alkaen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>PH-1</td><td>1–3 t</td><td>280 J</td><td>85 kg</td><td class="td-price">4 200 €</td></tr>
+            <tr><td>PH-3</td><td>3–6 t</td><td>550 J</td><td>170 kg</td><td class="td-price">6 800 €</td></tr>
+            <tr><td>GH-3</td><td>5–10 t</td><td>800 J</td><td>250 kg</td><td class="td-price">9 500 €</td></tr>
+            <tr><td>GH-7</td><td>10–18 t</td><td>1 200 J</td><td>400 kg</td><td class="td-price">14 200 €</td></tr>
+            <tr><td>GH-12</td><td>18–30 t</td><td>2 000 J</td><td>620 kg</td><td class="td-price">19 800 €</td></tr>
+            <tr><td>GH-18</td><td>28–45 t</td><td>3 000 J</td><td>900 kg</td><td class="td-price">28 500 €</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sis. kiinnike ja letkut. ALV 0 %. Lopulliset hinnat tarjouspyynnon perusteella.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MIKSI -->
+<section id="miksi" class="section">
+  <div class="wrap">
+    <div class="sec-pre">Miksi vasarakauppa.fi</div>
+    <h2 class="sec-h2">Eri tapa ostaa vasara</h2>
+    <div class="sec-rule"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.93V18h-2v-1.07A6 6 0 0 1 6 11h2a4 4 0 0 0 8 0h2a6 6 0 0 1-5 5.93z"/></svg>
+        </div>
+        <div class="wc-h3">Konfiguraattori</div>
+        <p class="wc-p">Syota kaivinkoneesi — saat heti sopivat vasarat kaikista kolmesta merkista. Ei vaaraa vaaran vasaran tilaamisesta. Yksikaan muu toimija Suomessa ei tata tarjoa.</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <div class="wc-h3">Lapinakyvat hinnat</div>
+        <p class="wc-p">Kaikki mukana yhdessa paketissa: vasara, kiinnike, letkut ja tera. Ei yllatyskuluja. Perinteisessa myynnissa nama ovat usein erillisia laskuja.</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <div class="wc-h3">Rahoitusvaihtoehdot</div>
+        <p class="wc-p">PK-yritykset eivat aina maksa 10 000–50 000 € kerralla. Tarjoamme osamaksu- ja leasingratkaisut suoraan tilauksen yhteydessa.</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="m20 8-4-4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-8 8-4-4 1.4-1.4L12 13.2l5.6-5.6L19 9l-7 7z"/></svg>
+        </div>
+        <div class="wc-h3">Varaosat heti mukaan</div>
+        <p class="wc-p">Terat, tiivisteet ja holkit kaikille kolmelle merkille — heti saatavilla. Toistuva ostovirta, nopea toimitus, ei tuotantoseisokkeja.</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z M16 8h6l3 3v5h-9V8z M5.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z M18.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+        </div>
+        <div class="wc-h3">Toimitus tyomaalle</div>
+        <p class="wc-p">Vasarat painavat 50–2 000 kg — logistiikka on kriittista. Hoidamme toimituksen suoraan tyomaallesi koko Suomeen.</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+        </div>
+        <div class="wc-h3">Tekninen asiantuntemus</div>
+        <p class="wc-p">Meilla on oikea osaaminen — emme vain myy vasaroita, vaan autamme loytemaan oikean yhdistelman jokaiseen kaytt&ouml;kohteeseen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKKINA -->
+<section id="markkina" class="market-section">
+  <div class="wrap">
+    <div class="sec-pre">Markkina</div>
+    <h2 class="sec-h2">Suomen hydrauliikkavasaramarkkina</h2>
+    <div class="market-grid">
+      <div class="market-stats">
+        <div class="mstat">
+          <div class="mstat-num">15–35 M€</div>
+          <div class="mstat-lbl">Vuotuinen markkinakoko Suomessa</div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-num">400–800</div>
+          <div class="mstat-lbl">Uutta vasaraa myydaan vuosittain</div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-num">15 000–20 000</div>
+          <div class="mstat-lbl">Kaivinkoneita aktiivisessa kaytossa</div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-num">6,23 %</div>
+          <div class="mstat-lbl">Globaalin markkinan vuosikasvu (CAGR)</div>
+        </div>
+      </div>
+      <div class="market-text">
+        <p class="sec-p">Suomen arviolta 15–35 M€ iskuvasaramarkkina on hajautunut ja digitalisoimaton. Yksikaan toimija ei tarjoa konfiguraattoripohjaista verkkokauppaa — tama luo selkean markkinamahdollisuuden.</p>
+        <div class="market-list">
+          <div class="mlist-item"><span><strong>Kova kallioperä</strong> — Suomen graniitti lisää vasaroiden kulumista ja korostaa laadun merkitystä</span></div>
+          <div class="mlist-item"><span><strong>Suomalaiset olosuhteet</strong> — Ankarat talvet (&minus;30 °C) vaativat kylmänkestäviä hydrauliikkajärjestelmiä</span></div>
+          <div class="mlist-item"><span><strong>PK-yritysvoittoinen</strong> — 5 000–10 000 maanrakennusyritystä, valtaosa 1–5 hengen firmoja</span></div>
+          <div class="mlist-item"><span><strong>Rakentaminen elpymässä</strong> — Vihrean siirtyman hankkeet, energiainvestoinnit, infrastruktuuri 2025–2026</span></div>
+          <div class="mlist-item"><span><strong>Kausiluonteisuus</strong> — Ostopiikki kevaalla, ennen rakennuskauden alkua huhtikuussa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section" id="yhteystiedot">
+  <div class="wrap">
+    <div class="sec-pre">Pyydä tarjous</div>
+    <h2 class="sec-h2">Valmis valitsemaan<br><span style="color:var(--yellow)">oikean vasaran?</span></h2>
+    <p class="sec-p">Kayta konfiguraattoria, pyydä tarjous tai ota yhteyttä suoraan. Asiantuntijamme auttaa valitsemaan juuri oikean yhdistelman tyollesi.</p>
+    <div class="cta-btns">
+      <a href="#konfiguraattori" class="btn-yellow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Avaa konfiguraattori
+      </a>
+      <a href="mailto:info@vasarakauppa.fi" class="btn-outline">Laheta sahkoposti</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="#000"><path d="M20 8l-4-4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-8 8l-4-4 1.4-1.4L12 13.2l5.6-5.6L19 9l-7 7z"/></svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-main">Vasarakauppa</span>
+            <span class="logo-sub">.fi</span>
+          </div>
+        </a>
+        <p>Konfiguraattoripohjainen verkkokauppa hydraulisille iskuvasaroille. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tuotteet</h4>
+        <a href="#merkit" onclick="showBrand('gb',document.querySelector('.brand-tab'))">General Breaker</a>
+        <a href="#merkit" onclick="showBrand('oktech',document.querySelectorAll('.brand-tab')[1])">OKTech</a>
+        <a href="#merkit" onclick="showBrand('npk',document.querySelectorAll('.brand-tab')[2])">NPK</a>
+        <a href="#konfiguraattori">Konfiguraattori</a>
+      </div>
+      <div class="footer-col">
+        <h4>Palvelut</h4>
+        <a href="#">Varaosat</a>
+        <a href="#">Huolto ja asennus</a>
+        <a href="#">Rahoitus</a>
+        <a href="#">Toimitus</a>
+      </div>
+      <div class="footer-col">
+        <h4>Yhteys</h4>
+        <a href="mailto:info@vasarakauppa.fi">info@vasarakauppa.fi</a>
+        <a href="#">Ma–Pe 8–17</a>
+        <a href="#">Vasarakauppa.fi</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Vasarakauppa.fi — Kaikki hinnat sisaltavat ALV</p>
+      <p class="footer-copy">General Breaker · OKTech · NPK</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// === DATA ===
+const excavatorModels = {
+  'Volvo': [
+    {model:'EC18E',weight:1.8},{model:'EC26E',weight:2.6},{model:'EC35E',weight:3.5},
+    {model:'EC55E',weight:5.7},{model:'EC80E',weight:8.4},{model:'ECR88',weight:9.0},
+    {model:'EC140EL',weight:14.3},{model:'EC200EL',weight:20.5},{model:'EC250EL',weight:26.0},
+    {model:'EC300EL',weight:30.5},{model:'EC380EL',weight:38.0},{model:'EC480EL',weight:48.5},
+  ],
+  'Caterpillar': [
+    {model:'301.7 CR',weight:1.7},{model:'303',weight:3.1},{model:'305',weight:5.3},
+    {model:'308',weight:8.4},{model:'313',weight:13.6},{model:'315',weight:15.8},
+    {model:'320',weight:20.3},{model:'323',weight:23.4},{model:'330',weight:30.3},
+    {model:'340',weight:40.2},{model:'349',weight:48.9},{model:'374',weight:74.0},
+  ],
+  'Komatsu': [
+    {model:'PC18MR',weight:1.8},{model:'PC35MR',weight:3.5},{model:'PC55MR',weight:5.5},
+    {model:'PC88MR',weight:9.0},{model:'PC130',weight:13.1},{model:'PC138USLC',weight:14.2},
+    {model:'PC210',weight:21.4},{model:'PC240',weight:24.2},{model:'PC290',weight:29.2},
+    {model:'PC360',weight:37.2},{model:'PC490',weight:49.4},
+  ],
+  'Hitachi': [
+    {model:'ZX17U',weight:1.7},{model:'ZX26U',weight:2.7},{model:'ZX35U',weight:3.7},
+    {model:'ZX55U',weight:5.5},{model:'ZX85USB',weight:8.7},{model:'ZX135US',weight:13.7},
+    {model:'ZX210',weight:21.2},{model:'ZX250',weight:24.8},{model:'ZX330',weight:32.9},
+    {model:'ZX470H',weight:47.6},
+  ],
+  'Doosan': [
+    {model:'DX27Z',weight:2.7},{model:'DX35Z',weight:3.5},{model:'DX55',weight:5.5},
+    {model:'DX85R',weight:8.8},{model:'DX140LCR',weight:14.2},{model:'DX210W',weight:21.5},
+    {model:'DX255LC',weight:25.8},{model:'DX300LC',weight:30.2},{model:'DX380LC',weight:38.5},
+  ],
+  'JCB': [
+    {model:'15C',weight:1.5},{model:'26C',weight:2.6},{model:'35Z',weight:3.5},
+    {model:'55Z',weight:5.7},{model:'85Z',weight:8.5},{model:'131X',weight:13.1},
+    {model:'220X',weight:22.2},{model:'245X',weight:24.8},{model:'300X',weight:30.1},
+    {model:'380X',weight:38.4},
+  ],
+  'Liebherr': [
+    {model:'R906',weight:6.0},{model:'R914',weight:14.0},{model:'R920',weight:20.0},
+    {model:'R926',weight:26.0},{model:'R935',weight:35.0},{model:'R945',weight:45.0},
+  ],
+  'Hyundai': [
+    {model:'HX35',weight:3.5},{model:'HX55',weight:5.5},{model:'HX85',weight:8.5},
+    {model:'HX140L',weight:14.2},{model:'HX210L',weight:21.5},{model:'HX260L',weight:26.0},
+    {model:'HX330L',weight:33.0},
+  ],
+  'Bobcat': [
+    {model:'E17',weight:1.7},{model:'E26',weight:2.7},{model:'E35',weight:3.5},
+    {model:'E50',weight:5.0},{model:'E85',weight:8.9},{model:'E145',weight:14.7},
+  ],
+  'Muu': []
+};
+
+// Hammer database: [brand, model, minTon, maxTon, joules, kg, price, tag, desc]
+const hammers = [
+  // GB
+  {b:'General Breaker',m:'T120',  lo:1,  hi:2.5, j:120,  kg:46,   p:2900,  tag:'value',   desc:'Yksinkertainen ja kevyt — minikaivinkoneeseen'},
+  {b:'General Breaker',m:'T170',  lo:2,  hi:4.5, j:170,  kg:68,   p:3800,  tag:'value',   desc:'Pienen koneen luotettava tyokaveri'},
+  {b:'General Breaker',m:'T350',  lo:4,  hi:8,   j:350,  kg:120,  p:5200,  tag:'value',   desc:'Kapea runko, ahtaisiin tiloihin erinomainen'},
+  {b:'General Breaker',m:'T600',  lo:7,  hi:13,  j:600,  kg:195,  p:7400,  tag:'value',   desc:'Kompakti rungolla hyva suorituskyky'},
+  {b:'General Breaker',m:'T1000', lo:10, hi:20,  j:1000, kg:320,  p:10500, tag:'value',   desc:'Keski-kokoisen koneen perusvaara'},
+  {b:'General Breaker',m:'T1500', lo:15, hi:27,  j:1500, kg:480,  p:14800, tag:'value',   desc:'Tehokas 15–25 t koneille'},
+  // OKTech
+  {b:'OKTech',m:'Alpha 30', lo:0.8,hi:3,  j:300,  kg:90,   p:3200,  tag:'wide',    desc:'Laajin mallisto — myos alle 1t koneet'},
+  {b:'OKTech',m:'Alpha 60', lo:3,  hi:7,  j:600,  kg:185,  p:5800,  tag:'wide',    desc:'Alpha-sarjan vahvempi versio'},
+  {b:'OKTech',m:'OKB 100',  lo:7,  hi:14, j:1000, kg:290,  p:7900,  tag:'wide',    desc:'OKB-sarjan kompakti aloittaja'},
+  {b:'OKTech',m:'OKB 160',  lo:12, hi:23, j:1600, kg:450,  p:11500, tag:'wide',    desc:'Keski-suuren koneen monipuolinen vasara'},
+  {b:'OKTech',m:'OKB 250',  lo:20, hi:34, j:2500, kg:680,  p:16200, tag:'wide',    desc:'Tehokas isoille koneille'},
+  {b:'OKTech',m:'OKB 400',  lo:30, hi:52, j:4000, kg:1050, p:24500, tag:'wide',    desc:'Raskaaseen maanrakennukseen'},
+  {b:'OKTech',m:'OKB 700',  lo:45, hi:80, j:7000, kg:1800, p:38000, tag:'wide',    desc:'Kaivos ja louhinta — max teho'},
+  // NPK
+  {b:'NPK',m:'PH-1',  lo:1,  hi:3.5, j:280,  kg:85,   p:4200,  tag:'premium', desc:'Japanilainen laatu pieneen koneeseen'},
+  {b:'NPK',m:'PH-3',  lo:3,  hi:7,   j:550,  kg:170,  p:6800,  tag:'premium', desc:'Pitkä kayttöikä, erinomainen tärinänvaimennus'},
+  {b:'NPK',m:'GH-3',  lo:5,  hi:11,  j:800,  kg:250,  p:9500,  tag:'premium', desc:'GH-sarjan kompakti, huipputehokas'},
+  {b:'NPK',m:'GH-7',  lo:10, hi:19,  j:1200, kg:400,  p:14200, tag:'premium', desc:'Vaativille tyomaille — japanilainen huippu'},
+  {b:'NPK',m:'GH-12', lo:18, hi:31,  j:2000, kg:620,  p:19800, tag:'premium', desc:'Raskaaseen kaytt&ouml;&ouml;n, erinomainen iskuteho'},
+  {b:'NPK',m:'GH-18', lo:28, hi:48,  j:3000, kg:900,  p:28500, tag:'premium', desc:'Kaivos, louhinta, vedenalainen tyo'},
+];
+
+// State
+let selectedBrand = null;
+let selectedWeight = null;
+let selectedUseCase = null;
+
+function getWeightClass(w) {
+  if (w <= 3) return 1;
+  if (w <= 6) return 3;
+  if (w <= 12) return 6;
+  if (w <= 20) return 12;
+  if (w <= 30) return 20;
+  if (w <= 50) return 30;
+  return 50;
+}
+
+function selectBrand(brand, el) {
+  selectedBrand = brand;
+  document.querySelectorAll('.brand-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const row = document.getElementById('model-row');
+  const manualOr = document.getElementById('manual-or');
+  const manualField = document.getElementById('manual-weight-field');
+  const sel = document.getElementById('model-select');
+
+  if (brand === 'Muu') {
+    row.style.display = 'none';
+    manualOr.style.display = 'none';
+    manualField.style.display = 'block';
+  } else {
+    const models = excavatorModels[brand] || [];
+    sel.innerHTML = '<option value="">Valitse malli...</option>';
+    models.forEach(m => {
+      const o = document.createElement('option');
+      o.value = m.weight;
+      o.textContent = `${m.model} (${m.weight} t)`;
+      sel.appendChild(o);
+    });
+    row.style.display = 'grid';
+    manualOr.style.display = 'block';
+    manualField.style.display = 'none';
+  }
+
+  document.getElementById('model-select').onchange = function() {
+    if (this.value) { selectedWeight = parseFloat(this.value); document.getElementById('weight-select').value=''; }
+  };
+  document.getElementById('weight-select').onchange = function() {
+    if (this.value) { selectedWeight = parseFloat(this.value); document.getElementById('model-select').value=''; }
+  };
+  document.getElementById('manual-weight').onchange = function() {
+    if (this.value) selectedWeight = parseFloat(this.value);
+  };
+}
+
+function selectUse(use, el) {
+  selectedUseCase = use;
+  document.querySelectorAll('.use-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function goStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById(`step-${i}`).classList.remove('active');
+    const ind = document.getElementById(`step-ind-${i}`);
+    ind.classList.remove('active','done');
+    if (i < n) ind.classList.add('done');
+  });
+  document.getElementById(`step-${n}`).classList.add('active');
+  document.getElementById(`step-ind-${n}`).classList.add('active');
+  document.getElementById('konfiguraattori').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function goStep2() {
+  // Resolve weight
+  const ms = document.getElementById('model-select');
+  const ws = document.getElementById('weight-select');
+  const mw = document.getElementById('manual-weight');
+  if (ms && ms.value) selectedWeight = parseFloat(ms.value);
+  else if (ws && ws.value) selectedWeight = parseFloat(ws.value);
+  else if (mw && mw.value) selectedWeight = parseFloat(mw.value);
+
+  if (!selectedWeight && !selectedBrand) {
+    alert('Valitse ensin kaivinkone tai syota sen paino.');
+    return;
+  }
+  goStep(2);
+}
+
+function goStep3() {
+  if (!selectedUseCase) {
+    alert('Valitse ensin kayttotarkoitus.');
+    return;
+  }
+  buildResults();
+  goStep(3);
+}
+
+function getRecommendedHammers(weight) {
+  const brands = ['General Breaker','OKTech','NPK'];
+  const result = [];
+  for (const brand of brands) {
+    const matches = hammers.filter(h => h.b === brand && h.lo <= weight && h.hi >= weight);
+    if (matches.length === 0) {
+      // closest
+      const all = hammers.filter(h=>h.b===brand);
+      const closest = all.reduce((a,b) => Math.abs(a.lo + a.hi)/2 - weight < Math.abs(b.lo + b.hi)/2 - weight ? a : b);
+      result.push(closest);
+    } else {
+      // pick best match (smallest range)
+      const best = matches.reduce((a,b) => (a.hi-a.lo) < (b.hi-b.lo) ? a : b);
+      result.push(best);
+    }
+  }
+  return result;
+}
+
+function tagLabel(tag) {
+  if (tag === 'value') return '<span class="rc-brand-tag tag-value">HINTA-LAATU</span>';
+  if (tag === 'wide') return '<span class="rc-brand-tag tag-wide">LAAJIN MALLISTO</span>';
+  if (tag === 'premium') return '<span class="rc-brand-tag tag-premium">PREMIUM</span>';
+  return '';
+}
+
+function buildResults() {
+  let w = selectedWeight;
+  if (!w) w = 14; // default
+
+  const grid = document.getElementById('results-grid');
+  const info = document.getElementById('results-info');
+
+  const useLables = {beton:'Betonin purku',kallio:'Kalliotyot',asfaltti:'Asfaltti ja tiepinta',monipuolinen:'Monipuolinen kaytto',kaivos:'Kaivos ja louhinta',purkaminen:'Rakennusten purku'};
+  const wc = getWeightClass(w);
+  const wcNames = {1:'1–3 t (minikaivinkone)',3:'3–6 t (pieni)',6:'6–12 t (kompakti)',12:'12–20 t (keski)',20:'20–30 t (iso)',30:'30–50 t (raskas)',50:'50+ t (jattilainen)'};
+
+  info.innerHTML = `<strong>Kone: ${selectedBrand && selectedBrand !== 'Muu' ? selectedBrand + ' — ' : ''}${w} tonnia</strong> &nbsp;|&nbsp; Kayttotarkoitus: ${useLables[selectedUseCase] || selectedUseCase} &nbsp;|&nbsp; Alla kolme parasta vaihtoehtoa`;
+
+  const recs = getRecommendedHammers(w);
+  
+  // Determine which to recommend based on use case
+  let recommendedBrand = 'General Breaker';
+  if (selectedUseCase === 'kallio' || selectedUseCase === 'kaivos') recommendedBrand = 'NPK';
+  else if (w > 20) recommendedBrand = 'OKTech';
+
+  grid.innerHTML = '';
+  recs.forEach(h => {
+    const isRec = h.b === recommendedBrand;
+    const card = document.createElement('div');
+    card.className = 'result-card' + (isRec ? ' rc-recommended' : '');
+    card.innerHTML = `
+      <div class="rc-brand">
+        <span class="rc-brand-name">${h.b}</span>
+        ${tagLabel(h.tag)}
+      </div>
+      <div class="rc-body">
+        <div class="rc-model">${h.m}</div>
+        <div class="rc-desc">${h.desc}</div>
+        <div class="rc-specs">
+          <div class="spec-item"><div class="spec-val">${h.j.toLocaleString('fi')} J</div><div class="spec-lbl">Iskuenergia</div></div>
+          <div class="spec-item"><div class="spec-val">${h.kg.toLocaleString('fi')} kg</div><div class="spec-lbl">Paino</div></div>
+          <div class="spec-item"><div class="spec-val">${h.lo}–${h.hi} t</div><div class="spec-lbl">Koneluokka</div></div>
+          <div class="spec-item"><div class="spec-val">2 v</div><div class="spec-lbl">Takuu</div></div>
+        </div>
+        <div class="rc-price">${h.p.toLocaleString('fi')} €</div>
+        <div class="rc-price-note">Sis. kiinnike, letkut ja tera. ALV 0 %.</div>
+        <a href="#yhteystiedot" class="rc-btn">Pyydä tarjous</a>
+        <a href="#yhteystiedot" class="rc-secondary">Lisätietoja</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function heroSearch() {
+  const brand = document.getElementById('hero-brand').value;
+  const weight = parseFloat(document.getElementById('hero-weight').value);
+  if (brand) selectedBrand = brand;
+  if (weight) selectedWeight = weight;
+  document.getElementById('konfiguraattori').scrollIntoView({behavior:'smooth'});
+}
+
+// Brand tabs
+function showBrand(id, el) {
+  document.querySelectorAll('.brand-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.brand-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('brand-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// Nav hamburger
+document.getElementById('ham').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mob-nav').classList.toggle('open');
+});
+document.querySelectorAll('.mob-link, .mob-cta').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('ham').classList.remove('open');
+    document.getElementById('mob-nav').classList.remove('open');
+  });
+});
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// Hero animations
+function animateHero() {
+  ['h-badge','h-h1','h-rule','h-p','h-stats','h-btns','h-card'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('v');
+  });
+}
+window.addEventListener('load', () => setTimeout(animateHero, 50));
+
+// Hero brand dropdown
+document.getElementById('hero-brand').addEventListener('change', function() {
+  const models = excavatorModels[this.value] || [];
+  const sel = document.getElementById('hero-model');
+  sel.innerHTML = '<option value="">Valitse malli...</option>';
+  models.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m.weight;
+    o.textContent = `${m.model} (${m.weight} t)`;
+    sel.appendChild(o);
+  });
+  sel.disabled = models.length === 0;
+});
+</script>
+</body>
+</html>
