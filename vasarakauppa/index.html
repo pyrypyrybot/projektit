@@ -27,14 +27,15 @@
   --green:#2EBD82;
   --red:#E85050;
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
 
 /* === NAV === */
 .nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(15,25,35,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{display:flex;align-items:center;text-decoration:none}
-.logo-img{height:62px;width:auto;display:block;filter:invert(1) contrast(2)}
+.logo{display:flex;flex-direction:column;justify-content:center;text-decoration:none;gap:1px}
+.logo-img{height:44px;width:auto;display:block}
+.logo-slogan{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1;padding-left:2px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;padding:8px 13px;border-radius:5px;transition:all .15s}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
@@ -279,7 +280,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="#">
-      <img class="logo-img" src="logo.png" alt="Suomen Vasarakauppa">
+      <img class="logo-img" src="logo_nav.png" alt="Suomen Vasarakauppa">
+      <span class="logo-slogan">Hydraulivasaroiden koti Suomessa</span>
     </a>
     <div class="nav-links">
       <a href="#konfiguraattori">Konfiguraattori</a>
