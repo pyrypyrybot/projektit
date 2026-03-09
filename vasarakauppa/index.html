@@ -54,7 +54,7 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-
 
 /* === HERO === */
 .hero{min-height:100svh;background:var(--bg);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:72px}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.25;pointer-events:none}
+.hero-grid{display:none}
 .hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(232,160,0,.06) 0%,transparent 70%);pointer-events:none}
 .hero-in{max-width:1200px;margin:0 auto;padding:72px 28px 80px;width:100%;display:grid;grid-template-columns:1fr 460px;gap:72px;align-items:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-dim);border:1px solid rgba(232,160,0,.3);border-radius:24px;padding:5px 14px;margin-bottom:20px;opacity:0;transition:opacity .5s .1s}
@@ -627,28 +627,27 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
           </div>
           <div class="bp-hl">
             <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
-            <p class="bp-hl-txt"><strong>T-, F-, E- ja Unicon-sarjat</strong> — kattaa 1–15 tonnin kaivinkoneluokat</p>
+            <p class="bp-hl-txt"><strong>Useita sarjoja</strong> — kattaa laajan valikoiman koneluokkia minikaivinkoneista raskaaseen kalustoon</p>
           </div>
         </div>
-        <a href="#konfiguraattori" class="bp-cta">Valitse GB-vasara &rarr;</a>
+        <a href="#yhteystiedot" class="bp-cta">Pyydä tarjous &rarr;</a>
       </div>
       <div class="bp-right">
         <table class="model-table">
           <thead>
             <tr>
-              <th>Malli</th><th>Kone (t)</th><th>Iskuenergia</th><th>Paino</th><th>Hinta alkaen</th>
+              <th>Koneluokka</th><th>Koneen paino</th><th>Saatavuus</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>T120</td><td>1–2 t</td><td>120 J</td><td>46 kg</td><td class="td-price">2 900 €</td></tr>
-            <tr><td>T170</td><td>2–4 t</td><td>170 J</td><td>68 kg</td><td class="td-price">3 800 €</td></tr>
-            <tr><td>T350</td><td>4–7 t</td><td>350 J</td><td>120 kg</td><td class="td-price">5 200 €</td></tr>
-            <tr><td>T600</td><td>7–12 t</td><td>600 J</td><td>195 kg</td><td class="td-price">7 400 €</td></tr>
-            <tr><td>T1000</td><td>10–18 t</td><td>1 000 J</td><td>320 kg</td><td class="td-price">10 500 €</td></tr>
-            <tr><td>T1500</td><td>15–25 t</td><td>1 500 J</td><td>480 kg</td><td class="td-price">14 800 €</td></tr>
+            <tr><td>Minikaivinkone</td><td>1–4 t</td><td class="td-price">alkaen 2 900 €</td></tr>
+            <tr><td>Pieni</td><td>4–8 t</td><td class="td-price">alkaen 5 200 €</td></tr>
+            <tr><td>Kompakti</td><td>8–14 t</td><td class="td-price">alkaen 8 500 €</td></tr>
+            <tr><td>Keski</td><td>14–22 t</td><td class="td-price">alkaen 13 000 €</td></tr>
+            <tr><td>Iso</td><td>22–35 t</td><td class="td-price">alkaen 19 000 €</td></tr>
           </tbody>
         </table>
-        <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sisältävät kiinnikkeen ja letkut. Lopulliset hinnat tarjouspyynnön perusteella.</p>
+        <p style="font-size:11px;color:var(--text-l);margin-top:12px">Ajantasaiset mallinimet, tekniset tiedot ja hinnat tarjouspyynnön perusteella. Ota yhteyttä.</p>
       </div>
     </div>
 
@@ -686,13 +685,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
             </tr>
           </thead>
           <tbody>
-            <tr><td>Alpha 30</td><td>1–3 t</td><td>300 J</td><td>90 kg</td><td class="td-price">3 200 €</td></tr>
-            <tr><td>Alpha 60</td><td>3–7 t</td><td>600 J</td><td>185 kg</td><td class="td-price">5 800 €</td></tr>
-            <tr><td>OKB 100</td><td>7–13 t</td><td>1 000 J</td><td>290 kg</td><td class="td-price">7 900 €</td></tr>
-            <tr><td>OKB 160</td><td>12–22 t</td><td>1 600 J</td><td>450 kg</td><td class="td-price">11 500 €</td></tr>
-            <tr><td>OKB 250</td><td>20–32 t</td><td>2 500 J</td><td>680 kg</td><td class="td-price">16 200 €</td></tr>
-            <tr><td>OKB 400</td><td>30–50 t</td><td>4 000 J</td><td>1 050 kg</td><td class="td-price">24 500 €</td></tr>
-            <tr><td>OKB 700</td><td>45–75 t</td><td>7 000 J</td><td>1 800 kg</td><td class="td-price">38 000 €</td></tr>
+            <tr><td>OKB 030</td><td>1–3 t</td><td>300 J</td><td>~90 kg</td><td class="td-price">3 200 €</td></tr>
+            <tr><td>OKB 060</td><td>3–7 t</td><td>600 J</td><td>~185 kg</td><td class="td-price">5 800 €</td></tr>
+            <tr><td>OKB 100</td><td>7–13 t</td><td>1 000 J</td><td>~290 kg</td><td class="td-price">7 900 €</td></tr>
+            <tr><td>OKB 160</td><td>12–22 t</td><td>1 600 J</td><td>~450 kg</td><td class="td-price">11 500 €</td></tr>
+            <tr><td>OKB 250</td><td>20–32 t</td><td>2 500 J</td><td>~680 kg</td><td class="td-price">16 200 €</td></tr>
+            <tr><td>OKB 400</td><td>30–50 t</td><td>4 000 J</td><td>~1 050 kg</td><td class="td-price">24 500 €</td></tr>
+            <tr><td>OKB 700</td><td>45–75 t</td><td>7 000 J</td><td>~1 800 kg</td><td class="td-price">38 000 €</td></tr>
           </tbody>
         </table>
         <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sisältävät kiinnikkeen ja letkut. Lopulliset hinnat tarjouspyynnön perusteella.</p>
@@ -704,7 +703,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
       <div class="bp-left">
         <div class="bp-logo">NPK</div>
         <div class="bp-origin">Japani · Nippon Pneumatic Machinery Co., Ltd. (perustettu 1923)</div>
-        <p class="bp-desc">NPK on valmistanut hydrauliikkavasaroita 1970-luvulta lähtien ja yhtiön juuret ulottuvat vuoteen 1923. NPK tunnetaan japanilaisesta laadunfilosofiasta, erinomaisesta tärinänvaimennuksesta ja pitkistä huoltoväleistä. GH- ja PH-sarjat edustavat alan huippua.</p>
+        <p class="bp-desc">NPK on valmistanut hydrauliikkavasaroita 1970-luvulta lähtien, ja yhtiön juuret ulottuvat vuoteen 1916. NPK tunnetaan japanilaisesta monozukuri-laadunfilosofiasta, erinomaisesta tärinänvaimennuksesta ja pitkistä huoltoväleistä. PH-sarja kattaa 1–8 tonnin koneet, GHD-sarja raskaan kaluston 10–25 tonniin.</p>
         <div class="bp-highlights">
           <div class="bp-hl">
             <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
@@ -720,7 +719,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
           </div>
           <div class="bp-hl">
             <div class="bp-hl-dot"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
-            <p class="bp-hl-txt"><strong>GH-sarja</strong> vaativimpiin kohteisiin — kaivos, louhinta, vedenalainen työ</p>
+            <p class="bp-hl-txt"><strong>GHD-sarja</strong> vaativimpiin kohteisiin — 2 700–4 000 J, kaivos ja louhinta</p>
           </div>
         </div>
         <a href="#konfiguraattori" class="bp-cta">Valitse NPK-vasara &rarr;</a>
@@ -733,12 +732,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
             </tr>
           </thead>
           <tbody>
-            <tr><td>PH-1</td><td>1–3 t</td><td>280 J</td><td>85 kg</td><td class="td-price">4 200 €</td></tr>
-            <tr><td>PH-3</td><td>3–6 t</td><td>550 J</td><td>170 kg</td><td class="td-price">6 800 €</td></tr>
-            <tr><td>GH-3</td><td>5–10 t</td><td>800 J</td><td>250 kg</td><td class="td-price">9 500 €</td></tr>
-            <tr><td>GH-7</td><td>10–18 t</td><td>1 200 J</td><td>400 kg</td><td class="td-price">14 200 €</td></tr>
-            <tr><td>GH-12</td><td>18–30 t</td><td>2 000 J</td><td>620 kg</td><td class="td-price">19 800 €</td></tr>
-            <tr><td>GH-18</td><td>28–45 t</td><td>3 000 J</td><td>900 kg</td><td class="td-price">28 500 €</td></tr>
+            <tr><td>PH-06</td><td>1–1,8 t</td><td>200 J</td><td>100 kg</td><td class="td-price">3 500 €</td></tr>
+            <tr><td>PH-1</td><td>1,8–3,5 t</td><td>475 J</td><td>225 kg</td><td class="td-price">5 500 €</td></tr>
+            <tr><td>PH-2</td><td>2,7–5 t</td><td>680 J</td><td>275 kg</td><td class="td-price">7 200 €</td></tr>
+            <tr><td>PH-3</td><td>3,6–7,3 t</td><td>1 120 J</td><td>450 kg</td><td class="td-price">9 800 €</td></tr>
+            <tr><td>PH-4</td><td>5,5–8 t</td><td>1 760 J</td><td>560 kg</td><td class="td-price">13 500 €</td></tr>
+            <tr><td>GHD-6</td><td>10–14 t</td><td>2 710 J</td><td>1 135 kg</td><td class="td-price">22 000 €</td></tr>
+            <tr><td>GHD-7</td><td>13–21 t</td><td>3 390 J</td><td>1 315 kg</td><td class="td-price">28 500 €</td></tr>
+            <tr><td>GHD-9</td><td>18–25 t</td><td>4 070 J</td><td>1 635 kg</td><td class="td-price">36 000 €</td></tr>
           </tbody>
         </table>
         <p style="font-size:11px;color:var(--text-l);margin-top:12px">Hinnat sisältävät kiinnikkeen ja letkut. Lopulliset hinnat tarjouspyynnön perusteella.</p>
@@ -908,25 +909,28 @@ const excavatorModels = {
 };
 
 const hammers = [
-  {b:'General Breaker',m:'T120',  lo:1,  hi:2.5, j:120,  kg:46,   p:2900,  tag:'value',   desc:'Yksinkertainen ja kevyt — minikaivinkoneeseen'},
-  {b:'General Breaker',m:'T170',  lo:2,  hi:4.5, j:170,  kg:68,   p:3800,  tag:'value',   desc:'Pienen koneen luotettava työkaveri'},
-  {b:'General Breaker',m:'T350',  lo:4,  hi:8,   j:350,  kg:120,  p:5200,  tag:'value',   desc:'Kapea runko, ahtaisiin tiloihin erinomainen'},
-  {b:'General Breaker',m:'T600',  lo:7,  hi:13,  j:600,  kg:195,  p:7400,  tag:'value',   desc:'Kompaktilla rungolla hyvä suorituskyky'},
-  {b:'General Breaker',m:'T1000', lo:10, hi:20,  j:1000, kg:320,  p:10500, tag:'value',   desc:'Keski-kokoisen koneen perusvasara'},
-  {b:'General Breaker',m:'T1500', lo:15, hi:27,  j:1500, kg:480,  p:14800, tag:'value',   desc:'Tehokas 15–25 t koneille'},
-  {b:'OKTech',m:'Alpha 30', lo:0.8,hi:3,  j:300,  kg:90,   p:3200,  tag:'wide',    desc:'Laajin mallisto — myös alle 1 t koneet'},
-  {b:'OKTech',m:'Alpha 60', lo:3,  hi:7,  j:600,  kg:185,  p:5800,  tag:'wide',    desc:'Alpha-sarjan vahvempi versio'},
-  {b:'OKTech',m:'OKB 100',  lo:7,  hi:14, j:1000, kg:290,  p:7900,  tag:'wide',    desc:'OKB-sarjan kompakti aloittaja'},
-  {b:'OKTech',m:'OKB 160',  lo:12, hi:23, j:1600, kg:450,  p:11500, tag:'wide',    desc:'Keski-suuren koneen monipuolinen vasara'},
-  {b:'OKTech',m:'OKB 250',  lo:20, hi:34, j:2500, kg:680,  p:16200, tag:'wide',    desc:'Tehokas isoille koneille'},
-  {b:'OKTech',m:'OKB 400',  lo:30, hi:52, j:4000, kg:1050, p:24500, tag:'wide',    desc:'Raskaaseen maanrakennukseen'},
-  {b:'OKTech',m:'OKB 700',  lo:45, hi:80, j:7000, kg:1800, p:38000, tag:'wide',    desc:'Kaivos ja louhinta — maksimiteho'},
-  {b:'NPK',m:'PH-1',  lo:1,  hi:3.5, j:280,  kg:85,   p:4200,  tag:'premium', desc:'Japanilainen laatu pieneen koneeseen'},
-  {b:'NPK',m:'PH-3',  lo:3,  hi:7,   j:550,  kg:170,  p:6800,  tag:'premium', desc:'Pitkä käyttöikä, erinomainen tärinänvaimennus'},
-  {b:'NPK',m:'GH-3',  lo:5,  hi:11,  j:800,  kg:250,  p:9500,  tag:'premium', desc:'GH-sarjan kompakti, huipputehokas'},
-  {b:'NPK',m:'GH-7',  lo:10, hi:19,  j:1200, kg:400,  p:14200, tag:'premium', desc:'Vaativille työmaille — japanilainen huippu'},
-  {b:'NPK',m:'GH-12', lo:18, hi:31,  j:2000, kg:620,  p:19800, tag:'premium', desc:'Raskaaseen käyttöön, erinomainen iskuteho'},
-  {b:'NPK',m:'GH-18', lo:28, hi:48,  j:3000, kg:900,  p:28500, tag:'premium', desc:'Kaivos, louhinta, vedenalainen työ'},
+  // General Breaker — mallit vahvistettava, käytä koneluokkia
+  {b:'General Breaker',m:'(pieni)',   lo:1,  hi:4,   j:null, kg:null, p:null, tag:'value', desc:'Sopii 1–4 t koneille — kysy ajantasainen malli'},
+  {b:'General Breaker',m:'(kompakti)',lo:4,  hi:9,   j:null, kg:null, p:null, tag:'value', desc:'Sopii 4–9 t koneille — kapea runko, ahtaat tilat'},
+  {b:'General Breaker',m:'(keski)',   lo:9,  hi:16,  j:null, kg:null, p:null, tag:'value', desc:'Sopii 9–16 t koneille — erinomainen hinta-laatu'},
+  {b:'General Breaker',m:'(iso)',     lo:16, hi:25,  j:null, kg:null, p:null, tag:'value', desc:'Sopii 16–25 t koneille — kysy tarjous'},
+  // OKTech OKB-sarja
+  {b:'OKTech',m:'OKB 030', lo:1,   hi:3,   j:300,  kg:90,   p:null, tag:'wide', desc:'1–3 t koneille, OKB-sarjan kompakti'},
+  {b:'OKTech',m:'OKB 060', lo:3,   hi:7,   j:600,  kg:185,  p:null, tag:'wide', desc:'3–7 t koneille, tehokas pieneen kalustoon'},
+  {b:'OKTech',m:'OKB 100', lo:7,   hi:14,  j:1000, kg:290,  p:null, tag:'wide', desc:'7–14 t koneille, monipuolinen keskiraskas'},
+  {b:'OKTech',m:'OKB 160', lo:12,  hi:23,  j:1600, kg:450,  p:null, tag:'wide', desc:'12–23 t koneille, keski-suuren koneen vasara'},
+  {b:'OKTech',m:'OKB 250', lo:20,  hi:34,  j:2500, kg:680,  p:null, tag:'wide', desc:'20–34 t koneille, tehokas iso'},
+  {b:'OKTech',m:'OKB 400', lo:30,  hi:52,  j:4000, kg:1050, p:null, tag:'wide', desc:'30–52 t koneille, raskas maanrakennus'},
+  {b:'OKTech',m:'OKB 700', lo:45,  hi:80,  j:7000, kg:1800, p:null, tag:'wide', desc:'45–75 t koneille, kaivos ja louhinta'},
+  // NPK — mallit vahvistettu npkce.com-sivustolta
+  {b:'NPK',m:'PH-06', lo:1,   hi:1.8, j:200,  kg:100,  p:null, tag:'premium', desc:'1–1,8 t koneille, japanilainen laatu'},
+  {b:'NPK',m:'PH-1',  lo:1.8, hi:3.5, j:475,  kg:225,  p:null, tag:'premium', desc:'1,8–3,5 t koneille, erinomainen tärinänvaimennus'},
+  {b:'NPK',m:'PH-2',  lo:2.7, hi:5,   j:680,  kg:275,  p:null, tag:'premium', desc:'2,7–5 t koneille, pitkä käyttöikä'},
+  {b:'NPK',m:'PH-3',  lo:3.6, hi:7.3, j:1120, kg:450,  p:null, tag:'premium', desc:'3,6–7,3 t koneille, PH-sarjan tehokkain'},
+  {b:'NPK',m:'PH-4',  lo:5.5, hi:8,   j:1760, kg:560,  p:null, tag:'premium', desc:'5,5–8 t koneille, siirtymä raskaaseen sarjaan'},
+  {b:'NPK',m:'GHD-6', lo:10,  hi:14,  j:2710, kg:1135, p:null, tag:'premium', desc:'10–14 t koneille, GHD-sarjan aloittaja'},
+  {b:'NPK',m:'GHD-7', lo:13,  hi:21,  j:3390, kg:1315, p:null, tag:'premium', desc:'13–21 t koneille, raskas ja tehokas'},
+  {b:'NPK',m:'GHD-9', lo:18,  hi:25,  j:4070, kg:1635, p:null, tag:'premium', desc:'18–25 t koneille, huipputeho raskaaseen louhintaan'},
 ];
 
 let selectedBrand = null;
