@@ -34,7 +34,7 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-
 .nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(15,25,35,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{display:flex;align-items:center;text-decoration:none}
-.logo-img{height:42px;width:auto;display:block;filter:invert(1)}
+.logo-img{height:62px;width:auto;display:block;filter:invert(1) contrast(2)}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;padding:8px 13px;border-radius:5px;transition:all .15s}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
@@ -308,10 +308,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
   <div class="hero-grad"></div>
   <div class="hero-in wrap">
     <div class="hero-left">
-      <div class="hero-badge" id="h-badge">
-        <div class="badge-dot"></div>
-        <span class="badge-txt">Hydrauliikkavasaroiden koti Suomessa</span>
-      </div>
       <h1 class="hero-h1" id="h-h1">
         Oikea vasara.<br>
         <span class="yellow">Helposti.</span><br>
@@ -1100,7 +1096,7 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
 });
 window.addEventListener('load', () => setTimeout(() => {
-  ['h-badge','h-h1','h-rule','h-p','h-stats','h-btns','h-card'].forEach(id => {
+  ['h-h1','h-rule','h-p','h-stats','h-btns','h-card'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add('v');
   });
