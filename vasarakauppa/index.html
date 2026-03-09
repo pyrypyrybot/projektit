@@ -33,12 +33,9 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-
 /* === NAV === */
 .nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(15,25,35,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-icon{width:38px;height:38px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-icon svg{width:22px;height:22px;fill:#000}
-.logo-text{display:flex;flex-direction:column}
-.logo-main{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:#fff;letter-spacing:.05em;text-transform:uppercase;line-height:1}
-.logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-l);margin-top:2px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo-img{height:38px;width:auto;filter:invert(1);display:block}
+.logo-img.footer{height:32px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-m);text-decoration:none;padding:8px 13px;border-radius:5px;transition:all .15s}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
@@ -306,13 +303,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="#">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><path d="M20 8l-4-4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-8 8l-4-4 1.4-1.4L12 13.2l5.6-5.6L19 9l-7 7z"/></svg>
-      </div>
-      <div class="logo-text">
-        <span class="logo-main">Vasarakauppa</span>
-        <span class="logo-sub">.fi</span>
-      </div>
+      <img class="logo-img" src="logo.jpg" alt="Suomen Vasarakauppa">
     </a>
     <div class="nav-links">
       <a href="#konfiguraattori">Konfiguraattori</a>
@@ -914,13 +905,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 3
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="logo" href="#">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24" fill="#000"><path d="M20 8l-4-4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-8 8l-4-4 1.4-1.4L12 13.2l5.6-5.6L19 9l-7 7z"/></svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-main">Vasarakauppa</span>
-            <span class="logo-sub">.fi</span>
-          </div>
+          <img class="logo-img footer" src="logo.jpg" alt="Suomen Vasarakauppa">
         </a>
         <p>Konfiguraattoripohjainen verkkokauppa hydraulisille iskuvasaroille. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
       </div>
