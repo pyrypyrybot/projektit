@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jyväskylän Apupojat — Valmiina auttamaan</title>
+  <meta name="description" content="Jyväskylän Apupojat tarjoaa luotettavaa työvoimaa yrityksille ja yksityisille. Muuttopalvelu, työvoimavuokraus ja kaikki aputehtävät Jyväskylässä.">
+  <meta name="keywords" content="muuttoapu Jyväskylä, työvoimavuokraus Jyväskylä, apumies Keski-Suomi, muuttofirma Jyväskylä">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1E3A5F;
+      --navy-dark: #152d4a;
+      --orange: #F57C00;
+      --orange-light: #FF9800;
+      --white: #FFFFFF;
+      --gray-light: #F5F6F8;
+      --gray-mid: #E8EBF0;
+      --text: #1A1A2E;
+      --text-mid: #4A5568;
+      --text-light: #718096;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(30, 58, 95, 0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--orange-light); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--orange-light) !important; color: var(--white) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #2a4a7f 100%);
+      display: flex;
+      align-items: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 124, 0, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 124, 0, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245, 124, 0, 0.15);
+      border: 1px solid rgba(245, 124, 0, 0.4);
+      color: var(--orange-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .stat-item { text-align: left; }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.25rem;
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 5%; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    /* SERVICES */
+    #palvelut {
+      background: var(--gray-light);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--gray-mid);
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--orange);
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(30, 58, 95, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(245, 124, 0, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      padding: 0.25rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .service-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    /* MIKSI ME */
+    #miksi {
+      background: var(--white);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .why-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4a7f 100%);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      color: var(--white);
+    }
+
+    .why-visual-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .why-point {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .why-point-num {
+      background: var(--orange);
+      color: var(--white);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .why-point-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .why-point-text span {
+      font-size: 0.88rem;
+      opacity: 0.75;
+    }
+
+    .why-content { }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(30, 58, 95, 0.07);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-text h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-text p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+
+    /* URHEILU */
+    #urheilu {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    #urheilu .section-title { color: var(--white); }
+    #urheilu .section-subtitle { color: rgba(255,255,255,0.7); }
+
+    .sport-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sport-content { }
+
+    .sport-quote {
+      background: rgba(255,255,255,0.07);
+      border-left: 4px solid var(--orange);
+      padding: 1.5rem 1.75rem;
+      border-radius: 0 10px 10px 0;
+      margin-top: 2rem;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .sport-quote cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      font-style: normal;
+      color: var(--orange-light);
+      font-weight: 600;
+    }
+
+    .partner-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .partner-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--orange-light);
+      margin-bottom: 1rem;
+    }
+
+    .partner-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .partner-desc {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .partner-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .partner-perk {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .perk-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* HINNAT */
+    #hinnat {
+      background: var(--gray-light);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 2px solid var(--gray-mid);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .price-card.featured {
+      border-color: var(--orange);
+      box-shadow: 0 4px 20px rgba(245, 124, 0, 0.15);
+      position: relative;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .price-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .price-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin: 1rem 0 0.25rem;
+    }
+
+    .price-value span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-mid);
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .price-features li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .price-features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .price-vat {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 1.5rem;
+    }
+
+    /* CTA */
+    #tilaa {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      text-align: center;
+      padding: 6rem 5%;
+    }
+
+    #tilaa .section-title { color: var(--white); }
+    #tilaa .section-subtitle { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2.5rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .contact-method {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.2s, border-color 0.2s;
+      display: block;
+    }
+
+    .contact-method:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--orange);
+    }
+
+    .contact-method-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--orange-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-method-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .contact-method-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.25rem;
+    }
+
+    /* FORM */
+    .contact-form {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group select option { background: var(--navy); }
+
+    .form-group textarea { min-height: 100px; resize: vertical; }
+
+    .form-submit {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .form-submit:hover { background: var(--orange-light); }
+
+    /* FOOTER */
+    footer {
+      background: #0f2240;
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand-name span { color: var(--orange); }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--orange-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      font-size: 0.82rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .partner-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+    }
+
+    .partner-strip-label { color: rgba(255,255,255,0.4); }
+    .partner-strip-name { color: var(--orange-light); font-weight: 600; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .why-grid, .sport-grid { grid-template-columns: 1fr; }
+      .sport-grid { gap: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+      .contact-form { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Jyväskylän <span>Apupojat</span></a>
+    <ul class="nav-links">
+      <li><a href="#palvelut">Palvelut</a></li>
+      <li><a href="#miksi">Miksi me</a></li>
+      <li><a href="#urheilu">Urheilijat</a></li>
+      <li><a href="#hinnat">Hinnat</a></li>
+      <li><a href="#tilaa" class="nav-cta">Pyydä tarjous</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="etusivu">
+    <div class="hero-content">
+      <div class="hero-badge">Keski-Suomen luotettavin aputyövoima</div>
+      <h1>Valmiina auttamaan —<br><em>aina.</em></h1>
+      <p>Työvoimavuokrausta yrityksille, muuttopalvelua yksityisille ja kaikkea siltä väliltä. Tekijöinä hyväkuntoiset nuoret urheilijat Keski-Suomesta.</p>
+      <div class="hero-actions">
+        <a href="#tilaa" class="btn-primary">Pyydä tarjous</a>
+        <a href="#palvelut" class="btn-secondary">Katso palvelut</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">1 h</div>
+          <div class="stat-label">Vastaamisaika</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2+</div>
+          <div class="stat-label">Min. tilaus tuntia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">JKL</div>
+          <div class="stat-label">Koko Keski-Suomi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALVELUT -->
+  <section id="palvelut">
+    <div class="section-label">Palvelumme</div>
+    <h2 class="section-title">Mitä voimme tehdä puolestasi</h2>
+    <p class="section-subtitle">Palvelemme yrityksiä ja yksityishenkilöitä. Olipa kyse kiireisestä lisäkäsiparista tai kokonaisen muuton hoitamisesta.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="service-tag">Yrityksille</div>
+        <h3>Työvoimavuokraus</h3>
+        <p>Tarvitset lisäkäsiparit messutapahtumaan, varastotyöhön tai projektihuippuun? Me reagoimme nopeasti.</p>
+        <ul class="service-list">
+          <li>Tapahtumat ja messut</li>
+          <li>Varasto- ja logistiikkatyöt</li>
+          <li>Sesonkityövoima</li>
+          <li>Kuljetus- ja siirtoapu</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-tag">Yksityisille</div>
+        <h3>Muuttopalvelu</h3>
+        <p>Helpota muuttosi — hoitaa kantamisen, pakkaamisen ja siistimisen ammattitaidolla.</p>
+        <ul class="service-list">
+          <li>Kantaminen ja lastaus</li>
+          <li>Pakkaaminen ja purku</li>
+          <li>Huonekalujen kokoaminen</li>
+          <li>Loppusiivous</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="service-tag">Molemmat</div>
+        <h3>Yleiset aputyöt</h3>
+        <p>Piha, remontti, siivous, hankinnat — jos tarvitset reipasta apua, me tulemme.</p>
+        <ul class="service-list">
+          <li>Piha- ja puutarhatyöt</li>
+          <li>Remonttiapu (ei luvanvarainen)</li>
+          <li>Siivous ja järjestely</li>
+          <li>Ostokset ja kuljetukset</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="service-tag">Yrityksille</div>
+        <h3>Logistiikka-apu</h3>
+        <p>Keikkakuljetukset, purkuavustus ja tavaroiden siirto. Joustavasti aikataulusi mukaan.</p>
+        <ul class="service-list">
+          <li>Tavarakuljetukset</li>
+          <li>Lastaus ja purku</li>
+          <li>Kokoonpano paikan päällä</li>
+          <li>Lähetys- ja noutoapu</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MIKSI ME -->
+  <section id="miksi">
+    <div class="section-label">Miksi Apupojat</div>
+    <h2 class="section-title">Enemmän kuin pelkkä<br>käsipari</h2>
+    <p class="section-subtitle">Emme vain tee työn — teemme sen hyvin. Kaikki tekijämme ovat urheilijataustaisia nuoria ammattilaisia, joilla on motivaatio ja fysiikka kohdallaan.</p>
+
+    <div class="why-grid">
+      <div class="why-visual">
+        <div class="why-visual-title">Meistä poikkeava tapa toimia</div>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="why-point-num">1</div>
+            <div class="why-point-text">
+              <strong>Nopea reagointi</strong>
+              <span>Vastaamme tarjouspyyntöihin tunnin kuluessa arkisin</span>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-num">2</div>
+            <div class="why-point-text">
+              <strong>Urheilijat työssä</strong>
+              <span>Fyysisesti huippukuntoiset tekijät — kantavat enemmän, väsyvät vähemmän</span>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-num">3</div>
+            <div class="why-point-text">
+              <strong>Paikallinen osaaminen</strong>
+              <span>Jyväskyläläisiä — tuntevat kaupungin ja ovat ylpeitä siitä</span>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-num">4</div>
+            <div class="why-point-text">
+              <strong>Vastuuvakuutus</strong>
+              <span>Kaikki työmme on vakuutettu — asiakkaan omaisuus on turvassa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-content">
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Luotettavuus ennen kaikkea</h4>
+              <p>Sovittu on sovittu. Jos tulee este, ilmoitamme ajoissa ja järjestämme korvaavan tekijän.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Joustavat aikataulut</h4>
+              <p>Arki, viikonloppu, ilta — neuvotellaan sopiva aika. Kiireavun saaminen onnistuu usein saman päivän sisällä.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Läpinäkyvä hinnoittelu</h4>
+              <p>Kerromme hinnat suoraan — ei piilokustannuksia, ei yllätyksiä laskussa. Hinnat sisältävät ALV.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Palaute joka keikan jälkeen</h4>
+              <p>Kehitämme toimintaamme jatkuvasti. Asiakastyytyväisyys on meille henkilökohtainen asia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- URHEILU -->
+  <section id="urheilu">
+    <div class="sport-grid">
+      <div class="sport-content">
+        <div class="section-label">Yhteiskuntavastuu</div>
+        <h2 class="section-title">Tuemme nuoria urheilijoita</h2>
+        <p class="section-subtitle">Kaikki tekijämme ovat nuoria urheilijoita Keski-Suomesta. Kun tilaat meiltä, tuet suoraan heidän urheiluaan.</p>
+        <blockquote class="sport-quote">
+          "Harjoittelu maksaa. Apupojissa pääsen töihin joustavasti harjoitusten ympärille — ja tiedän, että pomo ymmärtää urheilun merkityksen."
+          <cite>Apupoika, jalkapalloilija</cite>
+        </blockquote>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-label">Yhteistyökumppani</div>
+        <div class="partner-name">HuimaUrho</div>
+        <p class="partner-desc">Yhteistyömme jyväskyläläisen HuimaUrho-jalkapallojoukkueen kanssa on Apupoikien sydän. Pelaajat saavat työtä, joukkue saa tukea — ja asiakkaamme saavat paremman palvelun.</p>
+        <div class="partner-perks">
+          <div class="partner-perk">
+            <div class="perk-dot"></div>
+            <span>Pelaajat töissä kauden ulkopuolella</span>
+          </div>
+          <div class="partner-perk">
+            <div class="perk-dot"></div>
+            <span>Osa tuotoista suoraan joukkueen toimintaan</span>
+          </div>
+          <div class="partner-perk">
+            <div class="perk-dot"></div>
+            <span>Tiimityöskentely ja joukkuehenki näkyvät laadussa</span>
+          </div>
+          <div class="partner-perk">
+            <div class="perk-dot"></div>
+            <span>Paikallinen yhteisö, paikallinen ylpeys</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HINNAT -->
+  <section id="hinnat">
+    <div class="section-label">Hinnoittelu</div>
+    <h2 class="section-title">Selkeät hinnat, ei yllätyksiä</h2>
+    <p class="section-subtitle">Minimivaraus 2 tuntia. Kaikki hinnat sisältävät arvonlisäveron.</p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <h3>Yksityishenkilö</h3>
+        <p style="font-size:0.88rem;color:var(--text-mid);">Muutot, pihatyöt, aputehtävät</p>
+        <div class="price-value">45 <span>€ / h / hlö</span></div>
+        <div class="price-note">Suuntaa-antava, tarkka tarjous pyydettäessä</div>
+        <ul class="price-features">
+          <li>Muuttopalvelu</li>
+          <li>Piha- ja remonttityöt</li>
+          <li>Siivous ja järjestely</li>
+          <li>Ostosavustus</li>
+        </ul>
+        <div class="price-vat">Hinnat sisältävät ALV</div>
+      </div>
+
+      <div class="price-card featured">
+        <div class="featured-badge">Suosituin</div>
+        <h3>Yritys — keikka</h3>
+        <p style="font-size:0.88rem;color:var(--text-mid);">Tapahtumat, messut, projektihuiput</p>
+        <div class="price-value">40 <span>€ / h / hlö</span></div>
+        <div class="price-note">Alkaen, riippuen tekijöiden määrästä</div>
+        <ul class="price-features">
+          <li>Tapahtumat ja messut</li>
+          <li>Varasto- ja logistiikkatyöt</li>
+          <li>Lastaus ja purku</li>
+          <li>Kiireinen lisätyövoima</li>
+        </ul>
+        <div class="price-vat">Hinnat sisältävät ALV</div>
+      </div>
+
+      <div class="price-card">
+        <h3>Yritys — sopimus</h3>
+        <p style="font-size:0.88rem;color:var(--text-mid);">Toistuvat tarpeet, sesonkityövoima</p>
+        <div class="price-value">Sopimus</div>
+        <div class="price-note" style="height:1.4rem;"></div>
+        <ul class="price-features">
+          <li>Volyymialennukset</li>
+          <li>Nimetty yhteyshenkilö</li>
+          <li>Prioriteettivastaus</li>
+          <li>Laskutus kuukausittain</li>
+        </ul>
+        <div class="price-vat">Hinnat sisältävät ALV</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA / TILAA -->
+  <section id="tilaa">
+    <div class="section-label">Ota yhteyttä</div>
+    <h2 class="section-title">Pyydä tarjous tai kysy lisää</h2>
+    <p class="section-subtitle">Vastaamme arkisin tunnin kuluessa. Muuttoapuun ja kiiretilanteisiin pyrimme reagoimaan saman päivän sisällä.</p>
+
+    <div class="contact-grid">
+      <a href="tel:+358401234567" class="contact-method">
+        <div class="contact-method-label">Puhelin</div>
+        <div class="contact-method-value">040 123 4567</div>
+        <div class="contact-method-sub">Arkisin klo 8–18</div>
+      </a>
+      <a href="mailto:info@jyvaskylaaapupojat.fi" class="contact-method">
+        <div class="contact-method-label">Sähköposti</div>
+        <div class="contact-method-value">info@apupojat.fi</div>
+        <div class="contact-method-sub">Vastaus 1 h sisällä</div>
+      </a>
+    </div>
+
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Nimi</label>
+          <input type="text" id="name" placeholder="Matti Meikäläinen">
+        </div>
+        <div class="form-group">
+          <label for="phone">Puhelinnumero</label>
+          <input type="tel" id="phone" placeholder="040 000 0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Sähköposti</label>
+        <input type="email" id="email" placeholder="matti@yritys.fi">
+      </div>
+      <div class="form-group">
+        <label for="type">Palvelu</label>
+        <select id="type">
+          <option value="">Valitse palvelu...</option>
+          <option>Muuttopalvelu</option>
+          <option>Työvoimavuokraus — yritys</option>
+          <option>Piha- tai remonttityöt</option>
+          <option>Yleinen aputehtävä</option>
+          <option>Joku muu</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Kerro lyhyesti tarpeestasi</label>
+        <textarea id="message" placeholder="Esim. muutto 2-huoneistosta, tarvitsen 2 apumiestä lauantaille..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Lähetä tarjouspyynto</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Jyväskylän <span>Apupojat</span></div>
+        <p>Valmiina auttamaan yrityksesiä ja kotiasi — hyväkuntoisilla nuorilla urheilijoilla Keski-Suomesta. Työmme tukee paikallista nuorisourheilua.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Palvelut</h4>
+        <ul>
+          <li><a href="#palvelut">Työvoimavuokraus</a></li>
+          <li><a href="#palvelut">Muuttopalvelu</a></li>
+          <li><a href="#palvelut">Piha- ja remonttityöt</a></li>
+          <li><a href="#palvelut">Logistiikka-apu</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Yhteystiedot</h4>
+        <ul>
+          <li><a href="tel:+358401234567">040 123 4567</a></li>
+          <li><a href="mailto:info@apupojat.fi">info@apupojat.fi</a></li>
+          <li><a href="#">Jyväskylä, Keski-Suomi</a></li>
+          <li><a href="#">Arkisin klo 8–18</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2025 Jyväskylän Apupojat. Kaikki oikeudet pidätetään.</span>
+      <div class="partner-strip">
+        <span class="partner-strip-label">Yhteistyossa:</span>
+        <span class="partner-strip-name">HuimaUrho</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
