@@ -96,6 +96,7 @@
       padding: 100px 5% 60px;
       position: relative;
       overflow: hidden;
+      gap: 4rem;
     }
 
     .hero::before {
@@ -121,9 +122,43 @@
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 600px;
       position: relative;
       z-index: 1;
+      flex: 1;
+    }
+
+    .hero-photo {
+      flex: 0 0 400px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo .photo-main {
+      height: 300px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .hero-photo-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hero-photo .photo-sm {
+      height: 160px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .hero-badge {
@@ -886,12 +921,40 @@
       .form-row { grid-template-columns: 1fr; }
     }
 
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; gap: 2rem; }
+      .hero-photo { flex: unset; width: 100%; }
+      .hero-photo .photo-main { height: 220px; }
+      .hero-photo .photo-sm { height: 120px; }
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hero-stats { gap: 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
       .contact-form { padding: 1.5rem; }
+    }
+
+    /* PHOTO STRIP */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .photo-strip { grid-template-columns: 1fr; }
+      .photo-strip img { height: 180px; }
     }
   </style>
 </head>
@@ -932,6 +995,13 @@
           <div class="stat-number">JKL</div>
           <div class="stat-label">Koko Keski-Suomi</div>
         </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img class="photo-main" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="Nuoret miehet kantavat muuttolaatikoita">
+      <div class="hero-photo-row">
+        <img class="photo-sm" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=400&q=80" alt="Muuttopalvelu">
+        <img class="photo-sm" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&q=80" alt="Urheilijat">
       </div>
     </div>
   </section>
@@ -975,16 +1045,16 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <div class="service-tag">Molemmat</div>
-        <h3>Yleiset aputyöt</h3>
-        <p>Piha, remontti, siivous, hankinnat — jos tarvitset reipasta apua, me tulemme.</p>
+        <div class="service-tag">Yksityisille</div>
+        <h3>Appari- ja kotiapu</h3>
+        <p>Asunnon arkirutiinit hoitoon — siivous, pyykit, kauppa-asiointi ja kotijärjestely ammattitaidolla.</p>
         <ul class="service-list">
-          <li>Piha- ja puutarhatyöt</li>
-          <li>Remonttiapu (ei luvanvarainen)</li>
-          <li>Siivous ja järjestely</li>
-          <li>Ostokset ja kuljetukset</li>
+          <li>Siivous ja jarjestely</li>
+          <li>Pyykinpesu ja viikkaus</li>
+          <li>Kauppa- ja apteekkiasioinnit</li>
+          <li>Kodin small fixes (lamput, kokoaminen)</li>
         </ul>
       </div>
 
@@ -1003,6 +1073,12 @@
         </ul>
       </div>
 
+    </div>
+
+    <div class="photo-strip">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80" alt="Muuttopalvelu Jyväskylä">
+      <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=600&q=80" alt="Pihatyöt Keski-Suomi">
+      <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80" alt="Kotisiivous apu">
     </div>
   </section>
 
@@ -1247,8 +1323,8 @@
         <ul>
           <li><a href="#palvelut">Työvoimavuokraus</a></li>
           <li><a href="#palvelut">Muuttopalvelu</a></li>
-          <li><a href="#palvelut">Piha- ja remonttityöt</a></li>
-          <li><a href="#palvelut">Logistiikka-apu</a></li>
+          <li><a href="#palvelut">Appari- ja kotiapu</a></li>
+          <li><a href="#palvelut">Piha- ja logistiikkatyöt</a></li>
         </ul>
       </div>
       <div class="footer-col">
