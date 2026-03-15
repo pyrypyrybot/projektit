@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TI2026 Aanekoski — Kustannuslaskelma</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f2; color: #111; margin: 0; padding: 2rem; }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; font-weight: 900; margin-bottom: 0.25rem; }
+    .meta { color: #888; font-size: 0.85rem; margin-bottom: 2rem; }
+    h2 { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+         background: #1a1a2e; color: #c8a000; padding: 0.5rem 0.75rem; margin: 2rem 0 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: #eee; text-align: left; padding: 0.5rem 0.75rem; font-weight: 700; font-size: 0.8rem; }
+    td { padding: 0.45rem 0.75rem; border-bottom: 1px solid #e0e0e0; }
+    tr:hover td { background: #f9f9f5; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .total td { background: #1a1a2e; color: #c8a000; font-weight: 900; }
+    .subtotal td { background: #e8e8e0; font-weight: 700; }
+    .highlight td { background: #fff8e0; font-weight: 700; }
+    .note { font-size: 0.78rem; color: #999; padding-left: 1rem; border-left: 3px solid #c8a000; margin: 0.5rem 0; }
+    .result-box {
+      background: #1a1a2e; color: white; padding: 1.5rem 2rem; margin: 2rem 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;
+    }
+    .result-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 0.25rem; }
+    .result-item .value { font-size: 2rem; font-weight: 900; color: #c8a000; }
+    .result-item .unit { font-size: 0.8rem; color: #666; }
+    .scenario-table td.neg { color: #cc3300; }
+    .scenario-table td.pos { color: #007700; }
+    .page-break { margin: 3rem 0; border-top: 2px dashed #ccc; }
+    @media print {
+      body { background: white; }
+      .wrap { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>TI2026 Aanekoski &mdash; Kustannuslaskelma</h1>
+  <div class="meta">The International 2026 Watch Party &amp; LAN Party &mdash; 21.&ndash;23.8.2026 &mdash; HotelliHirvi &amp; KinoHirvi, Aanekoski</div>
+
+  <!-- HOTELLI -->
+  <h2>1. Hotelli Hirvi &mdash; Huonekustannukset (2 yota: pe 21.8. &ndash; su 23.8.)</h2>
+  <p class="note">Koko hotellivaraus: 4% alennus kayttoon. Tarjous voimassa 15.5.2026 asti.</p>
+  <table>
+    <tr>
+      <th>Huonetyyppi</th>
+      <th class="num">Kpl</th>
+      <th class="num">Vuodepaikkoja</th>
+      <th class="num">Norm. hinta/yo (EUR)</th>
+      <th class="num">Hinta -4% (EUR)</th>
+      <th class="num">Yhteensa 2 yota (EUR)</th>
+    </tr>
+    <tr>
+      <td>Standard 1hh</td>
+      <td class="num">14</td>
+      <td class="num">14</td>
+      <td class="num">82,00</td>
+      <td class="num">78,72</td>
+      <td class="num">2 204,16</td>
+    </tr>
+    <tr>
+      <td>Comfort 1hh</td>
+      <td class="num">3</td>
+      <td class="num">3</td>
+      <td class="num">95,00</td>
+      <td class="num">91,20</td>
+      <td class="num">547,20</td>
+    </tr>
+    <tr>
+      <td>Standard 2hh (erilliset vuoteet)</td>
+      <td class="num">11</td>
+      <td class="num">22</td>
+      <td class="num">99,00</td>
+      <td class="num">95,04</td>
+      <td class="num">2 090,88</td>
+    </tr>
+    <tr>
+      <td>Standard 2hh (parivuode)</td>
+      <td class="num">7</td>
+      <td class="num">14</td>
+      <td class="num">99,00</td>
+      <td class="num">95,04</td>
+      <td class="num">1 330,56</td>
+    </tr>
+    <tr>
+      <td>Comfort 2hh (erilliset vuoteet)</td>
+      <td class="num">7</td>
+      <td class="num">14</td>
+      <td class="num">119,00</td>
+      <td class="num">114,24</td>
+      <td class="num">1 599,36</td>
+    </tr>
+    <tr>
+      <td>Comfort 2hh (parivuode)</td>
+      <td class="num">6</td>
+      <td class="num">12</td>
+      <td class="num">119,00</td>
+      <td class="num">114,24</td>
+      <td class="num">1 370,88</td>
+    </tr>
+    <tr>
+      <td>Standard 3hh (erilliset vuoteet)</td>
+      <td class="num">3</td>
+      <td class="num">9</td>
+      <td class="num">113,00</td>
+      <td class="num">108,48</td>
+      <td class="num">650,88</td>
+    </tr>
+    <tr class="subtotal">
+      <td><strong>HOTELLI YHTEENSA (2 yota, 4% alenn.)</strong></td>
+      <td class="num"><strong>51</strong></td>
+      <td class="num"><strong>88</strong></td>
+      <td></td>
+      <td></td>
+      <td class="num"><strong>9 793,92</strong></td>
+    </tr>
+    <tr>
+      <td colspan="5" style="color:#aaa; font-size:0.8rem;">Ilman alennusta (vertailu)</td>
+      <td class="num" style="color:#aaa;">10 202,00</td>
+    </tr>
+    <tr>
+      <td colspan="5" style="color:#007700; font-size:0.85rem;">Alennus 4% saasto</td>
+      <td class="num" style="color:#007700;"><strong>-408,08</strong></td>
+    </tr>
+  </table>
+
+  <!-- TILAT -->
+  <h2>2. Tapahtumatilat</h2>
+  <p class="note">Ravintolasalin minimiveloitus 1 000 EUR/pv. KinoHirven hinta on arvio &mdash; ei viela virallista tarjousta.</p>
+  <table>
+    <tr>
+      <th>Tila</th>
+      <th class="num">Hinta/pv (EUR)</th>
+      <th class="num">Paivat</th>
+      <th class="num">Yhteensa (EUR)</th>
+      <th>Huom.</th>
+    </tr>
+    <tr>
+      <td>HotelliHirvi &mdash; Ravintolasali</td>
+      <td class="num">1 000,00</td>
+      <td class="num">2</td>
+      <td class="num">2 000,00</td>
+      <td>Minimiveloitus. Lopullinen hinta tarkentuu.</td>
+    </tr>
+    <tr>
+      <td>KinoHirvi &mdash; Elokuvasali</td>
+      <td class="num">1 000,00</td>
+      <td class="num">2</td>
+      <td class="num">2 000,00</td>
+      <td>ARVIO ~1 000 EUR/pv. Ei viela tarjousta.</td>
+    </tr>
+    <tr class="subtotal">
+      <td><strong>TILAT YHTEENSA</strong></td>
+      <td></td>
+      <td></td>
+      <td class="num"><strong>4 000,00</strong></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <!-- YHTEENVETO -->
+  <h2>3. Kustannusyhteenveto</h2>
+  <table>
+    <tr>
+      <th>Era</th>
+      <th class="num">Summa (EUR)</th>
+      <th>Huom.</th>
+    </tr>
+    <tr>
+      <td>Hotelli (2 yota, 4% alennus)</td>
+      <td class="num">9 793,92</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tapahtumatilat (ravintolasali + KinoHirvi)</td>
+      <td class="num">4 000,00</td>
+      <td>KinoHirvi on arvio</td>
+    </tr>
+    <tr class="subtotal">
+      <td><strong>KUSTANNUKSET YHTEENSA (pohja)</strong></td>
+      <td class="num"><strong>13 793,92</strong></td>
+      <td></td>
+    </tr>
+    <tr class="highlight">
+      <td>Puskuri yllattaville kuluille (15%)</td>
+      <td class="num">2 069,09</td>
+      <td>Tekniikka, some-markkinointi, somistus, muut</td>
+    </tr>
+    <tr class="total">
+      <td><strong>KUSTANNUKSET + PUSKURI</strong></td>
+      <td class="num"><strong>15 863,01</strong></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tavoitekate (%)</td>
+      <td class="num">20%</td>
+      <td></td>
+    </tr>
+    <tr class="total">
+      <td><strong>TARVITTAVA MYYNTITUOTTO</strong></td>
+      <td class="num"><strong>19 828,76</strong></td>
+      <td>= 15 863,01 / (1 &minus; 0,20)</td>
+    </tr>
+  </table>
+
+  <!-- TULOKSET -->
+  <div class="result-box">
+    <div class="result-item">
+      <div class="label">Pohjakustannukset</div>
+      <div class="value">13 794</div>
+      <div class="unit">EUR</div>
+    </div>
+    <div class="result-item">
+      <div class="label">Puskuri (15%)</div>
+      <div class="value">2 069</div>
+      <div class="unit">EUR</div>
+    </div>
+    <div class="result-item">
+      <div class="label">Tarvittava tuotto</div>
+      <div class="value">19 829</div>
+      <div class="unit">EUR (20% kate)</div>
+    </div>
+    <div class="result-item">
+      <div class="label">Tavoitehinta / hlö</div>
+      <div class="value">249</div>
+      <div class="unit">EUR (80 osallistujaa)</div>
+    </div>
+  </div>
+
+  <!-- HINNOITTELU -->
+  <h2>4. Lippuhinnoittelu</h2>
+  <p class="note">Peruslippu kattaa kaikki kustannukset 100% myynnilla. Oma huone -lisahinta perustuu huonehintaeroon.</p>
+  <table>
+    <tr>
+      <th>Paketti</th>
+      <th class="num">Hinta/hlö (EUR)</th>
+      <th class="num">Max. kpl</th>
+      <th>Huonetyyppi</th>
+    </tr>
+    <tr>
+      <td>LAN + Majoitus &mdash; Standard Jaettu huone</td>
+      <td class="num"><strong>249</strong></td>
+      <td class="num">80</td>
+      <td>Jaettu standard-huone. Peruslippu.</td>
+    </tr>
+    <tr>
+      <td>LAN + Majoitus &mdash; Standard Oma huone</td>
+      <td class="num"><strong>339</strong></td>
+      <td class="num">14</td>
+      <td>Oma standard-huone. (+90 EUR lisahinta)</td>
+    </tr>
+    <tr>
+      <td>Watch Party -vapaalippu</td>
+      <td class="num"><strong>0</strong></td>
+      <td class="num">vapaa</td>
+      <td>Ei majoitusta / LAN-paikkaa. Kulut katettu LAN-lipuilla.</td>
+    </tr>
+  </table>
+
+  <h2 style="margin-top:1.5rem;">Oma huone -lisahinnan laskentaperuste</h2>
+  <table>
+    <tr>
+      <th>Era</th>
+      <th class="num">EUR</th>
+    </tr>
+    <tr>
+      <td>Standard 1hh 2 yota (alenn.): 78,72 x 2</td>
+      <td class="num">157,44</td>
+    </tr>
+    <tr>
+      <td>Standard 2hh per hlö 2 yota: 95,04 x 2 / 2</td>
+      <td class="num">95,04</td>
+    </tr>
+    <tr>
+      <td>Raakakustannusero</td>
+      <td class="num">62,40</td>
+    </tr>
+    <tr>
+      <td>+ Puskuri 15%</td>
+      <td class="num">71,76</td>
+    </tr>
+    <tr class="subtotal">
+      <td>Hinta 20% katteella</td>
+      <td class="num"><strong>89,70 &rarr; pyöristetty 90 EUR</strong></td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>Oma huone -lipun hinta: 249 + 90</strong></td>
+      <td class="num"><strong>339 EUR</strong></td>
+    </tr>
+  </table>
+
+  <!-- SKENAARIOT -->
+  <div class="page-break"></div>
+  <h2>5. Myyntiskenaariot</h2>
+  <p class="note">Kaikki skenaariot olettavat kustannukset + puskuri = 15 863 EUR.</p>
+  <table class="scenario-table">
+    <tr>
+      <th>Skenaario</th>
+      <th class="num">Lippu-<br>myynti</th>
+      <th class="num">Keskim. hinta</th>
+      <th class="num">Tuotto (EUR)</th>
+      <th class="num">Kate (EUR)</th>
+      <th class="num">Kate-%</th>
+    </tr>
+    <tr>
+      <td>Pessimistinen (60% taysto)</td>
+      <td class="num">48</td>
+      <td class="num">249</td>
+      <td class="num">11 952</td>
+      <td class="num neg">-3 911</td>
+      <td class="num neg">-33%</td>
+    </tr>
+    <tr>
+      <td>Realistinen (75% taysto)</td>
+      <td class="num">60</td>
+      <td class="num">249</td>
+      <td class="num">14 940</td>
+      <td class="num neg">-923</td>
+      <td class="num neg">-6%</td>
+    </tr>
+    <tr>
+      <td>Break-even</td>
+      <td class="num">64</td>
+      <td class="num">249</td>
+      <td class="num">15 936</td>
+      <td class="num" style="color:#888;">+73</td>
+      <td class="num" style="color:#888;">0,5%</td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>Tavoite (100% taysto, kaikki std. jaettu)</strong></td>
+      <td class="num"><strong>80</strong></td>
+      <td class="num"><strong>249</strong></td>
+      <td class="num"><strong>19 920</strong></td>
+      <td class="num pos"><strong>+4 057</strong></td>
+      <td class="num pos"><strong>20,4%</strong></td>
+    </tr>
+    <tr>
+      <td>Optimi (100% taysto, 30% oma huone)</td>
+      <td class="num">80</td>
+      <td class="num">276</td>
+      <td class="num">22 080</td>
+      <td class="num pos">+6 217</td>
+      <td class="num pos">28,2%</td>
+    </tr>
+  </table>
+
+  <!-- HUOMIOT -->
+  <h2>6. Tarkeat huomiot &amp; riskit</h2>
+  <table>
+    <tr>
+      <th>Asia</th>
+      <th>Tila</th>
+      <th>Huom.</th>
+    </tr>
+    <tr>
+      <td>Hotellin tarjous voimassa</td>
+      <td style="color:#cc6600;">15.5.2026 asti</td>
+      <td>Varaus viimeistaan toukokuussa!</td>
+    </tr>
+    <tr>
+      <td>Peruutusoikeus (koko hotelli)</td>
+      <td>Viim. 1.7.2026</td>
+      <td>Kuluton peruutus ennen 1.7.</td>
+    </tr>
+    <tr>
+      <td>Peruutusoikeus (&gt;50% kapasiteetti)</td>
+      <td>Viim. 21.7.2026</td>
+      <td>Jos ei koko hotelli</td>
+    </tr>
+    <tr>
+      <td>KinoHirven hinta</td>
+      <td style="color:#cc6600;">ARVIO &mdash; ei viela tarjousta</td>
+      <td>Ero +/- 500 EUR vaikuttaa n. 6 EUR/hlö</td>
+    </tr>
+    <tr>
+      <td>Torstai 20.8. (lisayö)</td>
+      <td>Mahdollinen osalle</td>
+      <td>Koko hotellia ei voi varata, mutta yksittaiset huoneet saatavuuden mukaan normaalihintaan</td>
+    </tr>
+    <tr>
+      <td>Break-even myynti</td>
+      <td style="color:#cc6600;">64 lippua (80%)</td>
+      <td>Alle 64 myytyä lippua = tappio</td>
+    </tr>
+    <tr>
+      <td>TI 2026 aikataulu</td>
+      <td>Ei viela vahvistettu</td>
+      <td>Grand Finals oletettavasti viikonloppuna 22.-23.8.</td>
+    </tr>
+  </table>
+
+  <br>
+  <p class="note">Laskelma on tehty 15.3.2026. KinoHirven lopullinen hinta paivitetaan kun tarjous saadaan. Kaikki hinnat sisaltavat ALV.</p>
+</div>
+</body>
+</html>
