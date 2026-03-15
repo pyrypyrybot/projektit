@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TI2026 Aanekoski — Watch Party & LAN Party</title>
+  <title>TI2026 Äänekoski — Watch Party &amp; LAN Party</title>
   <style>
     :root {
       --gold: #c8a000;
@@ -72,9 +72,7 @@
       transition: background 0.2s;
     }
     .nav-cta:hover { background: var(--gold-light); }
-    @media (max-width: 700px) {
-      .nav-links { display: none; }
-    }
+    @media (max-width: 700px) { .nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -174,15 +172,8 @@
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* DIVIDER LINE */
-    .gold-line {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 2rem;
-    }
+    .gold-line { width: 48px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
 
-    /* SECTION BASE */
     section { padding: 6rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label {
@@ -200,11 +191,7 @@
       line-height: 1.05;
       margin-bottom: 1.5rem;
     }
-    .section-body {
-      color: #888;
-      font-size: 1.05rem;
-      max-width: 600px;
-    }
+    .section-body { color: #888; font-size: 1.05rem; max-width: 600px; }
     .section-body p + p { margin-top: 0.9rem; }
 
     /* ABOUT */
@@ -216,39 +203,19 @@
       align-items: center;
     }
     @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .stat-card {
       background: var(--dark3);
       border: 1px solid var(--border);
       padding: 1.5rem;
       text-align: center;
     }
-    .stat-num {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #666;
-      margin-top: 0.4rem;
-    }
+    .stat-num { font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin-top: 0.4rem; }
 
     /* VENUES */
     .venues-section { background: var(--dark3); }
-    .venues-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
+    .venues-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
     @media (max-width: 700px) { .venues-grid { grid-template-columns: 1fr; } }
     .venue-card {
       background: var(--dark2);
@@ -264,25 +231,9 @@
     }
     .venue-card.hotel::before { background: linear-gradient(90deg, var(--red), #d04000); }
     .venue-card.kino::before { background: linear-gradient(90deg, var(--gold), #e06000); }
-    .venue-tag {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-    .venue-card h3 {
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    .venue-card p {
-      color: #888;
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
-    }
+    .venue-tag { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.65rem; font-weight: 700; color: #666; margin-bottom: 0.5rem; }
+    .venue-card h3 { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 1rem; }
+    .venue-card p { color: #888; font-size: 0.95rem; margin-bottom: 0.75rem; }
     .venue-detail {
       display: flex;
       align-items: flex-start;
@@ -306,32 +257,21 @@
     .program-section { background: var(--dark); }
     .days-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
       margin-top: 2.5rem;
     }
-    @media (max-width: 800px) { .days-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .days-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .days-grid { grid-template-columns: 1fr; } }
     .day-card {
       background: var(--dark2);
       border-top: 2px solid var(--border);
-      padding: 2rem;
+      padding: 1.75rem;
       transition: border-color 0.2s;
     }
     .day-card:hover { border-top-color: var(--gold); }
-    .day-name {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.68rem;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-    .day-date {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
+    .day-name { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.68rem; color: var(--gold); font-weight: 700; margin-bottom: 0.25rem; }
+    .day-date { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; }
     .event-row {
       display: flex;
       gap: 0.75rem;
@@ -340,20 +280,8 @@
       align-items: flex-start;
     }
     .event-row:last-child { border-bottom: none; }
-    .event-time {
-      color: var(--gold);
-      font-size: 0.72rem;
-      font-weight: 700;
-      min-width: 45px;
-      padding-top: 0.15rem;
-      flex-shrink: 0;
-      letter-spacing: 0.05em;
-    }
-    .event-name {
-      color: #bbb;
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
+    .event-time { color: var(--gold); font-size: 0.7rem; font-weight: 700; min-width: 42px; padding-top: 0.15rem; flex-shrink: 0; }
+    .event-name { color: #bbb; font-size: 0.88rem; line-height: 1.4; }
     .event-name.highlight { color: #fff; font-weight: 600; }
 
     /* INCLUDES */
@@ -367,26 +295,10 @@
     }
     @media (max-width: 800px) { .includes-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 500px) { .includes-grid { grid-template-columns: 1fr; } }
-    .include-item {
-      background: var(--dark3);
-      padding: 1.75rem;
-    }
-    .include-icon {
-      width: 32px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .include-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.35rem;
-    }
-    .include-desc {
-      font-size: 0.82rem;
-      color: #666;
-    }
+    .include-item { background: var(--dark3); padding: 1.75rem; }
+    .include-icon { width: 32px; height: 2px; background: var(--gold); margin-bottom: 1rem; }
+    .include-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+    .include-desc { font-size: 0.82rem; color: #666; }
 
     /* PACKAGES */
     .packages-section { background: var(--dark3); }
@@ -397,7 +309,8 @@
       margin-top: 2.5rem;
       align-items: start;
     }
-    @media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr; max-width: 480px; } }
+    @media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .packages-grid { grid-template-columns: 1fr; max-width: 420px; } }
     .package-card {
       background: var(--dark2);
       border: 1px solid rgba(255,255,255,0.06);
@@ -423,48 +336,16 @@
       padding: 0.2rem 0.9rem;
       white-space: nowrap;
     }
-    .package-type {
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.65rem;
-      color: #666;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-    }
-    .package-name {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-    }
-    .package-price {
-      font-size: 3.2rem;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .package-price-unit {
-      font-size: 0.8rem;
-      color: #555;
-      margin-bottom: 1.5rem;
-      margin-top: 0.25rem;
-    }
+    .package-type { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.65rem; color: #666; margin-bottom: 0.4rem; font-weight: 600; }
+    .package-name { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; line-height: 1.3; }
+    .package-price { font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .package-price-unit { font-size: 0.8rem; color: #555; margin-bottom: 1.5rem; margin-top: 0.25rem; }
     .package-limit {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      background: rgba(200,160,0,0.08);
-      padding: 0.3rem 0.6rem;
-      display: inline-block;
-      margin-bottom: 1.5rem;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--gold); background: rgba(200,160,0,0.08);
+      padding: 0.3rem 0.6rem; display: inline-block; margin-bottom: 1.5rem;
     }
-    .package-features {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
+    .package-features { list-style: none; margin-bottom: 2rem; }
     .package-features li {
       padding: 0.45rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -474,72 +355,32 @@
       gap: 0.5rem;
       align-items: flex-start;
     }
-    .package-features li::before {
-      content: '—';
-      color: var(--gold);
-      flex-shrink: 0;
-    }
+    .package-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
     .package-cta {
-      display: block;
-      text-align: center;
-      padding: 0.9rem;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      transition: all 0.2s;
+      display: block; text-align: center;
+      padding: 0.9rem; font-size: 0.8rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; transition: all 0.2s;
     }
-    .package-cta.primary {
-      background: var(--gold);
-      color: #000;
-    }
+    .package-cta.primary { background: var(--gold); color: #000; }
     .package-cta.primary:hover { background: var(--gold-light); }
-    .package-cta.muted {
-      background: rgba(255,255,255,0.04);
-      color: #666;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
+    .package-cta.muted { background: rgba(255,255,255,0.04); color: #666; border: 1px solid rgba(255,255,255,0.06); }
     .package-cta.muted:hover { background: rgba(255,255,255,0.07); color: #888; }
 
     .availability-wrap { margin-top: 2.5rem; }
-    .avail-bar {
-      height: 4px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-    .avail-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), #d06000);
-      border-radius: 2px;
-    }
+    .avail-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; margin-bottom: 0.5rem; }
+    .avail-fill { height: 100%; background: linear-gradient(90deg, var(--gold), #d06000); border-radius: 2px; }
     .avail-text { font-size: 0.8rem; color: #555; text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* CTA */
     .cta-section {
-      background:
-        radial-gradient(ellipse at 50% 100%, rgba(200,80,0,0.1), transparent 60%),
-        var(--dark);
+      background: radial-gradient(ellipse at 50% 100%, rgba(200,80,0,0.1), transparent 60%), var(--dark);
       text-align: center;
     }
-    .cta-section h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
+    .cta-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: #fff; margin-bottom: 1rem; }
     .cta-section p { color: #666; font-size: 1.05rem; margin-bottom: 2.5rem; }
-    .urgency {
-      margin-top: 1.5rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #b06000;
-    }
+    .urgency { margin-top: 1.5rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: #b06000; }
 
-    /* FOOTER */
     footer {
       background: #040408;
       padding: 2.5rem 2rem;
@@ -552,8 +393,6 @@
     footer a { color: #555; text-decoration: none; }
     footer a:hover { color: var(--gold); }
 
-    /* MISC */
-    .text-gold { color: var(--gold); }
     .note-box {
       background: rgba(200,160,0,0.06);
       border: 1px solid rgba(200,160,0,0.2);
@@ -569,7 +408,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">TI2026 Aanekoski</div>
+  <div class="nav-logo">TI2026 Äänekoski</div>
   <ul class="nav-links">
     <li><a href="#paikat">Paikat</a></li>
     <li><a href="#ohjelma">Ohjelma</a></li>
@@ -580,22 +419,22 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Aanekoski &mdash; 21.&ndash;23. Elokuuta 2026</div>
+  <div class="hero-eyebrow">Äänekoski &mdash; 20.&ndash;23. Elokuuta 2026</div>
   <h1>THE<br><span class="gold">INTER</span><br>NATIONAL</h1>
   <div class="hero-year">Shanghai 2026</div>
   <div class="hero-sub">Watch Party &amp; LAN Party &mdash; HotelliHirvi &amp; KinoHirvi</div>
   <div class="hero-badges">
     <div class="badge">
-      <strong>21.&ndash;23.8.2026</strong>
-      Perjantai &ndash; Sunnuntai
+      <strong>20.&ndash;23.8.2026</strong>
+      Torstai &ndash; Sunnuntai
     </div>
     <div class="badge">
-      <strong>80 paikkaa</strong>
-      LAN Party
+      <strong>88 paikkaa</strong>
+      LAN Party &amp; Majoitus
     </div>
     <div class="badge">
-      <strong>Iso kangas</strong>
-      KinoHirvi, elokuvateatteri
+      <strong>124 paikkaa</strong>
+      KinoHirvi, iso sali
     </div>
     <div class="badge">
       <strong>Hotelli + aamupala</strong>
@@ -617,27 +456,27 @@
         <h2 class="section-title">Dota 2:n suurin turnaus &mdash; elokuvateatterin isolta kankaalta</h2>
         <div class="gold-line"></div>
         <div class="section-body">
-          <p>The International on Dota 2:n vuosittainen maailmanmestaruusturnaus. Palkintorahat ovat kasvaneet vuosi vuodelta kymmenistä miljoonista lähes sataan miljoonaan dollariin &mdash; ja 2026 turnaus järjestetään Shanghaissa, Kiinassa.</p>
-          <p>Aanekoskella voit seurata maailman parhaiden tiimien kohtaamisia KinoHirven elokuvasalissa &mdash; isolta kankaalta, loistavalla aaneella, muiden pelaajien kanssa. LAN party pyörii koko viikonlopun HotelliHirven ravintolatilassa.</p>
-          <p>Kaikki samassa paikassa: pelaat lanilla, katsot TI:ta kinossa, syot aamupalaa hotellissa ja lounaat saunassa illalla. Ei siirtymisiä, ei stressia.</p>
+          <p>The International on Dota 2:n vuosittainen maailmanmestaruusturnaus. Palkintorahat ovat kasvaneet vuosi vuodelta kymmenistä miljoonista lähes sataan miljoonaan dollariin &mdash; ja vuoden 2026 turnaus järjestetään Shanghaissa, Kiinassa.</p>
+          <p>Äänekoskella voit seurata maailman parhaiden tiimien kohtaamisia KinoHirven isossa salissa &mdash; 124 paikkaa, iso kangas, loistava ääni, muiden pelaajien kanssa. LAN party pyörii koko viikonlopun HotelliHirven ravintolatilassa.</p>
+          <p>Kaikki samassa paikassa: pelaat lanilla, katsot TI:ta kinossa, syöt aamupalaa hotellissa ja löylyt saunassa illalla. Ei siirtymisiä, ei stressiä.</p>
         </div>
       </div>
       <div class="stat-grid">
         <div class="stat-card">
-          <div class="stat-num">80</div>
+          <div class="stat-num">88</div>
           <div class="stat-label">LAN-paikkaa</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">80</div>
+          <div class="stat-num">124</div>
           <div class="stat-label">Kino-paikkaa</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Yota hotellissa</div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">Päivää</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">1</div>
-          <div class="stat-label">Iso elokuvakangas</div>
+          <div class="stat-num">51</div>
+          <div class="stat-label">Hotellihuonetta</div>
         </div>
       </div>
     </div>
@@ -653,35 +492,35 @@
       <div class="venue-card hotel">
         <div class="venue-tag">Majoitus &amp; LAN Party</div>
         <h3>HotelliHirvi</h3>
-        <p>Hotelli tarjoaa 51 huonetta ja 88 vuodepaikkaa. LAN party sijaitsee hotellin ravintolatilassa &mdash; kaikki lähellä, kaikki yhdessa.</p>
+        <p>Hotelli tarjoaa 51 huonetta ja 88 vuodepaikkaa. LAN party sijaitsee hotellin ravintolatilassa &mdash; kaikki lähellä, kaikki yhdessä.</p>
         <div class="venue-detail">
-          <div class="venue-detail-label">Majoitus</div>
-          <div>51 huonetta, 88 vuodepaikkaa. Standard- ja Comfort-huoneita.</div>
+          <div class="venue-detail-label">Huoneet</div>
+          <div>1hh, 2hh ja 3hh huoneita &mdash; Standard ja Comfort. Yhteensä 51 huonetta, 88 vuodepaikkaa.</div>
         </div>
         <div class="venue-detail">
           <div class="venue-detail-label">LAN-tila</div>
-          <div>Ravintolatila viikonlopun ajaksi kokonaan tapahtuman kayttoon.</div>
+          <div>Ravintolatila kokonaan tapahtuman käyttöön koko viikonlopun ajaksi.</div>
         </div>
         <div class="venue-detail">
-          <div class="venue-detail-label">Sisaltyy</div>
-          <div>Runsas aamupala molemmat aamut, iltasauna, pysakointi.</div>
+          <div class="venue-detail-label">Sisältyy</div>
+          <div>Runsas aamupala molemmat aamut, iltasauna, pysäköinti.</div>
         </div>
       </div>
       <div class="venue-card kino">
         <div class="venue-tag">Watch Party</div>
         <h3>KinoHirvi</h3>
-        <p>The International 2026 lahetetaan elokuvasalissa isolta kankaalta. Lahes yksityinen elokuvateatteri &mdash; 80 paikkaa tapahtumamme kayttoon.</p>
+        <p>The International 2026 lähetys elokuvasalin isolta kankaalta. 124 paikkaa &mdash; majoittujat etusijalla, ylimääräiset paikat päiväkävijöille.</p>
         <div class="venue-detail">
           <div class="venue-detail-label">Kapasiteetti</div>
-          <div>80 paikkaa elokuvasalissa.</div>
+          <div>124 paikkaa isossa salissa.</div>
         </div>
         <div class="venue-detail">
-          <div class="venue-detail-label">Lahetteet</div>
+          <div class="venue-detail-label">Lähetys</div>
           <div>TI2026 Grand Finals ja pudotuspelit &mdash; koko viikonloppu.</div>
         </div>
         <div class="venue-detail">
-          <div class="venue-detail-label">Sijainti</div>
-          <div>Aanekoski &mdash; kayvelymatka hotellilta.</div>
+          <div class="venue-detail-label">Pääsy</div>
+          <div>Majoittujille automaattisesti. Loput paikat myydään päiväkävijälippuina.</div>
         </div>
       </div>
     </div>
@@ -692,27 +531,47 @@
 <section class="program-section" id="ohjelma">
   <div class="container">
     <div class="section-label">Ohjelma</div>
-    <h2 class="section-title">Kolme paivaa &mdash; yksi viikonloppu</h2>
+    <h2 class="section-title">Neljä päivää &mdash; yksi viikonloppu</h2>
     <div class="gold-line"></div>
     <div class="days-grid">
+      <div class="day-card">
+        <div class="day-name">Torstai</div>
+        <div class="day-date">20. Elokuuta</div>
+        <div class="event-row">
+          <div class="event-time">14:00</div>
+          <div class="event-name">Saapuminen &amp; check-in</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">15:00</div>
+          <div class="event-name">LAN party avautuu</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">16:00&rarr;</div>
+          <div class="event-name highlight">TI 2026 lähetys KinoHirvessä</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">Ilta</div>
+          <div class="event-name">Vapaa ohjelma</div>
+        </div>
+      </div>
       <div class="day-card">
         <div class="day-name">Perjantai</div>
         <div class="day-date">21. Elokuuta</div>
         <div class="event-row">
-          <div class="event-time">13:00</div>
-          <div class="event-name">Check-in HotelliHirveen</div>
+          <div class="event-time">08:00</div>
+          <div class="event-name">Aamupala HotelliHirvessä</div>
         </div>
         <div class="event-row">
-          <div class="event-time">15:00</div>
-          <div class="event-name">LAN party avautuu &mdash; poydat kaytettavissa</div>
+          <div class="event-time">Päivä</div>
+          <div class="event-name">LAN party &mdash; täysillä</div>
         </div>
         <div class="event-row">
-          <div class="event-time">16:00&rarr;</div>
-          <div class="event-name highlight">TI 2026 &mdash; lahetteet KinoHirvessa</div>
+          <div class="event-time">Päivä</div>
+          <div class="event-name highlight">TI 2026 lähetys KinoHirvessä</div>
         </div>
         <div class="event-row">
           <div class="event-time">Ilta</div>
-          <div class="event-name">Vapaa ohjelma &mdash; LAN & Watch Party</div>
+          <div class="event-name">LAN yöhön asti</div>
         </div>
       </div>
       <div class="day-card">
@@ -720,19 +579,19 @@
         <div class="day-date">22. Elokuuta</div>
         <div class="event-row">
           <div class="event-time">08:00</div>
-          <div class="event-name">Aamupala HotelliHirvessa</div>
+          <div class="event-name">Aamupala HotelliHirvessä</div>
         </div>
         <div class="event-row">
-          <div class="event-time">Paiva</div>
-          <div class="event-name">LAN party &mdash; taynna teho</div>
+          <div class="event-time">Päivä</div>
+          <div class="event-name">LAN party &mdash; täysillä</div>
         </div>
         <div class="event-row">
-          <div class="event-time">Paiva</div>
-          <div class="event-name highlight">TI 2026 &mdash; lahetteet KinoHirvessa</div>
+          <div class="event-time">Päivä</div>
+          <div class="event-name highlight">TI 2026 lähetys KinoHirvessä</div>
         </div>
         <div class="event-row">
           <div class="event-time">Ilta</div>
-          <div class="event-name">Iltasauna + LAN yohon asti</div>
+          <div class="event-name">Iltasauna + LAN yöhön asti</div>
         </div>
       </div>
       <div class="day-card">
@@ -740,11 +599,11 @@
         <div class="day-date">23. Elokuuta</div>
         <div class="event-row">
           <div class="event-time">08:00</div>
-          <div class="event-name">Aamupala HotelliHirvessa</div>
+          <div class="event-name">Aamupala HotelliHirvessä</div>
         </div>
         <div class="event-row">
-          <div class="event-time">Paiva</div>
-          <div class="event-name highlight">TI 2026 GRAND FINALS &mdash; KinoHirvi</div>
+          <div class="event-time">Päivä</div>
+          <div class="event-name highlight">TI 2026 Grand Finals &mdash; KinoHirvi</div>
         </div>
         <div class="event-row">
           <div class="event-time">12:00</div>
@@ -752,12 +611,12 @@
         </div>
         <div class="event-row">
           <div class="event-time">Ilta</div>
-          <div class="event-name">TI 2026 &mdash; voittaja kruunataan</div>
+          <div class="event-name">TI 2026 voittaja kruunataan</div>
         </div>
       </div>
     </div>
     <div class="note-box">
-      <strong>Huom.</strong> Aikataulu on alustava. TI 2026 lahetteet seuraavat turnauksen virallista aikataulua &mdash; tarkennetaan kun turnaustaulukko julkaistaan.
+      <strong>Huom.</strong> Aikataulu on alustava. TI 2026 lähetykset seuraavat turnauksen virallista aikataulua &mdash; tarkennetaan kun turnaustaulukko julkaistaan. Torstai on ensimmäinen saapumispäivä, perjantaista alkaen koko hotelli käytössä.
     </div>
   </div>
 </section>
@@ -765,13 +624,13 @@
 <!-- INCLUDES -->
 <section class="includes-section">
   <div class="container">
-    <div class="section-label">Sisaltyy lippuun</div>
+    <div class="section-label">Sisältyy lippuun</div>
     <h2 class="section-title">Kaikki yhteen hintaan</h2>
     <div class="includes-grid">
       <div class="include-item">
         <div class="include-icon"></div>
-        <div class="include-title">Majoitus 2 yota</div>
-        <div class="include-desc">HotelliHirvi, pe&ndash;su 21.&ndash;23.8. Standard-huone (jaettu tai oma).</div>
+        <div class="include-title">Majoitus 2 yötä</div>
+        <div class="include-desc">HotelliHirvi, pe&ndash;su 21.&ndash;23.8. Valitse 1hh, 2hh tai 3hh.</div>
       </div>
       <div class="include-item">
         <div class="include-icon"></div>
@@ -781,22 +640,22 @@
       <div class="include-item">
         <div class="include-icon"></div>
         <div class="include-title">LAN Party -paikka</div>
-        <div class="include-desc">Ravintolatilassa koko viikonlopun ajan. Tuo oma kone.</div>
+        <div class="include-desc">Ravintolatilassa koko viikonlopun ajan. Vain majoittujille.</div>
       </div>
       <div class="include-item">
         <div class="include-icon"></div>
         <div class="include-title">TI 2026 Watch Party</div>
-        <div class="include-desc">Paikka KinoHirven elokuvasalissa. Iso kangas, hieno aani.</div>
+        <div class="include-desc">Paikka KinoHirven isossa salissa. 124 paikkaa, iso kangas.</div>
       </div>
       <div class="include-item">
         <div class="include-icon"></div>
         <div class="include-title">Iltasauna</div>
-        <div class="include-desc">Hotellin saunaosasto kaytettavissa lauantai-illalla.</div>
+        <div class="include-desc">Hotellin saunaosasto käytössä lauantai-illalla.</div>
       </div>
       <div class="include-item">
         <div class="include-icon"></div>
-        <div class="include-title">Pysakointi</div>
-        <div class="include-desc">Hotellin autopaikka sisaltyy hintaan koko viikonlopuksi.</div>
+        <div class="include-title">Pysäköinti</div>
+        <div class="include-desc">Hotellin autopaikka sisältyy hintaan koko viikonlopuksi.</div>
       </div>
     </div>
   </div>
@@ -810,66 +669,64 @@
     <div class="gold-line"></div>
     <div class="packages-grid">
 
-      <!-- Shared -->
-      <div class="package-card">
-        <div class="package-type">LAN + Majoitus</div>
-        <div class="package-name">Standard &mdash; Jaettu huone</div>
-        <div class="package-price">249 &euro;</div>
-        <div class="package-price-unit">per henkilo / 2 yota</div>
-        <ul class="package-features">
-          <li>LAN party -paikka koko viikonlopuksi</li>
-          <li>Majoitus jaetussa standard-huoneessa (2 hloa)</li>
-          <li>TI 2026 Watch Party KinoHirvessa</li>
-          <li>Runsas aamupala molemmat aamut</li>
-          <li>Iltasauna &amp; pysakointi</li>
-        </ul>
-        <a href="mailto:ti2026aanekoski@gmail.com?subject=Varaus%3A%20LAN%20jaettu%20huone" class="package-cta primary">Varaa paikka</a>
-      </div>
-
-      <!-- Single - FEATURED -->
       <div class="package-card featured">
         <div class="featured-badge">Suosittu</div>
         <div class="package-type">LAN + Majoitus</div>
-        <div class="package-name">Standard &mdash; Oma huone</div>
-        <div class="package-price">339 &euro;</div>
-        <div class="package-price-unit">per henkilo / 2 yota</div>
-        <div class="package-limit">Max. 14 paikkaa &mdash; rajoitettu</div>
+        <div class="package-name">Standard 2hh &mdash; Jaettu huone</div>
+        <div class="package-price">249 &euro;</div>
+        <div class="package-price-unit">per henkilö / 2 yötä</div>
         <ul class="package-features">
           <li>LAN party -paikka koko viikonlopuksi</li>
-          <li>Oma standard-huone 2 yota</li>
-          <li>TI 2026 Watch Party KinoHirvessa</li>
-          <li>Runsas aamupala molemmat aamut</li>
-          <li>Iltasauna &amp; pysakointi</li>
+          <li>Majoitus jaetussa standard 2hh -huoneessa</li>
+          <li>TI 2026 Watch Party KinoHirvessä</li>
+          <li>Runsas aamupala pe &amp; la</li>
+          <li>Iltasauna &amp; pysäköinti</li>
         </ul>
-        <a href="mailto:ti2026aanekoski@gmail.com?subject=Varaus%3A%20LAN%20oma%20huone" class="package-cta primary">Varaa paikka</a>
+        <a href="mailto:ti2026aanekoski@gmail.com?subject=Varaus%3A%20Standard%202hh" class="package-cta primary">Varaa paikka</a>
       </div>
 
-      <!-- Watch Party Only -->
+      <div class="package-card">
+        <div class="package-type">LAN + Majoitus</div>
+        <div class="package-name">Standard 1hh &mdash; Oma huone</div>
+        <div class="package-price">339 &euro;</div>
+        <div class="package-price-unit">per henkilö / 2 yötä</div>
+        <div class="package-limit">Max. 14 paikkaa</div>
+        <ul class="package-features">
+          <li>LAN party -paikka koko viikonlopuksi</li>
+          <li>Oma standard 1hh -huone 2 yötä</li>
+          <li>TI 2026 Watch Party KinoHirvessä</li>
+          <li>Runsas aamupala pe &amp; la</li>
+          <li>Iltasauna &amp; pysäköinti</li>
+        </ul>
+        <a href="mailto:ti2026aanekoski@gmail.com?subject=Varaus%3A%20Standard%201hh" class="package-cta primary">Varaa paikka</a>
+      </div>
+
       <div class="package-card">
         <div class="package-type">Watch Party</div>
-        <div class="package-name">Vapaalippu &mdash; vain katselu</div>
-        <div class="package-price" style="color:#555;">0 &euro;</div>
-        <div class="package-price-unit" style="margin-bottom:1.75rem;">rajoitetusti saatavilla</div>
+        <div class="package-name">Päiväkävijälippu &mdash; vain lähetys</div>
+        <div class="package-price">25 &euro;</div>
+        <div class="package-price-unit">per henkilö / päivä</div>
         <ul class="package-features">
-          <li>TI 2026 Watch Party KinoHirvessa</li>
-          <li style="color:#555;">Ei sisalla majoitusta</li>
-          <li style="color:#555;">Ei sisalla LAN party -paikkaa</li>
-          <li>Vapaa paikka salissa LAN-osallistujien jalkeen</li>
+          <li>TI 2026 lähetys KinoHirvessä</li>
+          <li>Paikka isossa salissa (124 paikkaa)</li>
+          <li style="color:#555;">Ei sisällä majoitusta</li>
+          <li style="color:#555;">Ei sisällä LAN party -paikkaa</li>
+          <li>Saatavuuden mukaan &mdash; majoittujat etusijalla</li>
         </ul>
-        <a href="mailto:ti2026aanekoski@gmail.com?subject=Vapaalippu%3A%20Watch%20Party" class="package-cta muted">Ilmoittaudu</a>
+        <a href="mailto:ti2026aanekoski@gmail.com?subject=Päiväkävijälippu%3A%20Watch%20Party" class="package-cta muted">Ilmoittaudu</a>
       </div>
 
+    </div>
+
+    <div class="note-box" style="margin-top:1.5rem;">
+      Saatavilla myös <strong>Comfort 2hh</strong> (279 &euro;/hlö), <strong>Comfort 1hh</strong> (379 &euro;/hlö, max. 3 kpl) ja <strong>Standard 3hh</strong> (229 &euro;/hlö) &mdash; kysy sähköpostitse. <strong>Hinnat sisältävät ALV.</strong>
     </div>
 
     <div class="availability-wrap">
       <div class="avail-bar">
         <div class="avail-fill" style="width: 8%;"></div>
       </div>
-      <div class="avail-text">80 LAN-paikkaa &mdash; varaukset avautuvat pian. Ilmoittaudu etukateisesti.</div>
-    </div>
-
-    <div class="note-box" style="margin-top:1.5rem;">
-      <strong>Hinnat sisaltavat ALV.</strong> Hinnoittelu on alustava &mdash; Kino Hirven lopullinen hinta voi vaikuttaa lippujen hintaan. Tarjous hotellilta voimassa 15.5.2026 asti.
+      <div class="avail-text">88 LAN-paikkaa &mdash; varaukset avautuvat pian. Ilmoittaudu etukäteen.</div>
     </div>
   </div>
 </section>
@@ -877,19 +734,19 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="container">
-    <h2>80 paikkaa.<br>Kaikki myyty &mdash; se on tavoite.</h2>
+    <h2>88 paikkaa.<br>Kaikki myyty &mdash; se on tavoite.</h2>
     <p>Varaa paikkasi nyt &mdash; paikat ovat rajoitetut ja tapahtuma on ainutlaatuinen.</p>
-    <a href="mailto:ti2026aanekoski@gmail.com?subject=TI2026%20Aanekoski%20&mdash;%20Varaus" class="btn-primary" style="font-size:0.9rem; padding:1.2rem 3rem;">Varaa paikkasi nyt</a>
+    <a href="mailto:ti2026aanekoski@gmail.com?subject=TI2026%20Äänekoski%20&mdash;%20Varaus" class="btn-primary" style="font-size:0.9rem; padding:1.2rem 3rem;">Varaa paikkasi nyt</a>
     <div class="urgency">Hotellin tarjoushinnat voimassa 15.5.2026 asti &mdash; varaa ajoissa</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p><strong style="color:#555;">TI2026 Aanekoski</strong> &mdash; The International 2026 Watch Party &amp; LAN Party</p>
-  <p>21.&ndash;23. Elokuuta 2026 &mdash; HotelliHirvi &amp; KinoHirvi, Aanekoski, Suomi</p>
+  <p><strong style="color:#555;">TI2026 Äänekoski</strong> &mdash; The International 2026 Watch Party &amp; LAN Party</p>
+  <p>20.&ndash;23. Elokuuta 2026 &mdash; HotelliHirvi &amp; KinoHirvi, Äänekoski, Suomi</p>
   <p style="margin-top:1rem;"><a href="mailto:ti2026aanekoski@gmail.com">ti2026aanekoski@gmail.com</a></p>
-  <p style="margin-top:1rem;">Tapahtuma ei ole virallinen Valve Corporation tai The International -tapahtuma.</p>
+  <p style="margin-top:1rem; color:#222;">Tapahtuma ei ole virallinen Valve Corporation tai The International -tapahtuma.</p>
 </footer>
 
 </body>
