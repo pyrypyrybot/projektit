@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ota yhteytta — EXEN</title>
+  <meta name="description" content="Ota yhteytta EXENiin — varaukset, tapahtumakyselyt, pelikerhot tai muut tiedustelut. Tuomas Rauhansalo, 041 436 7477.">
+  <link rel="stylesheet" href="/exen/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/exen/" class="nav-logo">EXEN</a>
+    <ul class="nav-links" id="navLinks">
+      <li class="dropdown">
+        <a href="#">Palvelut</a>
+        <div class="dropdown-menu">
+          <a href="/exen/sauna-ja-pelitila/">Sauna- ja pelitila</a>
+          <a href="/exen/tapahtumatuotanto/">Tapahtumatuotanto</a>
+          <a href="/exen/pelikerhot-ja-leirit/">Pelikerhot ja leirit</a>
+          <a href="/exen/yrityksille/">Yrityksille</a>
+        </div>
+      </li>
+      <li><a href="/exen/varaa/">Hinnasto</a></li>
+      <li><a href="https://exen.fi/tapahtumat-uutiset/" target="_blank">Uutiset</a></li>
+      <li><a href="/exen/ota-yhteytta/" style="color:var(--purple2);">Yhteystiedot</a></li>
+      <div class="nav-cta">
+        <a href="tel:+358414367477" class="btn-nav" style="background:transparent;border:1.5px solid #333;color:#B3B3B3;">041 436 7477</a>
+        <a href="https://exen.fi/varaussivu/" target="_blank" class="btn-nav">Varaa nyt</a>
+      </div>
+    </ul>
+    <button class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="section-tag">Ota yhteytta</div>
+    <h1>Olemme taalla sinua varten</h1>
+    <p>Varaukset, tapahtumakyselyt, yrityspaketit tai muut tiedustelut — vastaamme nopeasti.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Yhteystiedot -->
+      <div>
+        <div class="section-tag">Yhteystiedot</div>
+        <h2 style="margin-bottom:32px;">Tuomas Rauhansalo</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>Rooli</strong>
+            Operatiivinen johtaja, EXEN Esports Oy
+          </div>
+          <div class="contact-item">
+            <strong>Puhelin</strong>
+            <a href="tel:+358414367477" style="color:var(--purple2);font-size:1.2rem;font-weight:700;">041 436 7477</a>
+          </div>
+          <div class="contact-item">
+            <strong>Sahkoposti</strong>
+            <a href="mailto:tuomas.rauhansalo@exen.fi" style="color:var(--purple2);">tuomas.rauhansalo@exen.fi</a>
+          </div>
+          <div class="contact-item">
+            <strong>Osoite</strong>
+            Sorastajantie 1 C 3, 40320 Jyvaskyla<br>
+            <span style="font-size:0.8rem;color:var(--muted2);">(Tokmannin ja Vaasan leipomon valissa — ilmainen parkki)</span>
+          </div>
+          <div class="contact-item">
+            <strong>Y-tunnus</strong>
+            3134921-3
+          </div>
+        </div>
+
+        <div style="margin-top:40px;">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);margin-bottom:16px;">Some-kanavat</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <a href="https://discord.com/invite/ZjJggzY2ga" target="_blank" class="btn btn-outline btn-sm">Discord</a>
+            <a href="https://www.instagram.com/exenesports/" target="_blank" class="btn btn-outline btn-sm">Instagram</a>
+            <a href="https://www.twitch.tv/exenesports" target="_blank" class="btn btn-outline btn-sm">Twitch</a>
+            <a href="https://twitter.com/exenesports" target="_blank" class="btn btn-outline btn-sm">X / Twitter</a>
+            <a href="https://www.youtube.com/exenesports" target="_blank" class="btn btn-outline btn-sm">YouTube</a>
+            <a href="https://www.tiktok.com/@exenesports/" target="_blank" class="btn btn-outline btn-sm">TikTok</a>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden;aspect-ratio:4/3;">
+          <iframe
+            src="https://maps.google.com/maps?q=Sorastajantie+1+C+3,+40320+Jyvaskyla&output=embed"
+            width="100%" height="100%" style="border:none;" loading="lazy"
+            title="EXENin sijainti"></iframe>
+        </div>
+      </div>
+
+      <!-- Lomake -->
+      <div>
+        <div class="contact-form">
+          <h3 style="margin-bottom:6px;">Lahetaa viesti</h3>
+          <p style="font-size:0.875rem;margin-bottom:28px;">Tayta lomake ja otamme sinuun yhteytta mahdollisimman pian.</p>
+
+          <form action="https://exen.fi/ota-yhteytta/" method="post" target="_blank">
+            <div class="form-group">
+              <label for="nimi">Nimi</label>
+              <input type="text" id="nimi" name="nimi" placeholder="Matti Meikalainen" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Sahkoposti</label>
+              <input type="email" id="email" name="email" placeholder="matti@esimerkki.fi" required>
+            </div>
+            <div class="form-group">
+              <label for="puhelin">Puhelin (valinnainen)</label>
+              <input type="tel" id="puhelin" name="puhelin" placeholder="040 123 4567">
+            </div>
+            <div class="form-group">
+              <label for="aihe">Asia</label>
+              <select id="aihe" name="aihe">
+                <option value="">Valitse aihe</option>
+                <option value="pelitila">Sauna- ja pelitila varaus</option>
+                <option value="bootcamp">Bootcamp / tiimi</option>
+                <option value="yritys">Yrityspalvelut / tyky</option>
+                <option value="tapahtuma">Tapahtumatuotanto</option>
+                <option value="kerho">Pelikerhot ja leirit</option>
+                <option value="muu">Muu tiedustelu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="viesti">Viesti</label>
+              <textarea id="viesti" name="viesti" placeholder="Kerro tarpeistasi — ajankohta, henkilomaara, toiveet..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Lahetaa viesti
+            </button>
+            <p style="font-size:0.75rem;margin-top:12px;text-align:center;">Lomake lahettaa sinut EXENin viralliselle yhteydenottosivulle.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nopeat linkit -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);padding:60px 0;">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Nopeimmin tavoitat nain</h2>
+    </div>
+    <div class="cards cards-3" style="max-width:760px;margin:0 auto;">
+      <a href="tel:+358414367477" class="card" style="text-decoration:none;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">&#128222;</div>
+        <h3>Soita</h3>
+        <p style="color:var(--purple2);font-weight:600;">041 436 7477</p>
+        <p style="font-size:0.8rem;margin-top:4px;">Nopein tapa varrata tai kysa</p>
+      </a>
+      <a href="mailto:tuomas.rauhansalo@exen.fi" class="card" style="text-decoration:none;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">&#128140;</div>
+        <h3>Sahkoposti</h3>
+        <p style="color:var(--purple2);font-weight:600;font-size:0.85rem;">tuomas.rauhansalo@exen.fi</p>
+        <p style="font-size:0.8rem;margin-top:4px;">Yrityskyselyt ja tarjouspyynnot</p>
+      </a>
+      <a href="https://exen.fi/varaussivu/" target="_blank" class="card" style="text-decoration:none;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">&#128197;</div>
+        <h3>Varaussivu</h3>
+        <p style="color:var(--purple2);font-weight:600;">exen.fi/varaussivu</p>
+        <p style="font-size:0.8rem;margin-top:4px;">Tarkista vapaat ajat ja varaa</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo">EXEN</div><p>Suomen monipuolisin peli- ja e-urheilupalvelu.</p></div>
+      <div class="footer-col"><h4>Palvelut</h4><ul>
+        <li><a href="/exen/sauna-ja-pelitila/">Sauna- ja pelitila</a></li>
+        <li><a href="/exen/tapahtumatuotanto/">Tapahtumatuotanto</a></li>
+        <li><a href="/exen/pelikerhot-ja-leirit/">Pelikerhot ja leirit</a></li>
+        <li><a href="/exen/yrityksille/">Yrityksille</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Linkit</h4><ul>
+        <li><a href="/exen/varaa/">Hinnasto ja varaus</a></li>
+        <li><a href="/exen/ota-yhteytta/">Ota yhteytta</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Yhteystiedot</h4><ul>
+        <li><a href="tel:+358414367477">041 436 7477</a></li>
+        <li><a href="mailto:tuomas.rauhansalo@exen.fi">tuomas.rauhansalo@exen.fi</a></li>
+        <li><a href="#">Sorastajantie 1 C 3, Jkl</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 EXEN Esports Oy</p><p>#GOEXEN</p></div>
+  </div>
+</footer>
+</body>
+</html>
