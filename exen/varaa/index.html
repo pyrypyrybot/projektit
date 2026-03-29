@@ -27,7 +27,7 @@
         <a href="https://exen.fi/varaussivu/" target="_blank" class="btn-nav">Varaa nyt</a>
       </div>
     </ul>
-    <button class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Valikko"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" id="navToggle" aria-label="Valikko"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -96,7 +96,7 @@
         <a href="https://exen.fi/varaussivu/" target="_blank" class="btn btn-primary">Varaa</a>
       </div>
     </div>
-    <table class="price-table">
+    <div class="table-wrap"><table class="price-table">
       <thead><tr><th>Palvelu</th><th>Ma–to</th><th>Pe–su</th></tr></thead>
       <tbody>
         <tr><td>Pelisynttärit 3 h (sis. ohjaus 1 h)</td><td>225 €</td><td>300 €</td></tr>
@@ -108,7 +108,7 @@
         <tr><td>Lisäpäivä / majoitus</td><td>200 €</td><td>250 €</td></tr>
         <tr><td>Räätälöity ryhmäpaketti (max 40 hlö, sis. majoitus)</td><td colspan="2" style="text-align:right;">alkaen 750 €/pv</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p style="font-size:0.8rem;margin-top:12px;color:var(--muted2);">Kaikki hinnat sisältävät ALV. Arkipyhät hinnoitellaan pe–su-hinnaston mukaan.</p>
   </div>
 </section>
@@ -120,14 +120,14 @@
       <h2>Tapahtumapaketit</h2>
       <p>Hintoihin lisätään ALV 25,5 %. Kesto, henkilömäärä sekä matkakustannukset vaikuttavat hintaan.</p>
     </div>
-    <table class="price-table" style="max-width:680px;">
+    <div class="table-wrap"><table class="price-table" style="max-width:680px;">
       <thead><tr><th>Paketti</th><th>Sisältö lyhyesti</th><th>Hinta</th></tr></thead>
       <tbody>
         <tr><td><strong>Ready</strong></td><td>PS5 + VR, 1 ohjaaja, 3–5 h</td><td style="text-align:right;">alkaen 1 250 €</td></tr>
         <tr><td><strong>Set</strong></td><td>PS5 + VR + 2 PC-pistettä, 2 ohjaajaa, 6 h</td><td style="text-align:right;">alkaen 1 750 €</td></tr>
         <tr><td><strong>Go EXEN</strong></td><td>PS5 + VR + ajosim. + 4 PC:tä, 3–4 ohjaajaa + juontaja</td><td style="text-align:right;">alkaen 2 000 €/pv</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="margin-top:20px;"><a href="/projektit/exen/tapahtumatuotanto/" class="btn btn-outline btn-sm">Lue lisää paketeista</a></div>
   </div>
 </section>
@@ -138,14 +138,14 @@
       <div class="section-tag">Pelikerhot ja leirit</div>
       <h2>Kerhot ja leirit</h2>
     </div>
-    <table class="price-table" style="max-width:680px;">
+    <div class="table-wrap"><table class="price-table" style="max-width:680px;">
       <thead><tr><th>Toiminta</th><th>Kohderyhmä</th><th>Hinta</th></tr></thead>
       <tbody>
         <tr><td>Minecraft-kerho (ma 16.30–18.00)</td><td>7–12-vuotiaat</td><td style="text-align:right;">45 €/kk</td></tr>
         <tr><td>Vapaan pelaamisen kerho (ti 16.30–18.00)</td><td>10–15-vuotiaat</td><td style="text-align:right;">45 €/kk</td></tr>
         <tr><td>Kesälomaleiri 1.–5.6.2026</td><td>10–15-vuotiaat</td><td style="text-align:right;">199 €</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p style="font-size:0.8rem;margin-top:12px;color:var(--muted2);">OP Keski-Suomi tukee kerhotoimintaa — vähävaraisille perheille osallistuminen on ilmaista.</p>
     <div style="margin-top:20px;"><a href="/projektit/exen/pelikerhot-ja-leirit/" class="btn btn-outline btn-sm">Lue lisää ja ilmoittaudu</a></div>
   </div>
@@ -189,5 +189,41 @@
     <div class="footer-bottom"><p>&copy; 2026 EXEN Esports Oy. Kaikki oikeudet pidätetään.</p><p>#GOEXEN</p></div>
   </div>
 </footer>
+
+<!-- Mobiilinavigaatio -->
+<div class="nav-overlay" id="mobileNav">
+  <div class="nav-overlay-section">Palvelut</div>
+  <a href="/projektit/exen/sauna-ja-pelitila/">Sauna- ja pelitila</a>
+  <a href="/projektit/exen/tapahtumatuotanto/">Tapahtumatuotanto</a>
+  <a href="/projektit/exen/pelikerhot-ja-leirit/">Pelikerhot ja leirit</a>
+  <a href="/projektit/exen/yrityksille/">Yrityksille</a>
+  <div class="nav-overlay-section">Muut</div>
+  <a href="/projektit/exen/varaa/">Hinnasto</a>
+  <a href="https://exen.fi/tapahtumat-uutiset/" target="_blank">Uutiset</a>
+  <a href="/projektit/exen/ota-yhteytta/">Yhteystiedot</a>
+  <div class="nav-cta-mobile">
+    <a href="https://exen.fi/varaussivu/" target="_blank" class="btn btn-primary">Varaa nyt</a>
+    <a href="tel:+358414367477" class="btn btn-outline">041 436 7477</a>
+  </div>
+</div>
+<script>
+  var toggle = document.querySelector('.nav-mobile-toggle');
+  var menu = document.getElementById('mobileNav');
+  var body = document.body;
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      body.style.overflow = open ? 'hidden' : '';
+    });
+    // Sulje kun klikataan linkkiä
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
