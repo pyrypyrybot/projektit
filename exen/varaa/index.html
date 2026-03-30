@@ -595,7 +595,7 @@
     catch(e){ document.getElementById('avail-loading').style.display='none'; document.getElementById('avail-error').style.display='block'; }
   }
 
-  var pkgTypes={'Päivävaraus pelitila':'day','Max 3 h varaus':'hour','Pelitila + sauna':'weekend','Bootcamp 3 pv':'weekend'};
+  var pkgTypes={'Päivävaraus pelitila':'day','Max 3 h varaus':'hour','Pelitila + sauna':'day','Bootcamp 3 pv':'weekend'};
   document.querySelectorAll('.check-avail-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       var card=this.closest('[data-pkg]'),pkg=card.getAttribute('data-pkg'),type=pkgTypes[pkg]||'weekend';
