@@ -143,9 +143,9 @@
           style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
           Ma–To (4 pv)
         </button>
-        <button class="avail-mode-btn" data-mode="mon3"
+        <button class="avail-mode-btn" data-mode="ark3"
           style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
-          Ma–Ke (3 pv)
+          Ark 3 pv
         </button>
       </div>
 
@@ -329,7 +329,7 @@
     if(pkgType==='day') return fmtFull(s.date);
     if(pkgType==='hour') return fmtFull(s.date)+' klo '+fmtTime(s.startH)+'\u2013'+fmtTime(s.endH);
     if(mode==='mon') return fmt(s.mon)+'\u2013'+fmt(s.thu)+' '+s.thu.getFullYear();
-    if(mode==='mon3') return fmt(s.mon)+'\u2013'+fmt(s.wed)+' '+s.wed.getFullYear();
+    if(mode==='ark3') return fmt(s.arkStart)+'\u2013'+fmt(s.arkEnd)+' '+s.arkEnd.getFullYear();
     var st=mode==='thu'?s.thu:s.fri;
     return fmt(st)+'\u2013'+fmt(s.sun)+' '+s.sun.getFullYear();
   }
@@ -337,7 +337,7 @@
     if(pkgType==='day') return fmtFull(s.date);
     if(pkgType==='hour') return fmtFull(s.date)+' klo '+fmtTime(s.startH)+'\u2013'+fmtTime(s.endH);
     if(mode==='mon') return fmtFull(s.mon)+' \u2013 '+fmtFull(s.thu);
-    if(mode==='mon3') return fmtFull(s.mon)+' \u2013 '+fmtFull(s.wed);
+    if(mode==='ark3') return fmtFull(s.arkStart)+' \u2013 '+fmtFull(s.arkEnd);
     var st=mode==='thu'?s.thu:s.fri;
     return fmtFull(st)+' \u2013 '+fmtFull(s.sun);
   }
@@ -425,11 +425,21 @@
     var sat=new Date(monday.getTime()+5*ms);
     var sun=new Date(monday.getTime()+6*ms);
     if(mode==='mon') return {mon:new Date(monday),tue:new Date(monday.getTime()+ms),wed:new Date(monday.getTime()+2*ms),thu:thu};
-    if(mode==='mon3') return {mon:new Date(monday),tue:new Date(monday.getTime()+ms),wed:new Date(monday.getTime()+2*ms)};
+
     return {thu:thu,fri:fri,sat:sat,sun:sun};
   }
+  function isArk3Free(date){
+    // Tarkistaa onko date ja seuraavat 2 päivää vapaita (ja kaikki arkipäiviä)
+    for(var i=0;i<3;i++){
+      var d=new Date(date);d.setDate(date.getDate()+i);
+      var dow=d.getDay();
+      if(dow===0||dow===6) return false; // viikonloppu
+      if(busyDates.has(toStr(d))) return false;
+    }
+    return true;
+  }
   function isWeekendBusy(s){
-    var days=mode==='mon'?[s.mon,s.tue,s.wed,s.thu]:mode==='mon3'?[s.mon,s.tue,s.wed]:mode==='thu'?[s.thu,s.fri,s.sat,s.sun]:[s.fri,s.sat,s.sun];
+    var days=mode==='mon'?[s.mon,s.tue,s.wed,s.thu]:mode==='thu'?[s.thu,s.fri,s.sat,s.sun]:[s.fri,s.sat,s.sun];
     return days.some(function(d){return busyDates.has(toStr(d));});
   }
 
@@ -447,12 +457,18 @@
         var dow=d.getDay();
         if(dow>=1&&dow<=4&&getFreeHourStarts(d).length>0) return {year:d.getFullYear(),month:d.getMonth()};
       }
+    } else if(mode==='ark3'){
+      for(var i=0;i<180;i++){
+        var d=new Date(today);d.setDate(today.getDate()+i);
+        var dow=d.getDay();
+        if(dow>=1&&dow<=3&&isArk3Free(d)) return {year:d.getFullYear(),month:d.getMonth()};
+      }
     } else {
       for(var i=0;i<180;i++){
         var d=new Date(today);d.setDate(today.getDate()+i);
         var mon=getMondayOf(d);
         var slot=buildSlot(mon);
-        var startD=(mode==='mon'||mode==='mon3')?slot.mon:mode==='thu'?slot.thu:slot.fri;
+        var startD=mode==='mon'?slot.mon:mode==='thu'?slot.thu:slot.fri;
         if(startD>=today&&!isWeekendBusy(slot)) return {year:startD.getFullYear(),month:startD.getMonth()};
       }
     }
@@ -532,7 +548,7 @@
   function renderMonthCalendarBootcamp(grid){
     grid.innerHTML='';grid.style.display='block';
     var today=new Date();today.setHours(0,0,0,0);
-    var dayIdxs=mode==='mon'?[0,1,2,3]:mode==='mon3'?[0,1,2]:mode==='thu'?[3,4,5,6]:[4,5,6];
+    var dayIdxs=mode==='mon'?[0,1,2,3]:mode==='thu'?[3,4,5,6]:[4,5,6];
     var firstIdx=dayIdxs[0],lastIdx=dayIdxs[dayIdxs.length-1];
 
     // Otsikkorivi
@@ -665,6 +681,14 @@
       renderMonthCalendar(grid,
         function(date){var dow=date.getDay();return dow>=1&&dow<=4&&getFreeHourStarts(date).length>0;},
         function(date){renderHourPicker(date);}
+      );
+    } else if(mode==='ark3'){
+      renderMonthCalendar(grid,
+        function(date){var dow=date.getDay();return dow>=1&&dow<=3&&isArk3Free(date);},
+        function(date){
+          var end=new Date(date);end.setDate(date.getDate()+2);
+          openForm({arkStart:date,arkEnd:end});
+        }
       );
     } else {
       renderMonthCalendarBootcamp(grid);
