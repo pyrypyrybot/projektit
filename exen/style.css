@@ -533,3 +533,13 @@ footer {
   h1 { font-size: 1.6rem; }
   h2 { font-size: 1.25rem; }
 }
+
+/* Skip navigation */
+.skip-link {
+  position: absolute; top: -48px; left: 16px;
+  background: var(--purple); color: #fff;
+  padding: 10px 20px; border-radius: 0 0 8px 8px;
+  z-index: 9999; font-size: 0.875rem; font-weight: 600;
+  text-decoration: none; transition: top .2s;
+}
+.skip-link:focus { top: 0; outline: 2px solid var(--purple2); }
