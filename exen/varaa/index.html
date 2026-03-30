@@ -50,376 +50,29 @@
   </div>
 </nav>
 
+<main id="main-content">
+
 <div class="page-hero">
   <div class="container">
     <div class="section-tag">Hinnasto ja varaus</div>
     <h1>Selkeät hinnat, ei yllätyksiä</h1>
-    <p>Kaikki hinnat sisältävät ALV. Valitse sopiva paketti tai ota yhteyttä räätälöityä ratkaisua varten.</p>
+    <p>Kaikki hinnat sisältävät ALV. Valitse paketti ja tarkista vapaat viikonloput suoraan alta.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-      <a href="#saatavuus" class="btn btn-primary">Tarkista saatavuus</a>
+      <a href="#paketit" class="btn btn-primary">Valitse paketti</a>
       <a href="/projektit/exen/ota-yhteytta/" class="btn btn-outline">Kysy räätälöityä pakettia</a>
     </div>
   </div>
 </div>
 
-
-<!-- ── Saatavuuskalenteri ── -->
-<section id="saatavuus" style="background:var(--bg2);border-bottom:1px solid var(--border);padding-bottom:56px;">
-  <div class="container">
-    <div class="section-header" style="text-align:center;">
-      <div class="section-tag">Saatavuus</div>
-      <h2>Vapaat viikonloput</h2>
-      <p>Kalenteri hakee ajantasaiset tiedot suoraan varauksistamme. Klikkaa vapaata viikonloppua ja tee varauspyyntö.</p>
-    </div>
-
-    <!-- Jaksotyyppi -->
-    <div style="display:flex;gap:8px;margin-bottom:28px;justify-content:center;flex-wrap:wrap;">
-      <button class="period-btn" data-mode="fri"
-        style="padding:9px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;border:1.5px solid var(--purple);background:var(--purple);color:#fff;">
-        Pe–Su (3 pv)
-      </button>
-      <button class="period-btn" data-mode="thu"
-        style="padding:9px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
-        To–Su (4 pv)
-      </button>
-    </div>
-
-    <!-- Lataustila -->
-    <div id="cal-loading" style="text-align:center;padding:48px 0;">
-      <div style="display:inline-block;width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--purple2);border-radius:50%;animation:spin .8s linear infinite;"></div>
-      <p style="margin-top:14px;font-size:0.9rem;">Ladataan saatavuustietoja...</p>
-    </div>
-
-    <!-- Virheilmoitus -->
-    <div id="cal-error" style="display:none;text-align:center;padding:32px;background:var(--bg3);border-radius:var(--radius2);border:1px solid var(--border);">
-      <p style="margin-bottom:12px;">Saatavuustietojen lataaminen epäonnistui.</p>
-      <a href="tel:+358414367477" class="btn btn-primary btn-sm">Soita: 041 436 7477</a>
-    </div>
-
-    <!-- Viikonloppuruudukko -->
-    <div id="cal-grid" style="display:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;"></div>
-
-    <!-- Valittu aika + lomake -->
-    <div id="booking-form-wrap" style="display:none;margin-top:32px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:28px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div class="section-tag" style="margin-bottom:6px;">Varauspyyntö</div>
-          <h3 id="booking-dates-title" style="font-size:1.15rem;"></h3>
-        </div>
-        <button id="close-form-btn" style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:0.85rem;">
-          Vaihda aika
-        </button>
-      </div>
-      <form id="booking-form" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" autocomplete="on">
-        <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="form-row-2">
-          <div class="form-group">
-            <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-name">Nimi *</label>
-            <input id="bf-name" type="text" required autocomplete="name" placeholder="Matti Meikalainen"
-              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;">
-          </div>
-          <div class="form-group">
-            <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-phone">Puhelin *</label>
-            <input id="bf-phone" type="tel" required autocomplete="tel" placeholder="040 123 4567"
-              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;">
-          </div>
-        </div>
-        <div class="form-group" style="grid-column:1/-1;">
-          <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-email">Sähköposti *</label>
-          <input id="bf-email" type="email" required autocomplete="email" placeholder="matti@esimerkki.fi"
-            style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;">
-        </div>
-        <div class="form-group">
-          <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-package">Paketti *</label>
-          <select id="bf-package" required
-            style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;cursor:pointer;">
-            <option value="">Valitse paketti</option>
-            <option value="Bootcamp 3 pv (1400 €/pe-su)">Bootcamp 3 pv – 1 400 €/pe-su</option>
-            <option value="Pelitila + sauna (749 €/pe-su)">Pelitila + sauna – 749 €/pe-su</option>
-            <option value="Päivävaraus pelitila (699 €/pe-su)">Päivävaraus pelitila – 699 €/pe-su</option>
-            <option value="Räätälöity ryhmäpaketti (alkaen 750 €/pv)">Räätälöity ryhmäpaketti</option>
-            <option value="Muu / kysy lisää">Muu / kysy lisää</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-guests">Osallistujat *</label>
-          <select id="bf-guests" required
-            style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;cursor:pointer;">
-            <option value="">Henkilömäärä</option>
-            <option>1–5 henkilöä</option>
-            <option>6–12 henkilöä</option>
-            <option>13–20 henkilöä</option>
-            <option>21–40 henkilöä</option>
-            <option>Yli 40 henkilöä</option>
-          </select>
-        </div>
-        <div class="form-group" style="grid-column:1/-1;">
-          <label style="font-size:0.8rem;color:var(--muted2);display:block;margin-bottom:4px;" for="bf-msg">Lisätiedot</label>
-          <textarea id="bf-msg" rows="3" placeholder="Ruokailut, erikoistoiveet, lisäpalvelut..."
-            style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;"></textarea>
-        </div>
-        <div style="grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-          <button type="submit" class="btn btn-primary" style="flex:1;min-width:180px;">
-            Laheta varauspyynto
-          </button>
-          <a id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"
-            style="display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;border:1.5px solid #25D366;color:#25D366;font-weight:700;font-size:0.9rem;text-decoration:none;white-space:nowrap;">
-            WhatsApp
-          </a>
-        </div>
-        <p style="grid-column:1/-1;font-size:0.75rem;color:var(--muted2);">
-          Lahetamme varauspyynnon sahkopostitse. Vahvistamme saatavuuden ja kerromme maksutavan 1–2 arkipaivan kuluessa.
-        </p>
-      </form>
-      <div id="form-sent" style="display:none;text-align:center;padding:32px 0;">
-        <div style="font-size:2rem;margin-bottom:12px;">✓</div>
-        <h3 style="margin-bottom:8px;">Varauspyynto lahetetty!</h3>
-        <p>Otamme sinuun yhteytta 1–2 arkipaivan kuluessa.</p>
-      </div>
-    </div>
-
-    <!-- Kalenteri-linkki -->
-    <div style="text-align:center;margin-top:20px;">
-      <a href="https://calendar.google.com/calendar/embed?src=9891c0727ac40e7202320b6aeee6941d6863efa51b576e3097dd6658c1fcab23%40group.calendar.google.com&ctz=Europe%2FHelsinki"
-        target="_blank" rel="noopener noreferrer"
-        style="font-size:0.8rem;color:var(--muted2);text-decoration:underline;text-underline-offset:3px;">
-        Nayta koko kalenteri Google Kalenterissa
-      </a>
-    </div>
-  </div>
-</section>
-
-<script>
-(function(){
-  var CAL_ID = '9891c0727ac40e7202320b6aeee6941d6863efa51b576e3097dd6658c1fcab23@group.calendar.google.com';
-  var API_KEY = 'AIzaSyASppqqqiPXRwoKwmg6pskuRhQ7AdinL2c';
-  var CONTACT = 'tuomas.rauhansalo@exen.fi';
-  var currentMode = 'fri'; // 'fri' = pe-su, 'thu' = to-su
-  var selectedSlot = null;
-  var busyDates = new Set();
-
-  var FI_MONTHS = ['tammik.','helmik.','maalisk.','huhtik.','toukok.','kesak.','heinak.','elok.','syysk.','lokak.','marrask.','jouluk.'];
-  var FI_DAYS = ['su','ma','ti','ke','to','pe','la'];
-  var FI_DAYS_LONG = ['sunnuntai','maanantai','tiistai','keskiviikko','torstai','perjantai','lauantai'];
-
-  function pad(n){ return n < 10 ? '0'+n : ''+n; }
-  function toStr(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
-  function fmtDate(d){ return d.getDate()+'. '+FI_MONTHS[d.getMonth()]; }
-  function fmtFull(d){ return FI_DAYS_LONG[d.getDay()]+' '+d.getDate()+'. '+FI_MONTHS[d.getMonth()]+' '+d.getFullYear(); }
-
-  // Muodosta aaakkoslajista riippumaton suomalainen formaatti
-  function slotLabel(slot){
-    var s = currentMode === 'thu' ? slot.thu : slot.fri;
-    return fmtDate(s)+' \u2013 '+fmtDate(slot.sun)+' '+slot.sun.getFullYear();
-  }
-  function slotFull(slot){
-    var s = currentMode === 'thu' ? slot.thu : slot.fri;
-    return fmtFull(s)+' \u2013 '+fmtFull(slot.sun);
-  }
-
-  // Hae kalenteri API:sta
-  async function fetchBusy(){
-    var now = new Date();
-    var future = new Date(now.getTime() + 140*24*60*60*1000);
-    var url = 'https://www.googleapis.com/calendar/v3/calendars/'
-      + encodeURIComponent(CAL_ID)
-      + '/events?key=' + API_KEY
-      + '&timeMin=' + encodeURIComponent(now.toISOString())
-      + '&timeMax=' + encodeURIComponent(future.toISOString())
-      + '&singleEvents=true&orderBy=startTime&maxResults=200';
-    var resp = await fetch(url);
-    if (!resp.ok) throw new Error('API ' + resp.status);
-    var data = await resp.json();
-    var dates = new Set();
-    (data.items || []).forEach(function(ev){
-      var s = ev.start.date ? new Date(ev.start.date+'T12:00:00') : new Date(ev.start.dateTime);
-      var e = ev.end.date ? new Date(ev.end.date+'T12:00:00') : new Date(ev.end.dateTime);
-      var d = new Date(s);
-      while(d <= e){
-        dates.add(toStr(d));
-        d.setDate(d.getDate()+1);
-      }
-    });
-    return dates;
-  }
-
-  // Luo viikonloppuslotit (seuraavat 20 viikkoa)
-  function genSlots(){
-    var slots = [];
-    var today = new Date(); today.setHours(0,0,0,0);
-    // Etsi seuraava torstai
-    var d = new Date(today);
-    var dow = d.getDay(); // 0=su
-    var dToThu = (4 - dow + 7) % 7;
-    if(dToThu === 0 && today.getHours() > 14) dToThu = 7; // myohaan torstaina, siirry ensi vko
-    d.setDate(d.getDate() + dToThu);
-
-    for(var i = 0; i < 22; i++){
-      var thu = new Date(d); thu.setDate(d.getDate() + i*7);
-      var fri = new Date(thu); fri.setDate(thu.getDate()+1);
-      var sat = new Date(thu); sat.setDate(thu.getDate()+2);
-      var sun = new Date(thu); sun.setDate(thu.getDate()+3);
-      if(sun < today) continue;
-      slots.push({thu:thu, fri:fri, sat:sat, sun:sun});
-    }
-    return slots;
-  }
-
-  // Onko slot varattu?
-  function isBusy(slot){
-    var days = currentMode === 'thu'
-      ? [slot.thu, slot.fri, slot.sat, slot.sun]
-      : [slot.fri, slot.sat, slot.sun];
-    return days.some(function(d){ return busyDates.has(toStr(d)); });
-  }
-
-  // Renderoi grid
-  function renderGrid(slots){
-    var grid = document.getElementById('cal-grid');
-    grid.innerHTML = '';
-    grid.style.display = 'grid';
-    var freeCount = 0;
-
-    slots.forEach(function(slot, idx){
-      var busy = isBusy(slot);
-      if(!busy) freeCount++;
-      var startD = currentMode === 'thu' ? slot.thu : slot.fri;
-      var days = currentMode === 'thu' ? 4 : 3;
-      var card = document.createElement('div');
-      card.style.cssText = 'border-radius:var(--radius);border:1.5px solid '
-        + (busy ? 'var(--border)' : 'var(--purple)')
-        + ';padding:16px 14px;cursor:'+(busy?'default':'pointer')
-        + ';background:'+(busy?'var(--bg)':'rgba(113,55,200,.08)')
-        + ';transition:all .18s;position:relative;overflow:hidden;';
-      card.innerHTML = '<div style="font-size:0.75rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">'
-        + FI_DAYS[startD.getDay()].toUpperCase()+' '+startD.getDate()+'.'+pad(startD.getMonth()+1)
-        + ' \u2013 '
-        + FI_DAYS[slot.sun.getDay()].toUpperCase()+' '+slot.sun.getDate()+'.'+pad(slot.sun.getMonth()+1)
-        + '</div>'
-        + '<div style="font-size:1rem;font-weight:700;color:'+(busy?'var(--muted2)':'var(--text)')+';margin-bottom:8px;">'
-        + days + ' pv'
-        + '</div>'
-        + '<div style="display:inline-flex;align-items:center;gap:5px;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:100px;background:'
-        + (busy?'rgba(255,255,255,.05)':'rgba(113,55,200,.25)')
-        + ';color:'+(busy?'var(--muted2)':'var(--purple2)')+';letter-spacing:.05em;">'
-        + (busy ? 'VARATTU' : 'VAPAA') + '</div>';
-      if(!busy){
-        card.addEventListener('mouseover', function(){ this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(113,55,200,.25)'; });
-        card.addEventListener('mouseout', function(){ this.style.transform='';this.style.boxShadow=''; });
-        card.addEventListener('click', function(){ selectSlot(slot); });
-      }
-      grid.appendChild(card);
-    });
-
-    if(freeCount === 0){
-      var notice = document.createElement('div');
-      notice.style.cssText = 'grid-column:1/-1;text-align:center;padding:24px;color:var(--muted2);';
-      notice.textContent = 'Ei vapaita viikonloppuja seuraavaan 20 viikkoon. Ota yhteytta suoraan!';
-      grid.appendChild(notice);
-    }
-  }
-
-  // Valitse slot
-  function selectSlot(slot){
-    selectedSlot = slot;
-    var wrap = document.getElementById('booking-form-wrap');
-    var title = document.getElementById('booking-dates-title');
-    title.textContent = slotLabel(slot);
-    // WhatsApp-viesti
-    var wa = document.getElementById('whatsapp-link');
-    var waMsg = 'Hei, haluaisin tehda varauspyynnon ajalle ' + slotLabel(slot) + '. Voisitteko kertoa saatavuudesta?';
-    wa.href = 'https://wa.me/358414367477?text=' + encodeURIComponent(waMsg);
-    // Nayta lomake
-    wrap.style.display = 'block';
-    document.getElementById('form-sent').style.display = 'none';
-    document.getElementById('booking-form').style.display = 'grid';
-    wrap.scrollIntoView({behavior:'smooth', block:'nearest'});
-  }
-
-  // Sulje lomake
-  document.getElementById('close-form-btn').addEventListener('click', function(){
-    document.getElementById('booking-form-wrap').style.display = 'none';
-    selectedSlot = null;
-  });
-
-  // Laheta lomake
-  document.getElementById('booking-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('bf-name').value;
-    var phone = document.getElementById('bf-phone').value;
-    var email = document.getElementById('bf-email').value;
-    var pkg = document.getElementById('bf-package').value;
-    var guests = document.getElementById('bf-guests').value;
-    var msg = document.getElementById('bf-msg').value;
-    var dates = selectedSlot ? slotFull(selectedSlot) : '';
-    var subject = 'Varauspyynto: ' + (selectedSlot ? slotLabel(selectedSlot) : 'Pelitila');
-    var body = 'Varauspyynto saapunut verkkosivuilta.\n\n'
-      + 'Ajanjakso: ' + dates + '\n'
-      + 'Paketti: ' + pkg + '\n'
-      + 'Osallistujat: ' + guests + '\n\n'
-      + 'Yhteystiedot:\n'
-      + 'Nimi: ' + name + '\n'
-      + 'Puhelin: ' + phone + '\n'
-      + 'Sahkoposti: ' + email + '\n\n'
-      + 'Lisatiedot:\n' + (msg || 'Ei lisatietoja.');
-    window.location.href = 'mailto:' + CONTACT
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
-    // Nayta vahvistus pienen viiveen jalkeen
-    setTimeout(function(){
-      document.getElementById('booking-form').style.display = 'none';
-      document.getElementById('form-sent').style.display = 'block';
-    }, 1200);
-  });
-
-  // Periodin vaihto
-  document.querySelectorAll('.period-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      currentMode = this.dataset.mode;
-      document.querySelectorAll('.period-btn').forEach(function(b){
-        var active = b.dataset.mode === currentMode;
-        b.style.background = active ? 'var(--purple)' : 'transparent';
-        b.style.color = active ? '#fff' : 'var(--muted)';
-        b.style.borderColor = active ? 'var(--purple)' : 'var(--border)';
-      });
-      renderGrid(genSlots());
-      document.getElementById('booking-form-wrap').style.display = 'none';
-    });
-  });
-
-  // Kaynnistys
-  (async function(){
-    try {
-      busyDates = await fetchBusy();
-    } catch(err) {
-      console.warn('Kalenteri API virhe:', err);
-      // Jatketaan ilman busyDates - kaikki nayttaa vapaana
-    }
-    document.getElementById('cal-loading').style.display = 'none';
-    renderGrid(genSlots());
-  })();
-})();
-</script>
-
-
-<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+<section id="paketit" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
     <div class="section-header">
       <div class="section-tag">Pelitila</div>
       <h2>Sauna- ja pelitila</h2>
-      <p>Sorastajantie 1 C 3, 40320 Jyväskylä. Sisäänkirjautuminen klo 12.00, uloskirjautuminen klo 14.00 (seuraava päivä, jos lisäpäivä ostettu).</p>
+      <p>Sorastajantie 1 C 3, 40320 Jyväskylä. Sisäänkirjautuminen klo 12.00, uloskirjautuminen klo 14.00.</p>
     </div>
-    <div class="price-cards" style="margin-bottom:32px;">
-      <div class="price-card">
-        <h3>Max 3 h varaus</h3>
-        <div class="price">240 € <small>/ ma–to</small></div>
-        <ul>
-          <li>Koko pelitila enintään 3 tuntia</li>
-          <li>Ei sisällä saunaa</li>
-          <li>Saatavuus: kysy etukäteen</li>
-        </ul>
-        <a href="/projektit/exen/ota-yhteytta/" class="btn btn-outline">Tiedustele</a>
-      </div>
-      <div class="price-card">
+    <div class="price-cards" style="margin-bottom:32px;" id="price-cards">
+      <div class="price-card" data-pkg="Päivävaraus pelitila" data-price="pe–su 699 €">
         <h3>Päivävaraus (pelitila)</h3>
         <div class="price">479 € <small>/ ma–to</small></div>
         <div class="price" style="font-size:1.3rem;margin-top:2px;">699 € <small>/ pe–su</small></div>
@@ -428,9 +81,9 @@
           <li>Kaikki pelilaitteet</li>
           <li>Ei sisällä saunaa</li>
         </ul>
-        <a href="https://exen.fi/varaussivu/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Varaa</a>
+        <button class="btn btn-outline check-avail-btn" style="width:100%;justify-content:center;">Tarkista vapaat ajat</button>
       </div>
-      <div class="price-card featured">
+      <div class="price-card featured" data-pkg="Pelitila + sauna" data-price="pe–su 749 €">
         <div class="badge">Suosittu</div>
         <h3>Pelitila + sauna</h3>
         <div class="price">599 € <small>/ ma–to</small></div>
@@ -440,9 +93,9 @@
           <li>Kaikki pelilaitteet + sauna</li>
           <li>Lounge ja kokoushuone</li>
         </ul>
-        <a href="/projektit/exen/varaa/#saatavuus" class="btn btn-primary">Tarkista saatavuus</a>
+        <button class="btn btn-primary check-avail-btn" style="width:100%;justify-content:center;">Tarkista vapaat ajat</button>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-pkg="Bootcamp 3 pv" data-price="pe–su 1 400 €">
         <div class="badge">Tiimeille</div>
         <h3>Bootcamp 3 pv</h3>
         <div class="price">1 050 € <small>/ ma–to</small></div>
@@ -451,9 +104,123 @@
           <li>3 päivää, sis. sauna + majoitus 12 hlö</li>
           <li>Yli 12 henkilöä: +200 €</li>
         </ul>
-        <a href="https://exen.fi/varaussivu/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Varaa</a>
+        <button class="btn btn-outline check-avail-btn" style="width:100%;justify-content:center;">Tarkista vapaat ajat</button>
+      </div>
+      <div class="price-card" data-pkg="Max 3 h varaus" data-price="ma–to 240 €">
+        <h3>Max 3 h varaus</h3>
+        <div class="price">240 € <small>/ ma–to</small></div>
+        <ul>
+          <li>Koko pelitila enintään 3 tuntia</li>
+          <li>Ei sisällä saunaa</li>
+          <li>Saatavuus: kysy etukäteen</li>
+        </ul>
+        <button class="btn btn-outline check-avail-btn" style="width:100%;justify-content:center;">Tarkista vapaat ajat</button>
       </div>
     </div>
+
+    <!-- ── Saatavuuspaneeli (aukeaa korttia klikatessa) ── -->
+    <div id="avail-panel" style="display:none;border:1.5px solid var(--purple);border-radius:var(--radius2);padding:28px 24px;background:var(--bg);margin-bottom:32px;">
+      <!-- Otsikko -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div class="section-tag" style="margin-bottom:6px;">Saatavuus</div>
+          <h3 id="avail-pkg-title" style="font-size:1.1rem;"></h3>
+        </div>
+        <button id="avail-close" style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:0.85rem;">Sulje</button>
+      </div>
+
+      <!-- Jaksotyyppi -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+        <button class="avail-mode-btn" data-mode="fri"
+          style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--purple);background:var(--purple);color:#fff;">
+          Pe–Su (3 pv)
+        </button>
+        <button class="avail-mode-btn" data-mode="thu"
+          style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
+          To–Su (4 pv)
+        </button>
+      </div>
+
+      <!-- Lataus -->
+      <div id="avail-loading" style="text-align:center;padding:32px 0;">
+        <div style="display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--purple2);border-radius:50%;animation:spin .8s linear infinite;"></div>
+        <p style="margin-top:10px;font-size:0.85rem;color:var(--muted);">Ladataan saatavuustietoja...</p>
+      </div>
+
+      <!-- Virhe -->
+      <div id="avail-error" style="display:none;text-align:center;padding:20px;color:var(--muted);">
+        <p style="margin-bottom:10px;">Kalenterin lataus epäonnistui.</p>
+        <a href="tel:+358414367477" class="btn btn-outline btn-sm">Soita: 041 436 7477</a>
+      </div>
+
+      <!-- Grid -->
+      <div id="avail-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;"></div>
+
+      <!-- Lomake -->
+      <div id="avail-form-wrap" style="display:none;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+          <div>
+            <div style="font-size:0.75rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Valittu aika</div>
+            <strong id="avail-selected-date" style="color:var(--purple2);"></strong>
+          </div>
+          <button id="change-date-btn" style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:7px;cursor:pointer;font-size:0.8rem;">Vaihda</button>
+        </div>
+        <form id="avail-form" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" autocomplete="on">
+          <div>
+            <label style="font-size:0.78rem;color:var(--muted2);display:block;margin-bottom:3px;">Nimi *</label>
+            <input id="af-name" type="text" required autocomplete="name" placeholder="Matti Meikäläinen"
+              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:0.88rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;color:var(--muted2);display:block;margin-bottom:3px;">Puhelin *</label>
+            <input id="af-phone" type="tel" required autocomplete="tel" placeholder="040 123 4567"
+              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:0.88rem;outline:none;">
+          </div>
+          <div style="grid-column:1/-1;">
+            <label style="font-size:0.78rem;color:var(--muted2);display:block;margin-bottom:3px;">Sähköposti *</label>
+            <input id="af-email" type="email" required autocomplete="email" placeholder="matti@esimerkki.fi"
+              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:0.88rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;color:var(--muted2);display:block;margin-bottom:3px;">Osallistujat *</label>
+            <select id="af-guests" required style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:0.88rem;outline:none;cursor:pointer;">
+              <option value="">Valitse</option>
+              <option>1–5 henkilöä</option><option>6–12 henkilöä</option>
+              <option>13–20 henkilöä</option><option>21–40 henkilöä</option>
+              <option>Yli 40 henkilöä</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;color:var(--muted2);display:block;margin-bottom:3px;">Lisätiedot</label>
+            <input id="af-msg" type="text" placeholder="Ruokailut, erikoistoiveet..."
+              style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:0.88rem;outline:none;">
+          </div>
+          <div style="grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;">
+            <button type="submit" class="btn btn-primary" style="flex:1;min-width:160px;">Lähetä varauspyyntö</button>
+            <a id="af-whatsapp" href="#" target="_blank" rel="noopener noreferrer"
+              style="display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:1.5px solid #25D366;color:#25D366;font-weight:700;font-size:0.88rem;white-space:nowrap;">
+              WhatsApp
+            </a>
+          </div>
+          <p style="grid-column:1/-1;font-size:0.73rem;color:var(--muted2);">
+            Vahvistamme saatavuuden ja maksutavan 1–2 arkipäivän kuluessa.
+          </p>
+        </form>
+        <div id="avail-sent" style="display:none;text-align:center;padding:24px 0;">
+          <div style="font-size:2rem;margin-bottom:8px;">✓</div>
+          <h3 style="margin-bottom:6px;">Varauspyyntö lähetetty!</h3>
+          <p>Otamme yhteyttä 1–2 arkipäivän kuluessa.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;text-align:right;">
+        <a href="https://calendar.google.com/calendar/embed?src=9891c0727ac40e7202320b6aeee6941d6863efa51b576e3097dd6658c1fcab23%40group.calendar.google.com&ctz=Europe%2FHelsinki"
+          target="_blank" rel="noopener noreferrer" style="font-size:0.75rem;color:var(--muted2);text-decoration:underline;text-underline-offset:3px;">
+          Avaa koko kalenteri
+        </a>
+      </div>
+    </div>
+
     <div class="table-wrap"><table class="price-table">
       <thead><tr><th>Palvelu</th><th>Ma–to</th><th>Pe–su</th></tr></thead>
       <tbody>
@@ -513,17 +280,269 @@
   <div class="container">
     <div class="cta-bar">
       <div>
-        <h2>Valmis tekemään varauksen?</h2>
-        <p>Siirry varaussivulle tai soita suoraan — autamme löytämään sopivan ajankohdan.</p>
+        <h2>Haluatko räätälöidyn tarjouksen?</h2>
+        <p>Soita tai lähetä viesti — autamme löytämään sopivan ratkaisun.</p>
       </div>
       <div class="btn-group">
-        <a href="#saatavuus" class="btn btn-primary">Tarkista saatavuus</a>
+        <a href="/projektit/exen/ota-yhteytta/" class="btn btn-primary">Ota yhteyttä</a>
         <a href="tel:+358414367477" class="btn btn-outline">041 436 7477</a>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
+<script>
+(function(){
+  var CAL_ID = '9891c0727ac40e7202320b6aeee6941d6863efa51b576e3097dd6658c1fcab23@group.calendar.google.com';
+  var CONTACT = 'tuomas.rauhansalo@exen.fi';
+  var mode = 'fri';
+  var selectedSlot = null;
+  var selectedPkg = '';
+  var busyDates = new Set();
+  var dataLoaded = false;
+
+  var FI_M = ['tammik.','helmik.','maalisk.','huhtik.','toukok.','kesak.','heinak.','elok.','syysk.','lokak.','marrask.','jouluk.'];
+  var FI_D = ['su','ma','ti','ke','to','pe','la'];
+  var FI_DL = ['sunnuntai','maanantai','tiistai','keskiviikko','torstai','perjantai','lauantai'];
+
+  function pad(n){ return n<10?'0'+n:''+n; }
+  function toStr(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function fmt(d){ return d.getDate()+'. '+FI_M[d.getMonth()]; }
+  function fmtFull(d){ return FI_DL[d.getDay()]+' '+d.getDate()+'. '+FI_M[d.getMonth()]+' '+d.getFullYear(); }
+  function slotLbl(s){ var start=mode==='thu'?s.thu:s.fri; return fmt(start)+' – '+fmt(s.sun)+' '+s.sun.getFullYear(); }
+  function slotFull(s){ var start=mode==='thu'?s.thu:s.fri; return fmtFull(start)+' – '+fmtFull(s.sun); }
+
+  // ── iCal-parsinta ──────────────────────────────────────
+  function parseIcalDate(str){
+    str = str.replace(/^.*?:/, '').split(';').pop().replace(/[^0-9T]/g,'');
+    var y=+str.substr(0,4), m=+str.substr(4,2)-1, d=+str.substr(6,2);
+    return new Date(y,m,d);
+  }
+
+  function parseIcal(txt){
+    var dates = new Set();
+    // Purista folded lines (iCal line continuation)
+    var unfolded = txt.replace(/\r\n[ \t]/g, '').replace(/\n[ \t]/g, '');
+    var lines = unfolded.split(/\r?\n/);
+    var ev = null, dtStart = null, dtEnd = null;
+    for(var i=0;i<lines.length;i++){
+      var l=lines[i].trim();
+      if(l==='BEGIN:VEVENT'){ ev={}; dtStart=null; dtEnd=null; }
+      else if(l==='END:VEVENT' && ev){
+        if(dtStart){
+          var s=new Date(dtStart), e=new Date(dtEnd||dtStart);
+          while(s<=e){ dates.add(toStr(s)); s.setDate(s.getDate()+1); }
+        }
+        ev=null;
+      }
+      else if(ev){
+        if(l.match(/^DTSTART/)){ dtStart=parseIcalDate(l); }
+        else if(l.match(/^DTEND/)){ dtEnd=parseIcalDate(l); }
+      }
+    }
+    return dates;
+  }
+
+  // ── Hae iCal CORS-proxyn kautta ───────────────────────
+  async function loadCalendar(){
+    if(dataLoaded) return;
+    var icalUrl = 'https://calendar.google.com/calendar/ical/'
+      + encodeURIComponent(CAL_ID) + '/public/basic.ics';
+    var proxy = 'https://corsproxy.io/?' + encodeURIComponent(icalUrl);
+    try {
+      var r = await fetch(proxy, {cache:'no-cache'});
+      if(!r.ok) throw new Error(r.status);
+      var txt = await r.text();
+      busyDates = parseIcal(txt);
+      dataLoaded = true;
+      console.log('Kalenteri OK, varattuja päiviä:', busyDates.size);
+    } catch(e){
+      console.warn('iCal virhe:', e);
+      // Yritä Google Calendar API varalta
+      try {
+        var now = new Date(), fut = new Date(now.getTime()+140*24*60*60*1e3);
+        var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/'
+          +encodeURIComponent(CAL_ID)+'/events?key=AIzaSyASppqqqiPXRwoKwmg6pskuRhQ7AdinL2c'
+          +'&timeMin='+encodeURIComponent(now.toISOString())
+          +'&timeMax='+encodeURIComponent(fut.toISOString())
+          +'&singleEvents=true&maxResults=200';
+        var r2 = await fetch(apiUrl);
+        if(!r2.ok) throw new Error(r2.status);
+        var data = await r2.json();
+        (data.items||[]).forEach(function(ev){
+          var s=ev.start.date?new Date(ev.start.date+'T12:00:00'):new Date(ev.start.dateTime);
+          var e2=ev.end.date?new Date(ev.end.date+'T12:00:00'):new Date(ev.end.dateTime);
+          var d=new Date(s);
+          while(d<=e2){ busyDates.add(toStr(d)); d.setDate(d.getDate()+1); }
+        });
+        dataLoaded = true;
+        console.log('API OK, varattuja päiviä:', busyDates.size);
+      } catch(e2){
+        console.warn('API virhe:', e2);
+        dataLoaded = false; // merkki epäonnistumisesta
+        throw e2;
+      }
+    }
+  }
+
+  // ── Generoi viikonloppuslotit ─────────────────────────
+  function genSlots(){
+    var slots=[], today=new Date(); today.setHours(0,0,0,0);
+    var d=new Date(today), dow=d.getDay();
+    var dToThu=(4-dow+7)%7; if(dToThu===0&&today.getDay()===4) dToThu=7;
+    d.setDate(d.getDate()+dToThu);
+    for(var i=0;i<22;i++){
+      var thu=new Date(d); thu.setDate(d.getDate()+i*7);
+      var fri=new Date(thu); fri.setDate(thu.getDate()+1);
+      var sat=new Date(thu); sat.setDate(thu.getDate()+2);
+      var sun=new Date(thu); sun.setDate(thu.getDate()+3);
+      if(sun<today) continue;
+      slots.push({thu:thu,fri:fri,sat:sat,sun:sun});
+    }
+    return slots;
+  }
+
+  function isBusy(s){
+    var days=mode==='thu'?[s.thu,s.fri,s.sat,s.sun]:[s.fri,s.sat,s.sun];
+    return days.some(function(d){ return busyDates.has(toStr(d)); });
+  }
+
+  // ── Renderoi grid ─────────────────────────────────────
+  function renderGrid(){
+    var grid=document.getElementById('avail-grid');
+    grid.innerHTML='';
+    grid.style.display='grid';
+    document.getElementById('avail-loading').style.display='none';
+    var slots=genSlots(), freeN=0;
+    slots.forEach(function(slot){
+      var busy=isBusy(slot);
+      if(!busy) freeN++;
+      var startD=mode==='thu'?slot.thu:slot.fri;
+      var days=mode==='thu'?4:3;
+      var c=document.createElement('div');
+      c.style.cssText='border-radius:var(--radius);border:1.5px solid '+(busy?'var(--border)':'var(--purple)')
+        +';padding:14px 12px;cursor:'+(busy?'default':'pointer')
+        +';background:'+(busy?'var(--bg2)':'rgba(113,55,200,.08)')
+        +';transition:all .18s;';
+      c.innerHTML='<div style="font-size:0.72rem;color:var(--muted2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em;">'
+        +FI_D[startD.getDay()].toUpperCase()+' '+startD.getDate()+'.'+pad(startD.getMonth()+1)
+        +' – '+FI_D[slot.sun.getDay()].toUpperCase()+' '+slot.sun.getDate()+'.'+pad(slot.sun.getMonth()+1)+'</div>'
+        +'<div style="font-weight:700;font-size:0.95rem;color:'+(busy?'var(--muted2)':'var(--text)')+';margin-bottom:7px;">'+days+' pv</div>'
+        +'<div style="font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:100px;display:inline-block;background:'
+        +(busy?'rgba(255,255,255,.05)':'rgba(113,55,200,.25)')+';color:'+(busy?'var(--muted2)':'var(--purple2)')+';letter-spacing:.05em;">'
+        +(busy?'VARATTU':'VAPAA')+'</div>';
+      if(!busy){
+        c.addEventListener('mouseenter',function(){ this.style.transform='translateY(-2px)'; });
+        c.addEventListener('mouseleave',function(){ this.style.transform=''; });
+        c.addEventListener('click',function(){ openForm(slot); });
+      }
+      grid.appendChild(c);
+    });
+    if(freeN===0){
+      var note=document.createElement('div');
+      note.style.cssText='grid-column:1/-1;text-align:center;padding:20px;color:var(--muted2);font-size:0.9rem;';
+      note.textContent='Ei vapaita viikonloppuja seuraavaan 20 viikkoon. Soita suoraan!';
+      grid.appendChild(note);
+    }
+  }
+
+  // ── Avaa lomake ───────────────────────────────────────
+  function openForm(slot){
+    selectedSlot=slot;
+    document.getElementById('avail-selected-date').textContent=slotLbl(slot);
+    var waMsg='Hei, haluaisin tiedustella saatavuutta: '+slotLbl(slot)+' ('+selectedPkg+')';
+    document.getElementById('af-whatsapp').href='https://wa.me/358414367477?text='+encodeURIComponent(waMsg);
+    document.getElementById('avail-form-wrap').style.display='block';
+    document.getElementById('avail-sent').style.display='none';
+    document.getElementById('avail-form').style.display='grid';
+    document.getElementById('avail-form-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  // ── Avaa/sulje paneeli ────────────────────────────────
+  async function openPanel(pkg){
+    selectedPkg=pkg;
+    document.getElementById('avail-pkg-title').textContent=pkg;
+    document.getElementById('avail-panel').style.display='block';
+    document.getElementById('avail-form-wrap').style.display='none';
+    document.getElementById('avail-error').style.display='none';
+    document.getElementById('avail-grid').style.display='none';
+    document.getElementById('avail-loading').style.display='block';
+    document.getElementById('avail-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
+    try {
+      await loadCalendar();
+      renderGrid();
+    } catch(e){
+      document.getElementById('avail-loading').style.display='none';
+      document.getElementById('avail-error').style.display='block';
+    }
+  }
+
+  // ── Korttinapit ───────────────────────────────────────
+  document.querySelectorAll('.check-avail-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=this.closest('[data-pkg]');
+      var pkg=card.getAttribute('data-pkg');
+      var panel=document.getElementById('avail-panel');
+      // Jos sama paketti auki → sulje
+      if(panel.style.display!=='none' && selectedPkg===pkg){
+        panel.style.display='none'; return;
+      }
+      openPanel(pkg);
+    });
+  });
+
+  document.getElementById('avail-close').addEventListener('click',function(){
+    document.getElementById('avail-panel').style.display='none';
+  });
+
+  document.getElementById('change-date-btn').addEventListener('click',function(){
+    document.getElementById('avail-form-wrap').style.display='none';
+    selectedSlot=null;
+  });
+
+  // ── Moodivaihtimot ────────────────────────────────────
+  document.querySelectorAll('.avail-mode-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      mode=this.dataset.mode;
+      document.querySelectorAll('.avail-mode-btn').forEach(function(b){
+        var a=b.dataset.mode===mode;
+        b.style.background=a?'var(--purple)':'transparent';
+        b.style.color=a?'#fff':'var(--muted)';
+        b.style.borderColor=a?'var(--purple)':'var(--border)';
+      });
+      document.getElementById('avail-form-wrap').style.display='none';
+      renderGrid();
+    });
+  });
+
+  // ── Lomakkeen lähetys ─────────────────────────────────
+  document.getElementById('avail-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('af-name').value;
+    var phone=document.getElementById('af-phone').value;
+    var email=document.getElementById('af-email').value;
+    var guests=document.getElementById('af-guests').value;
+    var msg=document.getElementById('af-msg').value;
+    var dates=selectedSlot?slotFull(selectedSlot):'';
+    var subject='Varauspyyntö: '+selectedPkg+' – '+(selectedSlot?slotLbl(selectedSlot):'');
+    var body='Varauspyyntö EXENin verkkosivuilta.\n\n'
+      +'Paketti: '+selectedPkg+'\n'
+      +'Ajanjakso: '+dates+'\n'
+      +'Osallistujat: '+guests+'\n\n'
+      +'Nimi: '+name+'\n'
+      +'Puhelin: '+phone+'\n'
+      +'Sähköposti: '+email+'\n\n'
+      +'Lisätiedot: '+(msg||'–');
+    window.location.href='mailto:'+CONTACT+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    setTimeout(function(){
+      document.getElementById('avail-form').style.display='none';
+      document.getElementById('avail-sent').style.display='block';
+    },1500);
+  });
+})();
+</script>
 </main>
 
 <footer>
@@ -594,6 +613,7 @@
     });
   }
 </script>
+
 
 </body>
 </html>
