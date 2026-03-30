@@ -139,6 +139,10 @@
           style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
           To–Su (4 pv)
         </button>
+        <button class="avail-mode-btn" data-mode="mon"
+          style="padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);">
+          Ma–To (4 pv)
+        </button>
       </div>
 
       <!-- Lataus -->
@@ -301,14 +305,14 @@
   var selectedSlot = null;
   var selectedPkg = '';
   var pkgType = '';
-  var busyDates = new Set();   // päivätason varaukset
-  var events = [];              // {start:Date, end:Date} aikatason tapahtumat
+  var busyDates = new Set();
+  var events = [];
   var dataLoaded = false;
-  var selectedDay = null;       // 3h-varauksen valittu päivä
+  var selectedDay = null;
 
-  var FI_M = ['tammik.','helmik.','maalisk.','huhtik.','toukok.','kesak.','heinak.','elok.','syysk.','lokak.','marrask.','jouluk.'];
-  var FI_D = ['su','ma','ti','ke','to','pe','la'];
-  var FI_DL = ['sunnuntai','maanantai','tiistai','keskiviikko','torstai','perjantai','lauantai'];
+  var FI_M=['tammik.','helmik.','maalisk.','huhtik.','toukok.','kesak.','heinak.','elok.','syysk.','lokak.','marrask.','jouluk.'];
+  var FI_D=['su','ma','ti','ke','to','pe','la'];
+  var FI_DL=['sunnuntai','maanantai','tiistai','keskiviikko','torstai','perjantai','lauantai'];
 
   function pad(n){ return n<10?'0'+n:''+n; }
   function toStr(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
@@ -320,43 +324,38 @@
   function slotLbl(s){
     if(pkgType==='day') return fmtFull(s.date);
     if(pkgType==='hour') return fmtFull(s.date)+' klo '+fmtTime(s.startH)+'\u2013'+fmtTime(s.endH);
+    if(mode==='mon') return fmt(s.mon)+' \u2013 '+fmt(s.thu)+' '+s.thu.getFullYear();
     var start=mode==='thu'?s.thu:s.fri;
     return fmt(start)+' \u2013 '+fmt(s.sun)+' '+s.sun.getFullYear();
   }
   function slotFull(s){
     if(pkgType==='day') return fmtFull(s.date);
     if(pkgType==='hour') return fmtFull(s.date)+' klo '+fmtTime(s.startH)+'\u2013'+fmtTime(s.endH);
+    if(mode==='mon') return fmtFull(s.mon)+' \u2013 '+fmtFull(s.thu);
     var start=mode==='thu'?s.thu:s.fri;
     return fmtFull(start)+' \u2013 '+fmtFull(s.sun);
   }
 
-  // ── iCal-parsinta (päivät + ajat) ──
+  // ── iCal ──
   function parseIcalDate(str){
-    str = str.replace(/^[^:]*:/,'').replace(/[^0-9T]/g,'');
-    var y=+str.substr(0,4), mo=+str.substr(4,2)-1, d=+str.substr(6,2);
-    var h=0, mi=0;
+    str=str.replace(/^[^:]*:/,'').replace(/[^0-9T]/g,'');
+    var y=+str.substr(0,4),mo=+str.substr(4,2)-1,d=+str.substr(6,2),h=0,mi=0;
     if(str.length>8){ h=+str.substr(9,2); mi=+str.substr(11,2); }
-    var dt=new Date(y,mo,d,h,mi,0);
-    // UTC Z-merkintä → muunnetaan paikalliseksi
-    if(str.indexOf('T')>-1 && str.charAt(str.length-1)==='Z'){
-      dt=new Date(Date.UTC(y,mo,d,h,mi,0));
-    }
-    return dt;
+    if(str.indexOf('T')>-1&&str.charAt(str.length-1)==='Z')
+      return new Date(Date.UTC(y,mo,d,h,mi,0));
+    return new Date(y,mo,d,h,mi,0);
   }
-
   function parseIcal(txt){
-    var dates=new Set(), evts=[];
-    var unfolded=txt.replace(/\r\n[ \t]/g,'').replace(/\n[ \t]/g,'');
-    var lines=unfolded.split(/\r?\n/);
-    var ev=null, dtStart=null, dtEnd=null, allDay=false;
+    var dates=new Set(),evts=[];
+    var lines=txt.replace(/\r\n[ \t]/g,'').replace(/\n[ \t]/g,'').split(/\r?\n/);
+    var ev=null,dtStart=null,dtEnd=null;
     for(var i=0;i<lines.length;i++){
       var l=lines[i].trim();
-      if(l==='BEGIN:VEVENT'){ ev={}; dtStart=null; dtEnd=null; allDay=false; }
+      if(l==='BEGIN:VEVENT'){ ev={}; dtStart=null; dtEnd=null; }
       else if(l==='END:VEVENT'&&ev){
         if(dtStart){
-          var s=new Date(dtStart), e=new Date(dtEnd||dtStart);
-          evts.push({start:s, end:e, allDay:allDay});
-          // Merkitse kaikki päivät busyiksi
+          var s=new Date(dtStart),e=new Date(dtEnd||dtStart);
+          evts.push({start:s,end:e});
           var dd=new Date(s); dd.setHours(0,0,0,0);
           var de=new Date(e); de.setHours(23,59,0,0);
           while(dd<=de){ dates.add(toStr(dd)); dd.setDate(dd.getDate()+1); }
@@ -364,37 +363,31 @@
         ev=null;
       }
       else if(ev){
-        if(l.match(/^DTSTART;VALUE=DATE:/)){ dtStart=parseIcalDate(l); allDay=true; }
-        else if(l.match(/^DTSTART/)){ dtStart=parseIcalDate(l); allDay=l.indexOf('T')<0; }
-        else if(l.match(/^DTEND;VALUE=DATE:/)){ dtEnd=parseIcalDate(l); }
+        if(l.match(/^DTSTART/)){ dtStart=parseIcalDate(l); }
         else if(l.match(/^DTEND/)){ dtEnd=parseIcalDate(l); }
       }
     }
-    return {dates:dates, events:evts};
+    return {dates:dates,events:evts};
   }
 
-  // ── Hae iCal ──
   async function loadCalendar(){
     if(dataLoaded) return;
     var icalUrl='https://calendar.google.com/calendar/ical/'+encodeURIComponent(CAL_ID)+'/public/basic.ics';
-    var proxy='https://corsproxy.io/?'+encodeURIComponent(icalUrl);
     try{
-      var r=await fetch(proxy,{cache:'no-cache'});
+      var r=await fetch('https://corsproxy.io/?'+encodeURIComponent(icalUrl),{cache:'no-cache'});
       if(!r.ok) throw new Error(r.status);
       var result=parseIcal(await r.text());
       busyDates=result.dates; events=result.events; dataLoaded=true;
     } catch(e){
-      console.warn('iCal virhe:',e);
       try{
         var now=new Date(),fut=new Date(now.getTime()+140*24*60*60*1e3);
-        var apiUrl='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events?key=AIzaSyASppqqqiPXRwoKwmg6pskuRhQ7AdinL2c&timeMin='+encodeURIComponent(now.toISOString())+'&timeMax='+encodeURIComponent(fut.toISOString())+'&singleEvents=true&maxResults=200';
-        var r2=await fetch(apiUrl);
+        var r2=await fetch('https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events?key=AIzaSyASppqqqiPXRwoKwmg6pskuRhQ7AdinL2c&timeMin='+encodeURIComponent(now.toISOString())+'&timeMax='+encodeURIComponent(fut.toISOString())+'&singleEvents=true&maxResults=200');
         if(!r2.ok) throw new Error(r2.status);
         var data=await r2.json();
         (data.items||[]).forEach(function(ev){
           var s=ev.start.date?new Date(ev.start.date+'T00:00:00'):new Date(ev.start.dateTime);
           var e2=ev.end.date?new Date(ev.end.date+'T00:00:00'):new Date(ev.end.dateTime);
-          events.push({start:s,end:e2,allDay:!!ev.start.date});
+          events.push({start:s,end:e2});
           var d=new Date(s); d.setHours(0,0,0,0);
           while(d<=e2){ busyDates.add(toStr(d)); d.setDate(d.getDate()+1); }
         });
@@ -403,117 +396,105 @@
     }
   }
 
-  // ── Tarkista onko 3h-aikaväli vapaa ──
-  function isHourSlotFree(date, startH, endH){
+  // ── Aikaslotit ──
+  var TIME_SLOTS=[[9,12],[12,15],[15,18],[18,21],[21,24]];
+  function isHourSlotFree(date,startH,endH){
     var slotS=new Date(date); slotS.setHours(startH,0,0,0);
     var slotE=new Date(date); slotE.setHours(endH,0,0,0);
-    return !events.some(function(ev){
-      return !(ev.end<=slotS || ev.start>=slotE);
-    });
+    return !events.some(function(ev){ return !(ev.end<=slotS||ev.start>=slotE); });
   }
-
-  // Aikavälit ma-to: 09-12, 12-15, 15-18, 18-21, 21-00
-  var TIME_SLOTS = [[9,12],[12,15],[15,18],[18,21],[21,24]];
-
   function getFreeTimeSlots(date){
-    return TIME_SLOTS.filter(function(ts){
-      return isHourSlotFree(date, ts[0], ts[1]);
-    });
+    return TIME_SLOTS.filter(function(ts){ return isHourSlotFree(date,ts[0],ts[1]); });
   }
 
-  function hasFreeSlot(date){
-    if(busyDates.has(toStr(date))) return false; // koko päivä varattu (esim. bootcamp)
-    return getFreeTimeSlots(date).length > 0;
-  }
-
-  // ── Slot-generaattorit ──
+  // ── Slottien generointi ──
   function genWeekendSlots(){
     var slots=[],today=new Date(); today.setHours(0,0,0,0);
-    var d=new Date(today),dow=d.getDay();
-    var dToThu=(4-dow+7)%7; if(dToThu===0) dToThu=7;
-    d.setDate(d.getDate()+dToThu);
-    for(var i=0;i<22;i++){
-      var thu=new Date(d); thu.setDate(d.getDate()+i*7);
-      var fri=new Date(thu); fri.setDate(thu.getDate()+1);
-      var sat=new Date(thu); sat.setDate(thu.getDate()+2);
-      var sun=new Date(thu); sun.setDate(thu.getDate()+3);
-      if(sun<today) continue;
-      slots.push({thu:thu,fri:fri,sat:sat,sun:sun});
+    if(mode==='mon'){
+      // Ma-To blokit
+      var d=new Date(today),dow=d.getDay();
+      var dToMon=(1-dow+7)%7; if(dToMon===0) dToMon=7;
+      d.setDate(d.getDate()+dToMon);
+      for(var i=0;i<22;i++){
+        var mon=new Date(d); mon.setDate(d.getDate()+i*7);
+        var tue=new Date(mon); tue.setDate(mon.getDate()+1);
+        var wed=new Date(mon); wed.setDate(mon.getDate()+2);
+        var thu=new Date(mon); thu.setDate(mon.getDate()+3);
+        if(thu<today) continue;
+        slots.push({mon:mon,tue:tue,wed:wed,thu:thu});
+      }
+    } else {
+      // Pe-Su tai To-Su blokit
+      var d=new Date(today),dow=d.getDay();
+      var dToThu=(4-dow+7)%7; if(dToThu===0) dToThu=7;
+      d.setDate(d.getDate()+dToThu);
+      for(var i=0;i<22;i++){
+        var thu=new Date(d); thu.setDate(d.getDate()+i*7);
+        var fri=new Date(thu); fri.setDate(thu.getDate()+1);
+        var sat=new Date(thu); sat.setDate(thu.getDate()+2);
+        var sun=new Date(thu); sun.setDate(thu.getDate()+3);
+        if(sun<today) continue;
+        slots.push({thu:thu,fri:fri,sat:sat,sun:sun});
+      }
     }
     return slots;
   }
-
+  function isWeekendBusy(s){
+    var days=mode==='mon'?[s.mon,s.tue,s.wed,s.thu]:mode==='thu'?[s.thu,s.fri,s.sat,s.sun]:[s.fri,s.sat,s.sun];
+    return days.some(function(d){ return busyDates.has(toStr(d)); });
+  }
   function genDaySlots(){
     var slots=[],today=new Date(); today.setHours(0,0,0,0);
     for(var i=1;i<=90;i++){
       var cur=new Date(today); cur.setDate(today.getDate()+i);
-      slots.push({date:cur}); // kaikki päivät ma-su
+      slots.push({date:cur});
     }
     return slots;
   }
-
   function genHourDays(){
-    // 3h varaus: näytä vain vapaat arkipäivät (ma-to) seuraavat 60 päivää
+    // 3h: kaikki ma-to, myös osittain varatut — näytä vain jos vapaita aikaslotteja
     var days=[],today=new Date(); today.setHours(0,0,0,0);
     for(var i=1;i<=60;i++){
       var d=new Date(today); d.setDate(today.getDate()+i);
       var dow=d.getDay();
-      if(dow>=1&&dow<=4){ // ma-to
-        if(hasFreeSlot(d)) days.push(d);
+      if(dow>=1&&dow<=4){
+        // Ei busyDates-tarkistusta — näytetään kaikki päivät joilla vapaita tunteja
+        if(getFreeTimeSlots(d).length>0) days.push(d);
       }
     }
     return days;
   }
 
-  function isWeekendBusy(s){
-    var days=mode==='thu'?[s.thu,s.fri,s.sat,s.sun]:[s.fri,s.sat,s.sun];
-    return days.some(function(d){ return busyDates.has(toStr(d)); });
-  }
-
-  // ── Renderöi aikaslotit valitulle päivälle ──
+  // ── Aikaslottiruudukko ──
   function renderTimeSlots(date){
     selectedDay=date;
     var grid=document.getElementById('avail-grid');
     grid.innerHTML='';
     grid.style.gridTemplateColumns='repeat(auto-fill,minmax(140px,1fr))';
     grid.style.display='grid';
-
-    // Takaisin-nappi
     var back=document.createElement('div');
     back.style.cssText='grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-bottom:8px;';
-    back.innerHTML='<button id="back-to-days" style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:0.82rem;">← Vaihda päivä</button>'
+    back.innerHTML='<button id="back-to-days" style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:0.82rem;">\u2190 Vaihda päivä</button>'
       +'<span style="font-weight:700;color:var(--text);">'+fmtFull(date)+'</span>';
     grid.appendChild(back);
-
     document.getElementById('back-to-days').addEventListener('click',function(){
       selectedDay=null;
       document.getElementById('avail-form-wrap').style.display='none';
       renderGrid();
     });
-
     var freeSlots=getFreeTimeSlots(date);
     freeSlots.forEach(function(ts){
       var c=document.createElement('div');
       c.style.cssText='border-radius:var(--radius);border:1.5px solid var(--purple);padding:16px 12px;cursor:pointer;background:rgba(113,55,200,.08);transition:all .18s;text-align:center;';
-      c.innerHTML='<div style="font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:4px;">'+fmtTime(ts[0])+'\u2013'+fmtTime(ts[1])+'</div>'
-        +'<div style="font-size:0.75rem;color:var(--purple2);font-weight:600;">3 tuntia</div>';
+      c.innerHTML='<div style="font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:4px;">'+fmtTime(ts[0])+'\u2013'+fmtTime(ts[1])+'</div><div style="font-size:0.75rem;color:var(--purple2);font-weight:600;">3 tuntia</div>';
       c.addEventListener('mouseenter',function(){this.style.transform='translateY(-2px)';});
       c.addEventListener('mouseleave',function(){this.style.transform='';});
-      c.addEventListener('click',function(){
-        openForm({date:date, startH:ts[0], endH:ts[1]});
-      });
+      c.addEventListener('click',function(){ openForm({date:date,startH:ts[0],endH:ts[1]}); });
       grid.appendChild(c);
     });
-
-    if(freeSlots.length===0){
-      var note=document.createElement('div');
-      note.style.cssText='grid-column:1/-1;text-align:center;padding:20px;color:var(--muted2);';
-      note.textContent='Ei vapaita aikoja tälle päivälle.';
-      grid.appendChild(note);
-    }
   }
 
-  // ── Renderöi pääruudukko ──
+  // ── Pääruudukko ──
   function renderGrid(){
     var grid=document.getElementById('avail-grid');
     grid.innerHTML='';
@@ -521,20 +502,18 @@
     document.getElementById('avail-loading').style.display='none';
 
     if(pkgType==='hour'){
-      // Päivälista 3h-varaukselle
       grid.style.gridTemplateColumns='repeat(auto-fill,minmax(130px,1fr))';
       var days=genHourDays();
-      if(days.length===0){
-        var note=document.createElement('div');
-        note.style.cssText='grid-column:1/-1;text-align:center;padding:24px;color:var(--muted2);';
-        note.innerHTML='Ei vapaita ajankohtia seuraavaan 60 päivään.<br><a href="tel:+358414367477" style="color:var(--purple2);">Soita: 041 436 7477</a>';
-        grid.appendChild(note); return;
+      if(!days.length){
+        var n=document.createElement('div');
+        n.style.cssText='grid-column:1/-1;text-align:center;padding:24px;color:var(--muted2);';
+        n.innerHTML='Ei vapaita ajankohtia. <a href="tel:+358414367477" style="color:var(--purple2);">Soita: 041 436 7477</a>';
+        grid.appendChild(n); return;
       }
       days.forEach(function(date){
         var c=document.createElement('div');
         c.style.cssText='border-radius:var(--radius);border:1.5px solid var(--purple);padding:12px 10px;cursor:pointer;background:rgba(113,55,200,.08);transition:all .18s;text-align:center;';
-        var dow=['Su','Ma','Ti','Ke','To','Pe','La'][date.getDay()];
-        c.innerHTML='<div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:3px;">'+dow+'</div>'
+        c.innerHTML='<div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:3px;">'+['Su','Ma','Ti','Ke','To','Pe','La'][date.getDay()]+'</div>'
           +'<div style="font-size:0.85rem;color:var(--muted);margin-bottom:5px;">'+date.getDate()+'. '+FI_M[date.getMonth()]+'</div>'
           +'<div style="font-size:0.7rem;color:var(--purple2);font-weight:600;">'+getFreeTimeSlots(date).length+' vapaata</div>';
         c.addEventListener('mouseenter',function(){this.style.transform='translateY(-2px)';});
@@ -546,7 +525,7 @@
     } else if(pkgType==='day'){
       grid.style.gridTemplateColumns='repeat(auto-fill,minmax(130px,1fr))';
       var slots=genDaySlots().filter(function(s){ return !busyDates.has(toStr(s.date)); });
-      if(slots.length===0){
+      if(!slots.length){
         var n=document.createElement('div');
         n.style.cssText='grid-column:1/-1;text-align:center;padding:20px;color:var(--muted2);';
         n.textContent='Ei vapaita päiviä. Soita: 041 436 7477'; grid.appendChild(n); return;
@@ -554,8 +533,7 @@
       slots.forEach(function(slot){
         var c=document.createElement('div');
         c.style.cssText='border-radius:var(--radius);border:1.5px solid var(--purple);padding:12px 10px;cursor:pointer;background:rgba(113,55,200,.08);transition:all .18s;text-align:center;';
-        var dow=['Su','Ma','Ti','Ke','To','Pe','La'][slot.date.getDay()];
-        c.innerHTML='<div style="font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:4px;">'+dow+'</div>'
+        c.innerHTML='<div style="font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:4px;">'+['Su','Ma','Ti','Ke','To','Pe','La'][slot.date.getDay()]+'</div>'
           +'<div style="font-size:0.85rem;color:var(--muted2);margin-bottom:6px;">'+slot.date.getDate()+'.'+pad(slot.date.getMonth()+1)+'</div>'
           +'<div style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:100px;display:inline-block;background:rgba(113,55,200,.25);color:var(--purple2);">VAPAA</div>';
         c.addEventListener('mouseenter',function(){this.style.transform='translateY(-2px)';});
@@ -565,16 +543,22 @@
       });
 
     } else {
-      // Weekend-blokit
+      // Weekend/weekend blokit — vain vapaat
       grid.style.gridTemplateColumns='repeat(auto-fill,minmax(170px,1fr))';
-      genWeekendSlots().forEach(function(slot){
-        var busy=isWeekendBusy(slot);
-        if(busy) return; // Ei näytetä varattuja
-        var startD=mode==='thu'?slot.thu:slot.fri;
-        var days=mode==='thu'?4:3;
+      var slots=genWeekendSlots().filter(function(s){ return !isWeekendBusy(s); });
+      if(!slots.length){
+        var n=document.createElement('div');
+        n.style.cssText='grid-column:1/-1;text-align:center;padding:20px;color:var(--muted2);';
+        n.innerHTML='Ei vapaita ajankohtia. <a href="tel:+358414367477" style="color:var(--purple2);">Soita: 041 436 7477</a>';
+        grid.appendChild(n); return;
+      }
+      slots.forEach(function(slot){
+        var startD=mode==='mon'?slot.mon:mode==='thu'?slot.thu:slot.fri;
+        var endD=mode==='mon'?slot.thu:slot.sun;
+        var days=mode==='fri'?3:4;
         var c=document.createElement('div');
         c.style.cssText='border-radius:var(--radius);border:1.5px solid var(--purple);padding:14px 12px;cursor:pointer;background:rgba(113,55,200,.08);transition:all .18s;';
-        c.innerHTML='<div style="font-size:0.72rem;color:var(--muted2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em;">'+fmtShort(startD)+' \u2013 '+fmtShort(slot.sun)+'</div>'
+        c.innerHTML='<div style="font-size:0.72rem;color:var(--muted2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em;">'+fmtShort(startD)+' \u2013 '+fmtShort(endD)+'</div>'
           +'<div style="font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:7px;">'+days+' pv</div>'
           +'<div style="font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:100px;display:inline-block;background:rgba(113,55,200,.25);color:var(--purple2);">VAPAA</div>';
         c.addEventListener('mouseenter',function(){this.style.transform='translateY(-2px)';});
@@ -585,7 +569,6 @@
     }
   }
 
-  // ── Avaa lomake ──
   function openForm(slot){
     selectedSlot=slot;
     document.getElementById('avail-selected-date').textContent=slotLbl(slot);
@@ -597,8 +580,7 @@
     document.getElementById('avail-form-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
 
-  // ── Avaa paneeli ──
-  async function openPanel(pkg, type){
+  async function openPanel(pkg,type){
     selectedPkg=pkg; pkgType=type; selectedDay=null;
     document.getElementById('avail-pkg-title').textContent=pkg;
     var modeBtns=document.querySelector('.avail-mode-row');
@@ -609,35 +591,25 @@
     document.getElementById('avail-grid').style.display='none';
     document.getElementById('avail-loading').style.display='block';
     document.getElementById('avail-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
-    try{
-      await loadCalendar();
-      renderGrid();
-    } catch(e){
-      document.getElementById('avail-loading').style.display='none';
-      document.getElementById('avail-error').style.display='block';
-    }
+    try{ await loadCalendar(); renderGrid(); }
+    catch(e){ document.getElementById('avail-loading').style.display='none'; document.getElementById('avail-error').style.display='block'; }
   }
 
-  // ── Korttinapit ──
   var pkgTypes={'Päivävaraus pelitila':'day','Max 3 h varaus':'hour','Pelitila + sauna':'weekend','Bootcamp 3 pv':'weekend'};
   document.querySelectorAll('.check-avail-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-      var card=this.closest('[data-pkg]');
-      var pkg=card.getAttribute('data-pkg');
-      var type=pkgTypes[pkg]||'weekend';
+      var card=this.closest('[data-pkg]'),pkg=card.getAttribute('data-pkg'),type=pkgTypes[pkg]||'weekend';
       var panel=document.getElementById('avail-panel');
       if(panel.style.display!=='none'&&selectedPkg===pkg){ panel.style.display='none'; return; }
       openPanel(pkg,type);
     });
   });
-
   document.getElementById('avail-close').addEventListener('click',function(){ document.getElementById('avail-panel').style.display='none'; });
   document.getElementById('change-date-btn').addEventListener('click',function(){
     document.getElementById('avail-form-wrap').style.display='none';
     selectedSlot=null;
-    if(pkgType==='hour'&&selectedDay){ renderTimeSlots(selectedDay); }
+    if(pkgType==='hour'&&selectedDay) renderTimeSlots(selectedDay);
   });
-
   document.querySelectorAll('.avail-mode-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       mode=this.dataset.mode;
@@ -651,14 +623,11 @@
       renderGrid();
     });
   });
-
   document.getElementById('avail-form').addEventListener('submit',function(e){
     e.preventDefault();
-    var name=document.getElementById('af-name').value;
-    var phone=document.getElementById('af-phone').value;
-    var email=document.getElementById('af-email').value;
-    var guests=document.getElementById('af-guests').value;
-    var msg=document.getElementById('af-msg').value;
+    var name=document.getElementById('af-name').value,phone=document.getElementById('af-phone').value,
+        email=document.getElementById('af-email').value,guests=document.getElementById('af-guests').value,
+        msg=document.getElementById('af-msg').value;
     var subject='Varauspyyntö: '+selectedPkg+' – '+(selectedSlot?slotLbl(selectedSlot):'');
     var body='Varauspyyntö EXENin verkkosivuilta.\n\nPaketti: '+selectedPkg+'\nAjanjakso: '+(selectedSlot?slotFull(selectedSlot):'')+'\nOsallistujat: '+guests+'\n\nNimi: '+name+'\nPuhelin: '+phone+'\nSähköposti: '+email+'\n\nLisätiedot: '+(msg||'–');
     window.location.href='mailto:'+CONTACT+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
