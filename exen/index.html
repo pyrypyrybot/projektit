@@ -426,7 +426,7 @@ var PLACE_QUERY    = 'EXEN Esports Oy Jyväskylä Sorastajantie';
       setTimeout(loadMapsAPI, 3000);
     }
   } else {
-    initCarousel();
+    requestAnimationFrame(function(){ initCarousel(); });
   }
 }());
 </script>
