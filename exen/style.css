@@ -11,7 +11,7 @@
   --purple3:   #462086;
   --text:      #fff;
   --muted:     #B3B3B3;
-  --muted2:    #6b6b6b;
+  --muted2:    #909090; /* #6b6b6b ei läpäise WCAG AA kontrastia */
   --radius:    10px;
   --radius2:   16px;
   --nav-h:     64px;
