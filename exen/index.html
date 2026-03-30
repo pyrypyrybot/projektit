@@ -199,25 +199,173 @@
   </div>
 </section>
 
-<!-- Lainaukset -->
-<section style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<!-- Asiakaspalautteet / Google Reviews -->
+<section id="asiakaspalautteet" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="container">
     <div class="section-header text-center">
       <div class="section-tag">Asiakaspalautteet</div>
       <h2>Mitä asiakkaamme sanovat</h2>
+      <div id="google-badge" class="google-badge" style="display:none">
+        <span class="g-stars" id="g-stars">★★★★★</span>
+        <span class="g-score" id="g-score"></span>
+        <span class="g-count" id="g-count"></span>
+        <span class="g-logo">Google</span>
+      </div>
     </div>
-    <div class="cards cards-2">
-      <div class="testimonial">
-        <p>Tapahtuma sujui kerrassaan upeasti. Gaming-osastolla oli koko päivän aivan huikeasti porukkaa ja hyvä tekemisen meininki. Tapahtumasta ja sen järjestelyistä jäi kerta kaikkiaan hyvä fiilis ja varmasti mieleenpainuva muistijälki myös asiakkaille.</p>
-        <div class="author"><strong>Eetu Lätti</strong>Suunnittelija, mainonta ja markkinointi — Pohjois-Karjalan Osuuskauppa</div>
+
+    <div class="reviews-wrap">
+      <div class="reviews-track" id="reviews-track">
+        <!-- Fallback: staattiset arvostelut (näytetään jos API ei ole käytössä) -->
+        <div class="testimonial">
+          <p>Tapahtuma sujui kerrassaan upeasti. Gaming-osastolla oli koko päivän aivan huikeasti porukkaa ja hyvä tekemisen meininki. Tapahtumasta ja sen järjestelyistä jäi kerta kaikkiaan hyvä fiilis ja varmasti mieleenpainuva muistijälki myös asiakkaille.</p>
+          <div class="author"><strong>Eetu Lätti</strong>Suunnittelija, mainonta ja markkinointi — Pohjois-Karjalan Osuuskauppa</div>
+        </div>
+        <div class="testimonial">
+          <p>Exen Esportsin kanssa yhteistyö on ollut mutkatonta. Tapahtuman suunnittelusta asti homma toimi erinomaisesti — ideoita heiteltiin puolin ja toisin. Lopputuotoksena tapahtuma oli hyvä kokonaisuus.</p>
+          <div class="author"><strong>Mikko Venemies</strong>Apulaismyyntipäällikkö — Prisma Seppälä</div>
+        </div>
       </div>
-      <div class="testimonial">
-        <p>Exen Esportsin kanssa yhteistyö on ollut mutkatonta. Tapahtuman suunnittelusta asti homma toimi erinomaisesti — ideoita heiteltiin puolin ja toisin. Lopputuotoksena tapahtuma oli hyvä kokonaisuus.</p>
-        <div class="author"><strong>Mikko Venemies</strong>Apulaismyyntipäällikkö — Prisma Seppälä</div>
-      </div>
+    </div>
+
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="rev-prev" aria-label="Edellinen">&#8592;</button>
+      <div class="carousel-dots" id="rev-dots"></div>
+      <button class="carousel-btn" id="rev-next" aria-label="Seuraava">&#8594;</button>
+    </div>
+
+    <div style="text-align:center;margin-top:28px;">
+      <a href="https://share.google/fwkyifTy0yLpEQAYM" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+        Katso kaikki Google-arvostelut &#8599;
+      </a>
     </div>
   </div>
 </section>
+
+<script>
+// ─── Google Reviews Configuration ───────────────────────────────────────────
+// Lisää Google Maps API -avaimesi alle. Saat ilmaisen avaimen osoitteesta:
+// https://console.cloud.google.com/ → APIs & Services → Credentials
+// Aktivoi: "Maps JavaScript API" ja "Places API"
+// Rajoita avain: HTTP referrers → pyrypyrybot.github.io/*
+var GOOGLE_API_KEY = ''; // ← LISÄÄ TÄHÄN
+var PLACE_QUERY    = 'EXEN Esports Oy Jyväskylä Sorastajantie';
+// ────────────────────────────────────────────────────────────────────────────
+
+// Carousel-logiikka
+;(function() {
+  var track    = document.getElementById('reviews-track');
+  var dotsWrap = document.getElementById('rev-dots');
+  var idx      = 0;
+  var perView  = window.innerWidth >= 641 ? 2 : 1;
+  var total    = 0;
+  var autoTimer;
+
+  function getSlides() { return track.querySelectorAll('.testimonial'); }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    var pages = Math.ceil(total / perView);
+    for (var i = 0; i < pages; i++) {
+      var d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('data-i', i);
+      d.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-i'))); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    var page = Math.floor(idx / perView);
+    dotsWrap.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === page);
+    });
+  }
+
+  function goTo(page) {
+    idx = page * perView;
+    var offset = -(idx * (100 / perView));
+    track.style.transform = 'translateX(' + offset + '%)';
+    updateDots();
+    clearInterval(autoTimer);
+    autoTimer = setInterval(nextSlide, 5000);
+  }
+
+  function nextSlide() {
+    var pages = Math.ceil(total / perView);
+    var page  = Math.floor(idx / perView);
+    goTo((page + 1) % pages);
+  }
+
+  function prevSlide() {
+    var pages = Math.ceil(total / perView);
+    var page  = Math.floor(idx / perView);
+    goTo((page - 1 + pages) % pages);
+  }
+
+  function initCarousel() {
+    total   = getSlides().length;
+    perView = window.innerWidth >= 641 ? 2 : 1;
+    if (total <= perView) { document.querySelector('.carousel-controls').style.display = 'none'; return; }
+    buildDots();
+    goTo(0);
+  }
+
+  document.getElementById('rev-next').addEventListener('click', nextSlide);
+  document.getElementById('rev-prev').addEventListener('click', prevSlide);
+  window.addEventListener('resize', function() { perView = window.innerWidth >= 641 ? 2 : 1; buildDots(); goTo(0); });
+
+  // ── Lataa Google Places -arvostelut jos API-avain asetettu ──────────────
+  if (GOOGLE_API_KEY) {
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&libraries=places';
+    s.onload = function() {
+      var svc = new google.maps.places.PlacesService(document.createElement('div'));
+      svc.textSearch({ query: PLACE_QUERY }, function(results, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !results[0]) {
+          initCarousel(); return;
+        }
+        svc.getDetails({
+          placeId: results[0].place_id,
+          fields: ['reviews','rating','user_ratings_total']
+        }, function(place, ds) {
+          if (ds !== google.maps.places.PlacesServiceStatus.OK || !place.reviews) {
+            initCarousel(); return;
+          }
+          // Näytä rating-badge
+          var badge = document.getElementById('google-badge');
+          document.getElementById('g-score').textContent = place.rating.toFixed(1);
+          document.getElementById('g-count').textContent = '(' + place.user_ratings_total + ' arvostelua)';
+          var full = Math.round(place.rating), stars = '★'.repeat(full) + '☆'.repeat(5-full);
+          document.getElementById('g-stars').textContent = stars;
+          badge.style.display = 'inline-flex';
+
+          // Korvaa staattinen sisältö Google-arvosteluilla (min 4 tähteä)
+          var reviews = place.reviews.filter(function(r){ return r.rating >= 4; });
+          if (!reviews.length) { initCarousel(); return; }
+          track.innerHTML = reviews.map(function(r) {
+            var avatarHtml = r.profile_photo_url
+              ? '<img src="' + r.profile_photo_url + '" alt="' + r.author_name + '" class="review-avatar">'
+              : '<div class="review-avatar" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--purple2);">' + r.author_name[0] + '</div>';
+            var stars = '★'.repeat(r.rating) + '☆'.repeat(5-r.rating);
+            var text = r.text.length > 260 ? r.text.slice(0, 257) + '…' : r.text;
+            return '<div class="testimonial">'
+              + '<div class="review-head">' + avatarHtml
+              + '<div><span class="review-name">' + r.author_name + '</span>'
+              + '<span class="review-stars">' + stars + '</span></div></div>'
+              + '<p>' + text + '</p>'
+              + '<div class="review-time">' + r.relative_time_description + '</div>'
+              + '</div>';
+          }).join('');
+          initCarousel();
+        });
+      });
+    };
+    document.head.appendChild(s);
+  } else {
+    initCarousel();
+  }
+}());
+</script>
 
 <!-- Pelikerhot -->
 <section>
