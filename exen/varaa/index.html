@@ -95,9 +95,9 @@
         </ul>
         <button class="btn btn-primary check-avail-btn" style="width:100%;justify-content:center;">Tarkista vapaat ajat</button>
       </div>
-      <div class="price-card" data-pkg="Bootcamp 3 pv" data-price="pe–su 1 400 €">
+      <div class="price-card" data-pkg="Bootcamp" data-price="pe–su 1 400 €">
         <div class="badge">Tiimeille</div>
-        <h3>Bootcamp 3 pv</h3>
+        <h3>Bootcamp</h3>
         <div class="price">1 050 € <small>/ ma–to</small></div>
         <div class="price" style="font-size:1.3rem;margin-top:2px;">1 400 € <small>/ pe–su</small></div>
         <ul>
@@ -690,7 +690,7 @@
     catch(e){document.getElementById('avail-loading').style.display='none';document.getElementById('avail-error').style.display='block';}
   }
 
-  var pkgTypes={'Päivävaraus pelitila':'day','Max 3 h varaus':'hour','Pelitila + sauna':'day','Bootcamp 3 pv':'weekend'};
+  var pkgTypes={'Päivävaraus pelitila':'day','Max 3 h varaus':'hour','Pelitila + sauna':'day','Bootcamp':'weekend'};
   document.querySelectorAll('.check-avail-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       var card=this.closest('[data-pkg]'),pkg=card.getAttribute('data-pkg'),type=pkgTypes[pkg]||'weekend';
