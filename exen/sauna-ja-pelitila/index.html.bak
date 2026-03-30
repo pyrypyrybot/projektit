@@ -7,8 +7,7 @@
   <meta name="description" content="EXEN tarjoaa huipputason pelitilavuokrauksen, tapahtumatuotannon, pelikerhot ja leirit sekä yritysvirkistykset Jyväskylässä.">
   <link rel="stylesheet" href="/projektit/exen/style.css">
     <link rel="preload" as="image" href="https://exen.fi/wp-content/themes/exen/assets/images/paalogo.png" fetchpriority="high">
-  <link rel="preload" as="image" href="/projektit/exen/images/pc-tila.webp" type="image/webp">
-  <link rel="preload" as="image" href="/projektit/exen/images/pc-tila.jpg">
+  <link rel="preload" as="image" href="https://exen.fi/wp-content/uploads/2025/06/EXEN_PC-tila.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://exen.fi">
@@ -174,7 +173,7 @@
         <a href="/projektit/exen/sauna-ja-pelitila/" class="btn btn-primary btn-sm">Katso tilat ja hinnat</a>
       </div>
       <div class="feature-img">
-        <img fetchpriority="high" src="/projektit/exen/images/pc-tila.jpg" alt="EXENin PC-pelitila" width="800" height="600" style="width:100%;height:100%;object-fit:cover;">
+        <img fetchpriority="high" src="https://exen.fi/wp-content/uploads/2025/06/EXEN_PC-tila.jpg" alt="EXENin PC-pelitila" style="width:100%;height:100%;object-fit:cover;">
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);">
           <div style="font-size:0.75rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.1em;">Jyväskylä</div>
           <div style="font-weight:700;margin-top:2px;">Sorastajantie 1 C 3</div>
@@ -235,7 +234,7 @@
         <a href="/projektit/exen/tapahtumatuotanto/" class="btn btn-primary btn-sm">Tilaa tapahtuma</a>
       </div>
       <div class="feature-img">
-        <img loading="lazy" src="/projektit/exen/images/goexen.png" alt="Go EXEN" width="800" height="600" style="width:100%;height:100%;object-fit:cover;background:#1a1a1a;">
+        <img loading="lazy" src="https://exen.fi/wp-content/uploads/2025/04/goexen-white.png" alt="Go EXEN" style="width:100%;height:100%;object-fit:cover;background:#1a1a1a;">
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);">
           <div style="font-size:0.75rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.1em;">Referenssi</div>
           <div style="font-weight:700;margin-top:2px;">Ruisrock 2022 &amp; Prisma Joensuu 35v</div>
@@ -360,12 +359,9 @@ var PLACE_QUERY    = 'EXEN Esports Oy Jyväskylä Sorastajantie';
   document.getElementById('rev-prev').addEventListener('click', prevSlide);
   window.addEventListener('resize', function() { perView = window.innerWidth >= 641 ? 2 : 1; buildDots(); goTo(0); });
 
-  // ── Lataa Google Places vasta kun käyttäjä scrollaa arvosteluihin ───────
+  // ── Lataa Google Places -arvostelut jos API-avain asetettu ──────────────
   if (GOOGLE_API_KEY) {
-    var mapsLoaded = false;
-    function loadMapsAPI() {
-      if (mapsLoaded) return;
-      mapsLoaded = true;
+    window.addEventListener('load', function() {
     var s = document.createElement('script');
     s.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&libraries=places';
     s.onload = function() {
@@ -411,19 +407,7 @@ var PLACE_QUERY    = 'EXEN Esports Oy Jyväskylä Sorastajantie';
       });
     };
     document.head.appendChild(s);
-    } // loadMapsAPI
-
-    // Käynnistä lataus kun reviews-osio lähestyy viewportia
-    var reviewEl = document.getElementById('asiakaspalautteet');
-    if (reviewEl && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) { io.disconnect(); loadMapsAPI(); }
-      }, { rootMargin: '400px' });
-      io.observe(reviewEl);
-    } else {
-      // Fallback: lataa 3s viiveellä
-      setTimeout(loadMapsAPI, 3000);
-    }
+    }); // window.onload
   } else {
     initCarousel();
   }
