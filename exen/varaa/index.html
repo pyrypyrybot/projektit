@@ -313,7 +313,7 @@
   function toStr(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
   function fmt(d){return d.getDate()+'.'+(d.getMonth()+1);}
   function fmtFull(d){return FI_DL[d.getDay()]+' '+d.getDate()+'. '+FI_M[d.getMonth()]+' '+d.getFullYear();}
-  function fmtTime(h){return pad(h)+':00';}
+  function fmtTime(h){h=h%24;return pad(h)+':00';}
 
   function getWeekNum(date){
     var d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()));
