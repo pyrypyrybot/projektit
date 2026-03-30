@@ -92,6 +92,15 @@ nav {
   min-width: 210px; padding: 6px; z-index: 100;
   box-shadow: 0 16px 48px rgba(0,0,0,.7);
 }
+/* Täyttää aukon navin ja dropdownin välillä — estää hover-katkoksen */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
 .dropdown:hover .dropdown-menu { display: block; }
 .dropdown-menu a {
   display: block; padding: 9px 14px; border-radius: 6px;
