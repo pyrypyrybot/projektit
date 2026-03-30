@@ -445,10 +445,9 @@
 
   function genDaySlots(){
     var slots=[],today=new Date(); today.setHours(0,0,0,0);
-    for(var i=0;i<120;i++){
+    for(var i=1;i<=90;i++){
       var cur=new Date(today); cur.setDate(today.getDate()+i);
-      var dow=cur.getDay();
-      if(dow===5||dow===6||dow===0) slots.push({date:cur});
+      slots.push({date:cur}); // kaikki päivät ma-su
     }
     return slots;
   }
