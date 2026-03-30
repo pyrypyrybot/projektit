@@ -18,7 +18,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
@@ -26,6 +26,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
+  overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
@@ -357,7 +358,7 @@ footer {
    TABLET (max 960px)
 ═══════════════════════════════════════ */
 @media (max-width: 960px) {
-  .nav-links, .nav-cta { display: none; }
+  .nav-links, .nav-cta { display: none !important; }
   .nav-mobile-toggle { display: flex; }
 
   .feature-split,
@@ -374,6 +375,9 @@ footer {
   .cta-bar { flex-direction: column; padding: 28px 24px; }
   .cta-bar .btn-group { width: 100%; }
   .cta-bar .btn-group .btn { flex: 1; min-width: 140px; }
+
+  /* Hinnoittelukortit — 2 kolumnia tabletilla */
+  .price-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ═══════════════════════════════════════
@@ -391,15 +395,15 @@ footer {
   .hero { min-height: 100svh; padding-top: var(--nav-h); }
   .hero p { font-size: 0.975rem; }
   .hero-btns { flex-direction: column; align-items: stretch; }
-  .hero-btns .btn { justify-content: center; }
-  .hero-stats { gap: 20px; margin-top: 36px; padding-top: 24px; }
-  .hero-stat .num { font-size: 1.4rem; }
-  .hero-stat .label { font-size: 0.68rem; }
+  .hero-btns .btn { justify-content: center; width: 100%; }
+  .hero-stats { gap: 16px; margin-top: 28px; padding-top: 20px; }
+  .hero-stat .num { font-size: 1.35rem; }
+  .hero-stat .label { font-size: 0.65rem; }
 
   /* Page hero */
   .page-hero { padding: 100px 0 56px; }
   .page-hero p { font-size: 0.975rem; }
-  .page-hero .btn { width: 100%; }
+  .page-hero .btn { width: 100%; justify-content: center; }
 
   /* Cards */
   .cards-3, .cards-4 { grid-template-columns: 1fr; }
@@ -407,17 +411,24 @@ footer {
   .price-cards { grid-template-columns: 1fr; }
 
   /* Hinnastotaulukko — vaakasuuntainen scroll */
-  .price-table { font-size: 0.8rem; min-width: 480px; }
-  .price-table th, .price-table td { padding: 10px 12px; }
+  .table-wrap { -webkit-overflow-scrolling: touch; overflow-x: auto; }
+  .price-table { font-size: 0.78rem; min-width: 420px; }
+  .price-table th, .price-table td { padding: 9px 10px; }
+
+  /* Split-price stakkaus */
+  .split-price { grid-template-columns: 1fr !important; gap: 28px !important; }
 
   /* CTA */
   .cta-bar { padding: 24px 20px; }
   .cta-bar .btn-group { flex-direction: column; }
-  .cta-bar .btn-group .btn { width: 100%; }
+  .cta-bar .btn-group .btn { width: 100%; justify-content: center; }
 
   /* Kortit */
-  .card { padding: 20px; }
-  .price-card { padding: 22px 18px; }
+  .card { padding: 18px; }
+  .price-card { padding: 20px 16px; }
+
+  /* Feature split — kuva pienemmäksi */
+  .feature-img { aspect-ratio: 4/3; }
 
   /* Footer */
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -427,10 +438,13 @@ footer {
   .contact-form { padding: 20px 16px; }
 
   /* Painikkeet */
-  .btn-primary, .btn-outline { padding: 13px 24px; font-size: 0.95rem; }
+  .btn-primary, .btn-outline { padding: 13px 20px; font-size: 0.9rem; }
 
   /* Lainaukset */
-  .testimonial { padding: 22px 18px; }
+  .testimonial { padding: 22px 16px; }
+
+  /* Navigaatio overlay */
+  .nav-overlay { padding: 16px; }
 }
 
 /* ═══════════════════════════════════════
