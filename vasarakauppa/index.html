@@ -554,7 +554,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 32px}
 
         <!-- VAIHE 1 -->
         <div class="conf-panel active" id="step-1">
-          <p class="conf-intro">Valitse kaivinkoneesi merkki alta tai valitse koneen painoluokka suoraan.</p>
+          <p class="conf-intro">Valitse kaivinkoneesi merkki alta tai syötä koneen paino suoraan.</p>
           <div class="brand-grid" id="brand-grid">
             <button type="button" class="pick brand-btn" data-brand="Volvo" onclick="selectBrand('Volvo',this)"><span class="brand-logo-txt">VOLVO</span><small>CE</small></button>
             <button type="button" class="pick brand-btn" data-brand="Caterpillar" onclick="selectBrand('Caterpillar',this)"><span class="brand-logo-txt">CAT</span><small>Caterpillar</small></button>
@@ -565,7 +565,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 32px}
             <button type="button" class="pick brand-btn" data-brand="Liebherr" onclick="selectBrand('Liebherr',this)"><span class="brand-logo-txt">LIEBHERR</span><small>R-sarja</small></button>
             <button type="button" class="pick brand-btn" data-brand="Hyundai" onclick="selectBrand('Hyundai',this)"><span class="brand-logo-txt">HYUNDAI</span><small>HX</small></button>
             <button type="button" class="pick brand-btn" data-brand="Bobcat" onclick="selectBrand('Bobcat',this)"><span class="brand-logo-txt">BOBCAT</span><small>E-sarja</small></button>
-            <button type="button" class="pick brand-btn" data-brand="Muu" onclick="selectBrand('Muu',this)"><span class="brand-logo-txt">MUU</span><small>Valitse paino</small></button>
+            <button type="button" class="pick brand-btn" data-brand="Muu" onclick="selectBrand('Muu',this)"><span class="brand-logo-txt">MUU</span><small>Syötä paino</small></button>
           </div>
 
           <div class="conf-model-row" id="model-row" style="display:none">
@@ -576,33 +576,15 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 32px}
               </select>
             </div>
             <div class="field">
-              <label for="weight-select">Tai painoluokka</label>
-              <select id="weight-select">
-                <option value="">Valitse painoluokka…</option>
-                <option value="1">1–3 tonnia (minikaivinkone)</option>
-                <option value="3">3–6 tonnia (pieni)</option>
-                <option value="6">6–12 tonnia (kompakti)</option>
-                <option value="12">12–20 tonnia (keski)</option>
-                <option value="20">20–30 tonnia (iso)</option>
-                <option value="30">30–50 tonnia (raskas)</option>
-                <option value="50">50+ tonnia (jättiläinen)</option>
-              </select>
+              <label for="weight-input">Tai koneen paino (tonnia)</label>
+              <input type="text" inputmode="decimal" id="weight-input" placeholder="esim. 14">
             </div>
           </div>
           <div class="field" id="manual-weight-field">
-            <label for="manual-weight">Koneen painoluokka</label>
-            <select id="manual-weight">
-              <option value="">Valitse painoluokka…</option>
-              <option value="1">1–3 tonnia (minikaivinkone)</option>
-              <option value="3">3–6 tonnia (pieni)</option>
-              <option value="6">6–12 tonnia (kompakti)</option>
-              <option value="12">12–20 tonnia (keski)</option>
-              <option value="20">20–30 tonnia (iso)</option>
-              <option value="30">30–50 tonnia (raskas)</option>
-              <option value="50">50+ tonnia (jättiläinen)</option>
-            </select>
+            <label for="manual-weight">Koneen paino (tonnia)</label>
+            <input type="text" inputmode="decimal" id="manual-weight" placeholder="esim. 14">
           </div>
-          <p class="conf-msg" id="msg-1" role="alert">Valitse ensin konemalli tai koneen painoluokka.</p>
+          <p class="conf-msg" id="msg-1" role="alert">Valitse ensin konemalli tai syötä koneen paino tonneina.</p>
 
           <div class="conf-actions">
             <button type="button" class="btn btn-m" onclick="goStep2()">
@@ -1141,17 +1123,20 @@ function selectBrand(brand, el) {
     $('manual-weight-field').style.display = 'block';
   } else {
     fillModels($('model-select'), brand);
-    $('weight-select').value = '';
+    $('weight-input').value = '';
     $('model-row').style.display = 'grid';
     $('manual-weight-field').style.display = 'none';
   }
 }
 
 $('model-select').addEventListener('change', function() {
-  if (this.value) { $('weight-select').value = ''; }
+  if (this.value) { $('weight-input').value = ''; }
 });
-$('weight-select').addEventListener('change', function() {
-  if (this.value) { $('model-select').value = ''; }
+$('weight-input').addEventListener('input', function() {
+  if (this.value.trim()) { $('model-select').value = ''; }
+});
+['weight-input','manual-weight'].forEach(id => {
+  $(id).addEventListener('keydown', e => { if (e.key === 'Enter') goStep2(); });
 });
 
 function selectUse(use, el) {
@@ -1174,17 +1159,17 @@ function goStep(n, scroll = true) {
 }
 
 function goStep2() {
-  const ms = $('model-select'), ws = $('weight-select'), mw = $('manual-weight');
+  const ms = $('model-select'), wi = $('weight-input'), mw = $('manual-weight');
   const brandPicked = selectedBrand && selectedBrand !== 'Muu';
   let w = null;
   selectedModel = null;
   if (brandPicked && ms.value) {
     w = parseFloat(ms.value);
     selectedModel = ms.options[ms.selectedIndex].dataset.model;
-  } else if (brandPicked && ws.value) {
-    w = parseFloat(ws.value);
-  } else if (!brandPicked && mw.value) {
-    w = parseFloat(mw.value);
+  } else if (brandPicked) {
+    w = parseWeight(wi.value);
+  } else {
+    w = parseWeight(mw.value);
   }
   if (!w) {
     $('msg-1').classList.add('show');
@@ -1207,22 +1192,47 @@ function goStep3() {
 function resetConf() {
   selectedBrand = selectedModel = selectedWeight = selectedUseCase = null;
   document.querySelectorAll('.pick').forEach(b => b.classList.remove('selected'));
-  ['model-select','weight-select','manual-weight'].forEach(id => { $(id).value = ''; });
+  ['model-select','weight-input','manual-weight'].forEach(id => { $(id).value = ''; });
   $('model-row').style.display = 'none';
   $('manual-weight-field').style.display = 'block';
   goStep(1);
 }
 
+/*
+  Suosittelusäännöt (yrittäjän linjaus):
+  1. Jokaiselta merkiltä näytetään yksi malli: koneen painolle sopivista (lo ≤ paino ≤ hi) isoin.
+  2. General Breakerilla Premium-sarja (GBP) valitaan aina, kun siitä löytyy sopiva malli.
+  3. Jos merkiltä ei löydy sopivaa mallia, näytetään lähin malli ja pyydetään varmistamaan sopivuus.
+  4. "Suosittelemme" annetaan aina General Breakerille, kun siltä löytyy sopiva malli.
+     Muu merkki saa suosituksen vain, jos General Breakerilta ei löydy sopivaa.
+*/
+const fits = (h, w) => h.lo <= w && h.hi >= w;
+const bigger = (a, b) => (b.kg > a.kg ? b : a);
+const gap = (h, w) => (w < h.lo ? h.lo - w : w > h.hi ? w - h.hi : 0);
+
+function pickForBrand(brand, weight) {
+  const all = hammers.filter(h => h.b === brand);
+  let matches = all.filter(h => fits(h, weight));
+  if (matches.length === 0) {
+    const nearest = Math.min(...all.map(h => gap(h, weight)));
+    return all.filter(h => gap(h, weight) - nearest < 1e-9).reduce(bigger);
+  }
+  if (brand === 'General Breaker') {
+    const premium = matches.filter(h => h.m.startsWith('GBP'));
+    if (premium.length) matches = premium;
+  }
+  return matches.reduce(bigger);
+}
+
 function getRecommendedHammers(weight) {
-  const brands = ['General Breaker','OKTech','NPK'];
-  return brands.map(brand => {
-    const matches = hammers.filter(h => h.b === brand && h.lo <= weight && h.hi >= weight);
-    if (matches.length === 0) {
-      const all = hammers.filter(h => h.b === brand);
-      return all.reduce((a,b) => Math.abs((a.lo+a.hi)/2-weight) < Math.abs((b.lo+b.hi)/2-weight) ? a : b);
-    }
-    return matches.reduce((a,b) => (a.hi-a.lo) < (b.hi-b.lo) ? a : b);
-  });
+  return ['General Breaker','OKTech','NPK'].map(brand => pickForBrand(brand, weight));
+}
+
+function recommendedBrand(recs, weight, useCase) {
+  const ok = brand => recs.some(h => h.b === brand && fits(h, weight));
+  if (ok('General Breaker')) return 'General Breaker';
+  const others = (useCase === 'kallio' || useCase === 'kaivos') ? ['NPK','OKTech'] : ['OKTech','NPK'];
+  return others.find(ok) || 'General Breaker';
 }
 
 function tagLabel(tag) {
@@ -1262,15 +1272,13 @@ function quoteHref(h) {
 function buildResults() {
   const w = selectedWeight;
   const grid = $('results-grid');
-  $('results-info').innerHTML = `<strong>Kone: ${machineLabel()}</strong> &nbsp;·&nbsp; Käyttötarkoitus: ${useLabels[selectedUseCase] || selectedUseCase} &nbsp;·&nbsp; Paras vaihtoehto jokaiselta merkiltä`;
-  let recommendedBrand = 'General Breaker';
-  if (selectedUseCase === 'kallio' || selectedUseCase === 'kaivos') recommendedBrand = 'NPK';
-  else if (w > 20) recommendedBrand = 'OKTech';
+  $('results-info').innerHTML = `<strong>Kone: ${machineLabel()}</strong> &nbsp;·&nbsp; Käyttötarkoitus: ${useLabels[selectedUseCase] || selectedUseCase} &nbsp;·&nbsp; Sopivin malli jokaiselta merkiltä`;
   const recs = getRecommendedHammers(w);
+  const recBrand = recommendedBrand(recs, w, selectedUseCase);
   grid.innerHTML = '';
   recs.forEach(h => {
-    const isRec = h.b === recommendedBrand;
-    const fits = h.lo <= w && h.hi >= w;
+    const isRec = h.b === recBrand;
+    const isFit = fits(h, w);
     const card = document.createElement('div');
     card.className = 'result-card' + (isRec ? ' rc-recommended' : '');
     card.innerHTML = `
@@ -1281,7 +1289,7 @@ function buildResults() {
       </div>
       <div class="rc-body">
         <div class="rc-model">${h.m}</div>
-        <div class="rc-desc">${h.desc}${fits ? '' : ' · Lähin malli — varmista sopivuus myyjältä.'}</div>
+        <div class="rc-desc">${h.desc}${isFit ? '' : ' · Lähin malli — varmista sopivuus myyjältä.'}</div>
         <table class="spec-table">
           <tr><td>Koneluokka</td><td>${fi(h.lo)}–${fi(h.hi)} t</td></tr>
           <tr><td>Iskuenergia</td><td>${h.j > 0 ? fi(h.j).replace(/ /g,' ') + ' J' : '—'}</td></tr>
@@ -1316,6 +1324,7 @@ function heroSearch() {
     goStep(2);
   } else if (typed) {
     if (!brand) selectBrand('Muu', document.querySelector('.brand-btn[data-brand="Muu"]'));
+    $(brand ? 'weight-input' : 'manual-weight').value = fi(typed);
     selectedModel = null;
     selectedWeight = typed;
     goStep(2);
