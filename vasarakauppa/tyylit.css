@@ -385,6 +385,10 @@ footer{background:var(--p-950);color:var(--white);padding:56px 0 32px}
 @media(max-width:520px){
   .page-hero{padding-top:69px}
 }
+/* === SUORITUSKYKY: näkymän alapuoliset osiot asetellaan vasta, kun ne tulevat lähelle näkymää === */
+main > section,footer{content-visibility:auto;contain-intrinsic-size:auto 1000px}
+/* suora saapuminen ankkuriin (#osio): kaikki asetellaan heti, jotta selain osuu kohteeseen tarkasti */
+.kaikki main > section,.kaikki footer{content-visibility:visible}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none !important}

@@ -10,6 +10,7 @@
 <meta property="og:title" content="Sopimushuollot — Suomen Vasarakauppa">
 <meta property="og:description" content="Hydraulivasaroiden huolto, kunnostus ja varaosat kuudella paikkakunnalla.">
 <meta property="og:type" content="website">
+<script>if(location.hash)document.documentElement.className='kaikki'</script>
 <link rel="preload" href="../fontit/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fontit/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fontit/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,7 +22,7 @@
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="../" aria-label="Suomen Vasarakauppa — etusivu">
-      <img src="../logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="458" height="140">
+      <img src="../logo-1x.png" srcset="../logo-1x.png 1x, ../logo.png 2x" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="190" height="58">
     </a>
     <div class="nav-links">
       <a href="../#konfiguraattori">Konfiguraattori</a>
@@ -71,7 +72,7 @@
         <p>Lähin huoltopisteesi palvelee asiantuntevasti: sen kautta saat apua, varaosia, vasaroita ja muutakin koneisiin liittyvää. Käy ihmeessä tutustumassa myös sopimushuoltojemme kotisivuihin.</p>
       </div>
       <div class="map-card card">
-        <img src="../kuvat/sopimushuollot-kartta.webp" alt="Kartta Suomen Vasarakaupan sopimushuolloista: Kokkola, Jyväskylä, Kouvola, Joensuu, Lieto ja Lappeenranta" width="737" height="560">
+        <img src="../kuvat/sopimushuollot-kartta.webp" srcset="../kuvat/sopimushuollot-kartta-400.webp 400w, ../kuvat/sopimushuollot-kartta-560.webp 560w, ../kuvat/sopimushuollot-kartta.webp 737w" sizes="(max-width:1080px) calc(100vw - 96px), 562px" alt="Kartta Suomen Vasarakaupan sopimushuolloista: Kokkola, Jyväskylä, Kouvola, Joensuu, Lieto ja Lappeenranta" width="737" height="560">
       </div>
     </div>
   </div>
@@ -159,7 +160,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../logo.png" alt="Suomen Vasarakauppa" width="458" height="140" loading="lazy">
+        <img src="../logo-1x.png" srcset="../logo-1x.png 1x, ../logo.png 2x" alt="Suomen Vasarakauppa" width="190" height="58" loading="lazy">
         <p>Hydraulivasaroiden ja purkutyökalujen maahantuonti, myynti, huolto ja varaosat. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
       </div>
       <div class="footer-col">
@@ -194,6 +195,21 @@
 </footer>
 
 <script>
+// Näkymän alapuoliset osiot asetellaan aluksi laiskasti (content-visibility, ks. tyylit.css),
+// jotta ensilataus on kevyt. Kun sivu on latautunut, ne asetellaan yksi kerrallaan selaimen
+// joutoaikana: sen jälkeen koko sivu on normaalisti aseteltu ja ankkurit osuvat tarkasti.
+addEventListener('load', () => {
+  const parts = [...document.querySelectorAll('main > section, footer')];
+  const idle = window.requestIdleCallback || (fn => setTimeout(fn, 60));
+  const next = () => {
+    const el = parts.shift();
+    if (!el) return;
+    el.style.contentVisibility = 'visible';
+    idle(next);
+  };
+  idle(next);
+});
+
 const ham = document.getElementById('ham');
 const mob = document.getElementById('mob-nav');
 ham.addEventListener('click', () => {

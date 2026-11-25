@@ -10,6 +10,7 @@
 <meta property="og:title" content="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa">
 <meta property="og:description" content="Valitse kaivinkoneesi — me kerromme oikean hydraulivasaran. General Breaker, OKTech ja NPK.">
 <meta property="og:type" content="website">
+<script>if(location.hash)document.documentElement.className='kaikki'</script>
 <link rel="preload" href="fontit/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fontit/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fontit/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,7 +22,7 @@
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="#top" aria-label="Suomen Vasarakauppa — etusivu">
-      <img src="logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="458" height="140">
+      <img src="logo-1x.png" srcset="logo-1x.png 1x, logo.png 2x" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="190" height="58">
     </a>
     <div class="nav-links">
       <a href="#konfiguraattori">Konfiguraattori</a>
@@ -127,7 +128,7 @@
     </div>
     <div class="feat-grid">
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn100tl.webp" alt="General Breaker GBN100TL -hydraulivasara" width="158" height="465" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn100tl-1x.webp" srcset="kuvat/gbn100tl-1x.webp 1x, kuvat/gbn100tl.webp 2x" alt="General Breaker GBN100TL -hydraulivasara" width="85" height="250" loading="lazy"></div>
         <div>
           <div class="feat-price ol">8 855 €</div>
           <h3 class="feat-model">GBN 100TL</h3>
@@ -144,7 +145,7 @@
         </div>
       </article>
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn170tl.webp" alt="General Breaker GBN170TL -hydraulivasara" width="139" height="463" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn170tl-1x.webp" srcset="kuvat/gbn170tl-1x.webp 1x, kuvat/gbn170tl.webp 2x" alt="General Breaker GBN170TL -hydraulivasara" width="75" height="250" loading="lazy"></div>
         <div>
           <div class="feat-price ol">17 115 €</div>
           <h3 class="feat-model">GBN 170TL</h3>
@@ -161,7 +162,7 @@
         </div>
       </article>
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn300el.webp" alt="General Breaker GBN300EL -hydraulivasara" width="184" height="552" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn300el-1x.webp" srcset="kuvat/gbn300el-1x.webp 1x, kuvat/gbn300el.webp 2x" alt="General Breaker GBN300EL -hydraulivasara" width="83" height="250" loading="lazy"></div>
         <div>
           <div class="feat-price ol">29 156 €</div>
           <h3 class="feat-model">GBN 300EL</h3>
@@ -537,8 +538,8 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="photos">
-        <div class="photo photo-a"><img src="kuvat/tyomaa.webp" alt="Kaivinkone ja General Breaker -hydraulivasara purkutyömaalla" width="292" height="502" loading="lazy"></div>
-        <div class="photo photo-b"><img src="kuvat/kalusto.webp" alt="Hydraulivasara ja purkukahmari kaivinkoneissa" width="473" height="408" loading="lazy"></div>
+        <div class="photo photo-a"><img src="kuvat/tyomaa.webp" srcset="kuvat/tyomaa-225.webp 225w, kuvat/tyomaa-260.webp 260w, kuvat/tyomaa.webp 292w" sizes="(max-width:768px) 150px, 222px" alt="Kaivinkone ja General Breaker -hydraulivasara purkutyömaalla" width="292" height="502" loading="lazy"></div>
+        <div class="photo photo-b"><img src="kuvat/kalusto.webp" srcset="kuvat/kalusto-225.webp 225w, kuvat/kalusto-300.webp 300w, kuvat/kalusto.webp 473w" sizes="(max-width:768px) 150px, 222px" alt="Hydraulivasara ja purkukahmari kaivinkoneissa" width="473" height="408" loading="lazy"></div>
         <p class="quote ol">”Me emme myy pelkkää vasaraa – me myymme toimintavarmuutta ja tehokkaita työtunteja.”</p>
       </div>
       <div>
@@ -642,7 +643,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="logo.png" alt="Suomen Vasarakauppa" width="458" height="140" loading="lazy">
+        <img src="logo-1x.png" srcset="logo-1x.png 1x, logo.png 2x" alt="Suomen Vasarakauppa" width="190" height="58" loading="lazy">
         <p>Hydraulivasaroiden ja purkutyökalujen maahantuonti, myynti, huolto ja varaosat. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
       </div>
       <div class="footer-col">
@@ -840,6 +841,60 @@ function selectUse(use, el) {
   $('msg-2').classList.remove('show');
 }
 
+// Näkymän alapuoliset osiot asetellaan aluksi laiskasti (content-visibility, ks. tyylit.css),
+// jotta ensilataus on kevyt. Kun sivu on latautunut, ne asetellaan yksi kerrallaan selaimen
+// joutoaikana: sen jälkeen koko sivu on normaalisti aseteltu ja ankkurit osuvat tarkasti.
+addEventListener('load', () => {
+  const parts = [...document.querySelectorAll('main > section, footer')];
+  const idle = window.requestIdleCallback || (fn => setTimeout(fn, 60));
+  const next = () => {
+    const el = parts.shift();
+    if (!el) return;
+    el.style.contentVisibility = 'visible';
+    idle(next);
+  };
+  idle(next);
+});
+
+// Vieritys kohteeseen. Näkymän alapuoliset osiot asetellaan vasta lähellä näkymää
+// (content-visibility), joten pitkän pehmeän vierityksen aikana kohteen paikka voi
+// tarkentua. Siksi kohdistus varmistetaan vielä vierityksen päätyttyä.
+function scrollToEl(el) {
+  const instant = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({behavior: instant ? 'auto' : 'smooth', block: 'start'});
+  if (instant) return;
+  const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const userEvents = ['wheel', 'touchstart', 'keydown'];
+  let done = false;
+  const stop = () => {
+    done = true;
+    removeEventListener('scrollend', settle);
+    userEvents.forEach(t => removeEventListener(t, stop));
+  };
+  const settle = () => {
+    if (done) return;
+    stop();
+    if (Math.abs(el.getBoundingClientRect().top - pad) > 2) el.scrollIntoView({behavior: 'auto', block: 'start'});
+  };
+  addEventListener('scrollend', settle);
+  // käyttäjä otti ohjat: ei pakoteta. Kuuntelu alkaa vasta seuraavalla kierroksella,
+  // jotta vierityksen käynnistänyt näppäinpainallus ei itse peru kohdistusta.
+  setTimeout(() => { if (!done) userEvents.forEach(t => addEventListener(t, stop, {passive: true})); }, 0);
+  setTimeout(settle, 1500);  // varalla selaimille, joissa ei ole scrollend-tapahtumaa
+}
+
+// Sivun sisäiset ankkurilinkit käyttävät samaa vieritystä
+document.addEventListener('click', e => {
+  const a = e.target.closest ? e.target.closest('a[href]') : null;
+  if (!a || !a.hash || a.target === '_blank' || a.pathname !== location.pathname || a.host !== location.host) return;
+  if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const target = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+  if (!target) return;
+  e.preventDefault();
+  if (location.hash !== a.hash) history.pushState(null, '', a.hash);
+  scrollToEl(target);
+});
+
 function goStep(n, scroll = true) {
   [1,2,3].forEach(i => {
     $(`step-${i}`).classList.remove('active');
@@ -850,7 +905,7 @@ function goStep(n, scroll = true) {
   $(`step-${n}`).classList.add('active');
   $(`step-ind-${n}`).classList.add('active');
   // kohdista aina itse korttiin: vaihepalkki jää näkymän yläreunaan valikon alle
-  if (scroll) $('conf').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+  if (scroll) scrollToEl($('conf'));
 }
 
 function goStep2() {
