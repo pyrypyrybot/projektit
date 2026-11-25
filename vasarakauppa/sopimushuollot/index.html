@@ -10,9 +10,9 @@
 <meta property="og:title" content="Sopimushuollot — Suomen Vasarakauppa">
 <meta property="og:description" content="Hydraulivasaroiden huolto, kunnostus ja varaosat kuudella paikkakunnalla.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="../fontit/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fontit/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fontit/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../tyylit.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="../" aria-label="Suomen Vasarakauppa — etusivu">
-      <img src="../logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="1224" height="374">
+      <img src="../logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="458" height="140">
     </a>
     <div class="nav-links">
       <a href="../#konfiguraattori">Konfiguraattori</a>
@@ -49,6 +49,8 @@
   </div>
 </nav>
 
+<main>
+
 <!-- OTSIKKO -->
 <header class="page-hero t-base">
   <div class="page-hero-in">
@@ -69,7 +71,7 @@
         <p>Lähin huoltopisteesi palvelee asiantuntevasti: sen kautta saat apua, varaosia, vasaroita ja muutakin koneisiin liittyvää. Käy ihmeessä tutustumassa myös sopimushuoltojemme kotisivuihin.</p>
       </div>
       <div class="map-card card">
-        <img src="../kuvat/sopimushuollot-kartta.jpg" alt="Kartta Suomen Vasarakaupan sopimushuolloista: Kokkola, Jyväskylä, Kouvola, Joensuu, Lieto ja Lappeenranta" width="737" height="560">
+        <img src="../kuvat/sopimushuollot-kartta.webp" alt="Kartta Suomen Vasarakaupan sopimushuolloista: Kokkola, Jyväskylä, Kouvola, Joensuu, Lieto ja Lappeenranta" width="737" height="560">
       </div>
     </div>
   </div>
@@ -150,23 +152,25 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../logo.png" alt="Suomen Vasarakauppa" width="1224" height="374" loading="lazy">
+        <img src="../logo.png" alt="Suomen Vasarakauppa" width="458" height="140" loading="lazy">
         <p>Hydraulivasaroiden ja purkutyökalujen maahantuonti, myynti, huolto ja varaosat. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
       </div>
       <div class="footer-col">
-        <h4>Tuotteet</h4>
+        <h2>Tuotteet</h2>
         <a href="../#merkit">General Breaker</a>
         <a href="../#merkit">OKTech</a>
         <a href="../#merkit">NPK</a>
         <a href="../#konfiguraattori">Konfiguraattori</a>
       </div>
       <div class="footer-col">
-        <h4>Palvelut</h4>
+        <h2>Palvelut</h2>
         <a href="../#varaosat">Varaosat</a>
         <a href="../#huolto">Huolto</a>
         <a href="./">Sopimushuollot</a>
@@ -174,7 +178,7 @@
         <a href="../#toimitus">Toimitus</a>
       </div>
       <div class="footer-col">
-        <h4>Yhteys</h4>
+        <h2>Yhteys</h2>
         <a href="tel:+358442483299">044 248 3299</a>
         <a href="tel:+358447942563">044 794 2563</a>
         <a href="mailto:info@vasarakauppa.fi">info@vasarakauppa.fi</a>

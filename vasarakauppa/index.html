@@ -10,9 +10,9 @@
 <meta property="og:title" content="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa">
 <meta property="og:description" content="Valitse kaivinkoneesi — me kerromme oikean hydraulivasaran. General Breaker, OKTech ja NPK.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="fontit/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontit/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontit/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="tyylit.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="#top" aria-label="Suomen Vasarakauppa — etusivu">
-      <img src="logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="1224" height="374">
+      <img src="logo.png" alt="Suomen Vasarakauppa — hydraulivasaroiden koti Suomessa" width="458" height="140">
     </a>
     <div class="nav-links">
       <a href="#konfiguraattori">Konfiguraattori</a>
@@ -48,6 +48,8 @@
     <a href="#konfiguraattori" class="btn btn-w mob-link-cta">Valitse vasara</a>
   </div>
 </nav>
+
+<main>
 
 <!-- HERO -->
 <header class="hero t-base" id="top">
@@ -125,7 +127,7 @@
     </div>
     <div class="feat-grid">
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn100tl.jpg" alt="General Breaker GBN100TL -hydraulivasara" width="158" height="465" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn100tl.webp" alt="General Breaker GBN100TL -hydraulivasara" width="158" height="465" loading="lazy"></div>
         <div>
           <div class="feat-price ol">8 855 €</div>
           <h3 class="feat-model">GBN 100TL</h3>
@@ -142,7 +144,7 @@
         </div>
       </article>
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn170tl.jpg" alt="General Breaker GBN170TL -hydraulivasara" width="139" height="463" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn170tl.webp" alt="General Breaker GBN170TL -hydraulivasara" width="139" height="463" loading="lazy"></div>
         <div>
           <div class="feat-price ol">17 115 €</div>
           <h3 class="feat-model">GBN 170TL</h3>
@@ -159,7 +161,7 @@
         </div>
       </article>
       <article class="feat-card card">
-        <div class="feat-img"><img src="kuvat/gbn300el.jpg" alt="General Breaker GBN300EL -hydraulivasara" width="209" height="626" loading="lazy"></div>
+        <div class="feat-img"><img src="kuvat/gbn300el.webp" alt="General Breaker GBN300EL -hydraulivasara" width="184" height="552" loading="lazy"></div>
         <div>
           <div class="feat-price ol">29 156 €</div>
           <h3 class="feat-model">GBN 300EL</h3>
@@ -218,7 +220,7 @@
       <p class="lead">Saat heti suositukset sopivimmista vasaroista kaikista kolmesta merkistä — hinnat, tekniset tiedot ja vertailu.</p>
     </div>
 
-    <div class="conf-wrap card">
+    <div class="conf-wrap card" id="conf">
       <div class="conf-steps">
         <div class="conf-step active" id="step-ind-1">
           <div class="step-num">1</div>
@@ -535,8 +537,8 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="photos">
-        <div class="photo photo-a"><img src="kuvat/tyomaa.jpg" alt="Kaivinkone ja General Breaker -hydraulivasara purkutyömaalla" width="292" height="502" loading="lazy"></div>
-        <div class="photo photo-b"><img src="kuvat/kalusto.jpg" alt="Hydraulivasara ja purkukahmari kaivinkoneissa" width="473" height="408" loading="lazy"></div>
+        <div class="photo photo-a"><img src="kuvat/tyomaa.webp" alt="Kaivinkone ja General Breaker -hydraulivasara purkutyömaalla" width="292" height="502" loading="lazy"></div>
+        <div class="photo photo-b"><img src="kuvat/kalusto.webp" alt="Hydraulivasara ja purkukahmari kaivinkoneissa" width="473" height="408" loading="lazy"></div>
         <p class="quote ol">”Me emme myy pelkkää vasaraa – me myymme toimintavarmuutta ja tehokkaita työtunteja.”</p>
       </div>
       <div>
@@ -633,23 +635,25 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="logo.png" alt="Suomen Vasarakauppa" width="1224" height="374" loading="lazy">
+        <img src="logo.png" alt="Suomen Vasarakauppa" width="458" height="140" loading="lazy">
         <p>Hydraulivasaroiden ja purkutyökalujen maahantuonti, myynti, huolto ja varaosat. General Breaker, OKTech ja NPK — kaikki koneluokat.</p>
       </div>
       <div class="footer-col">
-        <h4>Tuotteet</h4>
+        <h2>Tuotteet</h2>
         <a href="#merkit" onclick="showBrand('gb')">General Breaker</a>
         <a href="#merkit" onclick="showBrand('oktech')">OKTech</a>
         <a href="#merkit" onclick="showBrand('npk')">NPK</a>
         <a href="#konfiguraattori">Konfiguraattori</a>
       </div>
       <div class="footer-col">
-        <h4>Palvelut</h4>
+        <h2>Palvelut</h2>
         <a href="#varaosat">Varaosat</a>
         <a href="#huolto">Huolto</a>
         <a href="sopimushuollot/">Sopimushuollot</a>
@@ -657,7 +661,7 @@
         <a href="#toimitus">Toimitus</a>
       </div>
       <div class="footer-col">
-        <h4>Yhteys</h4>
+        <h2>Yhteys</h2>
         <a href="tel:+358442483299">044 248 3299</a>
         <a href="tel:+358447942563">044 794 2563</a>
         <a href="mailto:info@vasarakauppa.fi">info@vasarakauppa.fi</a>
@@ -845,7 +849,8 @@ function goStep(n, scroll = true) {
   });
   $(`step-${n}`).classList.add('active');
   $(`step-ind-${n}`).classList.add('active');
-  if (scroll) $('konfiguraattori').scrollIntoView({behavior:'smooth',block:'start'});
+  // kohdista aina itse korttiin: vaihepalkki jää näkymän yläreunaan valikon alle
+  if (scroll) $('conf').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
 }
 
 function goStep2() {
